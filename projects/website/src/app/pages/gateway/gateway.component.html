@@ -1,0 +1,42 @@
+<main class="gateway">
+  <div class="gateway__top">
+    <a class="brand brand--logo" routerLink="." aria-label="Moment of Travel home"><img src="/AVIATION%20PNG.png" alt="Moment of Travel"></a>
+    <div class="gateway__actions"><p>{{ 'gateway.tagline' | t }}</p><app-language-switch /></div>
+  </div>
+
+  <section class="intro">
+    <span class="kicker">{{ 'gateway.kicker' | t }}</span>
+    <h1>{{ 'gateway.title' | t }}</h1>
+    <p>{{ 'gateway.subtitle' | t }}</p>
+  </section>
+
+  <section class="choices" aria-label="Choose a business division">
+    <a class="choice choice--aviation" routerLink="aviation">
+      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=88" alt="Passenger aircraft above the clouds">
+      <span class="choice__wash"></span>
+      <span class="choice__number">01</span>
+      <span class="choice__content">
+        <span class="choice__icon">✈</span>
+        <small>{{ 'gateway.aviationKicker' | t }}</small>
+        <strong>{{ 'common.aviation' | t }}</strong>
+        <span class="choice__description">{{ 'gateway.aviationText' | t }}</span>
+        <span class="choice__link">{{ 'gateway.aviationCta' | t }} <b>→</b></span>
+      </span>
+    </a>
+
+    <a class="choice choice--travel" routerLink="travel">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=88" alt="Beautiful tropical coast">
+      <span class="choice__wash"></span>
+      <span class="choice__number">02</span>
+      <span class="choice__content">
+        <span class="choice__icon">⌖</span>
+        <small>{{ 'gateway.travelKicker' | t }}</small>
+        <strong>{{ 'common.travel' | t }}</strong>
+        <span class="choice__description">{{ 'gateway.travelText' | t }}</span>
+        <span class="choice__link">{{ 'gateway.travelCta' | t }} <b>→</b></span>
+      </span>
+    </a>
+  </section>
+
+  <footer><span>© 2026 Moment of Travel</span><span>Cairo · Dubai · London</span><a href="mailto:hello@momentoftravel.com">hello&#64;momentoftravel.com</a></footer>
+</main>

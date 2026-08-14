@@ -1,0 +1,60 @@
+<header class="header">
+  <div class="shell header__inner">
+    <a class="brand brand--logo" routerLink="../" aria-label="Moment of Travel home"><img src="/AVIATION%20PNG.png" alt="Moment of Travel"></a>
+    <div class="mobile-tools"><app-language-switch /><button class="menu" type="button" (click)="menuOpen = !menuOpen" aria-label="Toggle navigation">☰</button></div>
+    <nav [class.open]="menuOpen"><a href="#services">{{ 'aviation.navServices' | t }}</a><a href="#fleet">{{ 'aviation.navFleet' | t }}</a><a href="#about">{{ 'aviation.navAbout' | t }}</a><a href="#safety">{{ 'aviation.navSafety' | t }}</a><a href="#contact">{{ 'aviation.navContact' | t }}</a></nav>
+    <div class="header__actions"><app-language-switch /><a class="division" routerLink="../travel">{{ 'aviation.switch' | t }} ↗</a><a class="button button--small" href="#contact">{{ 'aviation.request' | t }}</a></div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero__image"></div><div class="hero__overlay"></div>
+    <div class="shell hero__content">
+      <span class="eyebrow">{{ 'aviation.heroKicker' | t }}</span>
+      <h1>{{ 'aviation.heroTitle' | t }}<br><em>{{ 'aviation.heroAccent' | t }}</em></h1>
+      <p>{{ 'aviation.heroText' | t }}</p>
+      <div class="hero__actions"><a class="button" href="#contact">{{ 'aviation.request' | t }} <span>→</span></a><a class="watch" href="#about"><i>▶</i> {{ 'aviation.story' | t }}</a></div>
+    </div>
+    <div class="shell hero__foot"><span><b>24/7</b> Global operations</span><span><b>120+</b> Destinations</span><span><b>15 yrs</b> Aviation expertise</span><a href="#services">Scroll to explore ↓</a></div>
+  </section>
+
+  <section class="intro" id="about">
+    <div class="shell intro__grid"><div><span class="eyebrow eyebrow--dark">{{ 'aviation.introKicker' | t }}</span><h2>{{ 'aviation.introTitle' | t }}</h2></div><div><p>{{ 'aviation.introText' | t }}</p><a href="#">{{ 'aviation.navAbout' | t }} <span>→</span></a></div></div>
+  </section>
+
+  <section class="services" id="services">
+    <div class="shell"><div class="section-head"><div><span class="eyebrow">{{ 'aviation.servicesKicker' | t }}</span><h2>{{ 'aviation.servicesTitle' | t }}</h2></div><p>{{ 'aviation.servicesText' | t }}</p></div>
+      <div class="service-grid">
+        <article><span class="service__number">01</span><i>✈</i><h3>{{ 'aviation.charter' | t }}</h3><p>{{ 'aviation.charterText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} →</a></article>
+        <article><span class="service__number">02</span><i>◇</i><h3>{{ 'aviation.management' | t }}</h3><p>{{ 'aviation.managementText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} →</a></article>
+        <article><span class="service__number">03</span><i>◎</i><h3>{{ 'aviation.group' | t }}</h3><p>{{ 'aviation.groupText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} →</a></article>
+        <article><span class="service__number">04</span><i>＋</i><h3>{{ 'aviation.missions' | t }}</h3><p>{{ 'aviation.missionsText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} →</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="fleet" id="fleet">
+    <div class="shell fleet__grid">
+      <div class="fleet__visual"><img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=1500&q=88" alt="Private jet on runway" loading="lazy"><span>Global 7500</span></div>
+      <div class="fleet__copy"><span class="eyebrow eyebrow--dark">{{ 'aviation.fleetKicker' | t }}</span><h2>{{ 'aviation.fleetTitle' | t }}</h2><p>Our global network spans light jets to ultra-long-range aircraft. We recommend based on your route, party and priorities—not inventory pressure.</p>
+        <div class="specs"><div><small>RANGE</small><b>7,700 nm</b></div><div><small>PASSENGERS</small><b>Up to 19</b></div><div><small>CRUISE</small><b>Mach 0.90</b></div></div>
+        <div class="fleet__nav"><a href="#contact">Explore our fleet →</a><span><button type="button">←</button><button type="button">→</button></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="safety" id="safety">
+    <div class="shell safety__inner"><div><span class="eyebrow">SAFETY WITHOUT EXCEPTION</span><h2>Standards that never<br>leave the ground.</h2><p>Every operator, aircraft and crew is independently evaluated against rigorous global standards. If it does not meet ours, it does not fly yours.</p><a class="button button--outline" href="#">Our safety commitment →</a></div><div class="safety__marks"><div><b>ARGUS</b><small>Rated operators</small></div><div><b>WYVERN</b><small>Verified network</small></div><div><b>IS-BAO</b><small>Aligned standards</small></div><div><b>24/7</b><small>Flight monitoring</small></div></div></div>
+  </section>
+
+  <section class="world">
+    <div class="shell world__inner"><span class="eyebrow eyebrow--dark">{{ 'aviation.worldKicker' | t }}</span><h2>{{ 'aviation.worldTitle' | t }}</h2><p>One team coordinating every detail across continents, time zones and changing plans.</p><div class="locations"><span>Cairo <small>CAI</small></span><span>Dubai <small>DXB</small></span><span>London <small>LHR</small></span><span>Paris <small>CDG</small></span><span>New York <small>JFK</small></span></div></div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact__image"></div><div class="contact__overlay"></div><div class="shell contact__inner"><span class="eyebrow">{{ 'aviation.contactKicker' | t }}</span><h2>{{ 'aviation.contactTitle' | t }}</h2><p>{{ 'aviation.contactText' | t }}</p><form><label><span>FROM</span><input placeholder="Departure city"></label><label><span>TO</span><input placeholder="Destination city"></label><label><span>DATE</span><input type="date"></label><label><span>PASSENGERS</span><input type="number" min="1" value="2"></label><button class="button" type="submit">{{ 'aviation.request' | t }} →</button></form><small class="response">A flight specialist will respond within 30 minutes.</small></div>
+  </section>
+</main>
+
+<footer><div class="shell footer__top"><div><a class="brand brand--logo" routerLink="../" aria-label="Moment of Travel home"><img src="/AVIATION%20PNG.png" alt="Moment of Travel"></a><p>Beyond every horizon.</p></div><div><h4>Services</h4><a href="#">Private charter</a><a href="#">Aircraft management</a><a href="#">Group aviation</a></div><div><h4>Company</h4><a href="#">About us</a><a href="#">Safety</a><a href="#">Careers</a></div><div><h4>Operations</h4><p>+20 2 5555 0199</p><p>ops&#64;momentoftravel.com</p><p>Available 24/7 worldwide</p></div></div><div class="shell footer__bottom"><span>© 2026 Moment of Travel</span><a routerLink="../travel">Visit Moment of Travel →</a><span>Privacy · Terms</span></div></footer>
