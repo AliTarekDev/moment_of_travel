@@ -371,6 +371,16 @@
     letter-spacing: .7px
 }
 
+.representation { padding: 92px 0; background: #fff; }
+.representation__grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(50px, 8vw, 110px); align-items: center; }
+.representation h2 { margin: 15px 0; color: var(--brand-brown-dark); font: 600 clamp(34px, 4vw, 49px)/1.12 Georgia, serif; }
+.representation p { color: #77817f; line-height: 1.8; }
+.representation__list { border-block: 1px solid #e4e0d8; }
+.representation__list article { min-height: 75px; display: grid; grid-template-columns: 45px 1fr; align-items: center; gap: 15px; border-bottom: 1px solid #e4e0d8; }
+.representation__list article:last-child { border-bottom: 0; }
+.representation__list b { color: var(--brand-brown); font: 500 12px Georgia, serif; }
+.representation__list span { color: #354641; font-size: 13px; font-weight: 700; }
+
 .fleet {
     padding: 110px 0;
     background: #eef4f6
@@ -589,13 +599,44 @@
 
 .contact form {
     display: grid;
-    grid-template-columns: repeat(4, 1fr) auto;
-    max-width: 1050px;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1180px;
     margin: 38px auto 15px;
     background: white;
     padding: 7px;
     border-radius: 5px;
     text-align: left
+}
+
+.contact button {
+    min-height: 58px;
+}
+
+.contact button:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+.form-message {
+    width: fit-content;
+    margin: 14px auto 0;
+    border-radius: 5px;
+    padding: 10px 14px;
+    font-size: 10px;
+}
+
+.form-message--success {
+    background: rgba(222, 240, 230, .14);
+    color: #dcefe4;
+}
+
+.form-message--success b {
+    color: #ead89e;
+}
+
+.form-message--error {
+    background: rgba(151, 47, 58, .28);
+    color: #ffe3e5;
 }
 
 .contact label {
@@ -691,6 +732,8 @@ footer {
     .fleet__grid {
         grid-template-columns: 1fr
     }
+
+    .representation__grid { grid-template-columns: 1fr; }
 
     .fleet__copy {
         margin: -50px 40px 0
@@ -972,3 +1015,18 @@ footer {
     color: white;
     border-color: var(--brand-beige);
 }
+
+.aviation-catalog { padding: 100px 0; background: #f4f0e8; color: #2c3936; }
+.aviation-catalog .section-head h2 { color: #2c3936; }
+.aviation-catalog__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 42px; }
+.aviation-catalog__grid article { overflow: hidden; border: 1px solid #ddd7cc; border-radius: 3px; background: #fff; }
+.aviation-catalog__image { height: 230px; display: grid; place-items: center; background: #5b343b; color: rgba(255,255,255,.6); font-size: 10px; letter-spacing: .18em; }
+.aviation-catalog__image img { width: 100%; height: 100%; object-fit: cover; }
+.aviation-catalog__grid article > div:last-child { padding: 22px; }
+.aviation-catalog__grid small { color: #9b626b; font-size: 10px; font-weight: 800; }
+.aviation-catalog__grid h3 { margin: 8px 0 10px; font: 500 22px Georgia, serif; }
+.aviation-catalog__grid p { min-height: 52px; color: #717b78; font-size: 12px; line-height: 1.65; }
+.aviation-catalog__grid b { display: block; margin: 17px 0 10px; font-size: 11px; }
+.aviation-catalog__grid button { border: 0; padding: 0; background: none; color: #8f5761; font: inherit; font-size: 11px; font-weight: 900; cursor: pointer; }
+@media (max-width: 900px) { .aviation-catalog__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .aviation-catalog__grid { grid-template-columns: 1fr; } }

@@ -1,0 +1,41 @@
+<div class="app-shell">
+  <aside class="sidebar" [class.is-open]="menuOpen">
+    <div class="brand"><span>M</span><div><strong>Moment of Travel</strong><small>إدارة العمليات</small></div></div>
+    <nav aria-label="التنقل في لوحة الإدارة">
+      <button type="button" [class.active]="activeView==='overview'" (click)="changeView('overview')"><fa-icon [icon]="icons.home" /><span>نظرة عامة</span></button>
+      <button type="button" [class.active]="activeView==='bookings'" (click)="changeView('bookings')"><fa-icon [icon]="icons.bookings" /><span>الحجوزات</span><b *ngIf="summary?.statusCounts?.new">{{ summary?.statusCounts?.new }}</b></button>
+      <button type="button" *ngIf="canManageClients" [class.active]="activeView==='clients'" (click)="changeView('clients')"><fa-icon [icon]="icons.clients" /><span>العملاء</span></button>
+      <button type="button" *ngIf="canManageContent" [class.active]="activeView==='programs'" (click)="changeView('programs')"><fa-icon [icon]="icons.programs" /><span>البرامج</span></button>
+      <button type="button" *ngIf="canManageContent" [class.active]="activeView==='content'" (click)="changeView('content')"><fa-icon [icon]="icons.content" /><span>الرحلات والمحتوى</span></button>
+      <button type="button" *ngIf="canSeeTeam" [class.active]="activeView==='team'" (click)="changeView('team')"><fa-icon [icon]="icons.team" /><span>فريق العمل</span></button>
+    </nav>
+    <div class="sidebar-card"><span>مركز المساعدة</span><strong>تحتاج إلى مساعدة؟</strong><p>احتفظ بإجراءات العمل وبيانات الموردين في دليل التشغيل الداخلي.</p></div>
+    <div class="profile" *ngIf="user as currentUser"><span>{{ initials(currentUser.fullName) }}</span><div><strong>{{ currentUser.fullName }}</strong><small>{{ statusLabel(currentUser.role) }}</small></div><button mat-icon-button type="button" (click)="logout()" aria-label="تسجيل الخروج" matTooltip="تسجيل الخروج"><fa-icon [icon]="icons.logout" /></button></div>
+  </aside>
+
+  <button class="mobile-scrim" *ngIf="menuOpen" type="button" (click)="menuOpen=false" aria-label="إغلاق القائمة"></button>
+
+  <main class="workspace">
+    <header class="topbar">
+      <button mat-icon-button class="menu-toggle" type="button" (click)="menuOpen=!menuOpen" aria-label="فتح القائمة"><fa-icon [icon]="icons.menu" /></button>
+      <div><span class="eyebrow">مركز العمليات</span><h1>{{ pageTitle }}</h1></div>
+      <div class="top-actions">
+        <button mat-icon-button type="button" class="icon-button" (click)="refresh()" aria-label="تحديث البيانات" matTooltip="تحديث البيانات"><fa-icon [icon]="icons.refresh" /></button>
+        <button mat-flat-button type="button" class="primary" *ngIf="activeView==='bookings'" (click)="statusFilter='new';refresh()">مراجعة الطلبات الجديدة</button>
+        <button mat-flat-button type="button" class="primary" *ngIf="activeView==='team'&&user?.role==='admin'" (click)="showNewUser=!showNewUser"><fa-icon [icon]="icons.add" /> إضافة موظف</button>
+      </div>
+    </header>
+
+    <div class="alert" *ngIf="error" role="alert"><span>!</span>{{ error }}<button type="button" (click)="error=''">×</button></div>
+    <div class="loading" *ngIf="loading"><i></i><span>جارٍ تحميل البيانات…</span></div>
+
+    <app-overview-view *ngIf="!loading&&activeView==='overview'" [summary]="summary" [bookings]="bookings" (viewAll)="changeView('bookings')" (bookingSelected)="selectBooking($event)" />
+    <app-bookings-view *ngIf="!loading&&activeView==='bookings'" [bookings]="bookings" [(search)]="search" [(statusFilter)]="statusFilter" (refreshRequested)="refresh()" (bookingSelected)="selectBooking($event)" />
+    <app-clients-view *ngIf="!loading&&activeView==='clients'&&canManageClients" />
+    <app-programs-view *ngIf="!loading&&activeView==='programs'&&canManageContent&&user" [role]="user.role" />
+    <app-content-manager *ngIf="!loading&&activeView==='content'&&canManageContent&&user" [role]="user.role" />
+    <app-team-view *ngIf="!loading&&activeView==='team'&&canSeeTeam&&user" [currentUser]="user" [users]="users" [(showNewUser)]="showNewUser" [newUser]="newUser" [saving]="saving" [deletingUserId]="deletingUserId" (createRequested)="createUser()" (viewRequested)="viewUser($event)" (deleteRequested)="deleteUser($event)" />
+  </main>
+
+  <app-booking-drawer *ngIf="selectedBooking as booking" [booking]="booking" [users]="users" [canEdit]="canEditBookings" [canManagePayments]="canManagePayments" [saving]="saving" (closed)="closeBooking()" (saveRequested)="saveBooking()" (paymentChanged)="setPayment($event)" />
+</div>

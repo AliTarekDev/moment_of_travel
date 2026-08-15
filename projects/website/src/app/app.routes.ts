@@ -10,10 +10,22 @@ export const routes: Routes = [
     path: ':lang',
     canActivate: [languageGuard],
     children: [
-      { path: '', component: GatewayComponent, title: 'Moment of Travel — Choose your journey' },
-      { path: 'aviation', component: AviationComponent, title: 'Moment of Travel — Beyond every horizon' },
-      { path: 'travel', component: TravelComponent, title: 'Moment of Travel — Discover the world your way' }
-    ]
+      {
+        path: '',
+        component: GatewayComponent,
+        title: 'Moment of Travel — Choose your journey',
+      },
+      {
+        path: 'aviation',
+        component: AviationComponent,
+        title: 'Moment of Travel — Beyond every horizon',
+      },
+      {
+        path: 'travel',
+        component: TravelComponent,
+        title: 'Moment of Travel — Discover the world your way',
+      },
+    ],
   },
-  { path: '**', redirectTo: 'ar' }
+  { path: '**', redirectTo: 'ar' },
 ];

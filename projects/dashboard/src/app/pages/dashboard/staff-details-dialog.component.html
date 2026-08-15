@@ -1,0 +1,52 @@
+<header mat-dialog-title>
+  <span class="avatar">{{ data.member.fullName.slice(0, 1).toUpperCase() }}</span>
+  <span><strong>{{ data.member.fullName }}</strong><small>تفاصيل حساب الموظف</small></span>
+</header>
+
+<mat-dialog-content>
+  <dl *ngIf="!editing; else editForm">
+    <div><dt><fa-icon [icon]="icons.email" /> البريد الإلكتروني</dt><dd>{{ data.member.email }}</dd></div>
+    <div><dt><fa-icon [icon]="icons.role" /> الصلاحية</dt><dd>{{ label(data.member.role) }}</dd></div>
+    <div><dt><fa-icon [icon]="icons.status" /> الحالة</dt><dd>{{ data.member.active === false ? 'غير نشط' : 'نشط' }}</dd></div>
+    <div><dt><fa-icon [icon]="icons.calendar" /> تاريخ الإنشاء</dt><dd>{{ data.member.createdAt ? (data.member.createdAt | date:'medium') : 'غير متاح' }}</dd></div>
+  </dl>
+  <ng-template #editForm>
+    <div class="edit-form">
+      <mat-form-field appearance="outline">
+        <mat-label>الاسم الكامل</mat-label>
+        <input matInput [(ngModel)]="editable.fullName" required minlength="2" autocomplete="name">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>البريد الإلكتروني</mat-label>
+        <input matInput dir="ltr" [(ngModel)]="editable.email" required type="email" autocomplete="email">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>الصلاحية</mat-label>
+        <mat-select [(ngModel)]="editable.role" [disabled]="data.isCurrentUser">
+          <mat-option *ngFor="let role of roles" [value]="role">{{ label(role) }}</mat-option>
+        </mat-select>
+        <mat-hint *ngIf="data.isCurrentUser">لا يمكنك تغيير صلاحية حسابك الحالي.</mat-hint>
+      </mat-form-field>
+      <div class="active-control">
+        <mat-slide-toggle [(ngModel)]="editable.active" [disabled]="data.isCurrentUser">الحساب نشط</mat-slide-toggle>
+        <small *ngIf="data.isCurrentUser">لا يمكنك تعطيل حسابك الحالي.</small>
+      </div>
+    </div>
+  </ng-template>
+  <p class="self-note" *ngIf="data.isCurrentUser && !editing">هذا هو حسابك الحالي. يمكنك تعديل الاسم والبريد، لكن لا يمكنك تغيير صلاحيتك أو تعطيل الحساب.</p>
+  <p class="dialog-error" *ngIf="error" role="alert">{{ error }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button *ngIf="!editing" mat-dialog-close>إغلاق</button>
+  <button mat-button *ngIf="editing" (click)="cancelEditing()" [disabled]="saving">إلغاء</button>
+  <button mat-stroked-button *ngIf="data.canEdit && !editing" (click)="startEditing()">
+    <fa-icon [icon]="icons.edit" /> تعديل البيانات
+  </button>
+  <button mat-flat-button class="save" *ngIf="editing" (click)="save()" [disabled]="saving || editable.fullName.trim().length < 2 || !editable.email.includes('@')">
+    <fa-icon [icon]="icons.save" /> {{ saving ? 'جارٍ الحفظ…' : 'حفظ التعديلات' }}
+  </button>
+  <button mat-flat-button class="danger" *ngIf="data.canDelete && !editing" (click)="requestDelete()">
+    <fa-icon [icon]="icons.trash" /> حذف الموظف
+  </button>
+</mat-dialog-actions>

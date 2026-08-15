@@ -1,0 +1,19 @@
+:host { display: block; color: #273330; }
+header { display: flex; align-items: center; gap: 13px; padding-top: 22px; }
+header > span:last-child { display: grid; gap: 3px; }
+header strong { font: 500 20px Georgia, serif; }
+header small { color: #8a9491; font-size: 11px; }
+.avatar { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 13px; background: #eee4e1; color: #935d65; font-size: 15px; font-weight: 900; }
+dl { min-width: min(410px, 70vw); margin: 4px 0 0; display: grid; }
+dl div { padding: 13px 0; border-bottom: 1px solid #ece8e2; }
+dt { display: flex; align-items: center; gap: 8px; color: #8a9491; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+dd { margin: 6px 0 0 24px; color: #34413e; font-size: 13px; overflow-wrap: anywhere; }
+.self-note { border-radius: 9px; padding: 11px 13px; background: #f5eee6; color: #825a3c; font-size: 11px; line-height: 1.5; }
+.edit-form { min-width: min(430px, 72vw); padding-top: 8px; display: grid; gap: 4px; }
+.edit-form mat-form-field { width: 100%; }
+.active-control { margin: 2px 0 10px; display: grid; gap: 7px; }
+.active-control small { color: #8a6a4a; font-size: 10px; }
+.dialog-error { border-radius: 9px; padding: 11px 13px; background: #f8e5e5; color: #8d3f47; font-size: 11px; line-height: 1.5; }
+.save { background: #8f5761 !important; color: #fff !important; }
+.danger { background: #a23f49 !important; color: #fff !important; }
+button fa-icon { margin-inline-end: 7px; }

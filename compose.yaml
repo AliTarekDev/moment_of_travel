@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: moment-of-travel-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: dreamstour
+      POSTGRES_USER: dreamstour_app
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dreamstour_dev_only}
+    ports:
+      - "5432:5432"
+    volumes:
+      - moment_of_travel_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dreamstour_app -d dreamstour"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  moment_of_travel_postgres:
