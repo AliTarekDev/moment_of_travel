@@ -1,0 +1,74 @@
+<!--
+<header class="topbar">
+  <div class="container topbar__inner">
+    <div class="topbar__meta">
+      <span>{{ "travel.location" | t }}</span>
+      <span>{{ "travel.currency" | t }}</span>
+      <a class="desktop-only" href="tel:+966549440048">+966 54 944 0048</a>
+      <a class="desktop-only" href="mailto:info@momentoftravels.com"
+        >info&#64;momentoftravels.com</a
+      >
+    </div>
+    <div class="topbar__actions">
+      <app-language-switch />
+    </div>
+  </div>
+</header>
+-->
+
+<nav class="nav" [class.nav--scrolled]="isScrolled">
+  <div class="container nav__inner">
+    <a class="brand brand--logo" href="../" aria-label="Moment of Travel home">
+      <img src="/LOGO 2.png" alt="Moment of Travel" />
+    </a>
+
+    <button
+      class="menu-button"
+      type="button"
+      (click)="toggleMobileMenu()"
+      aria-label="Toggle menu"
+      [attr.aria-expanded]="mobileMenuOpen"
+      aria-controls="travel-navigation-links"
+    >
+      <fa-icon [icon]="icons.bars" />
+    </button>
+
+    <button
+      class="side-nav-overlay"
+      type="button"
+      [class.is-open]="mobileMenuOpen"
+      (click)="closeMobileMenu()"
+      aria-label="Close menu"
+    ></button>
+
+    <div
+      class="nav__links"
+      id="travel-navigation-links"
+      [class.is-open]="mobileMenuOpen"
+      [class.nav__links--rtl]="languages.language() === 'ar'"
+      [class.nav__links--ltr]="languages.language() !== 'ar'"
+    >
+      <div class="side-nav__head">
+        <img src="/LOGO 2.png" alt="Moment of Travel" />
+        <button type="button" (click)="closeMobileMenu()" aria-label="Close menu">×</button>
+      </div>
+      <a class="active" href="#top" (click)="closeMobileMenu()">{{
+        "travel.navHome" | t
+      }}</a>
+      <a href="#catalog" (click)="closeMobileMenu()">{{
+        "travel.navDestinations" | t
+      }}</a>
+      <a href="#services" (click)="closeMobileMenu()">{{
+        "travel.navServices" | t
+      }}</a>
+      <a href="#contact" (click)="closeMobileMenu()">{{
+        "travel.navContact" | t
+      }}</a>
+      <a href="#about" (click)="closeMobileMenu()">{{
+        "travel.navAbout" | t
+      }}</a>
+      <app-language-switch class="nav__language-switch" />
+    </div>
+  </div>
+</nav>
+<div class="nav-spacer" [class.is-visible]="isScrolled"></div>

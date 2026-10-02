@@ -1,0 +1,16 @@
+<section class="plan-cta">
+  <div class="container">
+    <div class="plan-cta__card">
+      <span class="eyebrow">{{ languages.language() === 'ar' ? 'ابدأ التخطيط' : 'Start Planning' }}</span>
+      <h2>{{ languages.language() === 'ar' ? 'لنخطط رحلتك الفاخرة إلى مصر' : 'Let’s Plan Your Egypt Luxury Tour' }}</h2>
+      <p>
+        {{
+          languages.language() === 'ar'
+            ? 'تبدأ رحلتك بمحادثة. سواء جذبتك إحدى رحلات مصر الفاخرة المختارة لدينا أو كنت تحلم بتجربة مصممة بالكامل، نحن هنا لنجعلها سهلة وحصرية ولا تُنسى. دعنا نصمم لك تجربة خاصة تشبهك تماماً.'
+            : 'Your journey begins with a conversation. Whether you’re drawn to one of our curated Egypt Luxury Tours or dreaming of something entirely custom, we’re here to make it effortless, exclusive, and unforgettable. Let us craft a private experience that’s as unique as you are.'
+        }}
+      </p>
+      <a href="#booking">{{ languages.language() === 'ar' ? 'اطلب رحلة' : 'Request A tour' }}</a>
+    </div>
+  </div>
+</section>

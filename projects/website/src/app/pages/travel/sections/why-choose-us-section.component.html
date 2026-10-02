@@ -1,0 +1,27 @@
+<section class="why-luxury" id="services">
+  <div class="container">
+    <div class="why-luxury__heading">
+      <span class="eyebrow">{{ languages.language() === 'ar' ? 'مميزاتنا' : 'Our Difference' }}</span>
+      <h2>{{ languages.language() === 'ar' ? 'لماذا تختارنا؟' : 'Why Choose Us?' }}</h2>
+      <strong>{{ languages.language() === 'ar' ? 'تجربة فاخرة بتفاصيل لا تترك للصدفة.' : 'Luxury travel planned with precision, privacy, and depth.' }}</strong>
+      <p>
+        {{
+          languages.language() === 'ar'
+            ? 'نقدم أكثر من مجرد جولات؛ نصمم تجارب شخصية وحصرية حول تفضيلاتك بدقة. تجمع رحلات مصر الفاخرة بين الوصول الخاص لأشهر المواقع، الإقامات الخمس نجوم، التنقلات الخاصة، ومعرفة خبراء المصريات. كل تفصيل مخطط بعناية لتكون رحلتك سلسة وغامرة ولا تُنسى.'
+            : 'We offer more than just tours, we provide exclusive, personalized experiences crafted around your exact preferences. Our Egypt Luxury Tours combine VIP access to the country’s most iconic sites, handpicked five-star accommodations, private transportation, and the insight of expert Egyptologists. Every detail is meticulously planned to create a journey that’s seamless, immersive, and truly unforgettable.'
+        }}
+      </p>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature-card" *ngFor="let card of cards">
+        <img [src]="card.image" [alt]="languages.language() === 'ar' ? card.titleAr : card.titleEn" loading="lazy">
+        <div class="feature-card__body">
+          <h3>{{ languages.language() === 'ar' ? card.titleAr : card.titleEn }}</h3>
+          <p>{{ languages.language() === 'ar' ? card.textAr : card.textEn }}</p>
+          <a href="#booking">{{ languages.language() === 'ar' ? 'شاهد التفاصيل' : 'See Details' }}</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+<section class="luxury-gallery">
+  <div class="container">
+    <div class="luxury-gallery__heading">
+      <span class="eyebrow">{{ languages.language() === 'ar' ? 'معرض الرحلة' : 'Journey Gallery' }}</span>
+      <h2>{{ languages.language() === 'ar' ? 'لمحات من مصر كما تستحق أن تُرى' : 'Glimpses of Egypt, beautifully framed.' }}</h2>
+      <p>
+        {{
+          languages.language() === 'ar'
+            ? 'استكشف أجواء الرحلات الخاصة من المعابد والنيل إلى البحر الأحمر، ثم دعنا نصمم لك التجربة الكاملة.'
+            : 'Explore the atmosphere of private Egypt travel — from temples and the Nile to the Red Sea — then let us shape the full experience around you.'
+        }}
+      </p>
+    </div>
+
+    <div class="gallery-carousel-wrap">
+      <owl-carousel-o class="gallery-carousel" [options]="carouselOptions">
+        <ng-template carouselSlide *ngFor="let image of images">
+          <article class="gallery-card">
+            <img [src]="image.image" [alt]="languages.language() === 'ar' ? image.titleAr : image.titleEn" loading="lazy">
+            <div class="gallery-card__shade"></div>
+            <div class="gallery-card__caption">
+              <small>{{ languages.language() === 'ar' ? image.locationAr : image.locationEn }}</small>
+              <h3>{{ languages.language() === 'ar' ? image.titleAr : image.titleEn }}</h3>
+            </div>
+          </article>
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+  </div>
+</section>

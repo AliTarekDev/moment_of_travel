@@ -30,11 +30,16 @@ import {
   faWaterLadder,
   faWifi,
 } from '@fortawesome/free-solid-svg-icons';
-import { LanguageSwitchComponent } from '../../i18n/language-switch.component';
 import { TranslatePipe } from '../../i18n/translate.pipe';
 import { LanguageService } from '../../i18n/language.service';
 import { BookingApiService, BookingServiceType } from '../../services/booking-api.service';
 import { CatalogApiService, PublicCatalogItem } from '../../services/catalog-api.service';
+import { LuxuryGallerySectionComponent } from './sections/luxury-gallery-section.component';
+import { LuxuryIntroSectionComponent } from './sections/luxury-intro-section.component';
+import { PlanTourCtaSectionComponent } from './sections/plan-tour-cta-section.component';
+import { SignatureToursSectionComponent } from './sections/signature-tours-section.component';
+import { TravelNavComponent } from './travel-nav.component';
+import { WhyChooseUsSectionComponent } from './sections/why-choose-us-section.component';
 
 type SearchTab = 'Flights' | 'Hotels' | 'Cars' | 'Cruise' | 'Tours';
 
@@ -58,7 +63,20 @@ interface Listing {
 @Component({
   selector: 'app-travel',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, LanguageSwitchComponent, TranslatePipe, MatButtonModule, MatInputModule, FontAwesomeModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TranslatePipe,
+    MatButtonModule,
+    MatInputModule,
+    FontAwesomeModule,
+    LuxuryIntroSectionComponent,
+    WhyChooseUsSectionComponent,
+    SignatureToursSectionComponent,
+    PlanTourCtaSectionComponent,
+    LuxuryGallerySectionComponent,
+    TravelNavComponent,
+  ],
   templateUrl: './travel.component.html',
   styleUrl: './travel.component.scss'
 })
@@ -69,7 +87,6 @@ export class TravelComponent {
   readonly languages = inject(LanguageService);
   private readonly catalogApi = inject(CatalogApiService);
   activeTab: SearchTab = 'Flights';
-  mobileMenuOpen = false;
   bookingSubmitting = false;
   bookingReference = '';
   bookingError = '';

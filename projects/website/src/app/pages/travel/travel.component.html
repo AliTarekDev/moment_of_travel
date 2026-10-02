@@ -1,34 +1,42 @@
-<header class="topbar" id="top">
-  <div class="shell topbar__inner">
-    <div class="topbar__meta"><span>{{ 'travel.location' | t }}</span><span>{{ 'travel.currency' | t }}</span><a class="desktop-only" href="tel:+966549440048">+966 54 944 0048</a><a class="desktop-only" href="mailto:info@momentoftravels.com">info&#64;momentoftravels.com</a></div>
-    <div class="topbar__actions"><app-language-switch /><a href="#booking">{{ 'travel.plan' | t }}</a></div>
-  </div>
-</header>
-
-<nav class="nav">
-  <div class="shell nav__inner">
-    <a class="brand brand--logo" href="../" aria-label="Moment of Travel home"><img src="/AVIATION%20PNG.png" alt="Moment of Travel"></a>
-    <button mat-icon-button class="menu-button" type="button" (click)="mobileMenuOpen = !mobileMenuOpen" aria-label="Toggle menu"><fa-icon [icon]="icons.bars" /></button>
-    <div class="nav__links" [class.is-open]="mobileMenuOpen">
-      <a class="active" href="#top">{{ 'travel.navHome' | t }}</a><a href="#services">{{ 'travel.navServices' | t }}</a><a href="#catalog">{{ 'travel.navDestinations' | t }}</a><a href="#offers">{{ 'travel.navOffers' | t }}</a><a href="#about">{{ 'travel.navAbout' | t }}</a><a href="#contact">{{ 'travel.navContact' | t }}</a>
-    </div>
-    <a mat-flat-button class="button button--small desktop-cta" href="#booking">{{ 'travel.plan' | t }} <span><fa-icon [icon]="icons.arrowRight" /></span></a>
-  </div>
-</nav>
+<app-travel-nav id="top" />
 
 <main>
   <section class="hero">
     <div class="hero__wash"></div>
-    <div class="shell hero__content">
-      <span class="eyebrow eyebrow--light">{{ 'travel.heroKicker' | t }}</span>
-      <h1>{{ 'travel.heroTitle' | t }}<br><em>{{ 'travel.heroAccent' | t }}</em></h1>
-      <p>{{ 'travel.heroText' | t }}</p>
-      <div class="hero__proof"><div class="avatars"><span>JD</span><span>AK</span><span>MS</span></div><div><b>4.9/5</b><small>Trusted by 12,000+ travelers</small></div></div>
+    <div class="container hero__content">
+      <span class="eyebrow eyebrow--light">{{ "travel.heroKicker" | t }}</span>
+      <h1>
+        {{ "travel.heroTitle" | t }}<br /><em>{{ "travel.heroAccent" | t }}</em>
+      </h1>
+      <p>{{ "travel.heroText" | t }}</p>
+      <div class="hero__proof">
+        <div class="avatars">
+          <span>VIP</span><span>Nile</span><span>GEM</span>
+        </div>
+        <div>
+          <b>{{
+            languages.language() === "ar"
+              ? "رحلات خاصة بالكامل"
+              : "Private by design"
+          }}</b>
+          <small>{{
+            languages.language() === "ar"
+              ? "برامج مصممة حول وقتك واهتماماتك"
+              : "Tailored around your pace, privacy, and passions"
+          }}</small>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="search-wrap" id="search">
-    <div class="shell">
+  <app-luxury-intro-section />
+  <app-why-choose-us-section />
+  <app-signature-tours-section />
+  <app-plan-tour-cta-section />
+  <!-- <app-luxury-gallery-section /> -->
+
+  <!-- <section class="search-wrap" id="search">
+    <div class="container">
       <div class="search-card">
         <div class="search-tabs" role="tablist">
           <button mat-button *ngFor="let tab of searchTabs" type="button" [class.active]="activeTab === tab" (click)="setTab(tab)"><span><fa-icon [icon]="iconForTab(tab)" /></span>{{ tab }}</button>
@@ -44,136 +52,615 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
-  <section class="section catalog-section" id="catalog" *ngIf="catalogItems.length">
-    <div class="shell">
-      <div class="section-heading"><div><span class="eyebrow">{{ languages.language() === 'ar' ? 'مضاف حديثاً' : 'JUST ADDED' }}</span><h2>{{ languages.language() === 'ar' ? 'رحلات وعروض مختارة' : 'Curated trips and offers' }}</h2><p>{{ languages.language() === 'ar' ? 'كل ما ينشره فريقنا يظهر هنا مباشرة.' : 'Everything published by our team appears here immediately.' }}</p></div></div>
+  <!-- <section
+    class="section catalog-section"
+    id="published-tours"
+    *ngIf="catalogItems.length"
+  >
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">{{
+            languages.language() === "ar" ? "مضاف حديثاً" : "JUST ADDED"
+          }}</span>
+          <h2>
+            {{
+              languages.language() === "ar"
+                ? "رحلات وعروض مختارة"
+                : "Curated trips and offers"
+            }}
+          </h2>
+          <p>
+            {{
+              languages.language() === "ar"
+                ? "كل ما ينشره فريقنا يظهر هنا مباشرة."
+                : "Everything published by our team appears here immediately."
+            }}
+          </p>
+        </div>
+      </div>
       <div class="catalog-grid">
-        <article class="catalog-card" *ngFor="let item of catalogItems" [class.featured]="item.featured">
-          <div class="catalog-card__image"><img *ngIf="item.imageUrl" [src]="item.imageUrl" [alt]="local(item, 'title')" loading="lazy"><span *ngIf="!item.imageUrl">MOMENT OF TRAVEL</span><b *ngIf="item.featured">{{ languages.language() === 'ar' ? 'مميّز' : 'Featured' }}</b></div>
-          <div class="catalog-card__body"><small>{{ local(item, 'location') }}</small><h3>{{ local(item, 'title') }}</h3><p>{{ local(item, 'summary') }}</p><div><span *ngIf="item.price">{{ item.price | number:'1.0-2' }} {{ item.currency }}</span><span *ngIf="!item.price">{{ languages.language() === 'ar' ? 'السعر حسب الطلب' : 'Price on request' }}</span><button type="button" (click)="selectCatalogItem(item)">{{ languages.language() === 'ar' ? 'اطلب الآن' : 'Request now' }} →</button></div></div>
+        <article
+          class="catalog-card"
+          *ngFor="let item of catalogItems"
+          [class.featured]="item.featured"
+        >
+          <div class="catalog-card__image">
+            <img
+              *ngIf="item.imageUrl"
+              [src]="item.imageUrl"
+              [alt]="local(item, 'title')"
+              loading="lazy"
+            /><span *ngIf="!item.imageUrl">MOMENT OF TRAVEL</span
+            ><b *ngIf="item.featured">{{
+              languages.language() === "ar" ? "مميّز" : "Featured"
+            }}</b>
+          </div>
+          <div class="catalog-card__body">
+            <small>{{ local(item, "location") }}</small>
+            <h3>{{ local(item, "title") }}</h3>
+            <p>{{ local(item, "summary") }}</p>
+            <div>
+              <span *ngIf="item.price"
+                >{{ item.price | number: "1.0-2" }} {{ item.currency }}</span
+              ><span *ngIf="!item.price">{{
+                languages.language() === "ar"
+                  ? "السعر حسب الطلب"
+                  : "Price on request"
+              }}</span
+              ><button type="button" (click)="selectCatalogItem(item)">
+                {{
+                  languages.language() === "ar" ? "اطلب الآن" : "Request now"
+                }}
+                →
+              </button>
+            </div>
+          </div>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="section heritage-services" id="services">
-    <div class="shell">
+  <section class="section heritage-services" id="expertise">
+    <div class="container">
       <div class="section-heading heritage-heading">
-        <div><span class="eyebrow">{{ 'travel.heritageKicker' | t }}</span><h2>{{ 'travel.heritageTitle' | t }}</h2></div>
-        <p>{{ 'travel.heritageText' | t }}</p>
+        <div>
+          <span class="eyebrow">{{ "travel.heritageKicker" | t }}</span>
+          <h2>{{ "travel.heritageTitle" | t }}</h2>
+        </div>
+        <p>{{ "travel.heritageText" | t }}</p>
       </div>
       <div class="heritage-grid">
-        <article><i><fa-icon [icon]="icons.handshake" /></i><span>01</span><h3>{{ 'travel.airlineRepTitle' | t }}</h3><p>{{ 'travel.airlineRepText' | t }}</p><a href="#booking">{{ 'travel.plan' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
-        <article><i><fa-icon [icon]="icons.kaaba" /></i><span>02</span><h3>{{ 'travel.hajjTitle' | t }}</h3><p>{{ 'travel.hajjText' | t }}</p><a href="#booking">{{ 'travel.plan' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
-        <article><i><fa-icon [icon]="icons.ticket" /></i><span>03</span><h3>{{ 'travel.ticketsTitle' | t }}</h3><p>{{ 'travel.ticketsText' | t }}</p><a href="#booking">{{ 'travel.plan' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
-        <article><i><fa-icon [icon]="icons.passport" /></i><span>04</span><h3>{{ 'travel.specialTravelTitle' | t }}</h3><p>{{ 'travel.specialTravelText' | t }}</p><a href="#booking">{{ 'travel.plan' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
+        <article>
+          <i><fa-icon [icon]="icons.handshake" /></i><span>01</span>
+          <h3>{{ "travel.airlineRepTitle" | t }}</h3>
+          <p>{{ "travel.airlineRepText" | t }}</p>
+          <a href="#booking"
+            >{{ "travel.plan" | t }} <fa-icon [icon]="icons.arrowRight"
+          /></a>
+        </article>
+        <article>
+          <i><fa-icon [icon]="icons.kaaba" /></i><span>02</span>
+          <h3>{{ "travel.hajjTitle" | t }}</h3>
+          <p>{{ "travel.hajjText" | t }}</p>
+          <a href="#booking"
+            >{{ "travel.plan" | t }} <fa-icon [icon]="icons.arrowRight"
+          /></a>
+        </article>
+        <article>
+          <i><fa-icon [icon]="icons.ticket" /></i><span>03</span>
+          <h3>{{ "travel.ticketsTitle" | t }}</h3>
+          <p>{{ "travel.ticketsText" | t }}</p>
+          <a href="#booking"
+            >{{ "travel.plan" | t }} <fa-icon [icon]="icons.arrowRight"
+          /></a>
+        </article>
+        <article>
+          <i><fa-icon [icon]="icons.passport" /></i><span>04</span>
+          <h3>{{ "travel.specialTravelTitle" | t }}</h3>
+          <p>{{ "travel.specialTravelText" | t }}</p>
+          <a href="#booking"
+            >{{ "travel.plan" | t }} <fa-icon [icon]="icons.arrowRight"
+          /></a>
+        </article>
       </div>
     </div>
   </section>
 
   <section class="section" id="destinations">
-    <div class="shell">
-      <div class="section-heading"><div><span class="eyebrow">{{ 'travel.destinationsKicker' | t }}</span><h2>{{ 'travel.destinationsTitle' | t }}</h2><p>Places worth crossing oceans for, selected by travelers like you.</p></div><a href="#booking">Plan a destination <span>→</span></a></div>
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">{{ "travel.destinationsKicker" | t }}</span>
+          <h2>{{ "travel.destinationsTitle" | t }}</h2>
+          <p>
+            Places worth crossing oceans for, selected by travelers like you.
+          </p>
+        </div>
+        <a href="#booking">Plan a destination <span>→</span></a>
+      </div>
       <div class="destination-grid">
-        <article class="destination" *ngFor="let item of destinations; let i = index" [class.destination--large]="i === 0 || i === 3">
-          <img [src]="item.image" [alt]="item.city" loading="lazy"><div class="destination__shade"></div><div class="destination__copy"><small>{{ item.country }}</small><h3>{{ item.city }}</h3><span>From <b>${{ item.price }}</b></span></div><button mat-icon-button type="button" (click)="selectDestination(item)" aria-label="Request destination"><fa-icon [icon]="icons.external" /></button>
+        <article
+          class="destination"
+          *ngFor="let item of destinations; let i = index"
+          [class.destination--large]="i === 0 || i === 3"
+        >
+          <img [src]="item.image" [alt]="item.city" loading="lazy" />
+          <div class="destination__shade"></div>
+          <div class="destination__copy">
+            <small>{{ item.country }}</small>
+            <h3>{{ item.city }}</h3>
+            <span
+              >From <b>${{ item.price }}</b></span
+            >
+          </div>
+          <button
+            mat-icon-button
+            type="button"
+            (click)="selectDestination(item)"
+            aria-label="Request destination"
+          >
+            <fa-icon [icon]="icons.external" />
+          </button>
         </article>
       </div>
     </div>
   </section>
 
   <section class="section section--tint" id="stays">
-    <div class="shell">
-      <div class="section-heading"><div><span class="eyebrow">{{ 'travel.staysKicker' | t }}</span><h2>{{ 'travel.staysTitle' | t }}</h2><p>Beautiful places, exceptional hospitality, and memories waiting to happen.</p></div><div class="carousel-controls"><button mat-icon-button type="button" (click)="rotateListings(-1)" aria-label="Previous"><fa-icon [icon]="icons.arrowLeft" /></button><button mat-icon-button type="button" (click)="rotateListings(1)" aria-label="Next"><fa-icon [icon]="icons.arrowRight" /></button></div></div>
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">{{ "travel.staysKicker" | t }}</span>
+          <h2>{{ "travel.staysTitle" | t }}</h2>
+          <p>
+            Beautiful places, exceptional hospitality, and memories waiting to
+            happen.
+          </p>
+        </div>
+        <div class="carousel-controls">
+          <button
+            mat-icon-button
+            type="button"
+            (click)="rotateListings(-1)"
+            aria-label="Previous"
+          >
+            <fa-icon [icon]="icons.arrowLeft" /></button
+          ><button
+            mat-icon-button
+            type="button"
+            (click)="rotateListings(1)"
+            aria-label="Next"
+          >
+            <fa-icon [icon]="icons.arrowRight" />
+          </button>
+        </div>
+      </div>
       <div class="listing-grid">
         <article class="listing" *ngFor="let hotel of visibleListings">
-          <div class="listing__image"><img [src]="hotel.image" [alt]="hotel.name" loading="lazy"><span>{{ hotel.tag }}</span><button mat-icon-button type="button" [class.selected]="favourites.has(hotel.name)" (click)="toggleFavourite(hotel.name)" aria-label="Toggle wishlist"><fa-icon [icon]="icons.heart" /></button></div>
-          <div class="listing__body"><div class="rating"><b><fa-icon [icon]="icons.star" /> {{ hotel.rating }}</b><span>({{ hotel.reviews }} reviews)</span></div><h3>{{ hotel.name }}</h3><p><fa-icon [icon]="icons.location" /> {{ hotel.location }}</p><div class="amenities"><span><fa-icon [icon]="icons.pool" /> Pool</span><span><fa-icon [icon]="icons.wifi" /> Wi-Fi</span><span><fa-icon [icon]="icons.coffee" /> Breakfast</span></div><div class="listing__footer"><span>From <b>${{ hotel.price }}</b> / night</span><button type="button" (click)="selectHotel(hotel)">View stay <fa-icon [icon]="icons.arrowRight" /></button></div></div>
+          <div class="listing__image">
+            <img
+              [src]="hotel.image"
+              [alt]="hotel.name"
+              loading="lazy"
+            /><span>{{ hotel.tag }}</span
+            ><button
+              mat-icon-button
+              type="button"
+              [class.selected]="favourites.has(hotel.name)"
+              (click)="toggleFavourite(hotel.name)"
+              aria-label="Toggle wishlist"
+            >
+              <fa-icon [icon]="icons.heart" />
+            </button>
+          </div>
+          <div class="listing__body">
+            <div class="rating">
+              <b><fa-icon [icon]="icons.star" /> {{ hotel.rating }}</b
+              ><span>({{ hotel.reviews }} reviews)</span>
+            </div>
+            <h3>{{ hotel.name }}</h3>
+            <p><fa-icon [icon]="icons.location" /> {{ hotel.location }}</p>
+            <div class="amenities">
+              <span><fa-icon [icon]="icons.pool" /> Pool</span
+              ><span><fa-icon [icon]="icons.wifi" /> Wi-Fi</span
+              ><span><fa-icon [icon]="icons.coffee" /> Breakfast</span>
+            </div>
+            <div class="listing__footer">
+              <span
+                >From <b>${{ hotel.price }}</b> / night</span
+              ><button type="button" (click)="selectHotel(hotel)">
+                View stay <fa-icon [icon]="icons.arrowRight" />
+              </button>
+            </div>
+          </div>
         </article>
       </div>
     </div>
   </section>
 
   <section class="section" id="offers">
-    <div class="shell offer-grid">
-      <article class="offer offer--main"><img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1400&q=84" alt="Tropical beach resort" loading="lazy"><div class="offer__shade"></div><div class="offer__content"><span>Summer escape</span><h2>Save 25% on island stays</h2><p>Stay three nights or more and wake up closer to paradise.</p><button class="button button--light" type="button" (click)="selectOffer('Island escape', 'Summer escape offer')">Explore offer →</button></div></article>
-      <article class="offer offer--small"><div><span>City breaks</span><h3>48 hours in Europe</h3><p>Flights + hotel from $599</p><button type="button" (click)="selectOffer('Europe', '48-hour city break package')">See packages →</button></div></article>
-      <article class="offer offer--small offer--dark"><div><span>Early bird</span><h3>Plan now, wander later</h3><p>Book ahead and save up to 20%</p><button type="button" (click)="selectOffer('Flexible', 'Early bird travel plan')">Start planning →</button></div></article>
+    <div class="container offer-grid">
+      <article class="offer offer--main">
+        <img
+          src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1400&q=84"
+          alt="Tropical beach resort"
+          loading="lazy"
+        />
+        <div class="offer__shade"></div>
+        <div class="offer__content">
+          <span>Summer escape</span>
+          <h2>Save 25% on island stays</h2>
+          <p>Stay three nights or more and wake up closer to paradise.</p>
+          <button
+            class="button button--light"
+            type="button"
+            (click)="selectOffer('Island escape', 'Summer escape offer')"
+          >
+            Explore offer →
+          </button>
+        </div>
+      </article>
+      <article class="offer offer--small">
+        <div>
+          <span>City breaks</span>
+          <h3>48 hours in Europe</h3>
+          <p>Flights + hotel from $599</p>
+          <button
+            type="button"
+            (click)="selectOffer('Europe', '48-hour city break package')"
+          >
+            See packages →
+          </button>
+        </div>
+      </article>
+      <article class="offer offer--small offer--dark">
+        <div>
+          <span>Early bird</span>
+          <h3>Plan now, wander later</h3>
+          <p>Book ahead and save up to 20%</p>
+          <button
+            type="button"
+            (click)="selectOffer('Flexible', 'Early bird travel plan')"
+          >
+            Start planning →
+          </button>
+        </div>
+      </article>
     </div>
   </section>
 
   <section class="section why">
-    <div class="shell why__grid">
-      <div class="why__image"><img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=84" alt="Friends enjoying a trip" loading="lazy"><div class="floating-stat"><b>15+</b><span>Years crafting<br>great journeys</span></div></div>
-      <div class="why__copy"><span class="eyebrow">{{ 'travel.whyKicker' | t }}</span><h2>{{ 'travel.whyTitle' | t }}</h2><p>We bring trusted partners, thoughtful recommendations and human support together, so you can spend less time planning and more time going.</p>
-        <div class="feature-list"><div><span><fa-icon [icon]="icons.check" /></span><p><b>Handpicked experiences</b><small>Every stay and tour is reviewed for quality.</small></p></div><div><span><fa-icon [icon]="icons.check" /></span><p><b>Best-price confidence</b><small>Transparent pricing with no last-minute surprises.</small></p></div><div><span><fa-icon [icon]="icons.check" /></span><p><b>Here when you need us</b><small>Real support before, during and after your trip.</small></p></div></div>
-        <a class="text-link" href="#about">More about Moment of Travel <span>→</span></a>
+    <div class="container why__grid">
+      <div class="why__image">
+        <img
+          src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=84"
+          alt="Friends enjoying a trip"
+          loading="lazy"
+        />
+        <div class="floating-stat">
+          <b>15+</b><span>Years crafting<br />great journeys</span>
+        </div>
+      </div>
+      <div class="why__copy">
+        <span class="eyebrow">{{ "travel.whyKicker" | t }}</span>
+        <h2>{{ "travel.whyTitle" | t }}</h2>
+        <p>
+          We bring trusted partners, thoughtful recommendations and human
+          support together, so you can spend less time planning and more time
+          going.
+        </p>
+        <div class="feature-list">
+          <div>
+            <span><fa-icon [icon]="icons.check" /></span>
+            <p>
+              <b>Handpicked experiences</b
+              ><small>Every stay and tour is reviewed for quality.</small>
+            </p>
+          </div>
+          <div>
+            <span><fa-icon [icon]="icons.check" /></span>
+            <p>
+              <b>Best-price confidence</b
+              ><small>Transparent pricing with no last-minute surprises.</small>
+            </p>
+          </div>
+          <div>
+            <span><fa-icon [icon]="icons.check" /></span>
+            <p>
+              <b>Here when you need us</b
+              ><small>Real support before, during and after your trip.</small>
+            </p>
+          </div>
+        </div>
+        <a class="text-link" href="#about"
+          >More about Moment of Travel <span>→</span></a
+        >
       </div>
     </div>
   </section>
 
   <section class="section company-profile" id="about">
-    <div class="shell company-profile__grid">
+    <div class="container company-profile__grid">
       <div class="company-profile__intro">
-        <span class="eyebrow eyebrow--light">{{ 'travel.aboutKicker' | t }}</span>
-        <h2>{{ 'travel.aboutTitle' | t }}</h2>
-        <p>{{ 'travel.aboutText' | t }}</p>
-        <div class="company-profile__stat"><strong>2008</strong><span>{{ 'travel.heritageKicker' | t }}</span></div>
+        <span class="eyebrow eyebrow--light">{{
+          "travel.aboutKicker" | t
+        }}</span>
+        <h2>{{ "travel.aboutTitle" | t }}</h2>
+        <p>{{ "travel.aboutText" | t }}</p>
+        <div class="company-profile__stat">
+          <strong>2008</strong><span>{{ "travel.heritageKicker" | t }}</span>
+        </div>
       </div>
       <div class="company-values">
-        <article><span>01</span><div><h3>{{ 'travel.visionTitle' | t }}</h3><p>{{ 'travel.visionText' | t }}</p></div></article>
-        <article><span>02</span><div><h3>{{ 'travel.missionTitle' | t }}</h3><p>{{ 'travel.missionText' | t }}</p></div></article>
-        <article><span>03</span><div><h3>{{ 'travel.valuesTitle' | t }}</h3><p>{{ 'travel.valuesText' | t }}</p></div></article>
-        <article><span>04</span><div><h3>{{ 'travel.directionTitle' | t }}</h3><p>{{ 'travel.directionText' | t }}</p></div></article>
+        <article>
+          <span>01</span>
+          <div>
+            <h3>{{ "travel.visionTitle" | t }}</h3>
+            <p>{{ "travel.visionText" | t }}</p>
+          </div>
+        </article>
+        <article>
+          <span>02</span>
+          <div>
+            <h3>{{ "travel.missionTitle" | t }}</h3>
+            <p>{{ "travel.missionText" | t }}</p>
+          </div>
+        </article>
+        <article>
+          <span>03</span>
+          <div>
+            <h3>{{ "travel.valuesTitle" | t }}</h3>
+            <p>{{ "travel.valuesText" | t }}</p>
+          </div>
+        </article>
+        <article>
+          <span>04</span>
+          <div>
+            <h3>{{ "travel.directionTitle" | t }}</h3>
+            <p>{{ "travel.directionText" | t }}</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
   <section class="section stories" id="stories">
-    <div class="shell stories__inner"><span class="eyebrow eyebrow--light">Traveler stories</span><blockquote>“Everything felt effortless — from finding the perfect little hotel to changing our flight when plans shifted. We came home already planning the next one.”</blockquote><div class="story-author"><span>LM</span><div><b>Lucy &amp; Mark</b><small>Anniversary trip to Greece</small></div></div><div class="story-dots"><i></i><i class="active"></i><i></i></div></div>
+    <div class="container stories__inner">
+      <span class="eyebrow eyebrow--light">Traveler stories</span>
+      <blockquote>
+        “Everything felt effortless — from finding the perfect little hotel to
+        changing our flight when plans shifted. We came home already planning
+        the next one.”
+      </blockquote>
+      <div class="story-author">
+        <span>LM</span>
+        <div>
+          <b>Lucy &amp; Mark</b><small>Anniversary trip to Greece</small>
+        </div>
+      </div>
+      <div class="story-dots"><i></i><i class="active"></i><i></i></div>
+    </div>
   </section>
 
   <section class="booking-section" id="booking">
-    <div class="shell booking-grid">
+    <div class="container booking-grid">
       <div class="booking-copy">
-        <span class="eyebrow eyebrow--light">{{ 'travel.bookingKicker' | t }}</span>
-        <h2>{{ 'travel.bookingTitle' | t }}</h2>
-        <p>{{ 'travel.bookingText' | t }}</p>
-        <div class="booking-steps"><div><b>01</b><span>Share your idea</span></div><div><b>02</b><span>We review the options</span></div><div><b>03</b><span>You receive a tailored plan</span></div></div>
+        <span class="eyebrow eyebrow--light">{{
+          "travel.bookingKicker" | t
+        }}</span>
+        <h2>{{ "travel.bookingTitle" | t }}</h2>
+        <p>{{ "travel.bookingText" | t }}</p>
+        <div class="booking-steps">
+          <div><b>01</b><span>Share your idea</span></div>
+          <div><b>02</b><span>We review the options</span></div>
+          <div><b>03</b><span>You receive a tailored plan</span></div>
+        </div>
       </div>
 
       <div class="booking-form-wrap">
-        <div class="booking-success" *ngIf="bookingReference; else bookingFormTemplate" role="status">
-          <span><fa-icon [icon]="icons.check" /></span><h3>{{ 'travel.bookingSuccess' | t }}</h3><p>{{ 'travel.bookingSuccessText' | t }}</p>
-          <small>{{ 'travel.bookingReference' | t }}</small><strong>{{ bookingReference }}</strong>
-          <button type="button" class="text-link" (click)="bookingReference = ''">Send another request →</button>
+        <div
+          class="booking-success"
+          *ngIf="bookingReference; else bookingFormTemplate"
+          role="status"
+        >
+          <span><fa-icon [icon]="icons.check" /></span>
+          <h3>{{ "travel.bookingSuccess" | t }}</h3>
+          <p>{{ "travel.bookingSuccessText" | t }}</p>
+          <small>{{ "travel.bookingReference" | t }}</small
+          ><strong>{{ bookingReference }}</strong>
+          <button
+            type="button"
+            class="text-link"
+            (click)="bookingReference = ''"
+          >
+            Send another request →
+          </button>
         </div>
         <ng-template #bookingFormTemplate>
-          <form class="booking-form" [formGroup]="bookingForm" (ngSubmit)="submitBooking()" novalidate>
-            <div class="booking-form__heading"><span>Trip request</span><small>No payment required</small></div>
-            <div class="booking-fields">
-              <label><span>{{ 'travel.bookingName' | t }}</span><input matInput type="text" formControlName="customerName" autocomplete="name"><small *ngIf="bookingForm.controls.customerName.touched && bookingForm.controls.customerName.invalid">Required</small></label>
-              <label><span>{{ 'travel.bookingEmail' | t }}</span><input matInput type="email" formControlName="customerEmail" autocomplete="email"><small *ngIf="bookingForm.controls.customerEmail.touched && bookingForm.controls.customerEmail.invalid">Enter a valid email</small></label>
-              <label><span>{{ 'travel.bookingPhone' | t }}</span><input matInput type="tel" formControlName="customerPhone" autocomplete="tel"><small *ngIf="bookingForm.controls.customerPhone.touched && bookingForm.controls.customerPhone.invalid">Required</small></label>
-              <label><span>{{ 'travel.bookingService' | t }}</span><select formControlName="serviceType"><option value="flight">Flight</option><option value="hotel">Hotel</option><option value="tour">Tour</option><option value="cruise">Cruise</option><option value="car">Car rental</option><option value="private_aviation">Private aviation</option></select></label>
-              <label *ngIf="isFlightRequest"><span>{{ 'travel.bookingOrigin' | t }}</span><input matInput type="text" formControlName="departureCity"></label>
-              <label class="wide"><span>{{ 'travel.bookingDestination' | t }}</span><input matInput type="text" formControlName="destination" placeholder="e.g. Istanbul, Maldives, Paris"><small *ngIf="bookingForm.controls.destination.touched && bookingForm.controls.destination.invalid">Required</small></label>
-              <label *ngIf="isFlightRequest"><span>{{ 'travel.bookingTripType' | t }}</span><select formControlName="tripType"><option value="one_way">{{ 'travel.bookingOneWay' | t }}</option><option value="round_trip">{{ 'travel.bookingRoundTrip' | t }}</option></select></label>
-              <label><span>{{ 'travel.bookingDate' | t }}</span><input matInput type="date" formControlName="departureDate" [min]="minimumDate"></label>
-              <label *ngIf="isFlightRequest && bookingForm.controls.tripType.value === 'round_trip'"><span>{{ 'travel.bookingReturnDate' | t }}</span><input matInput type="date" formControlName="returnDate" [min]="bookingForm.controls.departureDate.value || minimumDate"></label>
-              <label><span>{{ 'travel.bookingTravelers' | t }}</span><input matInput type="number" min="1" max="50" formControlName="travelers"></label>
-              <div class="booking-options wide">
-                <span>{{ 'travel.bookingIncludes' | t }}</span>
-                <div><label><input type="checkbox" formControlName="includesTickets"> {{ 'travel.bookingTickets' | t }}</label><label><input type="checkbox" formControlName="includesHotels"> {{ 'travel.bookingHotels' | t }}</label><label><input type="checkbox" formControlName="includesTransport"> {{ 'travel.bookingTransport' | t }}</label></div>
-              </div>
-              <label class="urgent-option wide" *ngIf="isFlightRequest"><input type="checkbox" formControlName="urgent"><span>{{ 'travel.bookingUrgent' | t }}</span></label>
-              <label class="wide"><span>{{ 'travel.bookingNotes' | t }}</span><textarea matInput rows="3" formControlName="customerNotes" placeholder="Hotel style, dates flexibility, celebration, accessibility…"></textarea></label>
+          <form
+            class="booking-form"
+            [formGroup]="bookingForm"
+            (ngSubmit)="submitBooking()"
+            novalidate
+          >
+            <div class="booking-form__heading">
+              <span>Trip request</span><small>No payment required</small>
             </div>
-            <div class="booking-error" *ngIf="bookingError" role="alert">{{ bookingError | t }}</div>
-            <button mat-flat-button class="button booking-submit" type="submit" [disabled]="bookingSubmitting"><span>{{ (bookingSubmitting ? 'travel.bookingSending' : 'travel.bookingSubmit') | t }}</span><b><fa-icon [icon]="icons.arrowRight" /></b></button>
-            <p class="booking-privacy">By sending this request, you agree that our team may contact you about this journey. This is an enquiry, not a confirmed booking.</p>
+            <div class="booking-fields">
+              <label
+                ><span>{{ "travel.bookingName" | t }}</span
+                ><input
+                  matInput
+                  type="text"
+                  formControlName="customerName"
+                  autocomplete="name"
+                /><small
+                  *ngIf="
+                    bookingForm.controls.customerName.touched &&
+                    bookingForm.controls.customerName.invalid
+                  "
+                  >Required</small
+                ></label
+              >
+              <label
+                ><span>{{ "travel.bookingEmail" | t }}</span
+                ><input
+                  matInput
+                  type="email"
+                  formControlName="customerEmail"
+                  autocomplete="email"
+                /><small
+                  *ngIf="
+                    bookingForm.controls.customerEmail.touched &&
+                    bookingForm.controls.customerEmail.invalid
+                  "
+                  >Enter a valid email</small
+                ></label
+              >
+              <label
+                ><span>{{ "travel.bookingPhone" | t }}</span
+                ><input
+                  matInput
+                  type="tel"
+                  formControlName="customerPhone"
+                  autocomplete="tel"
+                /><small
+                  *ngIf="
+                    bookingForm.controls.customerPhone.touched &&
+                    bookingForm.controls.customerPhone.invalid
+                  "
+                  >Required</small
+                ></label
+              >
+              <label
+                ><span>{{ "travel.bookingService" | t }}</span
+                ><select formControlName="serviceType">
+                  <option value="flight">Flight</option>
+                  <option value="hotel">Hotel</option>
+                  <option value="tour">Tour</option>
+                  <option value="cruise">Cruise</option>
+                  <option value="car">Car rental</option>
+                  <option value="private_aviation">Private aviation</option>
+                </select></label
+              >
+              <label *ngIf="isFlightRequest"
+                ><span>{{ "travel.bookingOrigin" | t }}</span
+                ><input matInput type="text" formControlName="departureCity"
+              /></label>
+              <label class="wide"
+                ><span>{{ "travel.bookingDestination" | t }}</span
+                ><input
+                  matInput
+                  type="text"
+                  formControlName="destination"
+                  placeholder="e.g. Istanbul, Maldives, Paris"
+                /><small
+                  *ngIf="
+                    bookingForm.controls.destination.touched &&
+                    bookingForm.controls.destination.invalid
+                  "
+                  >Required</small
+                ></label
+              >
+              <label *ngIf="isFlightRequest"
+                ><span>{{ "travel.bookingTripType" | t }}</span
+                ><select formControlName="tripType">
+                  <option value="one_way">
+                    {{ "travel.bookingOneWay" | t }}
+                  </option>
+                  <option value="round_trip">
+                    {{ "travel.bookingRoundTrip" | t }}
+                  </option>
+                </select></label
+              >
+              <label
+                ><span>{{ "travel.bookingDate" | t }}</span
+                ><input
+                  matInput
+                  type="date"
+                  formControlName="departureDate"
+                  [min]="minimumDate"
+              /></label>
+              <label
+                *ngIf="
+                  isFlightRequest &&
+                  bookingForm.controls.tripType.value === 'round_trip'
+                "
+                ><span>{{ "travel.bookingReturnDate" | t }}</span
+                ><input
+                  matInput
+                  type="date"
+                  formControlName="returnDate"
+                  [min]="
+                    bookingForm.controls.departureDate.value || minimumDate
+                  "
+              /></label>
+              <label
+                ><span>{{ "travel.bookingTravelers" | t }}</span
+                ><input
+                  matInput
+                  type="number"
+                  min="1"
+                  max="50"
+                  formControlName="travelers"
+              /></label>
+              <div class="booking-options wide">
+                <span>{{ "travel.bookingIncludes" | t }}</span>
+                <div>
+                  <label
+                    ><input type="checkbox" formControlName="includesTickets" />
+                    {{ "travel.bookingTickets" | t }}</label
+                  ><label
+                    ><input type="checkbox" formControlName="includesHotels" />
+                    {{ "travel.bookingHotels" | t }}</label
+                  ><label
+                    ><input
+                      type="checkbox"
+                      formControlName="includesTransport"
+                    />
+                    {{ "travel.bookingTransport" | t }}</label
+                  >
+                </div>
+              </div>
+              <label class="urgent-option wide" *ngIf="isFlightRequest"
+                ><input type="checkbox" formControlName="urgent" /><span>{{
+                  "travel.bookingUrgent" | t
+                }}</span></label
+              >
+              <label class="wide"
+                ><span>{{ "travel.bookingNotes" | t }}</span
+                ><textarea
+                  matInput
+                  rows="3"
+                  formControlName="customerNotes"
+                  placeholder="Hotel style, dates flexibility, celebration, accessibility…"
+                ></textarea>
+              </label>
+            </div>
+            <div class="booking-error" *ngIf="bookingError" role="alert">
+              {{ bookingError | t }}
+            </div>
+            <button
+              mat-flat-button
+              class="button booking-submit"
+              type="submit"
+              [disabled]="bookingSubmitting"
+            >
+              <span>{{
+                (bookingSubmitting
+                  ? "travel.bookingSending"
+                  : "travel.bookingSubmit"
+                ) | t
+              }}</span
+              ><b><fa-icon [icon]="icons.arrowRight" /></b>
+            </button>
+            <p class="booking-privacy">
+              By sending this request, you agree that our team may contact you
+              about this journey. This is an enquiry, not a confirmed booking.
+            </p>
           </form>
         </ng-template>
       </div>
@@ -181,23 +668,101 @@
   </section>
 
   <section class="company-contact" id="contact">
-    <div class="shell company-contact__inner">
-      <div><span class="eyebrow eyebrow--light">{{ 'travel.contactKicker' | t }}</span><h2>{{ 'travel.contactTitle' | t }}</h2><p>{{ 'travel.contactText' | t }}</p></div>
-      <div class="contact-methods">
-        <a href="tel:+966549440048"><small>{{ 'travel.bookingPhone' | t }}</small><strong dir="ltr">+966 54 944 0048</strong></a>
-        <a href="mailto:info@momentoftravels.com"><small>{{ 'travel.bookingEmail' | t }}</small><strong>info&#64;momentoftravels.com</strong></a>
-        <div><small>{{ 'travel.navContact' | t }}</small><strong>{{ 'travel.contactLocation' | t }}</strong></div>
+    <div class="container company-contact__inner">
+      <div>
+        <span class="eyebrow eyebrow--light">{{
+          "travel.contactKicker" | t
+        }}</span>
+        <h2>{{ "travel.contactTitle" | t }}</h2>
+        <p>{{ "travel.contactText" | t }}</p>
       </div>
-      <a mat-flat-button class="button button--light" href="#booking">{{ 'travel.plan' | t }} <fa-icon [icon]="icons.arrowRight" /></a>
+      <div class="contact-methods">
+        <a href="tel:+966549440048"
+          ><small>{{ "travel.bookingPhone" | t }}</small
+          ><strong dir="ltr">+966 54 944 0048</strong></a
+        >
+        <a href="mailto:info@momentoftravels.com"
+          ><small>{{ "travel.bookingEmail" | t }}</small
+          ><strong>info&#64;momentoftravels.com</strong></a
+        >
+        <div>
+          <small>{{ "travel.navContact" | t }}</small
+          ><strong>{{ "travel.contactLocation" | t }}</strong>
+        </div>
+      </div>
+      <a mat-flat-button class="button button--light" href="#booking"
+        >{{ "travel.plan" | t }} <fa-icon [icon]="icons.arrowRight"
+      /></a>
     </div>
   </section>
 
   <section class="newsletter">
-    <div class="shell newsletter__inner"><div><span class="eyebrow">{{ 'travel.newsletterKicker' | t }}</span><h2>{{ 'travel.newsletterTitle' | t }}</h2><p>{{ languages.language() === 'ar' ? 'تواصل معنا لتصلك أحدث الرحلات والعروض.' : 'Contact us to receive the latest trips and offers.' }}</p></div><a mat-flat-button class="button" href="mailto:info@momentoftravels.com?subject=Travel%20updates">{{ languages.language() === 'ar' ? 'تواصل بالبريد' : 'Contact by email' }} <fa-icon [icon]="icons.arrowRight" /></a></div>
+    <div class="container newsletter__inner">
+      <div>
+        <span class="eyebrow">{{ "travel.newsletterKicker" | t }}</span>
+        <h2>{{ "travel.newsletterTitle" | t }}</h2>
+        <p>
+          {{
+            languages.language() === "ar"
+              ? "تواصل معنا لتصلك أحدث الرحلات والعروض."
+              : "Contact us to receive the latest trips and offers."
+          }}
+        </p>
+      </div>
+      <a
+        mat-flat-button
+        class="button"
+        href="mailto:info@momentoftravels.com?subject=Travel%20updates"
+        >{{
+          languages.language() === "ar" ? "تواصل بالبريد" : "Contact by email"
+        }}
+        <fa-icon [icon]="icons.arrowRight"
+      /></a>
+    </div>
   </section>
-</main>
+</main> -->
 
-<footer id="footer">
-  <div class="shell footer__grid"><div class="footer__brand"><a class="brand brand--logo" href="../" aria-label="Moment of Travel home"><img src="/AVIATION%20PNG.png" alt="Moment of Travel"></a><p>{{ 'travel.aboutText' | t }}</p></div><div><h4>{{ 'travel.navServices' | t }}</h4><a href="#services">{{ 'travel.airlineRepTitle' | t }}</a><a href="#services">{{ 'travel.hajjTitle' | t }}</a><a href="#services">{{ 'travel.ticketsTitle' | t }}</a><a href="#services">{{ 'travel.specialTravelTitle' | t }}</a></div><div><h4>{{ 'travel.navAbout' | t }}</h4><a href="#about">{{ 'travel.visionTitle' | t }}</a><a href="#about">{{ 'travel.missionTitle' | t }}</a><a href="#about">{{ 'travel.valuesTitle' | t }}</a></div><div><h4>{{ 'travel.navContact' | t }}</h4><a href="#booking">{{ 'travel.plan' | t }}</a><a href="mailto:info@momentoftravels.com">info&#64;momentoftravels.com</a></div><div><h4>{{ 'travel.navContact' | t }}</h4><p dir="ltr">+966 54 944 0048</p><p>info&#64;momentoftravels.com</p><p>{{ 'travel.contactLocation' | t }}</p></div></div>
-  <div class="shell footer__bottom"><span>© 2026 Moment of Travel. All rights reserved.</span><span>Made for the joy of going somewhere new.</span></div>
-</footer>
+  <footer id="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a
+          class="brand brand--logo"
+          href="../"
+          aria-label="Moment of Travel home"
+          ><img src="/SLOGAN.png" alt="Moment of Travel"
+        /></a>
+        <p>{{ "travel.aboutText" | t }}</p>
+      </div>
+      <div>
+        <h4>{{ "travel.navServices" | t }}</h4>
+        <a href="#services">{{ "travel.airlineRepTitle" | t }}</a
+        ><a href="#services">{{ "travel.hajjTitle" | t }}</a
+        ><a href="#services">{{ "travel.ticketsTitle" | t }}</a
+        ><a href="#services">{{ "travel.specialTravelTitle" | t }}</a>
+      </div>
+      <div>
+        <h4>{{ "travel.navAbout" | t }}</h4>
+        <a href="#about">{{ "travel.visionTitle" | t }}</a
+        ><a href="#about">{{ "travel.missionTitle" | t }}</a
+        ><a href="#about">{{ "travel.valuesTitle" | t }}</a>
+      </div>
+      <div>
+        <h4>{{ "travel.navContact" | t }}</h4>
+        <a href="#booking">{{ "travel.plan" | t }}</a
+        ><a href="mailto:info@momentoftravels.com"
+          >info&#64;momentoftravels.com</a
+        >
+      </div>
+      <div>
+        <h4>{{ "travel.navContact" | t }}</h4>
+        <p dir="ltr">+966 54 944 0048</p>
+        <p>info&#64;momentoftravels.com</p>
+        <p>{{ "travel.contactLocation" | t }}</p>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© 2026 Moment of Travel. All rights reserved.</span
+      ><span>Made for the joy of going somewhere new.</span>
+    </div>
+  </footer>
+</main>

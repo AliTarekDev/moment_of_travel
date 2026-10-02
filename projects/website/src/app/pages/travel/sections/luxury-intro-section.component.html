@@ -1,0 +1,18 @@
+<section class="luxury-intro">
+  <div class="container">
+    <div class="luxury-intro__heading">
+      <span class="eyebrow">{{ languages.language() === 'ar' ? 'رحلات مصر الفاخرة' : 'Egypt Luxury Tours' }}</span>
+      <h2>{{ languages.language() === 'ar' ? 'رحلات مصممة حولك، لا حول جدول ثابت.' : 'Private journeys shaped around comfort, culture, and access.' }}</h2>
+    </div>
+    <div class="luxury-intro__copy">
+      <p>
+        {{
+          languages.language() === 'ar'
+            ? 'استمتع براحة استثنائية وتجارب أصيلة وخصوصية كاملة من خلال رحلات مصر الفاخرة المصممة بعناية. كل تفصيل يُبنى ليمنحك وصولاً خاصاً إلى أبرز معالم مصر، مع برامج شخصية وخدمة راقية وذكريات تبقى طويلاً.'
+            : 'Immerse yourself in unparalleled comfort, authenticity, and exclusivity with our carefully curated Egypt Luxury Tours. Every experience is thoughtfully designed to offer private access to Egypt’s iconic landmarks, ensuring your journey is uniquely yours. Enjoy personalized itineraries, exceptional service, and memories crafted to last a lifetime.'
+        }}
+      </p>
+      <a class="section-button" href="#catalog">{{ languages.language() === 'ar' ? 'شاهد رحلاتنا' : 'See our Tours' }}</a>
+    </div>
+  </div>
+</section>

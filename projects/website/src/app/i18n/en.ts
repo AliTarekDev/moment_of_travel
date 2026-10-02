@@ -22,9 +22,9 @@ export const EN = {
     requestSending: 'Sending request…', requestSuccess: 'Request received. Your reference is', requestError: 'We could not send your request. Please try again.'
   },
   travel: {
-    navHome: 'Home', navServices: 'Services', navDestinations: 'Destinations', navHotels: 'Hotels', navOffers: 'Offers', navAbout: 'About', navStories: 'Stories', navContact: 'Contact', plan: 'Plan your trip',
+    navHome: 'Home', navServices: 'Features', navDestinations: 'Tours', navHotels: 'Hotels', navOffers: 'Offers', navAbout: 'About', navStories: 'Stories', navContact: 'Contact', plan: 'Plan your trip',
     location: 'Madinah · Saudi Arabia', currency: 'SAR',
-    heroKicker: 'Travel beyond the ordinary', heroTitle: 'Discover the world,', heroAccent: 'your way.', heroText: 'Flights, hotels, tours and unforgettable experiences — thoughtfully gathered in one place.',
+    heroKicker: 'Private Egypt luxury tours', heroTitle: 'Egypt, crafted', heroAccent: 'just for you.', heroText: 'From sunrise at the pyramids to private Nile moments, we design seamless luxury journeys with expert guides, handpicked stays, and every detail handled.',
     destinationsKicker: 'Explore the world', destinationsTitle: 'Top destinations', staysKicker: 'Stay somewhere special', staysTitle: 'Trending stays',
     whyKicker: 'Why travel with us', whyTitle: 'Good trips happen. Great trips are designed.', newsletterKicker: 'A little inspiration, delivered', newsletterTitle: 'Your next adventure starts here.',
     heritageKicker: 'Integrated expertise since 2008', heritageTitle: 'Travel and aviation services in one place.', heritageText: 'We continue what Moment of Travel began in Madinah: practical travel solutions, trusted human support and strong industry partnerships.',

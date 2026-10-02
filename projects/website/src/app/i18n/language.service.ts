@@ -11,9 +11,9 @@ export class LanguageService {
   private readonly document = inject(DOCUMENT);
   private readonly router = inject(Router);
   private readonly dictionaries: Record<Language, unknown> = { ar: AR, en: EN };
-  readonly language = signal<Language>('ar');
+  readonly language = signal<Language>('en');
 
-  constructor() { this.applyDocumentLanguage('ar'); }
+  constructor() { this.applyDocumentLanguage('en'); }
 
   toggle(): void {
     const language: Language = this.language() === 'ar' ? 'en' : 'ar';

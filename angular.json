@@ -23,9 +23,7 @@
             "outputPath": "dist/website",
             "index": "projects/website/src/index.html",
             "browser": "projects/website/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/website/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -36,6 +34,7 @@
             ],
             "styles": [
               "node_modules/@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "projects/website/src/styles.scss"
             ],
             "scripts": [],
@@ -90,10 +89,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/website/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -104,6 +100,7 @@
             ],
             "styles": [
               "node_modules/@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "projects/website/src/styles.scss"
             ],
             "scripts": []
@@ -128,9 +125,7 @@
             "outputPath": "dist/dashboard",
             "index": "projects/dashboard/src/index.html",
             "browser": "projects/dashboard/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/dashboard/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -190,10 +185,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/dashboard/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [

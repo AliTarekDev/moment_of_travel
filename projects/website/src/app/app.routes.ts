@@ -1,19 +1,18 @@
 import { Routes } from '@angular/router';
 import { AviationComponent } from './pages/aviation/aviation.component';
-import { GatewayComponent } from './pages/gateway/gateway.component';
 import { TravelComponent } from './pages/travel/travel.component';
 import { languageGuard } from './i18n/language.guard';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'ar' },
+  { path: '', pathMatch: 'full', redirectTo: 'en' },
   {
     path: ':lang',
     canActivate: [languageGuard],
     children: [
       {
         path: '',
-        component: GatewayComponent,
-        title: 'Moment of Travel — Choose your journey',
+        component: TravelComponent,
+        title: 'Moment of Travel — Discover the world your way',
       },
       {
         path: 'aviation',
@@ -22,10 +21,10 @@ export const routes: Routes = [
       },
       {
         path: 'travel',
-        component: TravelComponent,
-        title: 'Moment of Travel — Discover the world your way',
+        pathMatch: 'full',
+        redirectTo: '',
       },
     ],
   },
-  { path: '**', redirectTo: 'ar' },
+  { path: '**', redirectTo: 'en' },
 ];

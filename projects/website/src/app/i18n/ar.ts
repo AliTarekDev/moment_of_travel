@@ -22,9 +22,9 @@ export const AR = {
     requestSending: 'جارٍ إرسال الطلب…', requestSuccess: 'تم استلام الطلب. رقمك المرجعي هو', requestError: 'تعذر إرسال الطلب. حاول مرة أخرى.'
   },
   travel: {
-    navHome: 'الرئيسية', navServices: 'خدماتنا', navDestinations: 'الوجهات', navHotels: 'الفنادق', navOffers: 'العروض', navAbout: 'من نحن', navStories: 'تجارب المسافرين', navContact: 'تواصل معنا', plan: 'خطط لرحلتك',
+    navHome: 'الرئيسية', navServices: 'المميزات', navDestinations: 'الجولات', navHotels: 'الفنادق', navOffers: 'العروض', navAbout: 'من نحن', navStories: 'تجارب المسافرين', navContact: 'تواصل معنا', plan: 'خطط لرحلتك',
     location: 'المدينة المنورة · المملكة العربية السعودية', currency: 'ر.س',
-    heroKicker: 'سافر إلى ما هو أبعد من المعتاد', heroTitle: 'اكتشف العالم،', heroAccent: 'بطريقتك.', heroText: 'رحلات وفنادق وجولات وتجارب لا تُنسى — كلها مختارة بعناية في مكان واحد.',
+    heroKicker: 'رحلات مصر الفاخرة الخاصة', heroTitle: 'اكتشف مصر،', heroAccent: 'كما تشبهك.', heroText: 'من شروق الأهرامات إلى لحظات خاصة على النيل، نصمم رحلات فاخرة سلسة بمرشدين خبراء وإقامات مختارة وكل التفاصيل مُدارة بعناية.',
     destinationsKicker: 'استكشف العالم', destinationsTitle: 'أفضل الوجهات', staysKicker: 'إقامة استثنائية', staysTitle: 'الإقامات الرائجة',
     whyKicker: 'لماذا تسافر معنا', whyTitle: 'الرحلات الجيدة تحدث، أما الرحلات الرائعة فتُصمم.', newsletterKicker: 'إلهام يصلك أينما كنت', newsletterTitle: 'مغامرتك القادمة تبدأ هنا.',
     heritageKicker: 'خبرة متكاملة منذ 2008', heritageTitle: 'كل خدمات السفر والطيران في مكان واحد.', heritageText: 'نواصل ما بدأته لحظة سفر في المدينة المنورة: حلول سفر عملية، دعم بشري موثوق، وعلاقات قوية مع شركاء القطاع.',
