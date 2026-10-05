@@ -1,6 +1,10 @@
-import { CommonModule } from '@angular/common';
+import { DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NewTourComponent } from './new-tour.component';
+import { TranslatePipe } from '../../i18n/translate.pipe';
+
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -39,17 +43,21 @@ import { BookingDrawerComponent } from './booking-drawer.component';
 import { ClientsViewComponent } from './clients-view.component';
 import { ProgramsViewComponent } from './programs-view.component';
 
-type View = 'overview' | 'bookings' | 'clients' | 'programs' | 'content' | 'team';
+type View = 'newTour' | 'overview' | 'bookings' | 'clients' | 'programs' | 'content' | 'team';
 
 @Component({
   selector: 'app-dashboard',
+  providers: [TranslatePipe],
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatTooltipModule, FontAwesomeModule, ContentManagerComponent, OverviewViewComponent, BookingsViewComponent, TeamViewComponent, BookingDrawerComponent, ClientsViewComponent, ProgramsViewComponent],
+  imports: [NewTourComponent, TranslatePipe, MatButtonModule, MatTooltipModule, FontAwesomeModule, ContentManagerComponent, OverviewViewComponent, BookingsViewComponent, TeamViewComponent, BookingDrawerComponent, ClientsViewComponent, ProgramsViewComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
 export class DashboardComponent implements OnInit {
+  private readonly translation = inject(TranslatePipe);
+  private readonly route = inject(ActivatedRoute);
+  private readonly destroyRef = inject(DestroyRef);
   activeView: View = 'overview';
   menuOpen = false;
   loading = true;
@@ -112,6 +120,15 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(params => {
+      const view = this.route.snapshot.data['view'] ?? params.get('view');
+      if (['overview', 'bookings', 'clients', 'programs', 'content', 'team', 'newTour'].includes(view ?? '')) {
+        const allowed = !(view === 'team' && !this.canSeeTeam)
+          && !(['content', 'programs', 'newTour'].includes(view) && !this.canManageContent)
+          && !(view === 'clients' && !this.canManageClients);
+        if (allowed) this.activeView = view as View;
+      }
+    });
     this.refresh();
   }
 
@@ -142,6 +159,7 @@ export class DashboardComponent implements OnInit {
   get pageTitle(): string {
     if (this.activeView === 'overview') return `مرحباً، ${this.user?.fullName?.split(' ')[0] || 'فريق العمل'}`;
     if (this.activeView === 'bookings') return 'إدارة الحجوزات';
+    if (this.activeView === 'newTour') return this.translation.transform('newTour.title');
     if (this.activeView === 'content') return 'الرحلات والمحتوى';
     if (this.activeView === 'clients') return 'إدارة العملاء';
     if (this.activeView === 'programs') return 'إدارة البرامج';
@@ -172,7 +190,9 @@ export class DashboardComponent implements OnInit {
   }
 
   changeView(view: View): void {
-    if ((view === 'team' && !this.canSeeTeam) || ((view === 'content' || view === 'programs') && !this.canManageContent) || (view === 'clients' && !this.canManageClients)) return;
+    if ((view === 'team' && !this.canSeeTeam) || ((view === 'newTour' || view === 'content' || view === 'programs') && !this.canManageContent) || (view === 'clients' && !this.canManageClients)) return;
+    if (view === 'newTour') { void this.router.navigate(['/tours/new']); }
+    else if (this.route.snapshot.data['view'] === 'newTour') { void this.router.navigate(['/'], { queryParams: { view } }); }
     this.activeView = view;
     this.menuOpen = false;
   }

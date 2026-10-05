@@ -1,0 +1,43 @@
+<section class="tour-editor">
+  <header><h2>{{ 'newTour.title' | t }}</h2><p>{{ 'newTour.subtitle' | t }}</p></header>
+  @if (saved) {
+    <div role="status" class="success">{{ 'newTour.success' | t }}</div>
+    <div class="actions"><button type="button" class="save" (click)="another()">{{ 'newTour.another' | t }}</button><button type="button" (click)="back.emit()">{{ 'newTour.cancel' | t }}</button></div>
+  } @else {
+    <form #form="ngForm" (ngSubmit)="save(form)" novalidate>
+      <fieldset [disabled]="saving">
+        <div class="language-grid">
+          @for (language of languages; track language) {
+            <section [attr.dir]="language === 'Ar' ? 'rtl' : 'ltr'">
+              <h3>{{ (language === 'Ar' ? 'newTour.arabic' : 'newTour.english') | t }}</h3>
+              @for (field of fields; track field.key) {
+                <label>{{ ('newTour.' + field.label) | t }} @if (field.required) { <span aria-hidden="true">*</span> }
+                  @if (field.rows === 1) {
+                    <input [name]="fieldKey(field.key, language)" [(ngModel)]="model[fieldKey(field.key, language)]" [required]="field.required" [minlength]="field.required ? 2 : 0" [maxlength]="field.max" [pattern]="field.required ? '.*\\S.*\\S.*' : '.*'" />
+                  } @else {
+                    <textarea [name]="fieldKey(field.key, language)" [(ngModel)]="model[fieldKey(field.key, language)]" [required]="field.required" [minlength]="field.required ? 2 : 0" [maxlength]="field.max" [rows]="field.rows" [pattern]="field.required ? '[\\s\\S]*\\S[\\s\\S]*\\S[\\s\\S]*' : '[\\s\\S]*'"></textarea>
+                  }
+                </label>
+              }
+            </section>
+          }
+        </div>
+        <div class="settings-grid">
+          <label>{{ 'newTour.slug' | t }}<input name="slug" [(ngModel)]="model.slug" pattern="[a-z0-9]+(-[a-z0-9]+)*" maxlength="160" dir="ltr" /></label>
+          <label>{{ 'newTour.image' | t }}<input name="imageUrl" [(ngModel)]="model.imageUrl" type="url" pattern="https?://[^\s]+" maxlength="2000" dir="ltr" /></label>
+          <label>{{ 'newTour.price' | t }}<input name="price" [(ngModel)]="model.price" type="number" min="0" step="0.01" pattern="\d+(\.\d{1,2})?" /></label>
+          <label>{{ 'newTour.currency' | t }}<select name="currency" [(ngModel)]="model.currency" required>@for (currency of ['EGP', 'SAR', 'USD', 'EUR']; track currency) { <option [value]="currency">{{ currency }}</option> }</select></label>
+          <label>{{ 'newTour.start' | t }}<input name="startDate" [(ngModel)]="model.startDate" type="date" /></label>
+          <label>{{ 'newTour.end' | t }}<input name="endDate" [(ngModel)]="model.endDate" type="date" [min]="model.startDate || ''" /></label>
+          <label>{{ 'newTour.status' | t }}<select name="status" [(ngModel)]="model.status" required><option value="draft">{{ 'newTour.draft' | t }}</option><option value="published">{{ 'newTour.published' | t }}</option></select></label>
+          <label class="check"><input name="featured" [(ngModel)]="model.featured" type="checkbox" />{{ 'newTour.featured' | t }}</label>
+        </div>
+      </fieldset>
+      @if (attempted && form.invalid) { <p class="validation" role="alert">{{ 'newTour.invalid' | t }}</p> }
+      @if (attempted && dateInvalid) { <p class="validation" role="alert">{{ 'newTour.dates' | t }}</p> }
+      @if (error) { <p class="validation" role="alert">{{ 'newTour.error' | t }}</p> }
+      <p class="notice">{{ 'newTour.notice' | t }}</p>
+      <div class="actions"><button type="submit" class="save" [disabled]="saving">{{ (saving ? 'newTour.saving' : 'newTour.save') | t }}</button><button type="button" [disabled]="saving" (click)="back.emit()">{{ 'newTour.cancel' | t }}</button></div>
+    </form>
+  }
+</section>

@@ -1,14 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Montez&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap');
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: #eaf8ff; color: #4f5e5b; font-family: 'Inter', Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: var(--brand-sky); color: var(--brand-plum); font-family: 'Inter', Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 body.side-nav-open { overflow: hidden; }
-:root { --brand-beige: #D4AF37; --brand-brown: #5C3A58; --brand-brown-dark: #3f263c; --brand-cream: #eaf8ff; --brand-sky: #eaf8ff; --brand-sky-soft: #f5fcff; }
+:root {
+  --brand-gold: #D4AF37;
+  --brand-plum: #5C3A58;
+  --brand-plum-dark: #3f263c;
+  --brand-muted: #746572;
+  --brand-sky: #eaf8ff;
+  --brand-sky-soft: #f5fcff;
+  // Preserve existing palette names used by the gateway and aviation pages.
+  --brand-beige: var(--brand-gold);
+  --brand-brown: var(--brand-plum);
+  --brand-brown-dark: var(--brand-plum-dark);
+  --brand-cream: var(--brand-sky);
+}
 [dir='rtl'] body { font-family: 'Noto Kufi Arabic', 'Inter', Arial, sans-serif; }
 [dir='rtl'] h1, [dir='rtl'] h2, [dir='rtl'] h3, [dir='rtl'] h4, [dir='rtl'] button, [dir='rtl'] input { font-family: 'Noto Kufi Arabic', 'Inter', Arial, sans-serif !important; }
 [dir='rtl'] .eyebrow { font-size: clamp(12px, 1.1vw, 14px) !important; line-height: 1.7 !important; }
 button,input { font: inherit; }
 img { display: block; }
+// Owl renders pagination inside its own component; share scoped travel slider styling.
+:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots { display: flex; justify-content: center; gap: 6px; margin-top: 24px; }
+:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot { display: inline-flex; padding: 0; background: transparent; }
+:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot > span,
+:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot.active > span,
+:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot:hover > span { display: block; width: auto; height: auto; margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot button { display: grid; place-items: center; width: 32px; height: 36px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot button span { width: 10px; height: 10px; margin: 0; border: 1px solid var(--brand-plum); border-radius: 50%; background: transparent; }
+:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot.active button span,
+:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot:hover button span { border-color: var(--brand-plum); background: var(--brand-gold); }
+:is(app-tour-categories-section, app-signature-tours-section) .owl-dot button:focus-visible { outline: 3px solid var(--brand-plum); outline-offset: 2px; border-radius: 50%; }
+app-signature-tours-section .owl-stage { display: flex; }
+app-signature-tours-section .owl-item { display: flex; flex-shrink: 0; float: none; }
 ::selection { background: var(--brand-brown); color: white; }
+
+.booking-success-toast {
+  --mdc-snackbar-container-color: var(--brand-plum);
+  --mdc-snackbar-supporting-text-color: #fff;
+  --mat-snack-bar-button-color: var(--brand-gold);
+}
+.booking-success-toast .mdc-snackbar__label { font-family: inherit; line-height: 1.6; }

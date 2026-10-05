@@ -1,0 +1,41 @@
+  <footer id="footer" [attr.dir]="languages.language() === 'ar' ? 'rtl' : 'ltr'">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a
+          class="brand brand--logo"
+          [routerLink]="['/', languages.language()]"
+          aria-label="Ancient Paths home"
+          ><img src="/SLOGAN.png" alt="Ancient Paths"
+        /></a>
+        <p>{{ "travel.aboutText" | t }}</p>
+      </div>
+      <div>
+        <h4>{{ "travel.navServices" | t }}</h4>
+        <a [routerLink]="['/', languages.language()]" fragment="services">{{ "travel.airlineRepTitle" | t }}</a
+        ><a [routerLink]="['/', languages.language()]" fragment="services">{{ "travel.hajjTitle" | t }}</a
+        ><a [routerLink]="['/', languages.language()]" fragment="services">{{ "travel.ticketsTitle" | t }}</a
+        ><a [routerLink]="['/', languages.language()]" fragment="services">{{ "travel.specialTravelTitle" | t }}</a>
+      </div>
+      <div>
+        <h4>{{ "travel.navAbout" | t }}</h4>
+        <a [routerLink]="['/', languages.language()]" fragment="about">{{ "travel.visionTitle" | t }}</a
+        ><a [routerLink]="['/', languages.language()]" fragment="about">{{ "travel.missionTitle" | t }}</a
+        ><a [routerLink]="['/', languages.language()]" fragment="about">{{ "travel.valuesTitle" | t }}</a>
+      </div>
+      <div>
+        <h4>{{ "travel.navContact" | t }}</h4>
+        <a [routerLink]="['/', languages.language()]" fragment="booking">{{ "travel.plan" | t }}</a
+        ><a href="mailto:info@ancientpaths.com">info&#64;ancientpaths.com</a>
+      </div>
+      <div>
+        <h4>{{ "travel.navContact" | t }}</h4>
+        <p dir="ltr">+966 54 944 0048</p>
+        <p>info&#64;ancientpaths.com</p>
+        <p>{{ "travel.contactLocation" | t }}</p>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© {{ year }} Ancient Paths. {{ ('tourUi.allRightsReserved' | t) }}</span
+      ><span>{{ ('tourUi.madeForTheJoyOfGoingSomewhereNew' | t) }}</span>
+    </div>
+  </footer>

@@ -1,0 +1,40 @@
+// The Figma template's visual language, shared across Angular's scoped sections.
+// Keep purely decorative assets in the section padding, away from content.
+@mixin section-shape($asset, $width, $height, $side: start) {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    inset-inline-#{$side}: max(var(--travel-gutter, 24px), calc((100% - 1320px) / 2));
+    width: $width;
+    height: min(#{$height}, calc(var(--travel-section-space, 64px) - 16px));
+    background: url('/imgs/#{$asset}') center / contain no-repeat;
+    opacity: .65;
+    pointer-events: none;
+  }
+
+  @media (max-width: 760px) {
+    &::before { display: none; }
+  }
+}
+
+@mixin foundation {
+  :host { display: block; }
+  .container { width: calc(100% - var(--travel-gutter, 24px) * 2); max-width: 1320px; margin-inline: auto; padding: 0; }
+  h1, h2, h3, h4 { color: var(--travel-ink); font-family: 'Manrope', 'Inter', sans-serif; font-weight: 700; text-wrap: balance; }
+  h2 { font-size: clamp(30px, 3.3vw, 48px); line-height: 1.3; letter-spacing: -.035em; margin: 10px 0 20px; }
+  p { color: var(--travel-muted); line-height: 1.85; text-wrap: pretty; }
+  .eyebrow { display: block; color: var(--travel-ink); font: 400 clamp(28px, 2.5vw, 36px)/1.25 'Montez', cursive; }
+  .section-button { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 52px; border: 1px solid var(--travel-ink); border-radius: 99px; padding: 14px 26px; background: var(--travel-ink); color: white; font-size: 14px; text-decoration: none; transition: background .2s, transform .2s; }
+  .section-button:hover { background: var(--brand-plum-dark); border-color: var(--brand-plum-dark); transform: translateY(-2px); }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--brand-plum); outline-offset: 4px; }
+  section[id] { scroll-margin-top: 110px; }
+  :host-context([dir='rtl']) {
+    h1, h2, h3, h4 { letter-spacing: 0; line-height: 1.6; }
+    .eyebrow { font-family: 'Noto Kufi Arabic', sans-serif; }
+    .direction-arrow { display: inline-block; transform: scaleX(-1); }
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+}

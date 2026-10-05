@@ -1,0 +1,16 @@
+<app-travel-nav />
+<main>
+  <section class="tours-hero">
+    <div class="container">
+      <span class="eyebrow">{{ ('tourUi.exploreEgyptWithUs' | t) }}</span>
+      <h1>{{ ('tourUi.ourTours' | t) }}</h1>
+      <p>{{ ('tourUi.privateJourneysShapedAroundYourPaceAndPassions' | t) }}</p>
+      <nav class="breadcrumb" [attr.aria-label]="('tourUi.breadcrumb' | t)">
+        <a [routerLink]="['/', languages.language()]">{{ ('tourUi.home' | t) }}</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{ ('tourUi.tours' | t) }}</span>
+      </nav>
+    </div>
+  </section>
+  <app-signature-tours-section />
+</main>

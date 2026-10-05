@@ -1,0 +1,22 @@
+<section class="categories" id="categories" aria-labelledby="categories-heading">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">{{ languages.language() === 'ar' ? 'تجربة جميلة لكل مسافر' : 'Wonderful experiences for you' }}</span>
+      <h2 id="categories-heading">{{ languages.language() === 'ar' ? 'اختر أسلوب رحلتك' : 'Find your kind of adventure' }}</h2>
+    </div>
+    <owl-carousel-o class="categories-carousel" [options]="carouselOptions()">
+      @for (category of categories; track category; let index = $index) {
+        <ng-template carouselSlide
+          [id]="category.id" [dotContent]="dotContent(index)">
+          <a href="#catalog" class="category-card" [class.category-card--alternate]="index % 2 === 1">
+            <div class="category-card__image">
+              <img [src]="category.image" [alt]="languages.language() === 'ar' ? category.titleAr : category.titleEn" loading="lazy" draggable="false" />
+            </div>
+            <h3>{{ languages.language() === 'ar' ? category.titleAr : category.titleEn }}</h3>
+            <span>{{ languages.language() === 'ar' ? 'استكشف الرحلات' : 'Explore tours' }} <span class="direction-arrow">→</span></span>
+          </a>
+        </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+</section>

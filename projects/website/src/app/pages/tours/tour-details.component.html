@@ -1,0 +1,55 @@
+<app-travel-nav />
+<main [attr.dir]="languages.language() === 'ar' ? 'rtl' : 'ltr'">
+  @if (tour(); as selected) {
+    <header class="details-hero">
+      <div class="container hero-grid">
+        <div>
+          <nav class="breadcrumbs" [attr.aria-label]="'tourUi.breadcrumb' | t"><a [routerLink]="['/', languages.language()]">{{ ('tourUi.home' | t) }}</a><span>/</span><a [routerLink]="['/', languages.language(), 'tours']">{{ ('tourUi.tours' | t) }}</a></nav>
+          <span class="eyebrow">{{ ('tourUi.yourNextJourney' | t) }}</span>
+          <h1>{{ (selected.titleKey | t) }}</h1>
+          <p>{{ (selected.summaryKey | t) }}</p>
+          <div class="hero-actions"><span class="duration">{{ (selected.durationKey | t) }}</span><a class="section-button" href="#book-trip">{{ ('tourUi.bookYourTrip' | t) }}</a></div>
+        </div>
+        <img [src]="selected.image" [alt]="(selected.titleKey | t)" />
+      </div>
+    </header>
+    <section class="itinerary container">
+      <span class="eyebrow">{{ ('tourUi.dayByDay' | t) }}</span>
+      <h2>{{ ('tourUi.yourItinerary' | t) }}</h2>
+      <p>{{ ('tourUi.suggestedItineraryOurTeamWillConfirmTheScheduleAvailability' | t) }}</p>
+      <ol class="day-list">
+        @for (day of itinerary(); track $index) {
+          <li><span class="day-number">{{ ('tourUi.day' | t) }} {{ $index + 1 }}</span><div><h3>{{ (day.titleKey | t) }}</h3><p>{{ (day.textKey | t) }}</p></div></li>
+        }
+      </ol>
+    </section>
+    <section class="booking-section" id="book-trip">
+      <div class="container booking-card">
+        <span class="eyebrow">{{ ('tourUi.letUsPlanTheDetails' | t) }}</span>
+        <h2>{{ ('tourUi.bookYourTrip' | t) }}</h2>
+        <p>{{ ('tourUi.sendYourPreferredDateAndGroupSizeOurTeam' | t) }}</p>
+        @if (reference()) {
+          <div class="feedback success" role="status">{{ ('tourUi.yourBookingRequestHasBeenReceivedReference' | t) }} <strong>{{ reference() }}</strong></div>
+        } @else {
+          <form [formGroup]="form" (ngSubmit)="book()" novalidate>
+            <div class="form-grid">
+              <label>{{ ('tourUi.firstName' | t) }}<input formControlName="firstName" autocomplete="given-name" required maxlength="59" [attr.aria-invalid]="invalid('firstName')" />@if (invalid('firstName')) { <small class="field-error">{{ ('tourUi.enterYourFirstName' | t) }}</small> }</label>
+              <label>{{ ('tourUi.lastName' | t) }}<input formControlName="lastName" autocomplete="family-name" required maxlength="60" [attr.aria-invalid]="invalid('lastName')" />@if (invalid('lastName')) { <small class="field-error">{{ ('tourUi.enterYourLastName' | t) }}</small> }</label>
+              <label>{{ ('tourUi.email' | t) }}<input formControlName="email" type="email" autocomplete="email" required [attr.aria-invalid]="invalid('email')" />@if (invalid('email')) { <small class="field-error">{{ ('tourUi.enterAValidEmail' | t) }}</small> }</label>
+              <label>{{ ('tourUi.confirmEmail' | t) }}<input formControlName="confirmEmail" type="email" autocomplete="off" required [attr.aria-invalid]="invalid('confirmEmail') || (form.hasError('emailMismatch') && form.controls.confirmEmail.touched)" />@if (invalid('confirmEmail') || (form.hasError('emailMismatch') && form.controls.confirmEmail.touched)) { <small class="field-error">{{ ('tourUi.enterTheSameEmailInBothFields' | t) }}</small> }</label>
+              <label>{{ ('tourUi.mobile' | t) }}<input formControlName="mobile" type="tel" autocomplete="tel" required maxlength="40" [attr.aria-invalid]="invalid('mobile')" />@if (invalid('mobile')) { <small class="field-error">{{ ('tourUi.enterAValidMobileNumber740Characters' | t) }}</small> }</label>
+              <label>{{ ('tourUi.bookingDate' | t) }}<input formControlName="bookingDate" type="date" [min]="today" required [attr.aria-invalid]="invalid('bookingDate')" />@if (invalid('bookingDate')) { <small class="field-error">{{ ('tourUi.chooseTodayOrAFutureTravelDate' | t) }}</small> }</label>
+              <label>{{ ('tourUi.groupNumber' | t) }}<input formControlName="groupNumber" type="number" min="1" max="50" step="1" required [attr.aria-invalid]="invalid('groupNumber')" /><small>{{ ('tourUi.numberOfTravelers150' | t) }}</small>@if (invalid('groupNumber')) { <small class="field-error">{{ ('tourUi.enterAWholeNumberBetween1And50' | t) }}</small> }</label>
+              <label class="full-width">{{ ('tourUi.notes' | t) }}<textarea formControlName="notes" rows="5" maxlength="2000" [attr.aria-invalid]="invalid('notes')"></textarea><small>{{ ('tourUi.optionalTellUsAboutYourPreferencesUpTo2000' | t) }}</small></label>
+            </div>
+            @if (submitted() && form.invalid) { <p class="field-error" role="alert">{{ ('tourUi.pleaseCorrectTheHighlightedFields' | t) }}</p> }
+            @if (error()) { <p class="feedback field-error" role="alert">{{ ('tourUi.weCouldNotSendYourRequestPleaseTryAgain' | t) }}</p> }
+            <button class="section-button" type="submit" [disabled]="pending()">{{ pending() ? ('tourUi.sending' | t) : ('tourUi.bookNow' | t) }}</button>
+          </form>
+        }
+      </div>
+    </section>
+  } @else {
+    <section class="container not-found"><h1>{{ ('tourUi.tourNotFound' | t) }}</h1><a class="section-button" [routerLink]="['/', languages.language(), 'tours']">{{ ('tourUi.exploreOurTours' | t) }}</a></section>
+  }
+</main>

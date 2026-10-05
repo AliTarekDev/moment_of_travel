@@ -1,5 +1,6 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, HostListener, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, HostListener, OnDestroy, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { LanguageSwitchComponent } from '../../i18n/language-switch.component';
@@ -9,16 +10,20 @@ import { TranslatePipe } from '../../i18n/translate.pipe';
 @Component({
   selector: 'app-travel-nav',
   standalone: true,
-  imports: [CommonModule, LanguageSwitchComponent, TranslatePipe, FontAwesomeModule],
+  imports: [LanguageSwitchComponent, TranslatePipe, FontAwesomeModule, RouterLink, RouterLinkActive],
   templateUrl: './travel-nav.component.html',
   styleUrl: './travel-nav.component.scss',
 })
-export class TravelNavComponent {
+export class TravelNavComponent implements OnDestroy {
   private readonly document = inject(DOCUMENT);
   readonly languages = inject(LanguageService);
   mobileMenuOpen = false;
   isScrolled = false;
   readonly icons = { bars: faBars };
+
+  ngOnDestroy(): void {
+    this.closeMobileMenu();
+  }
 
   @HostListener('window:scroll')
   onWindowScroll(): void {

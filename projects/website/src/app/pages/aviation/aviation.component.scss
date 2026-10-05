@@ -74,7 +74,7 @@
 }
 
 .header nav a:hover {
-    color: #76c7f0
+    color: var(--brand-gold)
 }
 
 .header__actions {
@@ -781,7 +781,7 @@ footer {
         right: 0;
         top: 70px;
         padding: 22px;
-        background: #082b41;
+        background: var(--brand-plum-dark);
         flex-direction: column
     }
 
@@ -911,7 +911,7 @@ footer {
 }
 
 :host-context([dir="rtl"]) .hero__overlay {
-    background: linear-gradient(-90deg, rgba(5, 28, 43, .94), rgba(5, 31, 47, .58) 48%, rgba(4, 27, 42, .12))
+    background: linear-gradient(-90deg, rgba(63, 38, 60, .94), rgba(92, 58, 88, .58) 48%, rgba(92, 58, 88, .12)), linear-gradient(0deg, rgba(63, 38, 60, .72), transparent 48%)
 }
 
 :host-context([dir="rtl"]) .service__number {
@@ -928,7 +928,7 @@ footer {
     text-align: right
 }
 
-/* Moment of Travel brand */
+/* Ancient Paths brand */
 :host {
     color: var(--brand-brown-dark);
 }
@@ -946,11 +946,12 @@ footer {
 
 .button {
     background: var(--brand-beige);
-    color: #392d24;
+    color: var(--brand-plum-dark);
 }
 
 .button:hover {
-    background: #b99b4e;
+    background: var(--brand-plum);
+    color: white;
 }
 
 .hero,
@@ -960,7 +961,7 @@ footer {
 }
 
 .hero__overlay {
-    background: linear-gradient(90deg, rgba(70, 38, 44, .94), rgba(91, 51, 58, .58) 48%, rgba(91, 51, 58, .12)), linear-gradient(0deg, rgba(70, 38, 44, .72), transparent 48%);
+    background: linear-gradient(90deg, rgba(63, 38, 60, .94), rgba(92, 58, 88, .58) 48%, rgba(92, 58, 88, .12)), linear-gradient(0deg, rgba(63, 38, 60, .72), transparent 48%);
 }
 
 .eyebrow,
@@ -994,7 +995,7 @@ footer {
 }
 
 .service-grid article:hover {
-    background: #7f4c55;
+    background: var(--brand-plum);
 }
 
 .fleet {
@@ -1003,11 +1004,11 @@ footer {
 
 .safety,
 footer {
-    background: #59373d;
+    background: var(--brand-plum);
 }
 
 .contact__overlay {
-    background: rgba(91, 51, 58, .88);
+    background: rgba(63, 38, 60, .88);
 }
 
 .button--outline {
@@ -1016,17 +1017,17 @@ footer {
     border-color: var(--brand-beige);
 }
 
-.aviation-catalog { padding: 100px 0; background: #f4f0e8; color: #2c3936; }
-.aviation-catalog .section-head h2 { color: #2c3936; }
+.aviation-catalog { padding: 100px 0; background: var(--brand-sky); color: var(--brand-plum); }
+.aviation-catalog .section-head h2 { color: var(--brand-plum); }
 .aviation-catalog__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 42px; }
 .aviation-catalog__grid article { overflow: hidden; border: 1px solid #ddd7cc; border-radius: 3px; background: #fff; }
-.aviation-catalog__image { height: 230px; display: grid; place-items: center; background: #5b343b; color: rgba(255,255,255,.6); font-size: 10px; letter-spacing: .18em; }
+.aviation-catalog__image { height: 230px; display: grid; place-items: center; background: var(--brand-plum); color: rgba(255,255,255,.6); font-size: 10px; letter-spacing: .18em; }
 .aviation-catalog__image img { width: 100%; height: 100%; object-fit: cover; }
 .aviation-catalog__grid article > div:last-child { padding: 22px; }
-.aviation-catalog__grid small { color: #9b626b; font-size: 10px; font-weight: 800; }
+.aviation-catalog__grid small { color: var(--brand-plum); font-size: 10px; font-weight: 800; }
 .aviation-catalog__grid h3 { margin: 8px 0 10px; font: 500 22px Georgia, serif; }
 .aviation-catalog__grid p { min-height: 52px; color: #717b78; font-size: 12px; line-height: 1.65; }
 .aviation-catalog__grid b { display: block; margin: 17px 0 10px; font-size: 11px; }
-.aviation-catalog__grid button { border: 0; padding: 0; background: none; color: #8f5761; font: inherit; font-size: 11px; font-weight: 900; cursor: pointer; }
+.aviation-catalog__grid button { border: 0; padding: 0; background: none; color: var(--brand-plum); font: inherit; font-size: 11px; font-weight: 900; cursor: pointer; }
 @media (max-width: 900px) { .aviation-catalog__grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .aviation-catalog__grid { grid-template-columns: 1fr; } }

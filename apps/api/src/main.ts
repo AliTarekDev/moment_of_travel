@@ -22,7 +22,7 @@ async function bootstrap(): Promise<void> {
 
   const port = config.get<number>('API_PORT', 3000);
   await app.listen(port);
-  console.log(`Moment of Travel API listening on http://localhost:${port}/api`);
+  console.log(`Ancient Paths API listening on http://localhost:${port}/api`);
 }
 
 void bootstrap();

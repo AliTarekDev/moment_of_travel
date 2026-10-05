@@ -258,14 +258,14 @@ footer a {
     transform: rotate(180deg)
 }
 
-/* Moment of Travel brand */
+/* Ancient Paths brand */
 :host {
     background: var(--brand-cream);
     color: var(--brand-brown-dark);
 }
 
 .gateway__top {
-    border-color: rgba(150, 92, 100, .24);
+    border-color: rgba(92, 58, 88, .24);
 }
 
 .brand--logo {
@@ -285,12 +285,12 @@ footer a {
 }
 
 .choice small {
-    color: #ead89e;
+    color: var(--brand-gold);
 }
 
 .choice__wash,
 .choice--aviation .choice__wash {
-    background: linear-gradient(0deg, rgba(75, 43, 48, .94), rgba(75, 43, 48, .08) 80%);
+    background: linear-gradient(0deg, rgba(63, 38, 60, .94), rgba(92, 58, 88, .08) 80%);
 }
 
 footer a {

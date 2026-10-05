@@ -1,0 +1,31 @@
+export const EN = {
+  "newTour": {
+    "title": "Add new tour",
+    "subtitle": "Create a tour in the travel catalog.",
+    "arabic": "Arabic content",
+    "english": "English content",
+    "name": "Tour title",
+    "summary": "Short summary",
+    "description": "Tour details / itinerary",
+    "location": "Destination",
+    "slug": "URL slug (optional)",
+    "image": "Image URL",
+    "price": "Price (optional)",
+    "currency": "Currency",
+    "start": "Start date",
+    "end": "End date",
+    "status": "Status",
+    "draft": "Draft",
+    "published": "Published",
+    "featured": "Featured tour",
+    "save": "Save tour",
+    "saving": "Saving…",
+    "cancel": "Back to content",
+    "invalid": "Please complete the required fields and check the values.",
+    "dates": "End date must not be before start date.",
+    "error": "Could not save the tour. Check the fields and try again.",
+    "success": "Tour saved successfully.",
+    "another": "Add another tour",
+    "notice": "Tours are saved in the catalog. The signature tour slider currently uses separate static content."
+  }
+};

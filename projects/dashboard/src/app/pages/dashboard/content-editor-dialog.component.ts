@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -12,7 +12,7 @@ export interface ContentEditorData {
 @Component({
   selector: 'app-content-editor-dialog',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatDialogModule, MatButtonModule],
+  imports: [FormsModule, MatDialogModule, MatButtonModule],
   template: `
     <div class="editor" dir="rtl">
       <header>
@@ -52,11 +52,13 @@ export interface ContentEditorData {
           <label><span>ترتيب الظهور</span><input type="number" min="-10000" max="10000" name="sortOrder" [(ngModel)]="model.sortOrder" /></label>
           <label class="check"><input type="checkbox" name="featured" [(ngModel)]="model.featured" /><span>إبرازه في أول القائمة</span></label>
         </section>
-        <p class="validation" *ngIf="dateInvalid">تاريخ النهاية يجب ألا يسبق تاريخ البداية.</p>
+        @if (dateInvalid) {
+          <p class="validation">تاريخ النهاية يجب ألا يسبق تاريخ البداية.</p>
+        }
         <footer><button mat-button type="button" (click)="dialogRef.close()">إلغاء</button><button mat-flat-button class="save" type="submit">حفظ المحتوى</button></footer>
       </form>
     </div>
-  `,
+    `,
   styles: [`
     :host { display:block; color:#2d3a37; } * { box-sizing:border-box; } .editor { width:min(920px, calc(100vw - 34px)); max-height:90vh; overflow:auto; background:#f8f5ef; }
     header { position:sticky; top:0; z-index:2; display:flex; justify-content:space-between; align-items:flex-start; padding:22px 25px; border-bottom:1px solid #e1ddd5; background:#f8f5ef; }

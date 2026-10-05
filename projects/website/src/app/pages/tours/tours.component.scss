@@ -1,0 +1,18 @@
+@use '../travel/template-theme' as theme;
+@include theme.foundation;
+
+:host {
+  --travel-accent: var(--brand-gold);
+  --travel-accent-dark: var(--brand-plum);
+  --travel-ink: var(--brand-plum);
+  --travel-muted: var(--brand-muted);
+  --travel-gutter: clamp(20px, 4.5vw, 70px);
+  --travel-section-space: clamp(64px, 7vw, 110px);
+  background: #fff;
+  color: var(--travel-ink);
+  font: 400 15px/1.7 'Inter', sans-serif;
+}
+.tours-hero { padding-block: clamp(60px, 8vw, 110px); text-align: center; background: var(--brand-sky-soft); }
+h1 { margin: 16px 0; font-size: clamp(42px, 5vw, 68px); }
+.breadcrumb { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
+.breadcrumb a { color: var(--travel-accent-dark); text-decoration: none; }

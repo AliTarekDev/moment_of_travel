@@ -1,6 +1,6 @@
 <header class="header">
   <div class="shell header__inner">
-    <a class="brand brand--logo" routerLink="../" aria-label="Moment of Travel home"><img src="/SLOGAN.png" alt="Moment of Travel"></a>
+    <a class="brand brand--logo" routerLink="../" aria-label="Ancient Paths home"><img src="/SLOGAN.png" alt="Ancient Paths"></a>
     <div class="mobile-tools"><app-language-switch /><button mat-icon-button class="menu" type="button" (click)="menuOpen = !menuOpen" aria-label="Toggle navigation"><fa-icon [icon]="icons.bars" /></button></div>
     <nav [class.open]="menuOpen"><a href="#services">{{ 'aviation.navServices' | t }}</a><a href="#fleet">{{ 'aviation.navFleet' | t }}</a><a href="#about">{{ 'aviation.navAbout' | t }}</a><a href="#safety">{{ 'aviation.navSafety' | t }}</a><a href="#contact">{{ 'aviation.navContact' | t }}</a></nav>
     <div class="header__actions"><app-language-switch /><a class="division" routerLink="../travel">{{ 'aviation.switch' | t }} <fa-icon [icon]="icons.external" /></a><a mat-flat-button class="button button--small" href="#contact">{{ 'aviation.request' | t }}</a></div>
@@ -23,65 +23,77 @@
     <div class="shell intro__grid"><div><span class="eyebrow eyebrow--dark">{{ 'aviation.introKicker' | t }}</span><h2>{{ 'aviation.introTitle' | t }}</h2></div><div><p>{{ 'aviation.introText' | t }}</p><a href="#services">{{ 'common.explore' | t }} <span>→</span></a></div></div>
   </section>
 
-  <section class="aviation-catalog" id="aviation-catalog" *ngIf="catalogItems.length">
-    <div class="shell"><div class="section-head"><div><span class="eyebrow eyebrow--dark">{{ languages.language() === 'ar' ? 'متاح الآن' : 'AVAILABLE NOW' }}</span><h2>{{ languages.language() === 'ar' ? 'خدمات ورحلات الطيران' : 'Aviation services and journeys' }}</h2></div><p>{{ languages.language() === 'ar' ? 'اختيارات ينشرها فريق العمليات ويمكن طلبها مباشرة.' : 'Options published by our operations team and ready to request.' }}</p></div>
-      <div class="aviation-catalog__grid"><article *ngFor="let item of catalogItems"><div class="aviation-catalog__image"><img *ngIf="item.imageUrl" [src]="item.imageUrl" [alt]="local(item, 'title')" loading="lazy"><span *ngIf="!item.imageUrl">MOT AVIATION</span></div><div><small>{{ local(item, 'location') }}</small><h3>{{ local(item, 'title') }}</h3><p>{{ local(item, 'summary') }}</p><b>{{ item.price ? (item.price | number:'1.0-2') + ' ' + item.currency : (languages.language() === 'ar' ? 'حسب الطلب' : 'Price on request') }}</b><button type="button" (click)="selectCatalogItem(item)">{{ languages.language() === 'ar' ? 'اطلب هذه الخدمة' : 'Request this option' }} →</button></div></article></div>
-    </div>
-  </section>
+  @if (catalogItems.length) {
+    <section class="aviation-catalog" id="aviation-catalog">
+      <div class="shell"><div class="section-head"><div><span class="eyebrow eyebrow--dark">{{ languages.language() === 'ar' ? 'متاح الآن' : 'AVAILABLE NOW' }}</span><h2>{{ languages.language() === 'ar' ? 'خدمات ورحلات الطيران' : 'Aviation services and journeys' }}</h2></div><p>{{ languages.language() === 'ar' ? 'اختيارات ينشرها فريق العمليات ويمكن طلبها مباشرة.' : 'Options published by our operations team and ready to request.' }}</p></div>
+      <div class="aviation-catalog__grid">@for (item of catalogItems; track item) {
+        <article><div class="aviation-catalog__image">@if (item.imageUrl) {
+          <img [src]="item.imageUrl" [alt]="local(item, 'title')" loading="lazy">
+          }@if (!item.imageUrl) {
+          <span>MOT AVIATION</span>
+          }</div><div><small>{{ local(item, 'location') }}</small><h3>{{ local(item, 'title') }}</h3><p>{{ local(item, 'summary') }}</p><b>{{ item.price ? (item.price | number:'1.0-2') + ' ' + item.currency : (languages.language() === 'ar' ? 'حسب الطلب' : 'Price on request') }}</b><button type="button" (click)="selectCatalogItem(item)">{{ languages.language() === 'ar' ? 'اطلب هذه الخدمة' : 'Request this option' }} →</button></div></article>
+        }</div>
+      </div>
+    </section>
+  }
 
   <section class="services" id="services">
     <div class="shell"><div class="section-head"><div><span class="eyebrow">{{ 'aviation.servicesKicker' | t }}</span><h2>{{ 'aviation.servicesTitle' | t }}</h2></div><p>{{ 'aviation.servicesText' | t }}</p></div>
-      <div class="service-grid">
-        <article><span class="service__number">01</span><i><fa-icon [icon]="icons.charter" /></i><h3>{{ 'aviation.charter' | t }}</h3><p>{{ 'aviation.charterText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
-        <article><span class="service__number">02</span><i><fa-icon [icon]="icons.management" /></i><h3>{{ 'aviation.management' | t }}</h3><p>{{ 'aviation.managementText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
-        <article><span class="service__number">03</span><i><fa-icon [icon]="icons.group" /></i><h3>{{ 'aviation.group' | t }}</h3><p>{{ 'aviation.groupText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
-        <article><span class="service__number">04</span><i><fa-icon [icon]="icons.missions" /></i><h3>{{ 'aviation.missions' | t }}</h3><p>{{ 'aviation.missionsText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
-      </div>
+    <div class="service-grid">
+      <article><span class="service__number">01</span><i><fa-icon [icon]="icons.charter" /></i><h3>{{ 'aviation.charter' | t }}</h3><p>{{ 'aviation.charterText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
+      <article><span class="service__number">02</span><i><fa-icon [icon]="icons.management" /></i><h3>{{ 'aviation.management' | t }}</h3><p>{{ 'aviation.managementText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
+      <article><span class="service__number">03</span><i><fa-icon [icon]="icons.group" /></i><h3>{{ 'aviation.group' | t }}</h3><p>{{ 'aviation.groupText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
+      <article><span class="service__number">04</span><i><fa-icon [icon]="icons.missions" /></i><h3>{{ 'aviation.missions' | t }}</h3><p>{{ 'aviation.missionsText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="representation">
-    <div class="shell representation__grid">
-      <div><span class="eyebrow eyebrow--dark">{{ 'aviation.representationKicker' | t }}</span><h2>{{ 'aviation.representationTitle' | t }}</h2><p>{{ 'aviation.representationText' | t }}</p></div>
-      <div class="representation__list"><article><b>01</b><span>{{ 'aviation.representationMarketing' | t }}</span></article><article><b>02</b><span>{{ 'aviation.representationOperations' | t }}</span></article><article><b>03</b><span>{{ 'aviation.representationLiaison' | t }}</span></article></div>
-    </div>
-  </section>
+<section class="representation">
+  <div class="shell representation__grid">
+    <div><span class="eyebrow eyebrow--dark">{{ 'aviation.representationKicker' | t }}</span><h2>{{ 'aviation.representationTitle' | t }}</h2><p>{{ 'aviation.representationText' | t }}</p></div>
+    <div class="representation__list"><article><b>01</b><span>{{ 'aviation.representationMarketing' | t }}</span></article><article><b>02</b><span>{{ 'aviation.representationOperations' | t }}</span></article><article><b>03</b><span>{{ 'aviation.representationLiaison' | t }}</span></article></div>
+  </div>
+</section>
 
-  <section class="fleet" id="fleet">
-    <div class="shell fleet__grid">
-      <div class="fleet__visual"><img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=1500&q=88" alt="Private jet on runway" loading="lazy"><span>Global 7500</span></div>
-      <div class="fleet__copy"><span class="eyebrow eyebrow--dark">{{ 'aviation.fleetKicker' | t }}</span><h2>{{ 'aviation.fleetTitle' | t }}</h2><p>Our global network spans light jets to ultra-long-range aircraft. We recommend based on your route, party and priorities—not inventory pressure.</p>
-        <div class="specs"><div><small>RANGE</small><b>7,700 nm</b></div><div><small>PASSENGERS</small><b>Up to 19</b></div><div><small>CRUISE</small><b>Mach 0.90</b></div></div>
-        <div class="fleet__nav"><a href="#contact">Explore our fleet <fa-icon [icon]="icons.arrowRight" /></a></div>
-      </div>
-    </div>
-  </section>
+<section class="fleet" id="fleet">
+  <div class="shell fleet__grid">
+    <div class="fleet__visual"><img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=1500&q=88" alt="Private jet on runway" loading="lazy"><span>Global 7500</span></div>
+    <div class="fleet__copy"><span class="eyebrow eyebrow--dark">{{ 'aviation.fleetKicker' | t }}</span><h2>{{ 'aviation.fleetTitle' | t }}</h2><p>Our global network spans light jets to ultra-long-range aircraft. We recommend based on your route, party and priorities—not inventory pressure.</p>
+    <div class="specs"><div><small>RANGE</small><b>7,700 nm</b></div><div><small>PASSENGERS</small><b>Up to 19</b></div><div><small>CRUISE</small><b>Mach 0.90</b></div></div>
+    <div class="fleet__nav"><a href="#contact">Explore our fleet <fa-icon [icon]="icons.arrowRight" /></a></div>
+  </div>
+</div>
+</section>
 
-  <section class="safety" id="safety">
-    <div class="shell safety__inner"><div><span class="eyebrow">SAFETY WITHOUT EXCEPTION</span><h2>Standards that never<br>leave the ground.</h2><p>Every operator, aircraft and crew is independently evaluated against rigorous global standards. If it does not meet ours, it does not fly yours.</p><a class="button button--outline" href="#contact">Discuss your flight requirements →</a></div><div class="safety__marks"><div><b>ARGUS</b><small>Rated operators</small></div><div><b>WYVERN</b><small>Verified network</small></div><div><b>IS-BAO</b><small>Aligned standards</small></div><div><b>24/7</b><small>Flight monitoring</small></div></div></div>
-  </section>
+<section class="safety" id="safety">
+  <div class="shell safety__inner"><div><span class="eyebrow">SAFETY WITHOUT EXCEPTION</span><h2>Standards that never<br>leave the ground.</h2><p>Every operator, aircraft and crew is independently evaluated against rigorous global standards. If it does not meet ours, it does not fly yours.</p><a class="button button--outline" href="#contact">Discuss your flight requirements →</a></div><div class="safety__marks"><div><b>ARGUS</b><small>Rated operators</small></div><div><b>WYVERN</b><small>Verified network</small></div><div><b>IS-BAO</b><small>Aligned standards</small></div><div><b>24/7</b><small>Flight monitoring</small></div></div></div>
+</section>
 
-  <section class="world">
-    <div class="shell world__inner"><span class="eyebrow eyebrow--dark">{{ 'aviation.worldKicker' | t }}</span><h2>{{ 'aviation.worldTitle' | t }}</h2><p>One team coordinating every detail across continents, time zones and changing plans.</p><div class="locations"><span>Madinah <small>MED</small></span><span>Saudi Arabia <small>KSA</small></span><span>Middle East <small>MEA</small></span><span>Worldwide <small>24/7</small></span></div></div>
-  </section>
+<section class="world">
+  <div class="shell world__inner"><span class="eyebrow eyebrow--dark">{{ 'aviation.worldKicker' | t }}</span><h2>{{ 'aviation.worldTitle' | t }}</h2><p>One team coordinating every detail across continents, time zones and changing plans.</p><div class="locations"><span>Madinah <small>MED</small></span><span>Saudi Arabia <small>KSA</small></span><span>Middle East <small>MEA</small></span><span>Worldwide <small>24/7</small></span></div></div>
+</section>
 
-  <section class="contact" id="contact">
-    <div class="contact__image"></div><div class="contact__overlay"></div><div class="shell contact__inner"><span class="eyebrow">{{ 'aviation.contactKicker' | t }}</span><h2>{{ 'aviation.contactTitle' | t }}</h2><p>{{ 'aviation.contactText' | t }}</p>
-      <form [formGroup]="requestForm" (ngSubmit)="submitRequest()" novalidate>
-        <label><span>NAME</span><input matInput formControlName="customerName" autocomplete="name" placeholder="Full name"></label>
-        <label><span>EMAIL</span><input matInput type="email" formControlName="customerEmail" autocomplete="email" placeholder="Email address"></label>
-        <label><span>PHONE</span><input matInput type="tel" formControlName="customerPhone" autocomplete="tel" placeholder="Phone number"></label>
-        <label><span>FROM</span><input matInput formControlName="departureCity" placeholder="Departure city"></label>
-        <label><span>TO</span><input matInput formControlName="destinationCity" placeholder="Destination city"></label>
-        <label><span>DATE</span><input matInput type="date" formControlName="departureDate" [min]="minimumDate"></label>
-        <label><span>PASSENGERS</span><input matInput type="number" min="1" max="50" formControlName="travelers"></label>
-        <button mat-flat-button class="button" type="submit" [disabled]="requestSubmitting">{{ (requestSubmitting ? 'aviation.requestSending' : 'aviation.request') | t }} <fa-icon [icon]="icons.arrowRight" /></button>
-      </form>
-      <small class="response" *ngIf="!requestReference && !requestError">A flight specialist will review your request and respond as soon as possible.</small>
-      <div class="form-message form-message--success" *ngIf="requestReference">{{ 'aviation.requestSuccess' | t }} <b>{{ requestReference }}</b></div>
-      <div class="form-message form-message--error" *ngIf="requestError">{{ 'aviation.requestError' | t }}</div>
-    </div>
-  </section>
+<section class="contact" id="contact">
+  <div class="contact__image"></div><div class="contact__overlay"></div><div class="shell contact__inner"><span class="eyebrow">{{ 'aviation.contactKicker' | t }}</span><h2>{{ 'aviation.contactTitle' | t }}</h2><p>{{ 'aviation.contactText' | t }}</p>
+  <form [formGroup]="requestForm" (ngSubmit)="submitRequest()" novalidate>
+    <label><span>NAME</span><input matInput formControlName="customerName" autocomplete="name" placeholder="Full name"></label>
+    <label><span>EMAIL</span><input matInput type="email" formControlName="customerEmail" autocomplete="email" placeholder="Email address"></label>
+    <label><span>PHONE</span><input matInput type="tel" formControlName="customerPhone" autocomplete="tel" placeholder="Phone number"></label>
+    <label><span>FROM</span><input matInput formControlName="departureCity" placeholder="Departure city"></label>
+    <label><span>TO</span><input matInput formControlName="destinationCity" placeholder="Destination city"></label>
+    <label><span>DATE</span><input matInput type="date" formControlName="departureDate" [min]="minimumDate"></label>
+    <label><span>PASSENGERS</span><input matInput type="number" min="1" max="50" formControlName="travelers"></label>
+    <button mat-flat-button class="button" type="submit" [disabled]="requestSubmitting">{{ (requestSubmitting ? 'aviation.requestSending' : 'aviation.request') | t }} <fa-icon [icon]="icons.arrowRight" /></button>
+  </form>
+  @if (!requestReference && !requestError) {
+    <small class="response">A flight specialist will review your request and respond as soon as possible.</small>
+  }
+  @if (requestReference) {
+    <div class="form-message form-message--success">{{ 'aviation.requestSuccess' | t }} <b>{{ requestReference }}</b></div>
+  }
+  @if (requestError) {
+    <div class="form-message form-message--error">{{ 'aviation.requestError' | t }}</div>
+  }
+</div>
+</section>
 </main>
-
-<footer><div class="shell footer__top"><div><a class="brand brand--logo" routerLink="../" aria-label="Moment of Travel home"><img src="/SLOGAN.png" alt="Moment of Travel"></a><p>Beyond every horizon.</p></div><div><h4>Services</h4><a href="#services">Private charter</a><a href="#services">Aircraft management</a><a href="#services">Airline representation</a></div><div><h4>Company</h4><a href="#about">About us</a><a href="#safety">Safety</a><a routerLink="../travel">Travel agency</a></div><div><h4>Operations</h4><p dir="ltr">+966 54 944 0048</p><p>info&#64;momentoftravels.com</p><p>Madinah · Available 24/7</p></div></div><div class="shell footer__bottom"><span>© 2026 Moment of Travel</span><a routerLink="../travel">Visit Moment of Travel →</a><span>Privacy · Terms</span></div></footer>

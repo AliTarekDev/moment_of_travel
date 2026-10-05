@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { LanguageService } from '../../../i18n/language.service';
 
@@ -13,7 +13,7 @@ interface FeatureCard {
 @Component({
   selector: 'app-why-choose-us-section',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './why-choose-us-section.component.html',
   styleUrl: './why-choose-us-section.component.scss',
 })

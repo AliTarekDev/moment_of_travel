@@ -12,12 +12,22 @@ export const routes: Routes = [
       {
         path: '',
         component: TravelComponent,
-        title: 'Moment of Travel — Discover the world your way',
+        title: 'Ancient Paths — Discover the world your way',
+      },
+      {
+        path: 'tours',
+        loadComponent: () => import('./pages/tours/tours.component').then(module => module.ToursComponent),
+        title: 'Ancient Paths — Tours',
+      },
+      {
+        path: 'tours/:slug',
+        loadComponent: () => import('./pages/tours/tour-details.component').then(module => module.TourDetailsComponent),
+        title: 'Ancient Paths — Tour details',
       },
       {
         path: 'aviation',
         component: AviationComponent,
-        title: 'Moment of Travel — Beyond every horizon',
+        title: 'Ancient Paths — Beyond every horizon',
       },
       {
         path: 'travel',

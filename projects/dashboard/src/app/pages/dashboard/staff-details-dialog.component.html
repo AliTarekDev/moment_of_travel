@@ -4,13 +4,14 @@
 </header>
 
 <mat-dialog-content>
-  <dl *ngIf="!editing; else editForm">
-    <div><dt><fa-icon [icon]="icons.email" /> البريد الإلكتروني</dt><dd>{{ data.member.email }}</dd></div>
-    <div><dt><fa-icon [icon]="icons.role" /> الصلاحية</dt><dd>{{ label(data.member.role) }}</dd></div>
-    <div><dt><fa-icon [icon]="icons.status" /> الحالة</dt><dd>{{ data.member.active === false ? 'غير نشط' : 'نشط' }}</dd></div>
-    <div><dt><fa-icon [icon]="icons.calendar" /> تاريخ الإنشاء</dt><dd>{{ data.member.createdAt ? (data.member.createdAt | date:'medium') : 'غير متاح' }}</dd></div>
-  </dl>
-  <ng-template #editForm>
+  @if (!editing) {
+    <dl>
+      <div><dt><fa-icon [icon]="icons.email" /> البريد الإلكتروني</dt><dd>{{ data.member.email }}</dd></div>
+      <div><dt><fa-icon [icon]="icons.role" /> الصلاحية</dt><dd>{{ label(data.member.role) }}</dd></div>
+      <div><dt><fa-icon [icon]="icons.status" /> الحالة</dt><dd>{{ data.member.active === false ? 'غير نشط' : 'نشط' }}</dd></div>
+      <div><dt><fa-icon [icon]="icons.calendar" /> تاريخ الإنشاء</dt><dd>{{ data.member.createdAt ? (data.member.createdAt | date:'medium') : 'غير متاح' }}</dd></div>
+    </dl>
+  } @else {
     <div class="edit-form">
       <mat-form-field appearance="outline">
         <mat-label>الاسم الكامل</mat-label>
@@ -23,30 +24,50 @@
       <mat-form-field appearance="outline">
         <mat-label>الصلاحية</mat-label>
         <mat-select [(ngModel)]="editable.role" [disabled]="data.isCurrentUser">
-          <mat-option *ngFor="let role of roles" [value]="role">{{ label(role) }}</mat-option>
+          @for (role of roles; track role) {
+            <mat-option [value]="role">{{ label(role) }}</mat-option>
+          }
         </mat-select>
-        <mat-hint *ngIf="data.isCurrentUser">لا يمكنك تغيير صلاحية حسابك الحالي.</mat-hint>
+        @if (data.isCurrentUser) {
+          <mat-hint>لا يمكنك تغيير صلاحية حسابك الحالي.</mat-hint>
+        }
       </mat-form-field>
       <div class="active-control">
         <mat-slide-toggle [(ngModel)]="editable.active" [disabled]="data.isCurrentUser">الحساب نشط</mat-slide-toggle>
-        <small *ngIf="data.isCurrentUser">لا يمكنك تعطيل حسابك الحالي.</small>
+        @if (data.isCurrentUser) {
+          <small>لا يمكنك تعطيل حسابك الحالي.</small>
+        }
       </div>
     </div>
-  </ng-template>
-  <p class="self-note" *ngIf="data.isCurrentUser && !editing">هذا هو حسابك الحالي. يمكنك تعديل الاسم والبريد، لكن لا يمكنك تغيير صلاحيتك أو تعطيل الحساب.</p>
-  <p class="dialog-error" *ngIf="error" role="alert">{{ error }}</p>
+  }
+  @if (data.isCurrentUser && !editing) {
+    <p class="self-note">هذا هو حسابك الحالي. يمكنك تعديل الاسم والبريد، لكن لا يمكنك تغيير صلاحيتك أو تعطيل الحساب.</p>
+  }
+  @if (error) {
+    <p class="dialog-error" role="alert">{{ error }}</p>
+  }
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button *ngIf="!editing" mat-dialog-close>إغلاق</button>
-  <button mat-button *ngIf="editing" (click)="cancelEditing()" [disabled]="saving">إلغاء</button>
-  <button mat-stroked-button *ngIf="data.canEdit && !editing" (click)="startEditing()">
-    <fa-icon [icon]="icons.edit" /> تعديل البيانات
-  </button>
-  <button mat-flat-button class="save" *ngIf="editing" (click)="save()" [disabled]="saving || editable.fullName.trim().length < 2 || !editable.email.includes('@')">
-    <fa-icon [icon]="icons.save" /> {{ saving ? 'جارٍ الحفظ…' : 'حفظ التعديلات' }}
-  </button>
-  <button mat-flat-button class="danger" *ngIf="data.canDelete && !editing" (click)="requestDelete()">
-    <fa-icon [icon]="icons.trash" /> حذف الموظف
-  </button>
+  @if (!editing) {
+    <button mat-button mat-dialog-close>إغلاق</button>
+  }
+  @if (editing) {
+    <button mat-button (click)="cancelEditing()" [disabled]="saving">إلغاء</button>
+  }
+  @if (data.canEdit && !editing) {
+    <button mat-stroked-button (click)="startEditing()">
+      <fa-icon [icon]="icons.edit" /> تعديل البيانات
+    </button>
+  }
+  @if (editing) {
+    <button mat-flat-button class="save" (click)="save()" [disabled]="saving || editable.fullName.trim().length < 2 || !editable.email.includes('@')">
+      <fa-icon [icon]="icons.save" /> {{ saving ? 'جارٍ الحفظ…' : 'حفظ التعديلات' }}
+    </button>
+  }
+  @if (data.canDelete && !editing) {
+    <button mat-flat-button class="danger" (click)="requestDelete()">
+      <fa-icon [icon]="icons.trash" /> حذف الموظف
+    </button>
+  }
 </mat-dialog-actions>

@@ -1,6 +1,7 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, HostListener, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -38,6 +39,7 @@ import { LuxuryGallerySectionComponent } from './sections/luxury-gallery-section
 import { LuxuryIntroSectionComponent } from './sections/luxury-intro-section.component';
 import { PlanTourCtaSectionComponent } from './sections/plan-tour-cta-section.component';
 import { SignatureToursSectionComponent } from './sections/signature-tours-section.component';
+import { TourCategoriesSectionComponent } from './sections/tour-categories-section.component';
 import { TravelNavComponent } from './travel-nav.component';
 import { WhyChooseUsSectionComponent } from './sections/why-choose-us-section.component';
 
@@ -64,7 +66,6 @@ interface Listing {
   selector: 'app-travel',
   standalone: true,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     TranslatePipe,
     MatButtonModule,
@@ -76,7 +77,8 @@ interface Listing {
     PlanTourCtaSectionComponent,
     LuxuryGallerySectionComponent,
     TravelNavComponent,
-  ],
+    TourCategoriesSectionComponent
+],
   templateUrl: './travel.component.html',
   styleUrl: './travel.component.scss'
 })
@@ -84,9 +86,10 @@ export class TravelComponent {
   private readonly forms = inject(FormBuilder);
   private readonly bookingApi = inject(BookingApiService);
   private readonly document = inject(DOCUMENT);
+  private readonly route = inject(ActivatedRoute);
   readonly languages = inject(LanguageService);
   private readonly catalogApi = inject(CatalogApiService);
-  activeTab: SearchTab = 'Flights';
+  activeTab: SearchTab = 'Tours';
   bookingSubmitting = false;
   bookingReference = '';
   bookingError = '';
@@ -95,6 +98,13 @@ export class TravelComponent {
   readonly favourites = new Set<string>();
   readonly minimumDate = new Date().toISOString().slice(0, 10);
   readonly searchTabs: SearchTab[] = ['Flights', 'Hotels', 'Cars', 'Cruise', 'Tours'];
+  readonly egyptDestinations = [
+    { nameEn: 'Cairo & Giza', nameAr: 'القاهرة والجيزة', captionEn: 'Where history comes alive', captionAr: 'حيث ينبض التاريخ', image: 'https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&w=1000&q=85' },
+    { nameEn: 'Luxor', nameAr: 'الأقصر', captionEn: 'Timeless temples', captionAr: 'معابد خالدة', image: 'https://images.pexels.com/photos/15188316/pexels-photo-15188316.jpeg?auto=compress&cs=tinysrgb&w=1000' },
+    { nameEn: 'The Nile', nameAr: 'نهر النيل', captionEn: 'Take the scenic route', captionAr: 'رحلة بين أجمل المناظر', image: 'https://images.unsplash.com/photo-1623674567450-b600b67864a6?auto=format&fit=crop&w=1000&q=85' },
+    { nameEn: 'Red Sea', nameAr: 'البحر الأحمر', captionEn: 'A little closer to paradise', captionAr: 'خطوة أقرب إلى الجنة', image: 'https://images.unsplash.com/photo-1593385069384-2e2006c5508e?auto=format&fit=crop&w=1000&q=85' },
+    { nameEn: 'Old Cairo', nameAr: 'القاهرة القديمة', captionEn: 'Stories around every corner', captionAr: 'حكاية في كل ركن', image: 'https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=1000&q=85' },
+  ];
   readonly icons = {
     arrowLeft: faArrowLeft,
     arrowRight: faArrowRight,
@@ -159,6 +169,14 @@ export class TravelComponent {
   ];
 
   constructor() {
+    const destination = this.route.snapshot.queryParamMap.get('destination');
+    if (destination) {
+      this.bookingForm.patchValue({
+        serviceType: 'tour',
+        destination,
+        customerNotes: this.route.snapshot.queryParamMap.get('notes') ?? '',
+      });
+    }
     this.catalogApi.published('travel').subscribe({ next: ({ data }) => (this.catalogItems = data) });
   }
 
@@ -183,7 +201,20 @@ export class TravelComponent {
   }
 
   scrollToBooking(): void {
-    this.document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const reducedMotion = this.document.defaultView?.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.document.getElementById('booking')?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  // Bare fragments resolve against the root <base> and otherwise reset /ar to /en.
+  @HostListener('click', ['$event'])
+  onSectionLink(event: MouseEvent): void {
+    if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    const anchor = (event.target as Element | null)?.closest?.('a[href^="#"]');
+    const section = this.document.getElementById(anchor?.getAttribute('href')?.slice(1) ?? '');
+    if (!section) return;
+    event.preventDefault();
+    const reducedMotion = this.document.defaultView?.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    section.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
   }
 
   swapRoute(): void {

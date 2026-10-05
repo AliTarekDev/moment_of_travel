@@ -1,6 +1,6 @@
-# Moment of Travel
+# Ancient Paths
 
-Moment of Travel is a three-process TypeScript application:
+Ancient Paths is a three-process TypeScript application:
 
 - `website` — public Angular website with SSR and travel/private-aviation request forms.
 - `dashboard` — Angular staff operations dashboard.
