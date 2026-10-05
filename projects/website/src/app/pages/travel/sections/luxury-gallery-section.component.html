@@ -1,8 +1,8 @@
 <section class="luxury-gallery">
   <div class="container">
-    <div class="luxury-gallery__heading"><span class="eyebrow">{{ languages.language() === 'ar' ? 'لحظات تستحق أن تعيشها' : 'Make your journey more beautiful' }}</span><h2>{{ languages.language() === 'ar' ? 'لمحات من رحلتك القادمة' : 'A little inspiration for the road' }}</h2></div>
+    <div class="luxury-gallery__heading"><span class="eyebrow">{{ ('siteCopy.makeYourJourneyMoreBeautiful' | t) }}</span><h2>{{ ('siteCopy.aLittleInspirationForTheRoad' | t) }}</h2></div>
     <div class="gallery-grid">@for (image of images; track image) {
-      <figure class="gallery-card"><img [src]="image.image" [alt]="languages.language() === 'ar' ? image.titleAr : image.titleEn" loading="lazy" /><figcaption>{{ languages.language() === 'ar' ? image.locationAr : image.locationEn }}</figcaption></figure>
+      <figure class="gallery-card"><img [src]="image.image" [alt]="(image.titleKey | t)" loading="lazy" /><figcaption>{{ (image.locationKey | t) }}</figcaption></figure>
     }</div>
   </div>
 </section>

@@ -1,7 +1,7 @@
 <header class="header">
   <div class="shell header__inner">
-    <a class="brand brand--logo" routerLink="../" aria-label="Ancient Paths home"><img src="/SLOGAN.png" alt="Ancient Paths"></a>
-    <div class="mobile-tools"><app-language-switch /><button mat-icon-button class="menu" type="button" (click)="menuOpen = !menuOpen" aria-label="Toggle navigation"><fa-icon [icon]="icons.bars" /></button></div>
+    <a class="brand brand--logo" routerLink="../" [attr.aria-label]="('siteCopy.ancientPathsHome' | t)"><img src="/SLOGAN.png" [alt]="'common.brandName' | t"></a>
+    <div class="mobile-tools"><app-language-switch /><button mat-icon-button class="menu" type="button" (click)="menuOpen = !menuOpen" [attr.aria-label]="('siteCopy.toggleNavigation' | t)"><fa-icon [icon]="icons.bars" /></button></div>
     <nav [class.open]="menuOpen"><a href="#services">{{ 'aviation.navServices' | t }}</a><a href="#fleet">{{ 'aviation.navFleet' | t }}</a><a href="#about">{{ 'aviation.navAbout' | t }}</a><a href="#safety">{{ 'aviation.navSafety' | t }}</a><a href="#contact">{{ 'aviation.navContact' | t }}</a></nav>
     <div class="header__actions"><app-language-switch /><a class="division" routerLink="../travel">{{ 'aviation.switch' | t }} <fa-icon [icon]="icons.external" /></a><a mat-flat-button class="button button--small" href="#contact">{{ 'aviation.request' | t }}</a></div>
   </div>
@@ -16,7 +16,7 @@
       <p>{{ 'aviation.heroText' | t }}</p>
       <div class="hero__actions"><a mat-flat-button class="button" href="#contact">{{ 'aviation.request' | t }} <span><fa-icon [icon]="icons.arrowRight" /></span></a><a mat-button class="watch" href="#about"><i><fa-icon [icon]="icons.play" /></i> {{ 'aviation.story' | t }}</a></div>
     </div>
-    <div class="shell hero__foot"><span><b>24/7</b> Global operations</span><span><b>120+</b> Destinations</span><span><b>15 yrs</b> Aviation expertise</span><a href="#services">Scroll to explore ↓</a></div>
+    <div class="shell hero__foot"><span><b>24/7</b> {{ ('siteCopy.globalOperations' | t) }}</span><span><b>120+</b> {{ ('siteCopy.destinations' | t) }}</span><span><b>{{ ('siteCopy.15Yrs' | t) }}</b> {{ ('siteCopy.aviationExpertise' | t) }}</span><a href="#services">{{ ('siteCopy.scrollToExplore' | t) }}</a></div>
   </section>
 
   <section class="intro" id="about">
@@ -25,13 +25,13 @@
 
   @if (catalogItems.length) {
     <section class="aviation-catalog" id="aviation-catalog">
-      <div class="shell"><div class="section-head"><div><span class="eyebrow eyebrow--dark">{{ languages.language() === 'ar' ? 'متاح الآن' : 'AVAILABLE NOW' }}</span><h2>{{ languages.language() === 'ar' ? 'خدمات ورحلات الطيران' : 'Aviation services and journeys' }}</h2></div><p>{{ languages.language() === 'ar' ? 'اختيارات ينشرها فريق العمليات ويمكن طلبها مباشرة.' : 'Options published by our operations team and ready to request.' }}</p></div>
+      <div class="shell"><div class="section-head"><div><span class="eyebrow eyebrow--dark">{{ ('siteCopy.availableNow' | t) }}</span><h2>{{ ('siteCopy.aviationServicesAndJourneys' | t) }}</h2></div><p>{{ ('siteCopy.optionsPublishedByOurOperationsTeamAndReady' | t) }}</p></div>
       <div class="aviation-catalog__grid">@for (item of catalogItems; track item) {
         <article><div class="aviation-catalog__image">@if (item.imageUrl) {
           <img [src]="item.imageUrl" [alt]="local(item, 'title')" loading="lazy">
           }@if (!item.imageUrl) {
-          <span>MOT AVIATION</span>
-          }</div><div><small>{{ local(item, 'location') }}</small><h3>{{ local(item, 'title') }}</h3><p>{{ local(item, 'summary') }}</p><b>{{ item.price ? (item.price | number:'1.0-2') + ' ' + item.currency : (languages.language() === 'ar' ? 'حسب الطلب' : 'Price on request') }}</b><button type="button" (click)="selectCatalogItem(item)">{{ languages.language() === 'ar' ? 'اطلب هذه الخدمة' : 'Request this option' }} →</button></div></article>
+          <span>{{ 'common.brandName' | t }}</span>
+          }</div><div><small>{{ local(item, 'location') }}</small><h3>{{ local(item, 'title') }}</h3><p>{{ local(item, 'summary') }}</p><b>{{ item.price ? (item.price | number:'1.0-2') + ' ' + item.currency : (('siteCopy.priceOnRequest' | t)) }}</b><button type="button" (click)="selectCatalogItem(item)">{{ ('siteCopy.requestThisOption' | t) }} →</button></div></article>
         }</div>
       </div>
     </section>
@@ -57,36 +57,36 @@
 
 <section class="fleet" id="fleet">
   <div class="shell fleet__grid">
-    <div class="fleet__visual"><img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=1500&q=88" alt="Private jet on runway" loading="lazy"><span>Global 7500</span></div>
-    <div class="fleet__copy"><span class="eyebrow eyebrow--dark">{{ 'aviation.fleetKicker' | t }}</span><h2>{{ 'aviation.fleetTitle' | t }}</h2><p>Our global network spans light jets to ultra-long-range aircraft. We recommend based on your route, party and priorities—not inventory pressure.</p>
-    <div class="specs"><div><small>RANGE</small><b>7,700 nm</b></div><div><small>PASSENGERS</small><b>Up to 19</b></div><div><small>CRUISE</small><b>Mach 0.90</b></div></div>
-    <div class="fleet__nav"><a href="#contact">Explore our fleet <fa-icon [icon]="icons.arrowRight" /></a></div>
+    <div class="fleet__visual"><img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=1500&q=88" [alt]="('siteCopy.privateJetOnRunway' | t)" loading="lazy"><span>Global 7500</span></div>
+    <div class="fleet__copy"><span class="eyebrow eyebrow--dark">{{ 'aviation.fleetKicker' | t }}</span><h2>{{ 'aviation.fleetTitle' | t }}</h2><p>{{ ('siteCopy.ourGlobalNetworkSpansLightJetsToUltra' | t) }}</p>
+    <div class="specs"><div><small>{{ ('siteCopy.range' | t) }}</small><b>{{ ('siteCopy.7700Nm' | t) }}</b></div><div><small>{{ ('siteCopy.passengers' | t) }}</small><b>{{ ('siteCopy.upTo19' | t) }}</b></div><div><small>{{ ('siteCopy.cruise2' | t) }}</small><b>Mach 0.90</b></div></div>
+    <div class="fleet__nav"><a href="#contact">{{ ('siteCopy.exploreOurFleet' | t) }} <fa-icon [icon]="icons.arrowRight" /></a></div>
   </div>
 </div>
 </section>
 
 <section class="safety" id="safety">
-  <div class="shell safety__inner"><div><span class="eyebrow">SAFETY WITHOUT EXCEPTION</span><h2>Standards that never<br>leave the ground.</h2><p>Every operator, aircraft and crew is independently evaluated against rigorous global standards. If it does not meet ours, it does not fly yours.</p><a class="button button--outline" href="#contact">Discuss your flight requirements →</a></div><div class="safety__marks"><div><b>ARGUS</b><small>Rated operators</small></div><div><b>WYVERN</b><small>Verified network</small></div><div><b>IS-BAO</b><small>Aligned standards</small></div><div><b>24/7</b><small>Flight monitoring</small></div></div></div>
+  <div class="shell safety__inner"><div><span class="eyebrow">{{ ('siteCopy.safetyWithoutException' | t) }}</span><h2>{{ ('siteCopy.standardsThatNever' | t) }}<br>{{ ('siteCopy.leaveTheGround' | t) }}</h2><p>{{ ('siteCopy.everyOperatorAircraftAndCrewIsIndependentlyEvaluated' | t) }}</p><a class="button button--outline" href="#contact">{{ ('siteCopy.discussYourFlightRequirements' | t) }}</a></div><div class="safety__marks"><div><b>ARGUS</b><small>{{ ('siteCopy.ratedOperators' | t) }}</small></div><div><b>WYVERN</b><small>{{ ('siteCopy.verifiedNetwork' | t) }}</small></div><div><b>IS-BAO</b><small>{{ ('siteCopy.alignedStandards' | t) }}</small></div><div><b>24/7</b><small>{{ ('siteCopy.flightMonitoring' | t) }}</small></div></div></div>
 </section>
 
 <section class="world">
-  <div class="shell world__inner"><span class="eyebrow eyebrow--dark">{{ 'aviation.worldKicker' | t }}</span><h2>{{ 'aviation.worldTitle' | t }}</h2><p>One team coordinating every detail across continents, time zones and changing plans.</p><div class="locations"><span>Madinah <small>MED</small></span><span>Saudi Arabia <small>KSA</small></span><span>Middle East <small>MEA</small></span><span>Worldwide <small>24/7</small></span></div></div>
+  <div class="shell world__inner"><span class="eyebrow eyebrow--dark">{{ 'aviation.worldKicker' | t }}</span><h2>{{ 'aviation.worldTitle' | t }}</h2><p>{{ ('siteCopy.oneTeamCoordinatingEveryDetailAcrossContinentsTime' | t) }}</p><div class="locations"><span>{{ ('siteCopy.madinah' | t) }} <small>MED</small></span><span>{{ ('siteCopy.saudiArabia' | t) }} <small>KSA</small></span><span>{{ ('siteCopy.middleEast' | t) }} <small>MEA</small></span><span>{{ ('siteCopy.worldwide' | t) }} <small>24/7</small></span></div></div>
 </section>
 
 <section class="contact" id="contact">
   <div class="contact__image"></div><div class="contact__overlay"></div><div class="shell contact__inner"><span class="eyebrow">{{ 'aviation.contactKicker' | t }}</span><h2>{{ 'aviation.contactTitle' | t }}</h2><p>{{ 'aviation.contactText' | t }}</p>
   <form [formGroup]="requestForm" (ngSubmit)="submitRequest()" novalidate>
-    <label><span>NAME</span><input matInput formControlName="customerName" autocomplete="name" placeholder="Full name"></label>
-    <label><span>EMAIL</span><input matInput type="email" formControlName="customerEmail" autocomplete="email" placeholder="Email address"></label>
-    <label><span>PHONE</span><input matInput type="tel" formControlName="customerPhone" autocomplete="tel" placeholder="Phone number"></label>
-    <label><span>FROM</span><input matInput formControlName="departureCity" placeholder="Departure city"></label>
-    <label><span>TO</span><input matInput formControlName="destinationCity" placeholder="Destination city"></label>
-    <label><span>DATE</span><input matInput type="date" formControlName="departureDate" [min]="minimumDate"></label>
-    <label><span>PASSENGERS</span><input matInput type="number" min="1" max="50" formControlName="travelers"></label>
+    <label><span>{{ ('siteCopy.name' | t) }}</span><input matInput formControlName="customerName" autocomplete="name" [placeholder]="('siteCopy.fullName' | t)"></label>
+    <label><span>{{ ('siteCopy.email' | t) }}</span><input matInput type="email" formControlName="customerEmail" autocomplete="email" [placeholder]="('siteCopy.emailAddress' | t)"></label>
+    <label><span>{{ ('siteCopy.phone' | t) }}</span><input matInput type="tel" formControlName="customerPhone" autocomplete="tel" [placeholder]="('siteCopy.phoneNumber' | t)"></label>
+    <label><span>{{ ('siteCopy.from' | t) }}</span><input matInput formControlName="departureCity" [placeholder]="('siteCopy.departureCity' | t)"></label>
+    <label><span>{{ ('siteCopy.to' | t) }}</span><input matInput formControlName="destinationCity" [placeholder]="('siteCopy.destinationCity' | t)"></label>
+    <label><span>{{ ('siteCopy.date' | t) }}</span><input matInput type="date" formControlName="departureDate" [min]="minimumDate"></label>
+    <label><span>{{ ('siteCopy.passengers' | t) }}</span><input matInput type="number" min="1" max="50" formControlName="travelers"></label>
     <button mat-flat-button class="button" type="submit" [disabled]="requestSubmitting">{{ (requestSubmitting ? 'aviation.requestSending' : 'aviation.request') | t }} <fa-icon [icon]="icons.arrowRight" /></button>
   </form>
   @if (!requestReference && !requestError) {
-    <small class="response">A flight specialist will review your request and respond as soon as possible.</small>
+    <small class="response">{{ ('siteCopy.aFlightSpecialistWillReviewYourRequestAnd' | t) }}</small>
   }
   @if (requestReference) {
     <div class="form-message form-message--success">{{ 'aviation.requestSuccess' | t }} <b>{{ requestReference }}</b></div>

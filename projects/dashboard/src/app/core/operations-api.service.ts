@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Booking, BookingList, BookingStatus, CatalogDivision, CatalogItem, CatalogList, CatalogPayload, CatalogStatus, ClientAttachmentKind, DashboardSummary, PaymentStatus, StaffUser, TravelClient, TravelClientList, TravelClientPayload, TravelProgram, TravelProgramList, TravelProgramPayload, UserRole } from './api.models';
+import { Booking, BookingList, BookingStatus, CatalogDivision, CatalogType, CatalogItem, CatalogList, CatalogPayload, CatalogStatus, ClientAttachmentKind, DashboardSummary, PaymentStatus, StaffUser, TravelClient, TravelClientList, TravelClientPayload, TravelProgram, TravelProgramList, TravelProgramPayload, UserRole } from './api.models';
 
 @Injectable({ providedIn: 'root' })
 export class OperationsApiService {
@@ -45,8 +45,9 @@ export class OperationsApiService {
     return this.http.delete<{ deleted: true }>(`/api/users/${id}`, { withCredentials: true });
   }
 
-  catalog(filters: { division?: CatalogDivision | ''; status?: CatalogStatus | ''; search?: string } = {}) {
+  catalog(filters: { type?: CatalogType; division?: CatalogDivision | ''; status?: CatalogStatus | ''; search?: string } = {}) {
     let params = new HttpParams().set('page', 1).set('limit', 100);
+    if (filters.type) params = params.set('type', filters.type);
     if (filters.division) params = params.set('division', filters.division);
     if (filters.status) params = params.set('status', filters.status);
     if (filters.search?.trim()) params = params.set('search', filters.search.trim());
@@ -55,6 +56,12 @@ export class OperationsApiService {
 
   createCatalogItem(payload: CatalogPayload) {
     return this.http.post<CatalogItem>('/api/catalog', { ...payload, slug: payload.slug || undefined }, { withCredentials: true });
+  }
+
+  uploadCatalogImage(file: File) {
+    const data = new FormData();
+    data.append('file', file);
+    return this.http.post<{ imageUrl: string }>('/api/catalog/images', data, { withCredentials: true });
   }
 
   updateCatalogItem(id: string, payload: CatalogPayload) {

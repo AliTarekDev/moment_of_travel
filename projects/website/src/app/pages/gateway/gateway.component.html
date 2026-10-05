@@ -1,6 +1,6 @@
 <main class="gateway">
   <div class="gateway__top">
-    <a class="brand brand--logo" routerLink="." aria-label="Ancient Paths home"><img src="/SLOGAN.png" alt="Ancient Paths"></a>
+    <a class="brand brand--logo" routerLink="." [attr.aria-label]="('siteCopy.ancientPathsHome' | t)"><img src="/SLOGAN.png" [alt]="'common.brandName' | t"></a>
     <div class="gateway__actions"><p>{{ 'gateway.tagline' | t }}</p><app-language-switch /></div>
   </div>
 
@@ -10,9 +10,9 @@
     <p>{{ 'gateway.subtitle' | t }}</p>
   </section>
 
-  <section class="choices" aria-label="Choose a business division">
+  <section class="choices" [attr.aria-label]="('siteCopy.chooseABusinessDivision' | t)">
     <a class="choice choice--aviation" routerLink="aviation">
-      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=88" alt="Passenger aircraft above the clouds">
+      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=88" [alt]="('siteCopy.passengerAircraftAboveTheClouds' | t)">
       <span class="choice__wash"></span>
       <span class="choice__number">01</span>
       <span class="choice__content">
@@ -25,7 +25,7 @@
     </a>
 
     <a class="choice choice--travel" routerLink="travel">
-      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=88" alt="Beautiful tropical coast">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=88" [alt]="('siteCopy.beautifulTropicalCoast' | t)">
       <span class="choice__wash"></span>
       <span class="choice__number">02</span>
       <span class="choice__content">

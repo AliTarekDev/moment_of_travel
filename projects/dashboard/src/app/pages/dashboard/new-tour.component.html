@@ -1,43 +1,41 @@
 <section class="tour-editor">
-  <header><h2>{{ 'newTour.title' | t }}</h2><p>{{ 'newTour.subtitle' | t }}</p></header>
+  <header><h2>{{ (item ? 'newTour.editTitle' : 'newTour.title') | t }}</h2><p>{{ 'newTour.subtitle' | t }}</p></header>
   @if (saved) {
     <div role="status" class="success">{{ 'newTour.success' | t }}</div>
-    <div class="actions"><button type="button" class="save" (click)="another()">{{ 'newTour.another' | t }}</button><button type="button" (click)="back.emit()">{{ 'newTour.cancel' | t }}</button></div>
+    <div class="actions"><button mat-flat-button type="button" class="save" (click)="another()">{{ 'newTour.another' | t }}</button><button mat-stroked-button type="button" (click)="back.emit()">{{ 'newTour.cancel' | t }}</button></div>
   } @else {
     <form #form="ngForm" (ngSubmit)="save(form)" novalidate>
       <fieldset [disabled]="saving">
         <div class="language-grid">
           @for (language of languages; track language) {
-            <section [attr.dir]="language === 'Ar' ? 'rtl' : 'ltr'">
+            <section>
               <h3>{{ (language === 'Ar' ? 'newTour.arabic' : 'newTour.english') | t }}</h3>
               @for (field of fields; track field.key) {
-                <label>{{ ('newTour.' + field.label) | t }} @if (field.required) { <span aria-hidden="true">*</span> }
+                <mat-form-field appearance="outline"><mat-label>{{ ('newTour.' + field.label) | t }}</mat-label>
                   @if (field.rows === 1) {
-                    <input [name]="fieldKey(field.key, language)" [(ngModel)]="model[fieldKey(field.key, language)]" [required]="field.required" [minlength]="field.required ? 2 : 0" [maxlength]="field.max" [pattern]="field.required ? '.*\\S.*\\S.*' : '.*'" />
+                    <input matInput [attr.dir]="language === 'Ar' ? 'rtl' : 'ltr'" [disabled]="saving" [name]="fieldKey(field.key, language)" [(ngModel)]="model[fieldKey(field.key, language)]" [required]="field.required" [minlength]="field.required ? 2 : 0" [maxlength]="field.max" [pattern]="field.required ? nonBlank : '[\\s\\S]*'" />
                   } @else {
-                    <textarea [name]="fieldKey(field.key, language)" [(ngModel)]="model[fieldKey(field.key, language)]" [required]="field.required" [minlength]="field.required ? 2 : 0" [maxlength]="field.max" [rows]="field.rows" [pattern]="field.required ? '[\\s\\S]*\\S[\\s\\S]*\\S[\\s\\S]*' : '[\\s\\S]*'"></textarea>
+                    <textarea matInput [attr.dir]="language === 'Ar' ? 'rtl' : 'ltr'" [disabled]="saving" [name]="fieldKey(field.key, language)" [(ngModel)]="model[fieldKey(field.key, language)]" [required]="field.required" [minlength]="field.required ? 2 : 0" [maxlength]="field.max" [rows]="field.rows" [pattern]="field.required ? nonBlank : '[\\s\\S]*'"></textarea>
                   }
-                </label>
+                </mat-form-field>
               }
             </section>
           }
         </div>
+        <app-tour-itinerary-editor [disabled]="saving" [(days)]="days" [(durationDays)]="model.durationDays" />
         <div class="settings-grid">
-          <label>{{ 'newTour.slug' | t }}<input name="slug" [(ngModel)]="model.slug" pattern="[a-z0-9]+(-[a-z0-9]+)*" maxlength="160" dir="ltr" /></label>
-          <label>{{ 'newTour.image' | t }}<input name="imageUrl" [(ngModel)]="model.imageUrl" type="url" pattern="https?://[^\s]+" maxlength="2000" dir="ltr" /></label>
-          <label>{{ 'newTour.price' | t }}<input name="price" [(ngModel)]="model.price" type="number" min="0" step="0.01" pattern="\d+(\.\d{1,2})?" /></label>
-          <label>{{ 'newTour.currency' | t }}<select name="currency" [(ngModel)]="model.currency" required>@for (currency of ['EGP', 'SAR', 'USD', 'EUR']; track currency) { <option [value]="currency">{{ currency }}</option> }</select></label>
-          <label>{{ 'newTour.start' | t }}<input name="startDate" [(ngModel)]="model.startDate" type="date" /></label>
-          <label>{{ 'newTour.end' | t }}<input name="endDate" [(ngModel)]="model.endDate" type="date" [min]="model.startDate || ''" /></label>
-          <label>{{ 'newTour.status' | t }}<select name="status" [(ngModel)]="model.status" required><option value="draft">{{ 'newTour.draft' | t }}</option><option value="published">{{ 'newTour.published' | t }}</option></select></label>
-          <label class="check"><input name="featured" [(ngModel)]="model.featured" type="checkbox" />{{ 'newTour.featured' | t }}</label>
+          <mat-form-field appearance="outline"><mat-label>{{ 'newTour.slug' | t }}</mat-label><input matInput [disabled]="saving" name="slug" [(ngModel)]="model.slug" pattern="[a-z0-9]+(-[a-z0-9]+)*" maxlength="160" dir="ltr" /></mat-form-field>
+          <app-catalog-image-upload [(imageUrl)]="model.imageUrl" (uploadingChange)="imageUploading=$event" (validChange)="imageValid=$event" [disabled]="saving" />
+          <mat-form-field appearance="outline"><mat-label>{{ 'newTour.price' | t }}</mat-label><input matInput [disabled]="saving" name="price" [(ngModel)]="model.price" type="number" min="0" step="0.01" pattern="\d+(\.\d{1,2})?" /></mat-form-field>
+          <mat-form-field appearance="outline"><mat-label>{{ 'newTour.currency' | t }}</mat-label><mat-select [disabled]="saving" name="currency" [(ngModel)]="model.currency" required>@for (currency of ['EGP', 'SAR', 'USD', 'EUR']; track currency) { <mat-option [value]="currency">{{ currency }}</mat-option> }</mat-select></mat-form-field>
+          <mat-form-field appearance="outline"><mat-label>{{ 'newTour.status' | t }}</mat-label><mat-select [disabled]="saving" name="status" [(ngModel)]="model.status" required><mat-option value="draft">{{ 'newTour.draft' | t }}</mat-option><mat-option value="published">{{ 'newTour.published' | t }}</mat-option>@if (item) { <mat-option value="archived">{{ 'newTour.archived' | t }}</mat-option> }</mat-select></mat-form-field>
+          <mat-checkbox name="featured" [(ngModel)]="model.featured" [disabled]="saving">{{ 'newTour.featured' | t }}</mat-checkbox>
         </div>
       </fieldset>
       @if (attempted && form.invalid) { <p class="validation" role="alert">{{ 'newTour.invalid' | t }}</p> }
-      @if (attempted && dateInvalid) { <p class="validation" role="alert">{{ 'newTour.dates' | t }}</p> }
       @if (error) { <p class="validation" role="alert">{{ 'newTour.error' | t }}</p> }
       <p class="notice">{{ 'newTour.notice' | t }}</p>
-      <div class="actions"><button type="submit" class="save" [disabled]="saving">{{ (saving ? 'newTour.saving' : 'newTour.save') | t }}</button><button type="button" [disabled]="saving" (click)="back.emit()">{{ 'newTour.cancel' | t }}</button></div>
+      <div class="actions"><button mat-flat-button type="submit" class="save" [disabled]="saving || imageUploading || !imageValid">{{ (saving ? 'newTour.saving' : item ? 'newTour.saveChanges' : 'newTour.save') | t }}</button><button mat-stroked-button type="button" [disabled]="saving || imageUploading" (click)="back.emit()">{{ 'newTour.cancel' | t }}</button></div>
     </form>
   }
 </section>

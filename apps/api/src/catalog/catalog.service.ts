@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { randomBytes } from 'node:crypto';
 import { Repository } from 'typeorm';
 import { CatalogQueryDto, CreateCatalogItemDto, UpdateCatalogItemDto } from './catalog.dto';
-import { CatalogItem, CatalogStatus } from './catalog-item.entity';
+import { CatalogDivision, CatalogItem, CatalogStatus, CatalogType } from './catalog-item.entity';
 
 @Injectable()
 export class CatalogService {
@@ -17,6 +17,14 @@ export class CatalogService {
     return this.findMany(query, true);
   }
 
+  async findPublicTour(slug: string): Promise<CatalogItem> {
+    const item = await this.items.findOneBy({
+      slug, status: CatalogStatus.PUBLISHED, division: CatalogDivision.TRAVEL, type: CatalogType.TRIP,
+    });
+    if (!item) throw new NotFoundException('Tour not found');
+    return item;
+  }
+
   async findOne(id: string): Promise<CatalogItem> {
     const item = await this.items.findOneBy({ id });
     if (!item) throw new NotFoundException('Catalog item not found');
@@ -24,6 +32,7 @@ export class CatalogService {
   }
 
   async create(dto: CreateCatalogItemDto): Promise<CatalogItem> {
+    this.validateItinerary(dto);
     this.validateDates(dto.startDate, dto.endDate);
     const slug = dto.slug?.trim() || (await this.uniqueSlug(dto.titleEn));
     if (await this.items.existsBy({ slug })) throw new ConflictException('Slug is already used');
@@ -31,6 +40,7 @@ export class CatalogService {
   }
 
   async update(id: string, dto: UpdateCatalogItemDto): Promise<CatalogItem> {
+    this.validateItinerary(dto);
     const item = await this.findOne(id);
     this.validateDates(dto.startDate, dto.endDate);
     const slug = dto.slug?.trim() || item.slug;
@@ -85,6 +95,8 @@ export class CatalogService {
       currency: dto.currency?.toUpperCase() || 'SAR',
       startDate: dto.startDate || null,
       endDate: dto.endDate || null,
+      durationDays: dto.durationDays ?? null,
+      itinerary: dto.itinerary?.map(day => ({ titleAr: day.titleAr.trim(), titleEn: day.titleEn.trim(), textAr: day.textAr.trim(), textEn: day.textEn.trim() })) ?? [],
       featured: dto.featured ?? false,
       sortOrder: dto.sortOrder ?? 0,
       status: dto.status ?? CatalogStatus.DRAFT,
@@ -94,6 +106,15 @@ export class CatalogService {
   private validateDates(startDate?: string, endDate?: string): void {
     if (startDate && endDate && endDate < startDate) {
       throw new BadRequestException('endDate must be on or after startDate');
+    }
+  }
+
+  private validateItinerary(dto: CreateCatalogItemDto): void {
+    if (dto.itinerary?.length && dto.durationDays !== dto.itinerary.length) {
+      throw new BadRequestException('Tour duration must match the number of itinerary days');
+    }
+    if (dto.itinerary?.some(day => [day.titleAr, day.titleEn, day.textAr, day.textEn].some(value => value.trim().length < 2))) {
+      throw new BadRequestException('Each itinerary day requires a title and description in both languages');
     }
   }
 

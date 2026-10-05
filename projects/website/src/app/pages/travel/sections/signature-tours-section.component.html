@@ -1,16 +1,24 @@
 <section class="signature-tours" id="catalog">
   <div class="container">
     <div class="signature-tours__heading"><span class="eyebrow">{{ ('tourUi.bestRecommendedExperiences' | t) }}</span><h2>{{ ('tourUi.yourNextGreatStoryStartsHere' | t) }}</h2><p>{{ ('tourUi.handpickedPrivateItinerariesToInspireYouEveryDetailCan' | t) }}</p></div>
+    @if (loading()) {
+      <p class="catalog-message" role="status">{{ 'tourUi.loadingTours' | t }}</p>
+    } @else if (loadError()) {
+      <div class="catalog-message" role="alert"><p>{{ 'tourUi.loadToursError' | t }}</p><button class="section-button" type="button" (click)="load()">{{ 'tourUi.retry' | t }}</button></div>
+    } @else if (!tours().length) {
+      <p class="catalog-message">{{ 'tourUi.noPublishedTours' | t }}</p>
+    } @else if (carouselReady()) {
     <owl-carousel-o class="tours-carousel" [options]="carouselOptions()">
-      @for (tour of tours; track tour; let index = $index) {
+      @for (tour of tours(); track tour.slug; let index = $index) {
         <ng-template carouselSlide
-          [id]="'signature-tour-' + index" [dotContent]="dotContent(index)">
+          [id]="tour.id" [dotContent]="dotContent(index)">
           <article class="tour-card">
-            <div class="tour-card__image"><img [src]="tour.image" [alt]="(tour.titleKey | t)" loading="lazy" /><span>{{ ('tourUi.privateTour' | t) }}</span></div>
-            <div class="tour-card__content"><small>{{ ('tourUi.egyptTailormadeItinerary' | t) }}</small><h3>{{ (tour.titleKey | t) }}</h3><p>{{ (tour.summaryKey | t) }}</p><div class="tour-card__footer"><span>◷ {{ (tour.durationKey | t) }}</span><a [routerLink]="['/', languages.language(), 'tours', tour.slug]">{{ ('tourUi.planThisTour' | t) }} <span class="direction-arrow">→</span></a></div></div>
+            <div class="tour-card__image"><img [src]="tour.imageUrl || '/imgs/about-slide-img.png.svg'" [alt]="local(tour, 'title')" loading="lazy" /><span>{{ ('tourUi.privateTour' | t) }}</span></div>
+            <div class="tour-card__content"><small>{{ local(tour, 'location') || ('tourUi.tailorMadeItinerary' | t) }}</small><h3>{{ local(tour, 'title') }}</h3><p>{{ local(tour, 'summary') }}</p>@if (tour.price !== null) { <strong class="tour-card__price">{{ tour.price | currency:tour.currency:'symbol':'1.0-2' }}</strong> }<div class="tour-card__footer"><span>@if (days(tour); as count) { ◷ {{ count }} {{ 'tourUi.days' | t }} } @else { {{ 'tourUi.flexibleDuration' | t }} }</span><a [routerLink]="['/', languages.language(), 'tours', tour.slug]">{{ ('tourUi.planThisTour' | t) }} <span class="direction-arrow">→</span></a></div></div>
           </article>
         </ng-template>
       }
     </owl-carousel-o>
+    }
   </div>
 </section>

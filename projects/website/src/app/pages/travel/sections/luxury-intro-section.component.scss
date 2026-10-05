@@ -14,7 +14,7 @@
 .intro-feature p { margin: 0; font-size: 13px; }
 .luxury-intro .section-button { margin-top: 8px; }
 .luxury-intro__traveler { position: relative; isolation: isolate; align-self: end; }
-.luxury-intro__traveler::before { content: ''; position: absolute; z-index: -1; width: 145%; max-width: 300px; aspect-ratio: 1; top: 36%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; background: var(--brand-sky); }
+.luxury-intro__traveler::before { content: ''; position: absolute; z-index: -1; width: 145%; max-width: 300px; aspect-ratio: 1; top: 36%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; background: var(--brand-surface); }
 .luxury-intro__traveler img { display: block; width: 100%; max-width: 217px; height: auto; margin-inline: auto; }
 @media(max-width: 1100px) { .luxury-intro__grid { grid-template-columns: minmax(0, 1fr) minmax(160px, .4fr); gap: 40px; } .intro-collage { grid-column: 1 / -1; max-width: 580px; width: 100%; margin: 0 auto 20px; } }
 @media(max-width: 760px) { .luxury-intro__grid { grid-template-columns: 1fr; } .intro-collage { grid-column: auto; } .luxury-intro__traveler { width: 180px; margin: 15px auto 0; } }

@@ -1,0 +1,17 @@
+:host { display: block; }
+.tour-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+.kicker { color: #746572; font-size: 12px; } h2 { margin: 8px 0; font-size: 26px; color: #5c3a58; }
+.tour-toolbar p { margin: 0; color: #746572; font-size: 13px; }
+.tour-filters { display: flex; align-items: start; gap: 16px; background: #fff; border: 1px solid #e5dce4; border-radius: 18px; padding: 24px; margin-bottom: 24px; }
+.tour-filters mat-form-field:first-child { flex: 1; } .tour-filters > button { margin-top: 8px; }
+.managed-tours { display: grid; gap: 18px; }
+.managed-tour { display: grid; grid-template-columns: 150px minmax(0, 1fr) auto; gap: 24px; align-items: center; padding: 20px; background: #fff; border: 1px solid #e5dce4; border-radius: 18px; }
+.managed-tour > img, .image-placeholder { width: 150px; height: 135px; object-fit: cover; border-radius: 14px; }
+.image-placeholder { display: grid; place-items: center; background: #f5eff5; color: #5c3a58; font-weight: 700; font-size: 28px; }
+.tour-info h3 { margin: 12px 0 6px; color: #5c3a58; font-size: 18px; } .tour-info p { margin: 0; color: #746572; font-size: 13px; text-align: start; }
+.tour-meta { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; margin-top: 12px; color: #746572; }
+.tour-status { display: inline-flex; border-radius: 99px; padding: 5px 12px; font-size: 11px; background: #f5eff5; color: #5c3a58; }
+.tour-status[data-status='published'] { background: #e4f3eb; color: #286b46; } .tour-status[data-status='draft'] { background: #fbf3d7; color: #756013; }
+.tour-actions { display: flex; gap: 8px; } .delete, .error { color: #a12b40; }
+.empty { text-align: center; padding: 50px 24px; background: white; border-radius: 18px; color: #746572; }
+@media(max-width:750px) { .tour-toolbar, .tour-filters { flex-direction: column; align-items: stretch; } .tour-filters mat-form-field { width: 100%; } .managed-tour { grid-template-columns: 80px minmax(0, 1fr); gap: 16px; } .managed-tour > img, .image-placeholder { width: 80px; height: 90px; } .tour-actions { grid-column: 1 / -1; } }

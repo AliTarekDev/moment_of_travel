@@ -1,0 +1,20 @@
+<section class="tour-management">
+  <header class="tour-toolbar"><div><span class="kicker">{{ 'dashboard.catalog' | t }}</span><h2>{{ 'dashboard.tours' | t }}</h2><p>{{ 'dashboard.toursHelp' | t }}</p></div><button mat-flat-button type="button" (click)="addRequested.emit()">+ {{ 'newTour.title' | t }}</button></header>
+  <div class="tour-filters">
+    <mat-form-field appearance="outline"><mat-label>{{ 'dashboard.searchTours' | t }}</mat-label><input matInput [(ngModel)]="search" (keyup.enter)="load()" /></mat-form-field>
+    <mat-form-field appearance="outline"><mat-label>{{ 'newTour.status' | t }}</mat-label><mat-select [(ngModel)]="status" (selectionChange)="load()"><mat-option value="">{{ 'dashboard.allStatuses' | t }}</mat-option>@for (value of ['draft', 'published', 'archived']; track value) { <mat-option [value]="value">{{ ('newTour.' + value) | t }}</mat-option> }</mat-select></mat-form-field>
+    <button mat-stroked-button type="button" (click)="load()">{{ 'dashboard.search' | t }}</button>
+  </div>
+  @if (error) { <p class="error" role="alert">{{ error | t }}</p> }
+  @if (loading) { <p class="empty" role="status">{{ 'dashboard.loadingTours' | t }}</p> } @else {
+    <div class="managed-tours">
+      @for (tour of items; track tour.id) {
+        <article class="managed-tour">
+          @if (tour.imageUrl) { <img [src]="tour.imageUrl" [alt]="tour.titleAr" loading="lazy" /> } @else { <div class="image-placeholder">AP</div> }
+          <div class="tour-info"><span class="tour-status" [attr.data-status]="tour.status">{{ ('newTour.' + tour.status) | t }}</span><h3>{{ tour.titleAr }}</h3><p dir="ltr">{{ tour.titleEn }}</p><div class="tour-meta">@if (tour.durationDays) { <span>{{ tour.durationDays }} {{ 'newTour.days' | t }}</span> } @if (tour.price !== null) { <strong>{{ tour.price | currency:tour.currency:'symbol':'1.0-2' }}</strong> }</div></div>
+          <div class="tour-actions"><button mat-stroked-button type="button" (click)="openEditor(tour)">{{ 'dashboard.edit' | t }}</button>@if (role === 'admin') { <button mat-button type="button" class="delete" (click)="remove(tour)">{{ 'dashboard.delete' | t }}</button> }</div>
+        </article>
+      } @empty { <div class="empty"><h3>{{ 'dashboard.noTours' | t }}</h3><p>{{ 'dashboard.noToursHelp' | t }}</p><button mat-stroked-button type="button" (click)="addRequested.emit()">{{ 'newTour.title' | t }}</button></div> }
+    </div>
+  }
+</section>

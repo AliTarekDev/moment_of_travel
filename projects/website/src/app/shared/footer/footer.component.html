@@ -4,8 +4,8 @@
         <a
           class="brand brand--logo"
           [routerLink]="['/', languages.language()]"
-          aria-label="Ancient Paths home"
-          ><img src="/SLOGAN.png" alt="Ancient Paths"
+          [attr.aria-label]="('siteCopy.ancientPathsHome' | t)"
+          ><img src="/SLOGAN.png" [alt]="'common.brandName' | t"
         /></a>
         <p>{{ "travel.aboutText" | t }}</p>
       </div>

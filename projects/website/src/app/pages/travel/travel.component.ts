@@ -34,7 +34,7 @@ import {
 import { TranslatePipe } from '../../i18n/translate.pipe';
 import { LanguageService } from '../../i18n/language.service';
 import { BookingApiService, BookingServiceType } from '../../services/booking-api.service';
-import { CatalogApiService, PublicCatalogItem } from '../../services/catalog-api.service';
+import { PublicCatalogItem } from '../../services/catalog-api.service';
 import { LuxuryGallerySectionComponent } from './sections/luxury-gallery-section.component';
 import { LuxuryIntroSectionComponent } from './sections/luxury-intro-section.component';
 import { PlanTourCtaSectionComponent } from './sections/plan-tour-cta-section.component';
@@ -88,22 +88,20 @@ export class TravelComponent {
   private readonly document = inject(DOCUMENT);
   private readonly route = inject(ActivatedRoute);
   readonly languages = inject(LanguageService);
-  private readonly catalogApi = inject(CatalogApiService);
   activeTab: SearchTab = 'Tours';
   bookingSubmitting = false;
   bookingReference = '';
   bookingError = '';
-  catalogItems: PublicCatalogItem[] = [];
   listingOffset = 0;
   readonly favourites = new Set<string>();
   readonly minimumDate = new Date().toISOString().slice(0, 10);
   readonly searchTabs: SearchTab[] = ['Flights', 'Hotels', 'Cars', 'Cruise', 'Tours'];
   readonly egyptDestinations = [
-    { nameEn: 'Cairo & Giza', nameAr: 'القاهرة والجيزة', captionEn: 'Where history comes alive', captionAr: 'حيث ينبض التاريخ', image: 'https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&w=1000&q=85' },
-    { nameEn: 'Luxor', nameAr: 'الأقصر', captionEn: 'Timeless temples', captionAr: 'معابد خالدة', image: 'https://images.pexels.com/photos/15188316/pexels-photo-15188316.jpeg?auto=compress&cs=tinysrgb&w=1000' },
-    { nameEn: 'The Nile', nameAr: 'نهر النيل', captionEn: 'Take the scenic route', captionAr: 'رحلة بين أجمل المناظر', image: 'https://images.unsplash.com/photo-1623674567450-b600b67864a6?auto=format&fit=crop&w=1000&q=85' },
-    { nameEn: 'Red Sea', nameAr: 'البحر الأحمر', captionEn: 'A little closer to paradise', captionAr: 'خطوة أقرب إلى الجنة', image: 'https://images.unsplash.com/photo-1593385069384-2e2006c5508e?auto=format&fit=crop&w=1000&q=85' },
-    { nameEn: 'Old Cairo', nameAr: 'القاهرة القديمة', captionEn: 'Stories around every corner', captionAr: 'حكاية في كل ركن', image: 'https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=1000&q=85' },
+    { nameKey: "siteCopy.cairoGiza", captionKey: "siteCopy.whereHistoryComesAlive", image: 'https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&w=1000&q=85' },
+    { nameKey: "siteCopy.luxor", captionKey: "siteCopy.timelessTemples", image: 'https://images.pexels.com/photos/15188316/pexels-photo-15188316.jpeg?auto=compress&cs=tinysrgb&w=1000' },
+    { nameKey: "siteCopy.theNile", captionKey: "siteCopy.takeTheScenicRoute", image: 'https://images.unsplash.com/photo-1623674567450-b600b67864a6?auto=format&fit=crop&w=1000&q=85' },
+    { nameKey: "siteCopy.redSea", captionKey: "siteCopy.aLittleCloserToParadise", image: 'https://images.unsplash.com/photo-1593385069384-2e2006c5508e?auto=format&fit=crop&w=1000&q=85' },
+    { nameKey: "siteCopy.oldCairo", captionKey: "siteCopy.storiesAroundEveryCorner", image: 'https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=1000&q=85' },
   ];
   readonly icons = {
     arrowLeft: faArrowLeft,
@@ -177,7 +175,6 @@ export class TravelComponent {
         customerNotes: this.route.snapshot.queryParamMap.get('notes') ?? '',
       });
     }
-    this.catalogApi.published('travel').subscribe({ next: ({ data }) => (this.catalogItems = data) });
   }
 
   setTab(tab: SearchTab): void {

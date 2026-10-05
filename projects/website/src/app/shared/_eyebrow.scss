@@ -1,0 +1,31 @@
+// One label treatment for website sections, including travel and aviation.
+body .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 100%;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: clamp(12px, 1vw, 14px);
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1.7;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  vertical-align: middle;
+}
+body .eyebrow::before {
+  content: '';
+  display: block;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--brand-gold);
+}
+body .eyebrow::after { content: none; }
+body [dir='rtl'] .eyebrow, body:dir(rtl) .eyebrow {
+  font-family: Tahoma, Arial, sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}

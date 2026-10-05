@@ -1,6 +1,9 @@
 import { Transform, Type } from 'class-transformer';
 import {
   IsBoolean,
+  IsArray,
+  ArrayMaxSize,
+  ValidateNested,
   IsDateString,
   IsEnum,
   IsInt,
@@ -8,6 +11,7 @@ import {
   IsOptional,
   IsString,
   IsUrl,
+  ValidateIf,
   Length,
   Matches,
   Max,
@@ -17,7 +21,19 @@ import {
 } from 'class-validator';
 import { CatalogDivision, CatalogStatus, CatalogType } from './catalog-item.entity';
 
+export class TourDayDto {
+  @IsString() @MinLength(2) @MaxLength(180) titleAr!: string;
+  @IsString() @MinLength(2) @MaxLength(180) titleEn!: string;
+  @IsString() @MinLength(2) @MaxLength(3000) textAr!: string;
+  @IsString() @MinLength(2) @MaxLength(3000) textEn!: string;
+}
+
 export class CreateCatalogItemDto {
+  @IsOptional() @Type(() => Number) @IsInt() @Min(1) @Max(30)
+  durationDays?: number;
+
+  @IsOptional() @IsArray() @ArrayMaxSize(30) @ValidateNested({ each: true }) @Type(() => TourDayDto)
+  itinerary?: TourDayDto[];
   @IsOptional()
   @IsString()
   @MaxLength(180)
@@ -75,6 +91,7 @@ export class CreateCatalogItemDto {
   locationEn?: string;
 
   @IsOptional()
+  @ValidateIf((_object, value) => !(typeof value === 'string' && /^\/api\/catalog\/images\/[a-f0-9-]{36}\.(jpg|png|webp)$/.test(value)))
   @IsUrl({ require_protocol: true })
   @MaxLength(2000)
   imageUrl?: string;

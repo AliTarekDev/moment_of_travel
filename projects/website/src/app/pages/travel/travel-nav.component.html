@@ -1,15 +1,15 @@
-<div class="topbar"><div class="container topbar__inner"><span>{{ languages.language() === 'ar' ? 'رحلتك تبدأ بلحظة إلهام' : 'Every great journey begins with a moment' }}</span><div><a href="tel:+966549440048" dir="ltr">+966 54 944 0048</a><span class="topbar__divider">|</span><a href="mailto:info@ancientpaths.com">info&#64;ancientpaths.com</a></div></div></div>
+<div class="topbar"><div class="container topbar__inner"><span>{{ ('siteCopy.everyGreatJourneyBeginsWithAMoment' | t) }}</span><div><a href="tel:+966549440048" dir="ltr">+966 54 944 0048</a><span class="topbar__divider">|</span><a href="mailto:info@ancientpaths.com">info&#64;ancientpaths.com</a></div></div></div>
 <nav class="nav" [class.nav--scrolled]="isScrolled">
   <div class="container nav__inner">
-    <a class="brand brand--logo" [routerLink]="['/', languages.language()]" aria-label="Ancient Paths home">
-      <img src="/LOGO 2.png" alt="Ancient Paths" />
+    <a class="brand brand--logo" [routerLink]="['/', languages.language()]" [attr.aria-label]="('siteCopy.ancientPathsHome' | t)">
+      <img src="/LOGO 2.png" [alt]="'common.brandName' | t" />
     </a>
 
     <button
       class="menu-button"
       type="button"
       (click)="toggleMobileMenu()"
-      aria-label="Toggle menu"
+      [attr.aria-label]="('siteCopy.toggleMenu' | t)"
       [attr.aria-expanded]="mobileMenuOpen"
       aria-controls="travel-navigation-links"
     >
@@ -21,7 +21,7 @@
       type="button"
       [class.is-open]="mobileMenuOpen"
       (click)="closeMobileMenu()"
-      aria-label="Close menu"
+      [attr.aria-label]="('siteCopy.closeMenu' | t)"
     ></button>
 
     <div
@@ -32,8 +32,8 @@
       [class.nav__links--ltr]="languages.language() !== 'ar'"
     >
       <div class="side-nav__head">
-        <img src="/LOGO 2.png" alt="Ancient Paths" />
-        <button type="button" (click)="closeMobileMenu()" aria-label="Close menu">×</button>
+        <img src="/LOGO 2.png" [alt]="'common.brandName' | t" />
+        <button type="button" (click)="closeMobileMenu()" [attr.aria-label]="('siteCopy.closeMenu' | t)">×</button>
       </div>
       <a [routerLink]="['/', languages.language()]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileMenu()">{{
         "travel.navHome" | t
@@ -51,7 +51,7 @@
         "travel.navAbout" | t
       }}</a>
       <app-language-switch class="nav__language-switch" />
-      <a class="nav__cta" [routerLink]="['/', languages.language()]" fragment="booking" (click)="closeMobileMenu()">{{ languages.language() === 'ar' ? 'خطط رحلتك' : 'Plan your trip' }} <span>→</span></a>
+      <a class="nav__cta" [routerLink]="['/', languages.language()]" fragment="booking" (click)="closeMobileMenu()">{{ ('siteCopy.planYourTrip' | t) }} <span>→</span></a>
     </div>
   </div>
 </nav>

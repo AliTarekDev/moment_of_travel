@@ -72,8 +72,8 @@ td strong, td small { display: block; } td strong { color: #33403d; font-size: 1
 .full-panel { overflow: hidden; }
 .filters { display: flex; align-items: center; gap: 10px; padding: 18px 20px; }
 .search { flex: 1; max-width: 440px; position: relative; }.search span { position: absolute; right: 13px; top: 10px; color: #8c9693; }.search input { padding-right: 36px; }
-input, select, textarea { width: 100%; border: 1px solid #dad7d0; border-radius: 9px; padding: 11px 12px; background: #fff; color: #34413e; outline: none; font-size: 10px; }
-input:focus, select:focus, textarea:focus { border-color: #a76a73; box-shadow: 0 0 0 3px rgba(163,101,111,.09); }
+input:not([matInput]), select, textarea:not([matInput]) { width: 100%; border: 1px solid #dad7d0; border-radius: 9px; padding: 11px 12px; background: #fff; color: #34413e; outline: none; font-size: 10px; }
+input:not([matInput]):focus, select:focus, textarea:not([matInput]):focus { border-color: #a76a73; box-shadow: 0 0 0 3px rgba(163,101,111,.09); }
 .filters select { width: 150px; }.result-count { margin-left: auto; color: #939b98; font-size: 9px; }
 .table-wrap--large table { min-width: 1050px; }
 .team-layout { display: grid; gap: 18px; }
@@ -109,3 +109,21 @@ input:focus, select:focus, textarea:focus { border-color: #a76a73; box-shadow: 0
 @media (max-width: 1180px) { .stat-grid { grid-template-columns: 1fr 1fr; }.overview-grid { grid-template-columns: 1fr; }.form-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 780px) { .sidebar { transform: translateX(100%); transition: .22s; }.sidebar.is-open { transform: none; }.mobile-scrim { display: block; position: fixed; inset: 0; z-index: 25; border: 0; background: rgba(24,32,30,.35); }.workspace { margin-right: 0; padding: 22px 17px 35px; }.menu-toggle { display: inline-grid; place-items: center; }.topbar { justify-content: flex-start; }.top-actions { margin-right: auto; }.top-actions .primary { display: none; }.topbar h1 { font-size: 24px; }.stat-grid { grid-template-columns: 1fr 1fr; }.filters { flex-wrap: wrap; }.search { flex-basis: 100%; max-width: none; }.result-count { display: none; } }
 @media (max-width: 520px) { .stat-grid, .form-grid { grid-template-columns: 1fr; }.stat-card { min-height: 125px; }.panel-heading { padding-inline: 17px; }.filters { padding: 14px; }.filters select { flex: 1; }.booking-drawer > header, .drawer-body { padding-inline: 19px; }.customer-card p { max-width: 250px; overflow: hidden; text-overflow: ellipsis; }.detail-grid { grid-template-columns: 1fr; } }
+
+// Shared dashboard shell: keep legacy workflows visually consistent.
+app-dashboard .app-shell { background:var(--dashboard-sky); }
+app-dashboard .sidebar { background:linear-gradient(160deg,var(--dashboard-plum),var(--dashboard-plum-dark)); padding:28px 18px; }
+app-dashboard .brand > span { background:var(--dashboard-gold); color:var(--dashboard-plum-dark); border-radius:14px; box-shadow:none; }
+app-dashboard .brand strong { font-size:16px; } app-dashboard .brand small { color:#e7dfe6; letter-spacing:0; }
+app-dashboard .sidebar nav button { min-height:50px; font-size:13px; font-weight:500; color:#e7dfe6; }
+app-dashboard .sidebar nav button.active { background:#ffffff18; color:#fff; box-shadow:inset -3px 0 var(--dashboard-gold); }
+app-dashboard .sidebar nav b, app-dashboard .profile > span { background:var(--dashboard-gold); color:var(--dashboard-plum-dark); }
+app-dashboard .profile { margin-top:auto; } app-dashboard .profile small { color:#e7dfe6; }
+app-dashboard .topbar { padding-bottom:24px; border-bottom:1px solid #e5dce4; }
+app-dashboard .topbar h1 { color:var(--dashboard-plum); font-family:inherit; font-size:28px; line-height:1.5; }
+app-dashboard .workspace .eyebrow { color:#746572; font-size:11px; letter-spacing:0; }
+app-dashboard .stat-card, app-dashboard .panel { border-color:#e5dce4; border-radius:18px; background:#fff; box-shadow:0 6px 22px #5c3a5806; }
+app-dashboard .stat-card strong { color:var(--dashboard-plum); }
+app-dashboard .primary { background:var(--dashboard-plum); color:#fff; box-shadow:none; }
+app-dashboard .table-wrap th { font-size:12px; } app-dashboard .table-wrap td { font-size:12px; }
+@media(min-width:781px) { app-dashboard .workspace { padding:32px clamp(24px,3vw,44px) 48px; } }

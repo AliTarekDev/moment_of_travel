@@ -2,25 +2,18 @@
   <aside class="sidebar" [class.is-open]="menuOpen">
     <div class="brand"><span>A</span><div><strong>Ancient Paths</strong><small>إدارة العمليات</small></div></div>
     <nav aria-label="التنقل في لوحة الإدارة">
-      <button type="button" [class.active]="activeView==='overview'" (click)="changeView('overview')"><fa-icon [icon]="icons.home" /><span>نظرة عامة</span></button>
-      <button type="button" [class.active]="activeView==='bookings'" (click)="changeView('bookings')"><fa-icon [icon]="icons.bookings" /><span>الحجوزات</span>@if (summary?.statusCounts?.new) {
+      <button type="button" [class.active]="activeView==='overview'" (click)="changeView('overview')"><fa-icon [icon]="icons.home" /><span>{{ 'dashboard.overview' | t }}</span></button>
+      <button type="button" [class.active]="activeView==='bookings'" (click)="changeView('bookings')"><fa-icon [icon]="icons.bookings" /><span>{{ 'dashboard.bookings' | t }}</span>@if (summary?.statusCounts?.new) {
       <b>{{ summary?.statusCounts?.new }}</b>
     }</button>
-    @if (canManageClients) {
-      <button type="button" [class.active]="activeView==='clients'" (click)="changeView('clients')"><fa-icon [icon]="icons.clients" /><span>العملاء</span></button>
-    }
-    @if (canManageContent) {
-      <button type="button" [class.active]="activeView==='programs'" (click)="changeView('programs')"><fa-icon [icon]="icons.programs" /><span>البرامج</span></button>
-    }
     @if (canManageContent) {
       <button type="button" [class.active]="activeView==='newTour'" (click)="changeView('newTour')"><fa-icon [icon]="icons.add" /><span>{{ 'newTour.title' | t }}</span></button>
-      <button type="button" [class.active]="activeView==='content'" (click)="changeView('content')"><fa-icon [icon]="icons.content" /><span>الرحلات والمحتوى</span></button>
+      <button type="button" [class.active]="activeView==='content'" (click)="changeView('content')"><fa-icon [icon]="icons.content" /><span>{{ 'dashboard.tours' | t }}</span></button>
     }
     @if (canSeeTeam) {
-      <button type="button" [class.active]="activeView==='team'" (click)="changeView('team')"><fa-icon [icon]="icons.team" /><span>فريق العمل</span></button>
+      <button type="button" [class.active]="activeView==='team'" (click)="changeView('team')"><fa-icon [icon]="icons.team" /><span>{{ 'dashboard.team' | t }}</span></button>
     }
   </nav>
-  <div class="sidebar-card"><span>مركز المساعدة</span><strong>تحتاج إلى مساعدة؟</strong><p>احتفظ بإجراءات العمل وبيانات الموردين في دليل التشغيل الداخلي.</p></div>
   @if (user; as currentUser) {
     <div class="profile"><span>{{ initials(currentUser.fullName) }}</span><div><strong>{{ currentUser.fullName }}</strong><small>{{ statusLabel(currentUser.role) }}</small></div><button mat-icon-button type="button" (click)="logout()" aria-label="تسجيل الخروج" matTooltip="تسجيل الخروج"><fa-icon [icon]="icons.logout" /></button></div>
   }
@@ -58,17 +51,11 @@
   @if (!loading&&activeView==='bookings') {
     <app-bookings-view [bookings]="bookings" [(search)]="search" [(statusFilter)]="statusFilter" (refreshRequested)="refresh()" (bookingSelected)="selectBooking($event)" />
   }
-  @if (!loading&&activeView==='clients'&&canManageClients) {
-    <app-clients-view />
-  }
-  @if (!loading&&activeView==='programs'&&canManageContent&&user) {
-    <app-programs-view [role]="user.role" />
-  }
   @if (activeView==='newTour'&&canManageContent) {
     <app-new-tour (back)="changeView('content')" />
   }
   @if (!loading&&activeView==='content'&&canManageContent&&user) {
-    <app-content-manager [role]="user.role" />
+    <app-content-manager [role]="user.role" (addRequested)="changeView('newTour')" />
   }
   @if (!loading&&activeView==='team'&&canSeeTeam&&user) {
     <app-team-view [currentUser]="user" [users]="users" [(showNewUser)]="showNewUser" [newUser]="newUser" [saving]="saving" [deletingUserId]="deletingUserId" (createRequested)="createUser()" (viewRequested)="viewUser($event)" (deleteRequested)="deleteUser($event)" />

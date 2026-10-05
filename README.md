@@ -116,7 +116,7 @@ All routes are authenticated by default except health, login, public booking cre
 
 ## Production database
 
-Apply every SQL file in `apps/api/database` in numeric order, including `005_programs.sql` followed by `006_optional_program_fields.sql`, and set:
+Apply every SQL file in `apps/api/database` in numeric order, including `007_tour_itineraries.sql` for tour durations and daily descriptions, and set:
 
 ```env
 NODE_ENV=production

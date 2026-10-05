@@ -9,7 +9,7 @@
 .hero { position: relative; display: flex; align-items: center; min-height: clamp(570px, 70vw, 720px); background: var(--brand-plum-dark) url('https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&w=2400&q=90') center 54% / cover; color: #fff; }
 .hero__wash { position: absolute; inset: 0; background: linear-gradient(90deg, #3f263ccc, #3f263c80 58%, #3f263c26); }
 .hero__content { position: relative; padding-block: 95px 140px; }
-.hero .eyebrow { color: white; font-size: clamp(28px, 3vw, 40px); }
+.hero .eyebrow { color: white; }
 .hero h1 { max-width: 780px; color: white; font-size: clamp(46px, 5.6vw, 80px); line-height: 1.16; margin: 20px 0; letter-spacing: -.045em; }
 .hero p { max-width: 570px; color: #f4f8f8; font-size: 16px; margin: 0 0 32px; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 28px; align-items: center; }
@@ -23,7 +23,7 @@
 .trip-search__intro small { color: var(--travel-muted); font-size: 12px; }
 .trip-search label { min-width: 0; border-inline-start: 1px solid #dce7e9; padding-inline-start: 20px; }
 .trip-search input { width: 100%; min-height: 32px; border: 0; background: transparent; color: var(--travel-muted); font-size: 12px; }
-.destinations { background: linear-gradient(180deg, #f1fafc, #fff); }
+.destinations { background: linear-gradient(180deg, var(--brand-surface), #fff); }
 .destination-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: 230px 230px; gap: 22px; }
 .destination-card { position: relative; isolation: isolate; overflow: hidden; border: 0; padding: 0; border-radius: 24px; text-align: start; background: var(--travel-ink); cursor: pointer; }
 .destination-card:first-child { grid-column: span 2; grid-row: span 2; }
@@ -34,7 +34,7 @@
 .destination-card h3 { color: white; font-size: 25px; margin: 4px 0; }
 .destination-card > div > span { color: #e2f2f4; font-size: 12px; }
 .destination-card__arrow { position: absolute; inset-inline-end: 22px; top: 22px; width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid #ffffff85; border-radius: 50%; color: white; }
-.booking-section { padding-block: var(--travel-section-space); background: var(--brand-sky); }
+.booking-section { padding-block: var(--travel-section-space); background: var(--brand-surface); }
 .booking-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 65px; align-items: start; }
 .booking-copy { padding-top: 25px; }
 .booking-copy > p { max-width: 450px; }
@@ -47,7 +47,7 @@
 .booking-form__heading small { color: var(--travel-muted); font-size: 12px; }
 .booking-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .booking-fields label > span, .booking-options > span { display: block; margin-bottom: 7px; font-size: 13px; font-weight: 600; }
-.booking-fields input:not([type='checkbox']), .booking-fields select, .booking-fields textarea { width: 100%; min-height: 46px; padding: 10px 13px; border: 1px solid #dbe6e9; border-radius: 10px; background: #fbfdfd; color: var(--travel-ink); font: inherit; font-size: 14px; }
+.booking-fields input:not([type='checkbox']), .booking-fields select, .booking-fields textarea { width: 100%; min-height: 46px; padding: 10px 13px; border: 1px solid #e8e1d8; border-radius: 10px; background: var(--brand-surface-soft); color: var(--travel-ink); font: inherit; font-size: 14px; }
 .booking-fields textarea { resize: vertical; }
 .booking-fields .wide { grid-column: 1 / -1; }
 .booking-fields label > small, .booking-error { color: #b22e40; font-size: 12px; }

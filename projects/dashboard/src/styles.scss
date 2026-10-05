@@ -2,3 +2,9 @@
 html, body { margin: 0; min-height: 100%; }
 body { background: #f4f1eb; font-family: 'Noto Kufi Arabic', Tahoma, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 button, input, select, textarea { font-family: inherit; }
+
+:root { --dashboard-plum:#5c3a58; --dashboard-plum-dark:#3f263c; --dashboard-gold:#d4af37; --dashboard-sky:#f5fcff; }
+body { background:var(--dashboard-sky); color:var(--dashboard-plum); }
+app-dashboard .mat-mdc-unelevated-button:not(:disabled), app-content-editor-dialog .mat-mdc-unelevated-button:not(:disabled) { --mdc-filled-button-container-color:var(--dashboard-plum); --mdc-filled-button-label-text-color:#fff; }
+app-dashboard .mat-mdc-outlined-button, app-content-editor-dialog .mat-mdc-outlined-button { --mdc-outlined-button-label-text-color:var(--dashboard-plum); --mdc-outlined-button-outline-color:#baa9b7; }
+app-dashboard mat-form-field, app-content-editor-dialog mat-form-field { --mdc-outlined-text-field-focus-outline-color:var(--dashboard-plum); --mdc-outlined-text-field-focus-label-text-color:var(--dashboard-plum); --mdc-outlined-text-field-caret-color:var(--dashboard-plum); --mat-form-field-container-text-font:'Noto Kufi Arabic',sans-serif; }

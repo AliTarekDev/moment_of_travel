@@ -19,8 +19,6 @@ import {
   faRotate,
   faUsers,
   faXmark,
-  faAddressBook,
-  faMosque,
 } from '@fortawesome/free-solid-svg-icons';
 import { finalize, forkJoin } from 'rxjs';
 import {
@@ -40,16 +38,14 @@ import { OverviewViewComponent } from './overview-view.component';
 import { BookingsViewComponent } from './bookings-view.component';
 import { TeamViewComponent } from './team-view.component';
 import { BookingDrawerComponent } from './booking-drawer.component';
-import { ClientsViewComponent } from './clients-view.component';
-import { ProgramsViewComponent } from './programs-view.component';
 
-type View = 'newTour' | 'overview' | 'bookings' | 'clients' | 'programs' | 'content' | 'team';
+type View = 'newTour' | 'overview' | 'bookings' | 'content' | 'team';
 
 @Component({
   selector: 'app-dashboard',
   providers: [TranslatePipe],
   standalone: true,
-  imports: [NewTourComponent, TranslatePipe, MatButtonModule, MatTooltipModule, FontAwesomeModule, ContentManagerComponent, OverviewViewComponent, BookingsViewComponent, TeamViewComponent, BookingDrawerComponent, ClientsViewComponent, ProgramsViewComponent],
+  imports: [NewTourComponent, TranslatePipe, MatButtonModule, MatTooltipModule, FontAwesomeModule, ContentManagerComponent, OverviewViewComponent, BookingsViewComponent, TeamViewComponent, BookingDrawerComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -83,8 +79,6 @@ export class DashboardComponent implements OnInit {
     menu: faBars,
     refresh: faRotate,
     team: faUsers,
-    clients: faAddressBook,
-    programs: faMosque,
   };
   private readonly labels: Record<string, string> = {
     admin: 'مسؤول النظام',
@@ -122,10 +116,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(params => {
       const view = this.route.snapshot.data['view'] ?? params.get('view');
-      if (['overview', 'bookings', 'clients', 'programs', 'content', 'team', 'newTour'].includes(view ?? '')) {
+      if (['overview', 'bookings', 'content', 'team', 'newTour'].includes(view ?? '')) {
         const allowed = !(view === 'team' && !this.canSeeTeam)
-          && !(['content', 'programs', 'newTour'].includes(view) && !this.canManageContent)
-          && !(view === 'clients' && !this.canManageClients);
+          && !(['content', 'newTour'].includes(view) && !this.canManageContent);
         if (allowed) this.activeView = view as View;
       }
     });
@@ -152,17 +145,11 @@ export class DashboardComponent implements OnInit {
     return ['admin', 'manager'].includes(this.user?.role ?? '');
   }
 
-  get canManageClients(): boolean {
-    return ['admin', 'manager', 'reception'].includes(this.user?.role ?? '');
-  }
-
   get pageTitle(): string {
     if (this.activeView === 'overview') return `مرحباً، ${this.user?.fullName?.split(' ')[0] || 'فريق العمل'}`;
     if (this.activeView === 'bookings') return 'إدارة الحجوزات';
     if (this.activeView === 'newTour') return this.translation.transform('newTour.title');
-    if (this.activeView === 'content') return 'الرحلات والمحتوى';
-    if (this.activeView === 'clients') return 'إدارة العملاء';
-    if (this.activeView === 'programs') return 'إدارة البرامج';
+    if (this.activeView === 'content') return this.translation.transform('dashboard.tours');
     return 'فريق العمل';
   }
 
@@ -190,7 +177,7 @@ export class DashboardComponent implements OnInit {
   }
 
   changeView(view: View): void {
-    if ((view === 'team' && !this.canSeeTeam) || ((view === 'newTour' || view === 'content' || view === 'programs') && !this.canManageContent) || (view === 'clients' && !this.canManageClients)) return;
+    if ((view === 'team' && !this.canSeeTeam) || ((view === 'newTour' || view === 'content') && !this.canManageContent)) return;
     if (view === 'newTour') { void this.router.navigate(['/tours/new']); }
     else if (this.route.snapshot.data['view'] === 'newTour') { void this.router.navigate(['/'], { queryParams: { view } }); }
     this.activeView = view;

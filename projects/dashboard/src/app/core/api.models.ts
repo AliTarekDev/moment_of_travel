@@ -59,6 +59,8 @@ export type CatalogType = 'trip' | 'offer' | 'destination' | 'hotel' | 'flight' 
 export type CatalogStatus = 'draft' | 'published' | 'archived';
 
 export interface CatalogItem {
+  durationDays?: number | null;
+  itinerary?: { titleAr: string; titleEn: string; textAr: string; textEn: string }[];
   id: string;
   slug: string;
   division: CatalogDivision;

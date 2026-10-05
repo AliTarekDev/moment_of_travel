@@ -1,6 +1,6 @@
 @use '../template-theme' as theme;
 @include theme.foundation;
-.signature-tours { @include theme.section-shape('shape_3.png.svg', 35px, 47px); padding-block: var(--travel-section-space); background: var(--brand-sky); }
+.signature-tours { @include theme.section-shape('shape_3.png.svg', 35px, 47px); padding-block: var(--travel-section-space); background: var(--brand-surface); }
 .signature-tours__heading { text-align: center; margin: 0 auto 45px; max-width: 850px; }
 .tour-card { display: flex; flex-direction: column; width: 100%; margin-block: 8px 18px; border: 1px solid #dce8eb; border-radius: 18px; background: white; overflow: hidden; transition: box-shadow .25s; }
 .tour-card:hover { box-shadow: 0 8px 18px #5c3a5814; }
@@ -19,3 +19,7 @@
 @media(max-width: 560px) { .tour-card__image { height: 260px; } }
 
 .tour-card__footer a { background: white; font-family: inherit; cursor: pointer; }
+
+.catalog-message { text-align: center; padding-block: 30px; }
+
+.tour-card__price { display: block; margin-bottom: 18px; color: var(--travel-ink); }

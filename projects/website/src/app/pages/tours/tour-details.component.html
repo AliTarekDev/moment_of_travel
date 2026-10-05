@@ -2,28 +2,37 @@
 <main [attr.dir]="languages.language() === 'ar' ? 'rtl' : 'ltr'">
   @if (tour(); as selected) {
     <header class="details-hero">
+      <div class="hero-cover" [style.background-image]="'url(&quot;' + (selected.imageUrl || '/imgs/about-slide-img.png.svg') + '&quot;)'">
+        <nav class="breadcrumbs" [attr.aria-label]="'tourUi.breadcrumb' | t"><a [routerLink]="['/', languages.language()]">{{ 'tourUi.home' | t }}</a><span aria-hidden="true">/</span><a [routerLink]="['/', languages.language(), 'tours']">{{ 'tourUi.tours' | t }}</a></nav>
+      </div>
       <div class="container hero-grid">
-        <div>
-          <nav class="breadcrumbs" [attr.aria-label]="'tourUi.breadcrumb' | t"><a [routerLink]="['/', languages.language()]">{{ ('tourUi.home' | t) }}</a><span>/</span><a [routerLink]="['/', languages.language(), 'tours']">{{ ('tourUi.tours' | t) }}</a></nav>
-          <span class="eyebrow">{{ ('tourUi.yourNextJourney' | t) }}</span>
-          <h1>{{ (selected.titleKey | t) }}</h1>
-          <p>{{ (selected.summaryKey | t) }}</p>
-          <div class="hero-actions"><span class="duration">{{ (selected.durationKey | t) }}</span><a class="section-button" href="#book-trip">{{ ('tourUi.bookYourTrip' | t) }}</a></div>
+        <div class="hero-copy">
+          <span class="eyebrow">{{ 'tourUi.yourNextJourney' | t }}</span>
+          <h1>{{ local(selected, 'title') }}</h1>
+          @if (local(selected, 'location')) { <p class="hero-location"><span aria-hidden="true">⌖</span>{{ local(selected, 'location') }}</p> }
+          <p class="hero-summary">{{ local(selected, 'summary') }}</p>
         </div>
-        <img [src]="selected.image" [alt]="(selected.titleKey | t)" />
+        <div class="hero-booking">
+          <div class="hero-facts">
+            @if (selected.price !== null) { <div><span class="hero-fact-label">{{ 'tourUi.tourPrice' | t }}</span><strong class="tour-price">{{ selected.price | currency:selected.currency:'symbol':'1.0-2' }}</strong></div> }
+            <div><span class="hero-fact-label">{{ 'tourUi.tripDuration' | t }}</span><strong class="duration">@if (days(selected); as count) { {{ count }} {{ 'tourUi.days' | t }} } @else { {{ 'tourUi.flexibleDuration' | t }} }</strong></div>
+          </div>
+          <a class="section-button" href="#book-trip" (click)="scrollToBooking($event, bookingSection)">{{ 'tourUi.bookYourTrip' | t }}<span class="booking-arrow" aria-hidden="true">↓</span></a>
+        </div>
       </div>
     </header>
     <section class="itinerary container">
-      <span class="eyebrow">{{ ('tourUi.dayByDay' | t) }}</span>
+      @if (itinerary().length) { <span class="eyebrow">{{ 'tourUi.dayByDay' | t }}</span> }
       <h2>{{ ('tourUi.yourItinerary' | t) }}</h2>
-      <p>{{ ('tourUi.suggestedItineraryOurTeamWillConfirmTheScheduleAvailability' | t) }}</p>
+      @if (content().introduction) { <p class="tour-description">{{ content().introduction }}</p> }
+      @if (!content().introduction && !itinerary().length) { <p>{{ 'tourUi.itineraryOnRequest' | t }}</p> }
       <ol class="day-list">
         @for (day of itinerary(); track $index) {
-          <li><span class="day-number">{{ ('tourUi.day' | t) }} {{ $index + 1 }}</span><div><h3>{{ (day.titleKey | t) }}</h3><p>{{ (day.textKey | t) }}</p></div></li>
+          <li><span class="day-number">{{ ('tourUi.day' | t) }} {{ $index + 1 }}</span><div><h3>{{ day.title }}</h3><p>{{ day.text }}</p></div></li>
         }
       </ol>
     </section>
-    <section class="booking-section" id="book-trip">
+    <section #bookingSection class="booking-section" id="book-trip">
       <div class="container booking-card">
         <span class="eyebrow">{{ ('tourUi.letUsPlanTheDetails' | t) }}</span>
         <h2>{{ ('tourUi.bookYourTrip' | t) }}</h2>
@@ -33,14 +42,14 @@
         } @else {
           <form [formGroup]="form" (ngSubmit)="book()" novalidate>
             <div class="form-grid">
-              <label>{{ ('tourUi.firstName' | t) }}<input formControlName="firstName" autocomplete="given-name" required maxlength="59" [attr.aria-invalid]="invalid('firstName')" />@if (invalid('firstName')) { <small class="field-error">{{ ('tourUi.enterYourFirstName' | t) }}</small> }</label>
-              <label>{{ ('tourUi.lastName' | t) }}<input formControlName="lastName" autocomplete="family-name" required maxlength="60" [attr.aria-invalid]="invalid('lastName')" />@if (invalid('lastName')) { <small class="field-error">{{ ('tourUi.enterYourLastName' | t) }}</small> }</label>
-              <label>{{ ('tourUi.email' | t) }}<input formControlName="email" type="email" autocomplete="email" required [attr.aria-invalid]="invalid('email')" />@if (invalid('email')) { <small class="field-error">{{ ('tourUi.enterAValidEmail' | t) }}</small> }</label>
-              <label>{{ ('tourUi.confirmEmail' | t) }}<input formControlName="confirmEmail" type="email" autocomplete="off" required [attr.aria-invalid]="invalid('confirmEmail') || (form.hasError('emailMismatch') && form.controls.confirmEmail.touched)" />@if (invalid('confirmEmail') || (form.hasError('emailMismatch') && form.controls.confirmEmail.touched)) { <small class="field-error">{{ ('tourUi.enterTheSameEmailInBothFields' | t) }}</small> }</label>
-              <label>{{ ('tourUi.mobile' | t) }}<input formControlName="mobile" type="tel" autocomplete="tel" required maxlength="40" [attr.aria-invalid]="invalid('mobile')" />@if (invalid('mobile')) { <small class="field-error">{{ ('tourUi.enterAValidMobileNumber740Characters' | t) }}</small> }</label>
-              <label>{{ ('tourUi.bookingDate' | t) }}<input formControlName="bookingDate" type="date" [min]="today" required [attr.aria-invalid]="invalid('bookingDate')" />@if (invalid('bookingDate')) { <small class="field-error">{{ ('tourUi.chooseTodayOrAFutureTravelDate' | t) }}</small> }</label>
-              <label>{{ ('tourUi.groupNumber' | t) }}<input formControlName="groupNumber" type="number" min="1" max="50" step="1" required [attr.aria-invalid]="invalid('groupNumber')" /><small>{{ ('tourUi.numberOfTravelers150' | t) }}</small>@if (invalid('groupNumber')) { <small class="field-error">{{ ('tourUi.enterAWholeNumberBetween1And50' | t) }}</small> }</label>
-              <label class="full-width">{{ ('tourUi.notes' | t) }}<textarea formControlName="notes" rows="5" maxlength="2000" [attr.aria-invalid]="invalid('notes')"></textarea><small>{{ ('tourUi.optionalTellUsAboutYourPreferencesUpTo2000' | t) }}</small></label>
+              <div class="booking-field"><label class="booking-field__label" for="booking-firstName">{{ ('tourUi.firstName' | t) }}</label><mat-form-field appearance="outline" subscriptSizing="dynamic"><input matInput id="booking-firstName" formControlName="firstName" [placeholder]="'tourUi.placeholderFirstName' | t" autocomplete="given-name" required maxlength="59" [attr.aria-invalid]="invalid('firstName')" />@if (invalid('firstName')) { <mat-error>{{ ('tourUi.enterYourFirstName' | t) }}</mat-error> }</mat-form-field></div>
+              <div class="booking-field"><label class="booking-field__label" for="booking-lastName">{{ ('tourUi.lastName' | t) }}</label><mat-form-field appearance="outline" subscriptSizing="dynamic"><input matInput id="booking-lastName" formControlName="lastName" [placeholder]="'tourUi.placeholderLastName' | t" autocomplete="family-name" required maxlength="60" [attr.aria-invalid]="invalid('lastName')" />@if (invalid('lastName')) { <mat-error>{{ ('tourUi.enterYourLastName' | t) }}</mat-error> }</mat-form-field></div>
+              <div class="booking-field"><label class="booking-field__label" for="booking-email">{{ ('tourUi.email' | t) }}</label><mat-form-field appearance="outline" subscriptSizing="dynamic"><input matInput id="booking-email" formControlName="email" [placeholder]="'tourUi.placeholderEmail' | t" type="email" autocomplete="email" required [attr.aria-invalid]="invalid('email')" />@if (invalid('email')) { <mat-error>{{ ('tourUi.enterAValidEmail' | t) }}</mat-error> }</mat-form-field></div>
+              <div class="booking-field"><label class="booking-field__label" for="booking-confirmEmail">{{ ('tourUi.confirmEmail' | t) }}</label><mat-form-field appearance="outline" subscriptSizing="dynamic"><input matInput [errorStateMatcher]="confirmEmailMatcher" id="booking-confirmEmail" formControlName="confirmEmail" [placeholder]="'tourUi.placeholderConfirmEmail' | t" type="email" autocomplete="off" required [attr.aria-invalid]="invalid('confirmEmail') || (form.hasError('emailMismatch') && form.controls.confirmEmail.touched)" />@if (invalid('confirmEmail') || (form.hasError('emailMismatch') && form.controls.confirmEmail.touched)) { <mat-error>{{ ('tourUi.enterTheSameEmailInBothFields' | t) }}</mat-error> }</mat-form-field></div>
+              <div class="booking-field"><label class="booking-field__label" for="booking-mobile">{{ ('tourUi.mobile' | t) }}</label><mat-form-field appearance="outline" subscriptSizing="dynamic"><input matInput id="booking-mobile" formControlName="mobile" [placeholder]="'tourUi.placeholderMobile' | t" type="tel" autocomplete="tel" required maxlength="40" [attr.aria-invalid]="invalid('mobile')" />@if (invalid('mobile')) { <mat-error>{{ ('tourUi.enterAValidMobileNumber740Characters' | t) }}</mat-error> }</mat-form-field></div>
+              <div class="booking-field"><label class="booking-field__label" for="booking-bookingDate">{{ ('tourUi.bookingDate' | t) }}</label><mat-form-field appearance="outline" subscriptSizing="dynamic"><input matInput id="booking-bookingDate" formControlName="bookingDate" [placeholder]="'tourUi.placeholderBookingDate' | t" [matDatepicker]="bookingPicker" [min]="today" (click)="bookingPicker.open()" required [attr.aria-invalid]="invalid('bookingDate')" /><mat-datepicker-toggle matIconSuffix [for]="bookingPicker" /><mat-datepicker #bookingPicker />@if (invalid('bookingDate')) { <mat-error>{{ ('tourUi.chooseTodayOrAFutureTravelDate' | t) }}</mat-error> }</mat-form-field></div>
+              <div class="booking-field"><label class="booking-field__label" for="booking-groupNumber">{{ ('tourUi.groupNumber' | t) }}</label><mat-form-field appearance="outline" subscriptSizing="dynamic"><input matInput id="booking-groupNumber" formControlName="groupNumber" [placeholder]="'tourUi.placeholderGroupNumber' | t" type="number" min="1" max="50" step="1" required [attr.aria-invalid]="invalid('groupNumber')" /><mat-hint>{{ ('tourUi.numberOfTravelers150' | t) }}</mat-hint>@if (invalid('groupNumber')) { <mat-error>{{ ('tourUi.enterAWholeNumberBetween1And50' | t) }}</mat-error> }</mat-form-field></div>
+              <div class="booking-field full-width"><label class="booking-field__label" for="booking-notes">{{ ('tourUi.notes' | t) }}</label><mat-form-field appearance="outline" subscriptSizing="dynamic"><textarea matInput id="booking-notes" formControlName="notes" [placeholder]="'tourUi.placeholderNotes' | t" rows="5" maxlength="2000" [attr.aria-invalid]="invalid('notes')"></textarea><mat-hint>{{ ('tourUi.optionalTellUsAboutYourPreferencesUpTo2000' | t) }}</mat-hint></mat-form-field></div>
             </div>
             @if (submitted() && form.invalid) { <p class="field-error" role="alert">{{ ('tourUi.pleaseCorrectTheHighlightedFields' | t) }}</p> }
             @if (error()) { <p class="feedback field-error" role="alert">{{ ('tourUi.weCouldNotSendYourRequestPleaseTryAgain' | t) }}</p> }
@@ -49,6 +58,10 @@
         }
       </div>
     </section>
+  } @else if (loadingTour()) {
+    <section class="container not-found" role="status">{{ 'tourUi.loadingTours' | t }}</section>
+  } @else if (tourLoadError()) {
+    <section class="container not-found" role="alert"><h1>{{ 'tourUi.loadToursError' | t }}</h1><a class="section-button" [routerLink]="['/', languages.language(), 'tours']">{{ 'tourUi.exploreOurTours' | t }}</a></section>
   } @else {
     <section class="container not-found"><h1>{{ ('tourUi.tourNotFound' | t) }}</h1><a class="section-button" [routerLink]="['/', languages.language(), 'tours']">{{ ('tourUi.exploreOurTours' | t) }}</a></section>
   }

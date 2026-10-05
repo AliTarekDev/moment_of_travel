@@ -1,22 +1,48 @@
 import { TranslatePipe } from '../../../i18n/translate.pipe';
+import { CurrencyPipe } from '@angular/common';
 
-import { Component, computed, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, afterNextRender, computed, inject, signal } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
-import { TOURS } from '../../tours/tour-data';
+import { CatalogApiService, PublicCatalogItem } from '../../../services/catalog-api.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { localizedTourField, tourDayCount } from '../../tours/tour-content';
 import { LanguageService } from '../../../i18n/language.service';
 
 @Component({
   selector: 'app-signature-tours-section',
   standalone: true,
-  imports: [TranslatePipe, CarouselModule, RouterLink],
+  imports: [CurrencyPipe, TranslatePipe, CarouselModule, RouterLink],
   templateUrl: './signature-tours-section.component.html',
   styleUrl: './signature-tours-section.component.scss',
 })
-export class SignatureToursSectionComponent {
+export class SignatureToursSectionComponent implements OnInit {
+  private readonly catalog = inject(CatalogApiService);
+  private readonly destroyRef = inject(DestroyRef);
+  readonly tours = signal<PublicCatalogItem[]>([]);
+  readonly loading = signal(true);
+  readonly loadError = signal(false);
+
+  ngOnInit(): void { this.load(); }
+  load(): void {
+    this.loading.set(true);
+    this.loadError.set(false);
+    this.catalog.publishedTours().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+      next: tours => { this.tours.set(tours); this.loading.set(false); },
+      error: () => { this.loadError.set(true); this.loading.set(false); },
+    });
+  }
+  local(tour: PublicCatalogItem, field: 'title' | 'summary' | 'location'): string { return localizedTourField(tour, field, this.languages.language()); }
+  days(tour: PublicCatalogItem): number | null { return tourDayCount(tour); }
   readonly languages = inject(LanguageService);
+  readonly carouselReady = signal(false);
+
+  constructor() {
+    // Owl requires a browser layout width; SSR has no clientWidth.
+    afterNextRender(() => this.carouselReady.set(true));
+  }
   readonly carouselOptions = computed<OwlOptions & { rtl: boolean }>(() => ({
-    loop: true,
+    loop: this.tours().length > 1,
     nav: false,
     dots: true,
     dotsData: true,
@@ -29,17 +55,17 @@ export class SignatureToursSectionComponent {
     smartSpeed: 450,
     margin: 22,
     rtl: this.languages.language() === 'ar',
-    // Four tours need fewer than four visible cards for Owl to show pagination.
+    // Avoid empty slots when only one or two tours are published.
     responsive: {
       0: { items: 1 },
-      560: { items: 2 },
-      1100: { items: 3 },
+      560: { items: Math.max(1, Math.min(2, this.tours().length)) },
+      1100: { items: Math.max(1, Math.min(3, this.tours().length)) },
     },
   }));
   dotContent(index: number): string {
-    const title = this.languages.translate(this.tours[index].titleKey);
+    const title = this.local(this.tours()[index], 'title').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]!));
     return `<button type="button" aria-label="${title}"><span></span></button>`;
   }
 
-  readonly tours = TOURS;
+
 }

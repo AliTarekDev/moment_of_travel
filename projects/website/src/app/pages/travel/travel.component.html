@@ -4,24 +4,20 @@
     <div class="hero__wash"></div>
     <div class="container hero__content">
       <span class="eyebrow">{{
-        languages.language() === "ar"
-        ? "لحظات لا تُنسى تبدأ من هنا"
-        : "Get unforgettable moments with us"
+        ('siteCopy.getUnforgettableMomentsWithUs' | t)
       }}</span>
       <h1>{{ "travel.heroTitle" | t }}<br />{{ "travel.heroAccent" | t }}</h1>
       <p>{{ "travel.heroText" | t }}</p>
       <div class="hero__actions">
         <a class="button" href="#catalog"
           >{{
-          languages.language() === "ar" ? "استكشف الرحلات" : "Explore Tours"
+          ('siteCopy.exploreTours2' | t)
           }}
           <span class="direction-arrow">→</span></a
           >
           <a class="hero__secondary" href="#about"
             >{{
-            languages.language() === "ar"
-            ? "اكتشف حكايتنا"
-            : "Discover our story"
+            ('siteCopy.discoverOurStory' | t)
             }}
             <span class="direction-arrow">↗</span></a
             >
@@ -31,7 +27,7 @@
           class="hero__scroll"
           href="#categories"
       [attr.aria-label]="
-        languages.language() === 'ar' ? 'اكتشف المزيد' : 'Discover more'
+        ('siteCopy.discoverMore' | t)
       "
           >↓</a
           >
@@ -42,25 +38,21 @@
             <fa-icon [icon]="icons.location" />
             <div>
               <span id="trip-search-title">{{
-                languages.language() === "ar"
-                ? "رحلتك القادمة"
-                : "Your next adventure"
+                ('siteCopy.yourNextAdventure' | t)
                 }}</span
                 ><small>{{
-                languages.language() === "ar" ? "مصممة حولك" : "Made just for you"
+                ('siteCopy.madeJustForYou' | t)
               }}</small>
             </div>
           </div>
           <label
             ><span>{{
-            languages.language() === "ar" ? "الوجهة" : "Destination"
+            ('siteCopy.destination' | t)
             }}</span
             ><input
             [formControl]="bookingForm.controls.destination"
         [placeholder]="
-          languages.language() === 'ar'
-            ? 'إلى أين تريد الذهاب؟'
-            : 'Where would you like to go?'
+          ('siteCopy.whereWouldYouLikeToGo' | t)
         "
           /></label>
           <label
@@ -79,7 +71,7 @@
             [formControl]="bookingForm.controls.travelers"
           /></label>
           <button class="button" type="button" (click)="scrollToBooking()">
-            {{ languages.language() === "ar" ? "خطط رحلتي" : "Plan my trip" }}
+            {{ ('siteCopy.planMyTrip' | t) }}
             <span class="direction-arrow">→</span>
           </button>
         </section>
@@ -90,15 +82,11 @@
           <div class="container">
             <div class="section-heading">
               <span class="eyebrow">{{
-                languages.language() === "ar"
-                ? "وجهات تستحق الاكتشاف"
-                : "Let your wanderlust lead the way"
+                ('siteCopy.letYourWanderlustLeadTheWay' | t)
               }}</span>
               <h2>
                 {{
-                languages.language() === "ar"
-                ? "اكتشف جمال مصر"
-                : "Beautiful places. Lasting memories."
+                ('siteCopy.beautifulPlacesLastingMemories' | t)
                 }}
               </h2>
             </div>
@@ -109,9 +97,7 @@
                   class="destination-card"
           (click)="
             selectOffer(
-              languages.language() === 'ar'
-                ? destination.nameAr
-                : destination.nameEn,
+              languages.translate(destination.nameKey),
               ''
             )
           "
@@ -119,23 +105,17 @@
                   <img
                     [src]="destination.image"
             [alt]="
-              languages.language() === 'ar'
-                ? destination.nameAr
-                : destination.nameEn
+              (destination.nameKey | t)
             "
                     loading="lazy"
                     />
                   <div>
                     <span>{{
-                      languages.language() === "ar"
-                      ? destination.captionAr
-                      : destination.captionEn
+                      (destination.captionKey | t)
                     }}</span>
                     <h3>
                       {{
-                      languages.language() === "ar"
-                      ? destination.nameAr
-                      : destination.nameEn
+                      (destination.nameKey | t)
                       }}
                     </h3>
                   </div>
@@ -161,9 +141,9 @@
             <h2>{{ "travel.bookingTitle" | t }}</h2>
             <p>{{ "travel.bookingText" | t }}</p>
             <div class="booking-steps">
-              <div><b>01</b><span>{{ languages.language() === 'ar' ? 'شارك فكرتك' : 'Share your idea' }}</span></div>
-              <div><b>02</b><span>{{ languages.language() === 'ar' ? 'نراجع الخيارات' : 'We review the options' }}</span></div>
-              <div><b>03</b><span>{{ languages.language() === 'ar' ? 'تحصل على برنامج خاص بك' : 'You receive a tailored plan' }}</span></div>
+              <div><b>01</b><span>{{ ('siteCopy.shareYourIdea' | t) }}</span></div>
+              <div><b>02</b><span>{{ ('siteCopy.weReviewTheOptions' | t) }}</span></div>
+              <div><b>03</b><span>{{ ('siteCopy.youReceiveATailoredPlan' | t) }}</span></div>
             </div>
           </div>
 
@@ -184,7 +164,7 @@
                   class="text-link"
                   (click)="bookingReference = ''"
                   >
-                  {{ languages.language() === 'ar' ? 'أرسل طلباً آخر' : 'Send another request' }} →
+                  {{ ('siteCopy.sendAnotherRequest' | t) }} →
                 </button>
               </div>
 }
@@ -196,7 +176,7 @@
                   novalidate
                   >
                   <div class="booking-form__heading">
-                    <span>{{ languages.language() === 'ar' ? 'طلب رحلة' : 'Trip request' }}</span><small>{{ languages.language() === 'ar' ? 'لا يلزم الدفع' : 'No payment required' }}</small>
+                    <span>{{ ('siteCopy.tripRequest' | t) }}</span><small>{{ ('siteCopy.noPaymentRequired' | t) }}</small>
                   </div>
                   <div class="booking-fields">
                     <label
@@ -210,7 +190,7 @@
                     bookingForm.controls.customerName.invalid) {
 <small
 
-                      >{{ languages.language() === 'ar' ? 'مطلوب' : 'Required' }}</small
+                      >{{ ('siteCopy.required' | t) }}</small
                       >
 }</label
                       >
@@ -225,7 +205,7 @@
                     bookingForm.controls.customerEmail.invalid) {
 <small
 
-                        >Enter a valid email</small
+                        >{{ ('siteCopy.enterAValidEmail' | t) }}</small
                         >
 }</label
                         >
@@ -240,19 +220,19 @@
                     bookingForm.controls.customerPhone.invalid) {
 <small
 
-                          >{{ languages.language() === 'ar' ? 'مطلوب' : 'Required' }}</small
+                          >{{ ('siteCopy.required' | t) }}</small
                           >
 }</label
                           >
                           <label
                             ><span>{{ "travel.bookingService" | t }}</span
                             ><select formControlName="serviceType">
-                            <option value="flight">{{ languages.language() === 'ar' ? 'رحلة طيران' : 'Flight' }}</option>
-                            <option value="hotel">{{ languages.language() === 'ar' ? 'فندق' : 'Hotel' }}</option>
-                            <option value="tour">{{ languages.language() === 'ar' ? 'رحلة' : 'Tour' }}</option>
-                            <option value="cruise">{{ languages.language() === 'ar' ? 'رحلة بحرية' : 'Cruise' }}</option>
-                            <option value="car">{{ languages.language() === 'ar' ? 'تأجير سيارة' : 'Car rental' }}</option>
-                            <option value="private_aviation">{{ languages.language() === 'ar' ? 'طيران خاص' : 'Private aviation' }}</option>
+                            <option value="flight">{{ ('siteCopy.flight' | t) }}</option>
+                            <option value="hotel">{{ ('siteCopy.hotel' | t) }}</option>
+                            <option value="tour">{{ ('siteCopy.tour' | t) }}</option>
+                            <option value="cruise">{{ ('siteCopy.cruise' | t) }}</option>
+                            <option value="car">{{ ('siteCopy.carRental' | t) }}</option>
+                            <option value="private_aviation">{{ ('siteCopy.privateAviation' | t) }}</option>
                           </select></label
                           >
                           @if (isFlightRequest) {
@@ -267,12 +247,12 @@
                             matInput
                             type="text"
                             formControlName="destination"
-                            [placeholder]="languages.language() === 'ar' ? 'مثلاً: القاهرة أو الأقصر أو البحر الأحمر' : 'e.g. Cairo, Luxor, Red Sea'"
+                            [placeholder]="('siteCopy.eGCairoLuxorRedSea' | t)"
                             />@if (bookingForm.controls.destination.touched &&
                     bookingForm.controls.destination.invalid) {
 <small
 
-                            >{{ languages.language() === 'ar' ? 'مطلوب' : 'Required' }}</small
+                            >{{ ('siteCopy.required' | t) }}</small
                             >
 }</label
                             >
@@ -351,7 +331,7 @@
                               matInput
                               rows="3"
                               formControlName="customerNotes"
-                              [placeholder]="languages.language() === 'ar' ? 'نوع الفندق، مرونة المواعيد، مناسبة خاصة، احتياجات الوصول…' : 'Hotel style, flexible dates, celebrations, accessibility…'"
+                              [placeholder]="('siteCopy.hotelStyleFlexibleDatesCelebrationsAccessibility' | t)"
                             ></textarea>
                           </label>
                         </div>
@@ -374,7 +354,7 @@
                             }}</span
                             ><b><fa-icon [icon]="icons.arrowRight" /></b>
                           </button>
-                          <p class="booking-privacy">{{ languages.language() === 'ar' ? 'بإرسال هذا الطلب، توافق على أن يتواصل معك فريقنا بشأن رحلتك. هذا استفسار وليس حجزاً مؤكداً.' : 'By sending this request, you agree that our team may contact you about this journey. This is an enquiry, not a confirmed booking.' }}</p>
+                          <p class="booking-privacy">{{ ('siteCopy.bySendingThisRequestYouAgreeThatOur' | t) }}</p>
                         </form>
                       }
                     </div>

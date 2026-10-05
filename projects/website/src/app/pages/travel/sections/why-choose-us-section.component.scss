@@ -6,7 +6,7 @@
 .why-luxury__heading > p { font-size: 14px; margin-top: 18px; }
 .feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px; }
 .feature-card { text-align: center; }
-.feature-card img { width: 160px; height: 160px; margin: 0 auto 26px; object-fit: cover; border-radius: 50%; border: 8px solid var(--brand-sky); }
+.feature-card img { width: 160px; height: 160px; margin: 0 auto 26px; object-fit: cover; border-radius: 50%; border: 8px solid var(--brand-surface); }
 .feature-card__body h3 { font-size: 21px; }
 .feature-card__body p { font-size: 14px; max-width: 300px; margin: 12px auto; }
 .feature-card a { display: inline-flex; align-items: center; min-height: 44px; color: var(--travel-accent-dark); font-size: 13px; text-decoration: none; border-bottom: 1px solid var(--brand-gold); }

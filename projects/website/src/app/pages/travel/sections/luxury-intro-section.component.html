@@ -4,15 +4,15 @@
       <img class="intro-collage__tall" src="https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&w=850&q=85" alt="" loading="lazy" />
       <img src="https://images.unsplash.com/photo-1623674567450-b600b67864a6?auto=format&fit=crop&w=600&q=85" alt="" loading="lazy" />
       <img src="https://images.unsplash.com/photo-1568322445389-f64ac2515020?auto=format&fit=crop&w=600&q=85" alt="" loading="lazy" />
-      <span class="intro-collage__note">{{ languages.language() === 'ar' ? 'مصر، على طريقتك' : 'Egypt, your way' }}</span>
+      <span class="intro-collage__note">{{ ('siteCopy.egyptYourWay' | t) }}</span>
     </div>
     <div class="luxury-intro__copy">
-      <span class="eyebrow">{{ languages.language() === 'ar' ? 'لننطلق معاً' : 'Let’s go together' }}</span>
-      <h2>{{ languages.language() === 'ar' ? 'رحلتك إلى مصر، بتفاصيل تشبهك.' : 'Extraordinary journeys. Thoughtfully made.' }}</h2>
-      <p>{{ languages.language() === 'ar' ? 'من الأهرامات إلى ضفاف النيل، نخطط رحلات خاصة تجمع بين الثقافة والراحة والاكتشاف. اختر ما تحب ودع فريقنا يعتني بالتفاصيل.' : 'From the pyramids to the banks of the Nile, we bring culture, comfort, and discovery together in a private journey. Tell us what inspires you. We’ll take care of the details.' }}</p>
-      <div class="intro-feature"><span>✧</span><div><h3>{{ languages.language() === 'ar' ? 'رحلة مصممة لك' : 'A trip that feels like you' }}</h3><p>{{ languages.language() === 'ar' ? 'برامج شخصية تناسب وقتك واهتماماتك.' : 'Personal itineraries shaped around your pace and passions.' }}</p></div></div>
-      <div class="intro-feature"><span>◎</span><div><h3>{{ languages.language() === 'ar' ? 'معرفة محلية' : 'Local knowledge, personal care' }}</h3><p>{{ languages.language() === 'ar' ? 'مرشدون متخصصون وإقامات مختارة وتنقلات مريحة.' : 'Expert guides, handpicked stays, and seamless private transfers.' }}</p></div></div>
-      <a class="section-button" [routerLink]="['/', languages.language(), 'tours']">{{ languages.language() === 'ar' ? 'اكتشف رحلاتنا' : 'Discover our tours' }} <span class="direction-arrow">→</span></a>
+      <span class="eyebrow">{{ ('siteCopy.letSGoTogether' | t) }}</span>
+      <h2>{{ ('siteCopy.extraordinaryJourneysThoughtfullyMade' | t) }}</h2>
+      <p>{{ ('siteCopy.fromThePyramidsToTheBanksOfThe' | t) }}</p>
+      <div class="intro-feature"><span>✧</span><div><h3>{{ ('siteCopy.aTripThatFeelsLikeYou' | t) }}</h3><p>{{ ('siteCopy.personalItinerariesShapedAroundYourPaceAndPassions' | t) }}</p></div></div>
+      <div class="intro-feature"><span>◎</span><div><h3>{{ ('siteCopy.localKnowledgePersonalCare' | t) }}</h3><p>{{ ('siteCopy.expertGuidesHandpickedStaysAndSeamlessPrivateTransfers' | t) }}</p></div></div>
+      <a class="section-button" [routerLink]="['/', languages.language(), 'tours']">{{ ('siteCopy.discoverOurTours' | t) }} <span class="direction-arrow">→</span></a>
     </div>
     <div class="luxury-intro__traveler" aria-hidden="true">
       <img src="/imgs/about-slide-img.png.svg" alt="" width="217" height="546" loading="lazy" />

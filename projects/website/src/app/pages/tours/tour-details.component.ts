@@ -1,24 +1,32 @@
+import { WebsiteDatepickerIntl } from '../../i18n/website-datepicker-intl';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { DateAdapter, ErrorStateMatcher, provideNativeDateAdapter } from '@angular/material/core';
+import { MatDatepickerIntl, MatDatepickerModule } from '@angular/material/datepicker';
 import { TranslatePipe } from '../../i18n/translate.pipe';
+import { CurrencyPipe } from '@angular/common';
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { finalize } from 'rxjs';
+import { catchError, finalize, map, of, startWith, switchMap } from 'rxjs';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { LanguageService } from '../../i18n/language.service';
 import { BookingApiService } from '../../services/booking-api.service';
 import { TravelNavComponent } from '../travel/travel-nav.component';
-import { TOURS } from './tour-data';
-import { TOUR_ITINERARIES } from './tour-itineraries';
+import { CatalogApiService, PublicCatalogItem } from '../../services/catalog-api.service';
+import { localizedTourField, tourContent, tourDayCount } from './tour-content';
 
 function localToday(): string {
   const date = new Date();
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 }
 function bookingDate(control: AbstractControl): ValidationErrors | null {
-  const value = control.value as string;
-  const parsed = new Date(`${value}T00:00:00Z`);
-  return !value || (/^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value && value >= localToday()) ? null : { bookingDate: true };
+  const value = control.value as Date | null;
+  return !value || (value instanceof Date && !Number.isNaN(value.getTime()) && calendarDate(value) >= localToday()) ? null : { bookingDate: true };
+}
+function calendarDate(date: Date): string {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 }
 function emailsMatch(control: AbstractControl): ValidationErrors | null {
   return control.get('email')?.value.trim().toLowerCase() === control.get('confirmEmail')?.value.trim().toLowerCase() ? null : { emailMismatch: true };
@@ -26,32 +34,50 @@ function emailsMatch(control: AbstractControl): ValidationErrors | null {
 
 @Component({
   selector: 'app-tour-details', standalone: true,
-  imports: [TranslatePipe, RouterLink, ReactiveFormsModule, TravelNavComponent, MatSnackBarModule],
+  providers: [provideNativeDateAdapter(), { provide: MatDatepickerIntl, useClass: WebsiteDatepickerIntl }],
+  imports: [MatDatepickerModule, MatFormFieldModule, MatInputModule, CurrencyPipe, TranslatePipe, RouterLink, ReactiveFormsModule, TravelNavComponent, MatSnackBarModule],
   templateUrl: './tour-details.component.html', styleUrl: './tour-details.component.scss',
 })
 export class TourDetailsComponent {
+  readonly confirmEmailMatcher: ErrorStateMatcher = {
+    isErrorState: (control, parent) => !!(control && (control.touched || parent?.submitted) && (control.invalid || control.parent?.hasError('emailMismatch'))),
+  };
   readonly languages = inject(LanguageService);
-  private readonly params = toSignal(inject(ActivatedRoute).paramMap);
+  private readonly catalog = inject(CatalogApiService);
+  private readonly state = toSignal(inject(ActivatedRoute).paramMap.pipe(
+    switchMap(params => this.catalog.publishedTour(params.get('slug') ?? '').pipe(
+      map(tour => ({ tour, loading: false, error: false })),
+      catchError(response => of({ tour: null, loading: false, error: response.status !== 404 })),
+      startWith({ tour: null, loading: true, error: false }),
+    )),
+  ), { initialValue: { tour: null, loading: true, error: false } });
+  readonly loadingTour = computed(() => this.state().loading);
+  readonly tourLoadError = computed(() => this.state().error);
   private readonly api = inject(BookingApiService);
   private readonly snackBar = inject(MatSnackBar);
-  readonly tour = computed(() => TOURS.find(tour => tour.slug === this.params()?.get('slug')));
-  readonly itinerary = computed(() => TOUR_ITINERARIES[this.tour()?.slug ?? ''] ?? []);
+  readonly tour = computed(() => this.state().tour);
+  readonly content = computed(() => this.tour() ? tourContent(this.tour()!, this.languages.language()) : { introduction: '', days: [] });
+  readonly itinerary = computed(() => this.content().days);
+  local(tour: PublicCatalogItem, field: 'title' | 'summary' | 'description' | 'location'): string { return localizedTourField(tour, field, this.languages.language()); }
+  days(tour: PublicCatalogItem): number | null { return tourDayCount(tour); }
   readonly pending = signal(false);
   readonly reference = signal('');
   readonly error = signal(false);
   readonly submitted = signal(false);
-  get today(): string { return localToday(); }
+  get today(): Date { return new Date(`${localToday()}T00:00:00`); }
   readonly form = inject(FormBuilder).nonNullable.group({
     firstName: ['', [Validators.required, Validators.pattern(/\S/), Validators.maxLength(59)]],
     lastName: ['', [Validators.required, Validators.pattern(/\S/), Validators.maxLength(60)]],
     email: ['', [Validators.required, Validators.email]],
     confirmEmail: ['', [Validators.required, Validators.email]],
     mobile: ['', [Validators.required, Validators.pattern(/^[+\d][\d\s().-]{6,39}$/)]],
-    bookingDate: ['', [Validators.required, bookingDate]],
+    bookingDate: [null as Date | null, [Validators.required, bookingDate]],
     groupNumber: [1, [Validators.required, Validators.min(1), Validators.max(50), Validators.pattern(/^\d+$/)]],
     notes: ['', Validators.maxLength(2000)],
   }, { validators: emailsMatch });
   constructor() {
+    const dates = inject(DateAdapter);
+    effect(() => dates.setLocale(this.languages.language() === 'ar' ? 'ar-SA' : 'en-GB'));
     effect(() => {
       this.tour();
       this.form.reset();
@@ -63,6 +89,11 @@ export class TourDetailsComponent {
   invalid(name: keyof typeof this.form.controls): boolean {
     const control = this.form.controls[name];
     return control.invalid && (control.touched || this.submitted());
+  }
+  scrollToBooking(event: MouseEvent, section: HTMLElement): void {
+    event.preventDefault();
+    const reducedMotion = section.ownerDocument.defaultView?.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    section.scrollIntoView({ behavior: reducedMotion ? 'instant' : 'smooth', block: 'start' });
   }
   book(): void {
     if (this.pending() || this.reference()) return;
@@ -77,8 +108,8 @@ export class TourDetailsComponent {
     this.api.create({
       customerName: `${values.firstName.trim()} ${values.lastName.trim()}`,
       customerEmail: values.email.trim(), customerPhone: values.mobile.trim(),
-      serviceType: 'tour', destination: this.languages.translate(tour.titleKey),
-      departureDate: values.bookingDate, travelers: Number(values.groupNumber),
+      serviceType: 'tour', destination: tour.titleEn.slice(0, 140),
+      departureDate: calendarDate(values.bookingDate!), travelers: Number(values.groupNumber),
       customerNotes: values.notes.trim() || undefined,
     }).pipe(finalize(() => this.pending.set(false))).subscribe({
       next: result => {

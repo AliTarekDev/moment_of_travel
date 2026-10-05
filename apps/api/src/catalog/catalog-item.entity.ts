@@ -20,6 +20,8 @@ export enum CatalogStatus {
   ARCHIVED = 'archived',
 }
 
+export interface CatalogTourDay { titleAr: string; titleEn: string; textAr: string; textEn: string; }
+
 @Entity({ name: 'catalog_items' })
 @Index(['status', 'division', 'sortOrder'])
 export class CatalogItem {
@@ -76,6 +78,12 @@ export class CatalogItem {
 
   @Column({ type: 'date', nullable: true })
   endDate!: string | null;
+
+  @Column({ type: 'smallint', nullable: true })
+  durationDays!: number | null;
+
+  @Column({ type: 'jsonb', default: () => "'[]'::jsonb" })
+  itinerary!: CatalogTourDay[];
 
   @Column({ default: false })
   featured!: boolean;
