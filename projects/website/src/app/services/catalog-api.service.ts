@@ -1,6 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { EMPTY, expand, map, reduce } from 'rxjs';
+import { of, throwError } from 'rxjs';
+// Restore these operators when the backend tour catalog is enabled again.
+// import { EMPTY, expand, map, reduce } from 'rxjs';
+import { LOCAL_TOURS } from './local-tours';
 
 export type CatalogDivision = 'travel' | 'aviation';
 export type CatalogType = 'trip' | 'offer' | 'destination' | 'hotel' | 'flight' | 'service';
@@ -38,6 +41,10 @@ export class CatalogApiService {
   }
 
   publishedTours() {
+    // Temporary local catalog; both the home page and tours page use this method.
+    return of(LOCAL_TOURS);
+    /* Backend tour fetching is paused. Remove the local return and restore the
+       RxJS operator import above to re-enable this implementation.
     const page = (number: number) => this.http.get<{ data: PublicCatalogItem[]; meta: { page: number; limit: number; total: number } }>(
       '/api/catalog/public', {
         params: new HttpParams().set('division', 'travel').set('type', 'trip').set('page', number).set('limit', 100),
@@ -48,9 +55,13 @@ export class CatalogApiService {
       map(response => response.data),
       reduce((items, next) => [...items, ...next], [] as PublicCatalogItem[]),
     );
+    */
   }
 
   publishedTour(slug: string) {
-    return this.http.get<PublicCatalogItem>(`/api/catalog/public/tours/${encodeURIComponent(slug)}`);
+    const tour = LOCAL_TOURS.find(item => item.slug === slug);
+    return tour ? of(tour) : throwError(() => ({ status: 404 }));
+    // Backend detail fetching is paused alongside the list above.
+    // return this.http.get<PublicCatalogItem>(`/api/catalog/public/tours/${encodeURIComponent(slug)}`);
   }
 }

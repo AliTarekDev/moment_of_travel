@@ -4,135 +4,109 @@
     <div class="hero__wash"></div>
     <div class="container hero__content">
       <span class="eyebrow">{{
-        ('siteCopy.getUnforgettableMomentsWithUs' | t)
+        "siteCopy.getUnforgettableMomentsWithUs" | t
       }}</span>
       <h1>{{ "travel.heroTitle" | t }}<br />{{ "travel.heroAccent" | t }}</h1>
       <p>{{ "travel.heroText" | t }}</p>
       <div class="hero__actions">
         <a class="button" href="#catalog"
-          >{{
-          ('siteCopy.exploreTours2' | t)
-          }}
+          >{{ "siteCopy.exploreTours2" | t }}
           <span class="direction-arrow">→</span></a
-          >
-          <a class="hero__secondary" href="#about"
-            >{{
-            ('siteCopy.discoverOurStory' | t)
-            }}
-            <span class="direction-arrow">↗</span></a
-            >
-          </div>
-        </div>
-        <a
-          class="hero__scroll"
-          href="#categories"
-      [attr.aria-label]="
-        ('siteCopy.discoverMore' | t)
-      "
-          >↓</a
-          >
-        </section>
+        >
+        <a class="hero__secondary" href="#about"
+          >{{ "siteCopy.discoverOurStory" | t }}
+          <span class="direction-arrow">↗</span></a
+        >
+      </div>
+    </div>
+    <a
+      class="hero__scroll"
+      href="#categories"
+      [attr.aria-label]="'siteCopy.discoverMore' | t"
+      >↓</a
+    >
+  </section>
 
-        <section class="trip-search container" aria-labelledby="trip-search-title">
-          <div class="trip-search__intro">
-            <fa-icon [icon]="icons.location" />
+  <section class="trip-search container" aria-labelledby="trip-search-title">
+    <div class="trip-search__intro">
+      <fa-icon [icon]="icons.location" />
+      <div>
+        <span id="trip-search-title">{{
+          "siteCopy.yourNextAdventure" | t
+        }}</span
+        ><small>{{ "siteCopy.madeJustForYou" | t }}</small>
+      </div>
+    </div>
+    <label
+      ><span>{{ "siteCopy.destination" | t }}</span
+      ><input
+        [formControl]="bookingForm.controls.destination"
+        [placeholder]="'siteCopy.whereWouldYouLikeToGo' | t"
+    /></label>
+    <label
+      ><span>{{ "travel.bookingDate" | t }}</span
+      ><input
+        type="date"
+        [min]="minimumDate"
+        [formControl]="bookingForm.controls.departureDate"
+    /></label>
+    <label
+      ><span>{{ "travel.bookingTravelers" | t }}</span
+      ><input
+        type="number"
+        min="1"
+        max="50"
+        [formControl]="bookingForm.controls.travelers"
+    /></label>
+    <button class="button" type="button" (click)="scrollToBooking()">
+      {{ "siteCopy.planMyTrip" | t }}
+      <span class="direction-arrow">→</span>
+    </button>
+  </section>
+
+  <app-tour-categories-section />
+
+  <section class="destinations section">
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow">{{
+          "siteCopy.letYourWanderlustLeadTheWay" | t
+        }}</span>
+        <h2>
+          {{ "siteCopy.beautifulPlacesLastingMemories" | t }}
+        </h2>
+      </div>
+      <div class="destination-grid">
+        @for (destination of egyptDestinations; track destination) {
+          <button
+            type="button"
+            class="destination-card"
+            (click)="selectOffer(languages.translate(destination.nameKey), '')"
+          >
+            <img
+              [src]="destination.image"
+              [alt]="destination.nameKey | t"
+              loading="lazy"
+            />
             <div>
-              <span id="trip-search-title">{{
-                ('siteCopy.yourNextAdventure' | t)
-                }}</span
-                ><small>{{
-                ('siteCopy.madeJustForYou' | t)
-              }}</small>
+              <span>{{ destination.captionKey | t }}</span>
+              <h3>
+                {{ destination.nameKey | t }}
+              </h3>
             </div>
-          </div>
-          <label
-            ><span>{{
-            ('siteCopy.destination' | t)
-            }}</span
-            ><input
-            [formControl]="bookingForm.controls.destination"
-        [placeholder]="
-          ('siteCopy.whereWouldYouLikeToGo' | t)
-        "
-          /></label>
-          <label
-            ><span>{{ "travel.bookingDate" | t }}</span
-            ><input
-            type="date"
-            [min]="minimumDate"
-            [formControl]="bookingForm.controls.departureDate"
-          /></label>
-          <label
-            ><span>{{ "travel.bookingTravelers" | t }}</span
-            ><input
-            type="number"
-            min="1"
-            max="50"
-            [formControl]="bookingForm.controls.travelers"
-          /></label>
-          <button class="button" type="button" (click)="scrollToBooking()">
-            {{ ('siteCopy.planMyTrip' | t) }}
-            <span class="direction-arrow">→</span>
+            <span class="destination-card__arrow direction-arrow">↗</span>
           </button>
-        </section>
+        }
+      </div>
+    </div>
+  </section>
 
-        <app-tour-categories-section />
-
-        <section class="destinations section">
-          <div class="container">
-            <div class="section-heading">
-              <span class="eyebrow">{{
-                ('siteCopy.letYourWanderlustLeadTheWay' | t)
-              }}</span>
-              <h2>
-                {{
-                ('siteCopy.beautifulPlacesLastingMemories' | t)
-                }}
-              </h2>
-            </div>
-            <div class="destination-grid">
-              @for (destination of egyptDestinations; track destination) {
-                <button
-                  type="button"
-                  class="destination-card"
-          (click)="
-            selectOffer(
-              languages.translate(destination.nameKey),
-              ''
-            )
-          "
-                  >
-                  <img
-                    [src]="destination.image"
-            [alt]="
-              (destination.nameKey | t)
-            "
-                    loading="lazy"
-                    />
-                  <div>
-                    <span>{{
-                      (destination.captionKey | t)
-                    }}</span>
-                    <h3>
-                      {{
-                      (destination.nameKey | t)
-                      }}
-                    </h3>
-                  </div>
-                  <span class="destination-card__arrow direction-arrow">↗</span>
-                </button>
-              }
-            </div>
-          </div>
-        </section>
-
-        <app-luxury-intro-section />
-        <app-signature-tours-section
-          />
-        <app-luxury-gallery-section />
-        <app-why-choose-us-section />
-        <app-plan-tour-cta-section />
-        <!-- <section class="booking-section" id="booking">
+  <app-luxury-intro-section />
+  <app-signature-tours-section />
+  <app-luxury-gallery-section />
+  <app-why-choose-us-section />
+  <app-plan-tour-cta-section />
+  <!-- <section class="booking-section" id="booking">
         <div class="container booking-grid">
           <div class="booking-copy">
             <span class="eyebrow eyebrow--light">{{
@@ -366,4 +340,4 @@
                     <div class="contact-methods"><a href="tel:+966549440048"><small>{{ 'travel.bookingPhone' | t }}</small><strong dir="ltr">+966 54 944 0048</strong></a><a href="mailto:info@ancientpaths.com"><small>{{ 'travel.bookingEmail' | t }}</small><strong>info&#64;ancientpaths.com</strong></a><div><small>{{ 'travel.location' | t }}</small><strong>{{ 'travel.contactLocation' | t }}</strong></div></div>
                   </div>
                 </section> -->
-              </main>
+</main>
