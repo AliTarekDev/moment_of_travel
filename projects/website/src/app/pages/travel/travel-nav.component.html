@@ -33,7 +33,7 @@
     >
       <div class="side-nav__head">
         <img src="/LOGO 2.png" [alt]="'common.brandName' | t" />
-        <button type="button" (click)="closeMobileMenu()" [attr.aria-label]="('siteCopy.closeMenu' | t)">×</button>
+        <button type="button" (click)="closeMobileMenu()" [attr.aria-label]="('siteCopy.closeMenu' | t)"><fa-icon [icon]="icons.close" aria-hidden="true" /></button>
       </div>
       <a [routerLink]="['/', languages.language()]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileMenu()">{{
         "travel.navHome" | t
@@ -41,9 +41,14 @@
       <a [routerLink]="['/', languages.language(), 'tours']" routerLinkActive="active" (click)="closeMobileMenu()">{{
         "travel.navDestinations" | t
       }}</a>
-      <a [routerLink]="['/', languages.language()]" fragment="services" (click)="closeMobileMenu()">{{
-        "travel.navServices" | t
-      }}</a>
+      <details #featuresDropdown class="nav__features" (focusout)="onFeaturesFocusOut($event)">
+        <summary>{{ 'travel.navServices' | t }}<fa-icon class="nav__features-arrow" [icon]="icons.chevronDown" aria-hidden="true" /></summary>
+        <div class="nav__features-menu">
+          <a [routerLink]="['/', languages.language()]" fragment="exclusive-visits" (click)="closeMobileMenu()">{{ 'travel.navExclusiveVisits' | t }}</a>
+          <a [routerLink]="['/', languages.language()]" fragment="five-star-hotels" (click)="closeMobileMenu()">{{ 'travel.navFiveStarHotels' | t }}</a>
+          <a [routerLink]="['/', languages.language()]" fragment="tailor-made-itineraries" (click)="closeMobileMenu()">{{ 'travel.navTailorMadeItineraries' | t }}</a>
+        </div>
+      </details>
       <a [routerLink]="['/', languages.language()]" fragment="contact" (click)="closeMobileMenu()">{{
         "travel.navContact" | t
       }}</a>
@@ -51,7 +56,7 @@
         "travel.navAbout" | t
       }}</a>
       <app-language-switch class="nav__language-switch" />
-      <a class="nav__cta" [routerLink]="['/', languages.language()]" fragment="booking" (click)="closeMobileMenu()">{{ ('siteCopy.planYourTrip' | t) }} <span>→</span></a>
+      <a class="nav__cta" [routerLink]="['/', languages.language()]" fragment="booking" (click)="closeMobileMenu()">{{ ('siteCopy.planYourTrip' | t) }} <fa-icon class="direction-arrow" [icon]="icons.arrowRight" aria-hidden="true" /></a>
     </div>
   </div>
 </nav>

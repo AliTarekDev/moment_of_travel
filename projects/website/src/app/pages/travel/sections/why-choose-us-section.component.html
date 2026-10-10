@@ -13,7 +13,7 @@
 
     <div class="feature-grid">
       @for (card of cards; track card) {
-        <article class="feature-card">
+        <article class="feature-card" [id]="card.id">
           <img [src]="card.image" [alt]="(card.titleKey | t)" loading="lazy">
           <div class="feature-card__body">
             <h3>{{ (card.titleKey | t) }}</h3>

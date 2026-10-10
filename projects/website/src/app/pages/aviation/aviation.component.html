@@ -16,11 +16,11 @@
       <p>{{ 'aviation.heroText' | t }}</p>
       <div class="hero__actions"><a mat-flat-button class="button" href="#contact">{{ 'aviation.request' | t }} <span><fa-icon [icon]="icons.arrowRight" /></span></a><a mat-button class="watch" href="#about"><i><fa-icon [icon]="icons.play" /></i> {{ 'aviation.story' | t }}</a></div>
     </div>
-    <div class="shell hero__foot"><span><b>24/7</b> {{ ('siteCopy.globalOperations' | t) }}</span><span><b>120+</b> {{ ('siteCopy.destinations' | t) }}</span><span><b>{{ ('siteCopy.15Yrs' | t) }}</b> {{ ('siteCopy.aviationExpertise' | t) }}</span><a href="#services">{{ ('siteCopy.scrollToExplore' | t) }}</a></div>
+    <div class="shell hero__foot"><span><b>24/7</b> {{ ('siteCopy.globalOperations' | t) }}</span><span><b>120+</b> {{ ('siteCopy.destinations' | t) }}</span><span><b>{{ ('siteCopy.15Yrs' | t) }}</b> {{ ('siteCopy.aviationExpertise' | t) }}</span><a href="#services">{{ ('siteCopy.scrollToExplore' | t) }} <fa-icon [icon]="icons.arrowDown" aria-hidden="true" /></a></div>
   </section>
 
   <section class="intro" id="about">
-    <div class="shell intro__grid"><div><span class="eyebrow eyebrow--dark">{{ 'aviation.introKicker' | t }}</span><h2>{{ 'aviation.introTitle' | t }}</h2></div><div><p>{{ 'aviation.introText' | t }}</p><a href="#services">{{ 'common.explore' | t }} <span>→</span></a></div></div>
+    <div class="shell intro__grid"><div><span class="eyebrow eyebrow--dark">{{ 'aviation.introKicker' | t }}</span><h2>{{ 'aviation.introTitle' | t }}</h2></div><div><p>{{ 'aviation.introText' | t }}</p><a href="#services">{{ 'common.explore' | t }} <span><fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></span></a></div></div>
   </section>
 
   @if (catalogItems.length) {
@@ -31,7 +31,7 @@
           <img [src]="item.imageUrl" [alt]="local(item, 'title')" loading="lazy">
           }@if (!item.imageUrl) {
           <span>{{ 'common.brandName' | t }}</span>
-          }</div><div><small>{{ local(item, 'location') }}</small><h3>{{ local(item, 'title') }}</h3><p>{{ local(item, 'summary') }}</p><b>{{ item.price ? (item.price | number:'1.0-2') + ' ' + item.currency : (('siteCopy.priceOnRequest' | t)) }}</b><button type="button" (click)="selectCatalogItem(item)">{{ ('siteCopy.requestThisOption' | t) }} →</button></div></article>
+          }</div><div><small>{{ local(item, 'location') }}</small><h3>{{ local(item, 'title') }}</h3><p>{{ local(item, 'summary') }}</p><b>{{ item.price ? (item.price | number:'1.0-2') + ' ' + item.currency : (('siteCopy.priceOnRequest' | t)) }}</b><button type="button" (click)="selectCatalogItem(item)">{{ ('siteCopy.requestThisOption' | t) }} <fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></button></div></article>
         }</div>
       </div>
     </section>
@@ -66,7 +66,7 @@
 </section>
 
 <section class="safety" id="safety">
-  <div class="shell safety__inner"><div><span class="eyebrow">{{ ('siteCopy.safetyWithoutException' | t) }}</span><h2>{{ ('siteCopy.standardsThatNever' | t) }}<br>{{ ('siteCopy.leaveTheGround' | t) }}</h2><p>{{ ('siteCopy.everyOperatorAircraftAndCrewIsIndependentlyEvaluated' | t) }}</p><a class="button button--outline" href="#contact">{{ ('siteCopy.discussYourFlightRequirements' | t) }}</a></div><div class="safety__marks"><div><b>ARGUS</b><small>{{ ('siteCopy.ratedOperators' | t) }}</small></div><div><b>WYVERN</b><small>{{ ('siteCopy.verifiedNetwork' | t) }}</small></div><div><b>IS-BAO</b><small>{{ ('siteCopy.alignedStandards' | t) }}</small></div><div><b>24/7</b><small>{{ ('siteCopy.flightMonitoring' | t) }}</small></div></div></div>
+  <div class="shell safety__inner"><div><span class="eyebrow">{{ ('siteCopy.safetyWithoutException' | t) }}</span><h2>{{ ('siteCopy.standardsThatNever' | t) }}<br>{{ ('siteCopy.leaveTheGround' | t) }}</h2><p>{{ ('siteCopy.everyOperatorAircraftAndCrewIsIndependentlyEvaluated' | t) }}</p><a class="button button--outline" href="#contact">{{ ('siteCopy.discussYourFlightRequirements' | t) }} <fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></a></div><div class="safety__marks"><div><b>ARGUS</b><small>{{ ('siteCopy.ratedOperators' | t) }}</small></div><div><b>WYVERN</b><small>{{ ('siteCopy.verifiedNetwork' | t) }}</small></div><div><b>IS-BAO</b><small>{{ ('siteCopy.alignedStandards' | t) }}</small></div><div><b>24/7</b><small>{{ ('siteCopy.flightMonitoring' | t) }}</small></div></div></div>
 </section>
 
 <section class="world">

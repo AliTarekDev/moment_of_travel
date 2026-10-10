@@ -1,4 +1,6 @@
 import { TranslatePipe } from '../../../i18n/translate.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 import { Component, afterNextRender, computed, inject, signal } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
@@ -7,11 +9,12 @@ import { LanguageService } from '../../../i18n/language.service';
 @Component({
   selector: 'app-tour-categories-section',
   standalone: true,
-  imports: [TranslatePipe, CarouselModule],
+  imports: [TranslatePipe, CarouselModule, FontAwesomeModule],
   templateUrl: './tour-categories-section.component.html',
   styleUrl: './tour-categories-section.component.scss',
 })
 export class TourCategoriesSectionComponent {
+  readonly icons = { arrowRight: faArrowRight };
   readonly languages = inject(LanguageService);
   readonly carouselReady = signal(false);
 

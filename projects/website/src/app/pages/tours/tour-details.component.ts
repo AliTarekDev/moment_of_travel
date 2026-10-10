@@ -1,4 +1,7 @@
 import { WebsiteDatepickerIntl } from '../../i18n/website-datepicker-intl';
+import { WebsiteCalendarHeaderComponent } from '../../i18n/website-calendar-header.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faArrowDown, faCalendarDays, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DateAdapter, ErrorStateMatcher, provideNativeDateAdapter } from '@angular/material/core';
@@ -35,10 +38,12 @@ function emailsMatch(control: AbstractControl): ValidationErrors | null {
 @Component({
   selector: 'app-tour-details', standalone: true,
   providers: [provideNativeDateAdapter(), { provide: MatDatepickerIntl, useClass: WebsiteDatepickerIntl }],
-  imports: [MatDatepickerModule, MatFormFieldModule, MatInputModule, CurrencyPipe, TranslatePipe, RouterLink, ReactiveFormsModule, TravelNavComponent, MatSnackBarModule],
+  imports: [MatDatepickerModule, MatFormFieldModule, MatInputModule, CurrencyPipe, TranslatePipe, RouterLink, ReactiveFormsModule, TravelNavComponent, MatSnackBarModule, FontAwesomeModule],
   templateUrl: './tour-details.component.html', styleUrl: './tour-details.component.scss',
 })
 export class TourDetailsComponent {
+  readonly calendarHeader = WebsiteCalendarHeaderComponent;
+  readonly icons = { arrowDown: faArrowDown, calendar: faCalendarDays, location: faLocationDot };
   readonly confirmEmailMatcher: ErrorStateMatcher = {
     isErrorState: (control, parent) => !!(control && (control.touched || parent?.submitted) && (control.invalid || control.parent?.hasError('emailMismatch'))),
   };

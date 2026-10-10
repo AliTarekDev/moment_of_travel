@@ -10,6 +10,7 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faFacebookF, faInstagram, faLinkedinIn, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import {
   faArrowLeft,
+  faArrowDown,
   faArrowRight,
   faArrowRightArrowLeft,
   faArrowUpRightFromSquare,
@@ -104,6 +105,8 @@ export class TravelComponent {
     { nameKey: "siteCopy.oldCairo", captionKey: "siteCopy.storiesAroundEveryCorner", image: 'https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=1000&q=85' },
   ];
   readonly icons = {
+    arrowDown: faArrowDown,
+    arrowUpRight: faArrowUpRightFromSquare,
     arrowLeft: faArrowLeft,
     arrowRight: faArrowRight,
     external: faArrowUpRightFromSquare,

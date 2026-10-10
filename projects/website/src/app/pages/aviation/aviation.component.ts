@@ -6,7 +6,7 @@ import { finalize } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowLeft, faArrowRight, faArrowUpRightFromSquare, faBars, faGem, faKitMedical, faPlane, faPlay, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faArrowLeft, faArrowRight, faArrowUpRightFromSquare, faBars, faGem, faKitMedical, faPlane, faPlay, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { LanguageSwitchComponent } from '../../i18n/language-switch.component';
 import { TranslatePipe } from '../../i18n/translate.pipe';
 import { BookingApiService } from '../../services/booking-api.service';
@@ -32,6 +32,7 @@ export class AviationComponent {
   catalogItems: PublicCatalogItem[] = [];
   readonly minimumDate = new Date().toISOString().slice(0, 10);
   readonly icons = {
+    arrowDown: faArrowDown,
     arrowLeft: faArrowLeft,
     arrowRight: faArrowRight,
     external: faArrowUpRightFromSquare,

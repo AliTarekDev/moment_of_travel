@@ -14,7 +14,7 @@
           [id]="tour.id" [dotContent]="dotContent(index)">
           <article class="tour-card">
             <div class="tour-card__image"><img [src]="tour.imageUrl || '/imgs/about-slide-img.png.svg'" [alt]="local(tour, 'title')" loading="lazy" /><span>{{ ('tourUi.privateTour' | t) }}</span></div>
-            <div class="tour-card__content"><small>{{ local(tour, 'location') || ('tourUi.tailorMadeItinerary' | t) }}</small><h3>{{ local(tour, 'title') }}</h3><p>{{ local(tour, 'summary') }}</p>@if (tour.price !== null) { <strong class="tour-card__price">{{ tour.price | currency:tour.currency:'symbol':'1.0-2' }}</strong> }<div class="tour-card__footer"><span>@if (days(tour); as count) { ◷ {{ count }} {{ 'tourUi.days' | t }} } @else { {{ 'tourUi.flexibleDuration' | t }} }</span><a [routerLink]="['/', languages.language(), 'tours', tour.slug]">{{ ('tourUi.planThisTour' | t) }} <span class="direction-arrow">→</span></a></div></div>
+            <div class="tour-card__content"><small>{{ local(tour, 'location') || ('tourUi.tailorMadeItinerary' | t) }}</small><h3>{{ local(tour, 'title') }}</h3><p>{{ local(tour, 'summary') }}</p>@if (tour.price !== null) { <strong class="tour-card__price">{{ tour.price | currency:tour.currency:'symbol':'1.0-2' }}</strong> }<div class="tour-card__footer"><span>@if (days(tour); as count) { <fa-icon [icon]="icons.clock" aria-hidden="true" /> {{ count }} {{ 'tourUi.days' | t }} } @else { {{ 'tourUi.flexibleDuration' | t }} }</span><a [routerLink]="['/', languages.language(), 'tours', tour.slug]">{{ ('tourUi.planThisTour' | t) }} <span class="direction-arrow"><fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></span></a></div></div>
           </article>
         </ng-template>
       }

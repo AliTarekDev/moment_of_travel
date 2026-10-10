@@ -14,7 +14,7 @@
               <img [src]="category.image" [alt]="(category.titleKey | t)" loading="lazy" draggable="false" />
             </div>
             <h3>{{ (category.titleKey | t) }}</h3>
-            <span>{{ ('siteCopy.exploreTours' | t) }} <span class="direction-arrow">→</span></span>
+            <span>{{ ('siteCopy.exploreTours' | t) }} <span class="direction-arrow"><fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></span></span>
           </a>
         </ng-template>
       }

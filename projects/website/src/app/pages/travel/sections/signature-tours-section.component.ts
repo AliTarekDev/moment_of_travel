@@ -1,4 +1,6 @@
 import { TranslatePipe } from '../../../i18n/translate.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faArrowRight, faClock } from '@fortawesome/free-solid-svg-icons';
 import { CurrencyPipe } from '@angular/common';
 
 import { Component, DestroyRef, OnInit, afterNextRender, computed, inject, signal } from '@angular/core';
@@ -12,11 +14,12 @@ import { LanguageService } from '../../../i18n/language.service';
 @Component({
   selector: 'app-signature-tours-section',
   standalone: true,
-  imports: [CurrencyPipe, TranslatePipe, CarouselModule, RouterLink],
+  imports: [CurrencyPipe, TranslatePipe, CarouselModule, RouterLink, FontAwesomeModule],
   templateUrl: './signature-tours-section.component.html',
   styleUrl: './signature-tours-section.component.scss',
 })
 export class SignatureToursSectionComponent implements OnInit {
+  readonly icons = { arrowRight: faArrowRight, clock: faClock };
   private readonly catalog = inject(CatalogApiService);
   private readonly destroyRef = inject(DestroyRef);
   readonly tours = signal<PublicCatalogItem[]>([]);

@@ -15,6 +15,16 @@
 .nav__links { gap: 28px; }
 .nav__links a { color: var(--travel-ink); text-decoration: none; font-weight: 500; font-size: 14px; padding-block: 12px; }
 .nav__links a.active, .nav__links a:hover { color: var(--travel-accent-dark); }
+.nav__features { position: relative; }
+.nav__features summary { display: flex; align-items: center; gap: 8px; padding-block: 12px; color: var(--travel-ink); font-size: 14px; font-weight: 500; cursor: pointer; list-style: none; }
+.nav__features summary::-webkit-details-marker { display: none; }
+.nav__features summary:hover, .nav__features[open] summary { color: var(--travel-accent-dark); }
+.nav__features summary:focus-visible, .nav__features-menu a:focus-visible { outline: 2px solid var(--travel-accent-dark); outline-offset: 4px; }
+.nav__features-arrow { display: inline-block; font-size: 11px; transition: transform .2s; }
+.nav__features[open] .nav__features-arrow { transform: rotate(180deg); }
+.nav__features-menu { position: absolute; inset-block-start: 100%; inset-inline-start: 0; z-index: 10; min-width: 235px; padding: 8px; border: 1px solid #e4ecef; border-radius: 12px; background: white; box-shadow: 0 12px 32px #5c3a5820; }
+.nav__features-menu a { display: block; padding: 12px 14px; border-radius: 8px; white-space: nowrap; }
+.nav__features-menu a:hover, .nav__features-menu a:focus-visible { background: var(--brand-surface); }
 .nav__language-switch { color: var(--travel-ink); }
 .nav__links .nav__cta { display: flex; align-items: center; gap: 20px; border-radius: 99px; color: var(--brand-plum-dark); background: var(--travel-accent); padding: 14px 24px; }
 .nav__links .nav__cta:hover { background: var(--travel-accent-dark); color: white; }
@@ -35,6 +45,10 @@
   .nav__links--rtl { transform: translateX(110%); }
   .nav__links.is-open { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(0); }
   .nav__links > a { padding: 16px 0; border-bottom: 1px solid #e4ecef; }
+  .nav__features { border-bottom: 1px solid #e4ecef; }
+  .nav__features summary { justify-content: space-between; padding: 16px 0; }
+  .nav__features-menu { position: static; min-width: 0; margin-bottom: 12px; border: 0; box-shadow: none; background: var(--brand-surface); }
+  .nav__features-menu a { white-space: normal; }
   .nav__language-switch { margin-top: 24px; }
   .nav__links .nav__cta { margin-top: 20px; justify-content: center; }
   .side-nav-overlay { display: block; position: fixed; inset: 0; z-index: 1090; border: 0; background: #3f263c70; opacity: 0; pointer-events: none; transition: opacity .25s; }

@@ -10,9 +10,9 @@
       <span class="eyebrow">{{ ('siteCopy.letSGoTogether' | t) }}</span>
       <h2>{{ ('siteCopy.extraordinaryJourneysThoughtfullyMade' | t) }}</h2>
       <p>{{ ('siteCopy.fromThePyramidsToTheBanksOfThe' | t) }}</p>
-      <div class="intro-feature"><span>✧</span><div><h3>{{ ('siteCopy.aTripThatFeelsLikeYou' | t) }}</h3><p>{{ ('siteCopy.personalItinerariesShapedAroundYourPaceAndPassions' | t) }}</p></div></div>
-      <div class="intro-feature"><span>◎</span><div><h3>{{ ('siteCopy.localKnowledgePersonalCare' | t) }}</h3><p>{{ ('siteCopy.expertGuidesHandpickedStaysAndSeamlessPrivateTransfers' | t) }}</p></div></div>
-      <a class="section-button" [routerLink]="['/', languages.language(), 'tours']">{{ ('siteCopy.discoverOurTours' | t) }} <span class="direction-arrow">→</span></a>
+      <div class="intro-feature"><span><fa-icon [icon]="icons.personal" aria-hidden="true" /></span><div><h3>{{ ('siteCopy.aTripThatFeelsLikeYou' | t) }}</h3><p>{{ ('siteCopy.personalItinerariesShapedAroundYourPaceAndPassions' | t) }}</p></div></div>
+      <div class="intro-feature"><span><fa-icon [icon]="icons.compass" aria-hidden="true" /></span><div><h3>{{ ('siteCopy.localKnowledgePersonalCare' | t) }}</h3><p>{{ ('siteCopy.expertGuidesHandpickedStaysAndSeamlessPrivateTransfers' | t) }}</p></div></div>
+      <a class="section-button" [routerLink]="['/', languages.language(), 'tours']">{{ ('siteCopy.discoverOurTours' | t) }} <span class="direction-arrow"><fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></span></a>
     </div>
     <div class="luxury-intro__traveler" aria-hidden="true">
       <img src="/imgs/about-slide-img.png.svg" alt="" width="217" height="546" loading="lazy" />
