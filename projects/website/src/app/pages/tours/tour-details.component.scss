@@ -51,8 +51,6 @@ input[matInput]:focus-visible, textarea[matInput]:focus-visible { outline: none;
 .field-error { color: #a12b40; }
 :host-context([dir='rtl']) mat-form-field { --mat-form-field-container-text-font: 'Noto Kufi Arabic', Tahoma, sans-serif; --mdc-outlined-text-field-label-text-font: 'Noto Kufi Arabic', Tahoma, sans-serif; }
 .full-width { grid-column: 1 / -1; }
-.feedback { padding: 20px; border-radius: 12px; background: white; border: 1px solid var(--brand-plum); }
-.success strong { overflow-wrap: anywhere; }
 button:disabled { opacity: .65; cursor: wait; }
 .not-found { padding-block: 100px; }
 @media (max-width: 900px), (prefers-reduced-motion: reduce) { .hero-cover { background-attachment: scroll; } }

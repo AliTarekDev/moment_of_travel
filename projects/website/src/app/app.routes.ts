@@ -15,6 +15,11 @@ export const routes: Routes = [
         title: 'Ancient Paths — Discover the world your way',
       },
       {
+        path: 'contact',
+        loadComponent: () => import('./pages/contact/contact.component').then(module => module.ContactComponent),
+        title: 'Ancient Paths — Contact us',
+      },
+      {
         path: 'tours',
         loadComponent: () => import('./pages/tours/tours.component').then(module => module.ToursComponent),
         title: 'Ancient Paths — Tours',

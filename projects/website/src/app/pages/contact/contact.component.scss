@@ -1,0 +1,50 @@
+@use '../travel/template-theme' as theme;
+@include theme.foundation;
+
+:host {
+  --travel-accent: var(--brand-gold);
+  --travel-accent-dark: var(--brand-plum);
+  --travel-ink: var(--brand-plum);
+  --travel-muted: var(--brand-muted);
+  --travel-gutter: clamp(20px, 4.5vw, 70px);
+  display: block;
+  background: var(--brand-surface);
+  color: var(--travel-ink);
+  font: 400 15px/1.7 'Inter', sans-serif;
+}
+.contact-heading { padding-block: clamp(40px, 6vw, 72px) 36px; text-align: center; }
+h1 { max-width: 20ch; margin: 12px auto 0; font-size: clamp(34px, 4.5vw, 54px); line-height: 1.2; }
+.contact-section { max-width: 1160px; padding-bottom: clamp(56px, 7vw, 96px); }
+.contact-grid { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.15fr); overflow: hidden; border: 1px solid #e8e1e7; border-radius: 24px; background: white; box-shadow: 0 20px 60px rgb(63 38 60 / 8%); }
+.contact-info, .contact-form-card { min-width: 0; padding: clamp(28px, 4vw, 48px); }
+.contact-info { background: linear-gradient(145deg, var(--brand-plum), var(--brand-plum-dark)); color: white; border-block-start: 4px solid var(--brand-gold); }
+.contact-grid h2 { margin: 0 0 20px; font-size: clamp(25px, 2.5vw, 32px); }
+.contact-info h2 { color: white; }
+.contact-introduction { max-width: 48ch; margin: 0 0 36px; color: #f0e7ed; line-height: 1.9; }
+.contact-methods { display: grid; gap: 0; font-style: normal; }
+.contact-method { display: flex; align-items: center; gap: 16px; min-width: 0; padding-block: 20px; border-top: 1px solid rgb(255 255 255 / 14%); }
+.contact-method > div { min-width: 0; }
+.contact-icon { display: grid; place-items: center; flex-shrink: 0; width: 46px; height: 46px; background: rgb(255 255 255 / 8%); border: 1px solid rgb(212 175 55 / 35%); border-radius: 14px; color: var(--brand-gold); font-size: 18px; }
+.contact-method h3 { margin: 0 0 4px; color: #e5cc79; font-size: 12px; font-weight: 600; }
+.contact-method p { margin: 0; color: white; font-size: 14px; }
+.contact-method a { display: inline-block; color: white; font-size: 14px; text-decoration: none; overflow-wrap: anywhere; }
+.contact-method a:hover { color: #e5cc79; text-decoration: underline; text-underline-offset: 4px; }
+.contact-method a:focus-visible { outline-color: var(--brand-gold); }
+.contact-form-card { border-block-start: 4px solid transparent; }
+.contact-form-card h2 { margin-bottom: 28px; }
+fieldset { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 18px; margin: 0; padding: 0; border: 0; min-width: 0; }
+.form-field { display: grid; align-content: start; gap: 8px; min-width: 0; }
+.form-field:first-child, .form-field:last-child { grid-column: 1 / -1; }
+label { font-weight: 600; font-size: 13px; }
+input, textarea { width: 100%; min-width: 0; padding: 13px 15px; border: 1px solid #e2d9df; border-radius: 10px; background: #fdfbf9; color: var(--brand-plum-dark); font: inherit; transition: border-color .2s, box-shadow .2s; }
+input { min-height: 50px; }
+textarea { resize: vertical; min-height: 150px; }
+input:focus, textarea:focus { outline: 2px solid var(--brand-plum); outline-offset: 2px; border-color: var(--brand-plum); background: white; }
+[aria-invalid='true'] { border-color: #ad3434; }
+.field-error { margin: 0; color: #ad3434; font-size: 13px; }
+form > .field-error { margin-top: 16px; }
+.send-button { width: 100%; justify-content: space-between; margin-top: 26px; border-radius: 10px; background: var(--brand-gold); border-color: var(--brand-gold); color: var(--brand-plum-dark); font: 600 14px/1.5 'Inter', sans-serif; cursor: pointer; }
+.send-button:hover { color: white; }
+.send-button:disabled { opacity: .65; cursor: wait; transform: none; }
+@media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; border-radius: 20px; } .contact-info, .contact-form-card { padding: 30px; } .contact-introduction { max-width: none; margin-bottom: 24px; } }
+@media (max-width: 480px) { .contact-info, .contact-form-card { padding: 24px 20px; } fieldset { grid-template-columns: 1fr; gap: 18px; } .contact-method { gap: 12px; } .contact-icon { width: 40px; height: 40px; } }

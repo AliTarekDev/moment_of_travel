@@ -49,7 +49,7 @@
           <a [routerLink]="['/', languages.language()]" fragment="tailor-made-itineraries" (click)="closeMobileMenu()">{{ 'travel.navTailorMadeItineraries' | t }}</a>
         </div>
       </details>
-      <a [routerLink]="['/', languages.language()]" fragment="contact" (click)="closeMobileMenu()">{{
+      <a [routerLink]="['/', languages.language(), 'contact']" routerLinkActive="active" (click)="closeMobileMenu()">{{
         "travel.navContact" | t
       }}</a>
       <a [routerLink]="['/', languages.language()]" fragment="about" (click)="closeMobileMenu()">{{

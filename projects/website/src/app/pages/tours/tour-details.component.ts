@@ -8,10 +8,10 @@ import { DateAdapter, ErrorStateMatcher, provideNativeDateAdapter } from '@angul
 import { MatDatepickerIntl, MatDatepickerModule } from '@angular/material/datepicker';
 import { TranslatePipe } from '../../i18n/translate.pipe';
 import { CurrencyPipe } from '@angular/common';
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, ViewChild, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroupDirective, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { catchError, finalize, map, of, startWith, switchMap } from 'rxjs';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { LanguageService } from '../../i18n/language.service';
@@ -66,9 +66,8 @@ export class TourDetailsComponent {
   local(tour: PublicCatalogItem, field: 'title' | 'summary' | 'description' | 'location'): string { return localizedTourField(tour, field, this.languages.language()); }
   days(tour: PublicCatalogItem): number | null { return tourDayCount(tour); }
   readonly pending = signal(false);
-  readonly reference = signal('');
-  readonly error = signal(false);
   readonly submitted = signal(false);
+  @ViewChild('bookingForm') private bookingForm?: FormGroupDirective;
   get today(): Date { return new Date(`${localToday()}T00:00:00`); }
   readonly form = inject(FormBuilder).nonNullable.group({
     firstName: ['', [Validators.required, Validators.pattern(/\S/), Validators.maxLength(59)]],
@@ -85,10 +84,7 @@ export class TourDetailsComponent {
     effect(() => dates.setLocale(this.languages.language() === 'ar' ? 'ar-SA' : 'en-GB'));
     effect(() => {
       this.tour();
-      this.form.reset();
-      this.reference.set('');
-      this.error.set(false);
-      this.submitted.set(false);
+      this.resetBookingForm();
     }, { allowSignalWrites: true });
   }
   invalid(name: keyof typeof this.form.controls): boolean {
@@ -101,14 +97,13 @@ export class TourDetailsComponent {
     section.scrollIntoView({ behavior: reducedMotion ? 'instant' : 'smooth', block: 'start' });
   }
   book(): void {
-    if (this.pending() || this.reference()) return;
+    if (this.pending()) return;
     this.submitted.set(true);
     this.form.controls.bookingDate.updateValueAndValidity();
     this.form.markAllAsTouched();
     const tour = this.tour();
     if (!tour || this.form.invalid) return;
     const values = this.form.getRawValue();
-    this.error.set(false);
     this.pending.set(true);
     this.api.create({
       customerName: `${values.firstName.trim()} ${values.lastName.trim()}`,
@@ -117,23 +112,36 @@ export class TourDetailsComponent {
       departureDate: calendarDate(values.bookingDate!), travelers: Number(values.groupNumber),
       customerNotes: values.notes.trim() || undefined,
     }).pipe(finalize(() => this.pending.set(false))).subscribe({
-      next: result => {
+      next: () => {
         if (this.tour()?.slug !== tour.slug) return;
-        this.reference.set(result.reference);
-        this.snackBar.open(
-          this.languages.translate('tourUi.bookingToastSuccess'),
-          this.languages.translate('tourUi.dismiss'),
-          {
-            duration: 7000,
-            horizontalPosition: 'end',
-            verticalPosition: 'top',
-            direction: this.languages.language() === 'ar' ? 'rtl' : 'ltr',
-            panelClass: ['booking-success-toast'],
-            politeness: 'polite',
-          },
-        );
+        this.resetBookingForm();
+        this.showBookingToast('tourUi.bookingToastSuccess');
       },
-      error: () => { if (this.tour()?.slug === tour.slug) this.error.set(true); },
+      error: () => {
+        if (this.tour()?.slug === tour.slug) this.showBookingToast('tourUi.weCouldNotSendYourRequestPleaseTryAgain');
+      },
     });
+  }
+
+  private resetBookingForm(): void {
+    // Reset the directive too, so Material does not show errors on the empty form.
+    if (this.bookingForm) this.bookingForm.resetForm();
+    else this.form.reset();
+    this.submitted.set(false);
+  }
+
+  private showBookingToast(messageKey: string): void {
+    this.snackBar.open(
+      this.languages.translate(messageKey),
+      this.languages.translate('tourUi.dismiss'),
+      {
+        duration: 7000,
+        horizontalPosition: 'end',
+        verticalPosition: 'top',
+        direction: this.languages.language() === 'ar' ? 'rtl' : 'ltr',
+        panelClass: ['booking-success-toast'],
+        politeness: 'polite',
+      },
+    );
   }
 }

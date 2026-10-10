@@ -11,6 +11,7 @@
     "check:dashboard": "ngc --project projects/dashboard/tsconfig.app.json --noEmit",
     "check:website": "ngc --project projects/website/tsconfig.app.json --noEmit",
     "build": "ng build",
+    "build:preview": "ng build website --configuration production,preview",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:website": "node dist/website/server/server.mjs"

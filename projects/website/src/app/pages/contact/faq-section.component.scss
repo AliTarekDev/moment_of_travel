@@ -1,0 +1,21 @@
+@use '../travel/template-theme' as theme;
+@include theme.foundation;
+
+.faq-section { padding-block: clamp(48px, 6vw, 80px); border-top: 1px solid #e8e1e7; background: white; }
+.faq-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; max-width: 1160px; }
+.faq-heading { text-align: center; }
+.faq-heading h2 { margin-block: 12px 20px; font-size: clamp(30px, 3.3vw, 44px); }
+.faq-heading p { margin: 0 auto; max-width: 72ch; font-size: 15px; }
+.faq-list { display: grid; gap: 12px; min-width: 0; }
+.faq-item { border: 1px solid #e8e1e7; border-radius: 12px; background: var(--brand-surface-soft); }
+.faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 22px; border-radius: 12px; color: var(--brand-plum-dark); font-size: 15px; font-weight: 600; line-height: 1.6; list-style: none; cursor: pointer; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { background: var(--brand-surface); }
+.faq-item summary:focus-visible { outline: 3px solid var(--brand-gold); outline-offset: 3px; }
+.faq-chevron { display: inline-block; flex-shrink: 0; color: var(--brand-plum); font-size: 12px; transition: transform .2s; }
+.faq-item[open] { border-color: #d8c28e; background: white; }
+.faq-item[open] .faq-chevron { transform: rotate(180deg); }
+.faq-answer { padding: 0 22px 22px; }
+.faq-answer p { margin: 0; font-size: 14px; overflow-wrap: anywhere; }
+.faq-answer strong { color: var(--brand-plum-dark); font-weight: 600; }
+@media (max-width: 480px) { .faq-item summary { padding: 18px; gap: 14px; font-size: 14px; } .faq-answer { padding: 0 18px 18px; } }

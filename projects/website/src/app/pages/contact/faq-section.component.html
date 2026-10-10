@@ -1,0 +1,26 @@
+<section class="faq-section" aria-labelledby="faq-title">
+  <div class="container faq-layout">
+    <div class="faq-heading">
+      <span class="eyebrow">{{ 'faq.kicker' | t }}</span>
+      <h2 id="faq-title">{{ 'faq.title' | t }}</h2>
+      <p>{{ 'faq.introduction' | t }}</p>
+    </div>
+    <div class="faq-list">
+      @for (question of questions; track question.id) {
+        <details class="faq-item">
+          <summary>
+            <span>{{ ('faq.' + question.id + 'Question') | t }}</span>
+            <fa-icon class="faq-chevron" [icon]="chevron" aria-hidden="true" />
+          </summary>
+          <div class="faq-answer">
+            @if (question.highlighted) {
+              <p>{{ ('faq.' + question.id + 'Before') | t }}<strong>{{ ('faq.' + question.id + 'Highlight') | t }}</strong>{{ ('faq.' + question.id + 'After') | t }}</p>
+            } @else {
+              <p>{{ ('faq.' + question.id + 'Answer') | t }}</p>
+            }
+          </div>
+        </details>
+      }
+    </div>
+  </div>
+</section>

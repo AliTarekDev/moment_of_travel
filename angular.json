@@ -60,6 +60,24 @@
               ],
               "outputHashing": "all"
             },
+            "preview": {
+              "outputPath": "dist/website-preview",
+              "ssr": false,
+              "prerender": false,
+              "sourceMap": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "2MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kB",
+                  "maximumError": "16kB"
+                }
+              ]
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
