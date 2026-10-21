@@ -107,7 +107,7 @@ export class BookingsService {
   private async createReference(): Promise<string> {
     const year = new Date().getUTCFullYear();
     for (let attempt = 0; attempt < 5; attempt += 1) {
-      const reference = `MOT-${year}-${randomInt(100000, 1000000)}`;
+      const reference = `ANC-${year}-${randomInt(100000, 1000000)}`;
       if (!(await this.bookings.existsBy({ reference }))) return reference;
     }
     throw new Error('Unable to create a unique booking reference');

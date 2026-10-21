@@ -1,3 +1,5 @@
+import { TailorMadeDto } from './tailor-made.dto';
+import { tailorMadeBooking } from './tailor-made-request';
 import { Body, Controller, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { Public, Roles } from '../common/auth.decorators';
 import { UserRole } from '../users/user.entity';
@@ -12,6 +14,13 @@ export class BookingsController {
   @Public()
   async createPublic(@Body() dto: CreateBookingDto) {
     const booking = await this.bookings.createPublic(dto);
+    return { reference: booking.reference, status: booking.status, createdAt: booking.createdAt };
+  }
+
+  @Post('public/tailor-made')
+  @Public()
+  async createTailorMade(@Body() dto: TailorMadeDto) {
+    const booking = await this.bookings.createPublic(tailorMadeBooking(dto));
     return { reference: booking.reference, status: booking.status, createdAt: booking.createdAt };
   }
 

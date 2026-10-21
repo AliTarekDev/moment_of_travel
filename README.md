@@ -145,3 +145,11 @@ npm.cmd run check:website
 - Add rate limiting/CAPTCHA to public forms before a public launch.
 - Confirm all business claims, phone numbers, email addresses, prices, accreditations, and legal copy with the client.
 - Add audit-log persistence before using the dashboard for regulated financial approvals.
+
+## Tailor-made itinerary enquiries
+
+The website Features menu opens the bilingual tailor-made page and its full-screen Angular Material questionnaire. Answers are held in memory while the website is open; closing and reopening the questionnaire resumes the draft. Reloading the browser clears it.
+
+Deploy the website and API together: `POST /api/bookings/public/tailor-made` validates the full questionnaire and records a new tour enquiry in the existing Bookings inbox. Dates, traveller totals and hotel preference populate the booking fields; all answers are retained in the text notes with readable labels, beyond the ordinary public form's 2,000-character limit. This email-only flow deliberately leaves the phone field empty. No database migration is required.
+
+Pricing, gratuities, hotel inclusion and restricted-site permissions are confirmed in the individual proposal. The page does not assert the reference company's supplier relationships or pricing.

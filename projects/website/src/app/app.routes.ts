@@ -15,6 +15,21 @@ export const routes: Routes = [
         title: 'Ancient Paths — Discover the world your way',
       },
       {
+        path: 'features/exclusive-visits',
+        loadComponent: () => import('./pages/features/exclusive-visits/exclusive-visits.component').then(module => module.ExclusiveVisitsComponent),
+        title: 'Ancient Paths — Exclusive visits',
+      },
+      {
+        path: 'features/five-star-hotels',
+        loadComponent: () => import('./pages/features/five-star-hotels/five-star-hotels.component').then(module => module.FiveStarHotelsComponent),
+        title: 'Ancient Paths — Five-star hotels',
+      },
+      {
+        path: 'features/tailor-made-itineraries',
+        loadComponent: () => import('./pages/features/tailor-made-itineraries/tailor-made-itineraries.component').then(module => module.TailorMadeItinerariesComponent),
+        title: 'Ancient Paths — Tailor-made itineraries',
+      },
+      {
         path: 'contact',
         loadComponent: () => import('./pages/contact/contact.component').then(module => module.ContactComponent),
         title: 'Ancient Paths — Contact us',

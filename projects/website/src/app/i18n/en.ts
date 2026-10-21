@@ -1,4 +1,289 @@
 export const EN = {
+  tailorMade: {
+  backToReview: "Back to review",
+  "page": {
+    "eyebrow": "Your Egypt, your way",
+    "title": "Tailor-made itineraries",
+    "heroText": "Build a journey around the places you dream of, the people you travel with, and the details that matter to you.",
+    "craft": "Craft your Dream Journey",
+    "introEyebrow": "Made around you",
+    "introTitle": "A personal journey starts with a conversation.",
+    "introText": "Choose your own route, pace, and experiences. From Cairo’s landmarks to a Nile sail, we bring your ideas together into a proposal designed for your group.",
+    "introDetails": "Our guided questionnaire helps us understand your dates, interests, and accommodation preferences. Your answers are a starting point: our team will discuss the details and confirm availability and pricing with you.",
+    "imageAlt": "A peaceful sailing scene on the Nile",
+    "processEyebrow": "From an idea to an itinerary",
+    "processTitle": "Three steps to your own Egypt story.",
+    "process": {
+      "share": {
+        "title": "Share your wishes",
+        "text": "Tell us who is travelling, when you want to visit, and what you hope to experience."
+      },
+      "design": {
+        "title": "We shape your proposal",
+        "text": "Our team reviews your answers and explores a route and arrangements suited to your group."
+      },
+      "refine": {
+        "title": "Make it yours",
+        "text": "Discuss the details, refine your itinerary, and agree the final arrangements before booking."
+      }
+    }
+  },
+  "plannerLabel": "Your tailor-made Egypt journey",
+  "close": "Close trip planner",
+  "progress": "Trip planner progress",
+  "step": "Step",
+  "hi": "Hi",
+  "readyPrefix": "OK,",
+  "start": "Let’s do it",
+  "letsGo": "Let’s go",
+  "gotIt": "Got it, continue",
+  "soundsGreat": "Sounds great",
+  "great": "Great",
+  "ok": "OK",
+  "back": "Back",
+  "edit": "Edit",
+  "submit": "Submit my request",
+  "sending": "Sending your request…",
+  "sixMinutes": "Takes about 6 minutes",
+  "typeAnswer": "Type your answer here",
+  "typeNumber": "Enter a whole number",
+  "optionalAnswer": "Share any details you would like us to know (optional)",
+  "groupLimit": "Up to 50 travellers in total, including at least one adult.",
+  "dateError": "Choose a valid date from today onwards. Departure must be on or after arrival.",
+  "invalidAnswer": "Please complete this answer correctly before continuing.",
+  "sendError": "We could not send your request. Your answers are still here. Please try again.",
+  "savedSession": "Your answers are kept while this website remains open.",
+  "notSpecified": "Not specified",
+  "reviewHelp": "Check your answers below. You can edit any answer before sending your request.",
+  "consent": "By submitting, you ask Ancient Paths to contact you by email about this itinerary. This is an enquiry, not a confirmed booking.",
+  "successEyebrow": "Your journey starts here",
+  "successTitle": "Thanks for choosing Ancient Paths.",
+  "successText": "Your tailor-made request has been received. Our team will review your wishes and contact you by email to discuss the next steps.",
+  "reference": "Your request reference:",
+  "returnToPage": "Back to Ancient Paths",
+  "questions": {
+    "intro": {
+      "title": "Let’s get started building the trip of a lifetime to Egypt together.",
+      "body": "Tell us what your ideal journey looks like. We will ask a few questions, one at a time, then you can review everything before sending."
+    },
+    "firstName": {
+      "title": "Before we start, can we get your first name?"
+    },
+    "greeting": {
+      "title": "Welcome",
+      "body": "We’re glad you found us, and we’re delighted to help plan your journey. Before the trip details, let’s make sure the experience we design is the right fit for you."
+    },
+    "approach": {
+      "title": "A little about how we plan your journey.",
+      "body": "We focus on private, thoughtfully planned travel, with guides, transport, and accommodation suited to your preferences.\n\nYour written proposal will explain what is included, what is optional, and any additional costs. Gratuities, special access, and other arrangements are confirmed in that proposal, so you know what to expect.\n\nOur aim is a well-organised personal experience, rather than the lowest-price group tour."
+    },
+    "pricing": {
+      "title": "Let’s make sure the style of travel sounds right for you.",
+      "body": "The cost of a private Egypt journey depends on your dates, duration, group size, hotel choices, and special experiences. Smaller groups share fewer costs, while larger groups can spread some transport and guiding costs.\n\nFive-star hotels, private guides, comfortable transport, and any special access will be itemised in your proposal. We will discuss the price with you before any booking is confirmed.\n\nIf a personally designed itinerary with these choices is what you have in mind, let’s continue."
+    },
+    "ready": {
+      "title": "Let’s get to the fun part.",
+      "body": "Now let’s get down to your trip details and the experiences you would love to include."
+    },
+    "email": {
+      "title": "What is your email address?"
+    },
+    "adults": {
+      "title": "How many adults (ages 18+) will be travelling, including you?"
+    },
+    "children": {
+      "title": "How many children (ages 17 and under) will travel with you?"
+    },
+    "origin": {
+      "title": "Where will you be coming from?",
+      "help": "Please include your city, state or region, and country."
+    },
+    "arrivalDate": {
+      "title": "On what date will you arrive in Egypt?"
+    },
+    "departureDate": {
+      "title": "On what date will you depart Egypt?"
+    },
+    "flightsBooked": {
+      "title": "Have you booked your international flights to and from Egypt yet?"
+    },
+    "days": {
+      "title": "How many days would you like to spend in Egypt?",
+      "help": "Include your arrival and departure days. A range of days is fine too."
+    },
+    "occasions": {
+      "title": "Will you celebrate any special occasions during this trip?",
+      "help": "For example, a birthday, anniversary, or honeymoon. This answer is optional."
+    },
+    "cairoSites": {
+      "title": "Which sites interest you in Cairo and Giza?"
+    },
+    "luxor": {
+      "title": "Would you also like to visit Luxor?",
+      "help": "Luxor is home to some of Egypt’s best-known tombs and temples."
+    },
+    "aswan": {
+      "title": "Would you also like to visit Aswan?",
+      "help": "Explore Nile scenery, temples, and Nubian history and culture."
+    },
+    "abuSimbel": {
+      "title": "Would you like to include Abu Simbel as a day trip from Aswan?",
+      "help": "This remote temple complex is one of Egypt’s most memorable ancient sites. Travel arrangements depend on your route and schedule."
+    },
+    "cruise": {
+      "title": "Would you like a Nile cruise on a traditional dahabiya?",
+      "help": "Dahabiyas are smaller traditional sailing boats. Share your preferred duration; vessel, route, meals, and pricing will be confirmed in your proposal."
+    },
+    "alexandria": {
+      "title": "Would you also like to visit Alexandria?",
+      "help": "Discover Egypt’s Greco-Roman history and a different atmosphere on the Mediterranean coast."
+    },
+    "otherPlaces": {
+      "title": "Is there anywhere else in Egypt you would like to include?"
+    },
+    "experiences": {
+      "title": "Which additional experiences would you enjoy?",
+      "help": "Choose as many as you like, or choose “Nothing else” on its own."
+    },
+    "otherExperiences": {
+      "title": "What other experiences would you like to have in Egypt?"
+    },
+    "vip": {
+      "title": "Would you like us to explore Ultra-VIP additions?",
+      "help": "This may include requests for private or special access at selected sites. These arrangements can be expensive and require availability, permissions, and a separate confirmed quote."
+    },
+    "hotels": {
+      "title": "Would you like us to arrange your hotels?"
+    },
+    "notes": {
+      "title": "Is there anything else that would help us design your itinerary?"
+    },
+    "review": {
+      "title": "Thanks for choosing Ancient Paths. Let’s review your journey."
+    }
+  },
+  "options": {
+    "yes": "Yes",
+    "no": "No",
+    "cairoSites": {
+      "giza": "The Giza pyramids and the Sphinx",
+      "saqqara": "The pyramids at Saqqara and Dahshur",
+      "museums": "The main museums: GEM, the Egyptian Museum, and NMEC",
+      "oldCairo": "Old Cairo and Khan el-Khalili market",
+      "citadel": "The Citadel of Saladin and the Alabaster Mosque",
+      "coptic": "The Coptic quarter",
+      "other": "Other Cairo or Giza sites not listed here"
+    },
+    "cruise": {
+      "none": "No overnight Nile sail",
+      "three": "A 3-night sail from Aswan to Luxor",
+      "four": "A 4-night sail from Luxor to Aswan",
+      "seven": "A 7-night sail from Luxor to Aswan and back"
+    },
+    "experiences": {
+      "camel": "Ride a camel at the pyramids",
+      "dance": "See a belly dancing show",
+      "felucca": "Sail on a traditional felucca on the Nile",
+      "balloon": "A sunrise hot-air balloon ride over Luxor",
+      "other": "Something else — I’ll tell you on the next step",
+      "none": "Nothing else to add"
+    },
+    "vip": {
+      "no": "No thanks, the regular experiences sound great",
+      "yes": "Yes, please discuss Ultra-VIP additions with me"
+    },
+    "hotels": {
+      "yes": "Yes, include five-star hotels in my proposal",
+      "no": "Do not include hotels in my proposal"
+    }
+  }
+},
+  fiveStarHotels: {
+  "eyebrow": "Stay beautifully",
+  "title": "Five-star hotels",
+  "heroText": "A comfortable stay is part of the journey. Explore examples of five-star hotels that can complement your Egypt itinerary.",
+  "introEyebrow": "Rest, recharge, discover",
+  "introTitle": "Exceptional places to return to.",
+  "introText": "From the gardens of Giza to the banks of the Nile, your accommodation should suit your route, pace, and preferences. Ancient Paths can discuss five-star hotel options as part of your travel plans.",
+  "availability": "These hotels are examples, not confirmed inclusions. Your hotel, room category, meals, and dates are agreed in your final itinerary, subject to availability and the quoted price.",
+  "examples": "Examples of five-star hotels",
+  "fiveStars": "Five-star hotel",
+  "enquire": "Enquire about this hotel",
+  "officialWebsite": "Official hotel website",
+  "requestMessage": "I would like to enquire about staying at",
+  "ctaEyebrow": "Your stay, your preferences",
+  "ctaTitle": "Let us find the right stay for you.",
+  "ctaText": "Tell us your dates, destinations, and room preferences. Our team will discuss suitable accommodation options for your journey.",
+  "ctaButton": "Discuss your accommodation",
+  "hotels": {
+    "menaHouse": {
+      "name": "Marriott Mena House, Cairo",
+      "location": "Giza · Egypt",
+      "tagline": "Gardens and a remarkable setting near the pyramids.",
+      "description": "Set close to the Giza pyramids, Marriott Mena House brings landscaped gardens, dining, a pool, and a spa together in a setting suited to exploring Egypt’s ancient landmarks.",
+      "setting": "A setting near the Giza pyramids",
+      "comfort": "Gardens, dining, a swimming pool, and spa facilities",
+      "explore": "A base for exploring Giza and the Grand Egyptian Museum",
+      "alt": "Grounds of Marriott Mena House in Giza"
+    },
+    "nilePlaza": {
+      "name": "Four Seasons Hotel Cairo at Nile Plaza",
+      "location": "Garden City, Cairo · Egypt",
+      "tagline": "An elegant address beside the Nile.",
+      "description": "Located in Garden City, Four Seasons Hotel Cairo at Nile Plaza combines rooms and suites with restaurants, outdoor pools, and a spa. Its riverside setting offers a comfortable base for discovering Cairo.",
+      "setting": "A Nile-side location in Garden City",
+      "comfort": "Rooms and suites, dining, outdoor pools, and a spa",
+      "explore": "A city base for Cairo’s cultural sights",
+      "alt": "Exterior of Four Seasons Hotel Cairo at Nile Plaza"
+    }
+  }
+},
+  exclusiveVisits: {
+  "eyebrow": "Egypt, made personal",
+  "title": "Exclusive visits",
+  "heroText": "Private visits, personal celebrations, and thoughtful experiences shaped around you and the people you choose to travel with.",
+  "introEyebrow": "The details that make it yours",
+  "introTitle": "A different way to experience Egypt.",
+  "introText": "From a focused day with your own guide to a celebration arranged for your group, Ancient Paths helps you plan meaningful moments beyond a standard itinerary. Tell us your interests, preferred date, and group size so our team can explore the right arrangements.",
+  "availability": "Experiences are arranged on request. Venue availability, access permissions, timing, and pricing are confirmed by our team before booking.",
+  "experiences": "Private visits and experiences",
+  "requestVisit": "Enquire about this experience",
+  "requestMessage": "I would like to enquire about this private experience:",
+  "ctaEyebrow": "Your idea. Your occasion.",
+  "ctaTitle": "Something special in mind?",
+  "ctaText": "Share the visit, celebration, or private outing you imagine. We will discuss the details with you and explore what can be arranged.",
+  "ctaButton": "Plan a private experience",
+  "cards": {
+    "giza": {
+      "location": "Giza",
+      "title": "The pyramids, at your own pace",
+      "subtitle": "A private day for you and your group.",
+      "text": "Shape a visit around your interests with a dedicated guide, time for photographs, and a route that suits your pace. Our team can discuss any special access requests and the permissions they may require.",
+      "alt": "The pyramids of Giza"
+    },
+    "luxor": {
+      "location": "Luxor",
+      "title": "A personal journey through ancient Thebes",
+      "subtitle": "History with room for your own questions.",
+      "text": "Plan a private temple visit with an Egyptology guide, choosing the sites and pace that interest you most. Timing and any additional arrangements are reviewed with you before confirmation.",
+      "alt": "Ancient Egyptian monuments in Luxor"
+    },
+    "nile": {
+      "location": "The Nile",
+      "title": "Your own moment on the Nile",
+      "subtitle": "A private outing with the people who matter.",
+      "text": "Ask about a private sailing experience for a quiet afternoon, a family gathering, or a special occasion. We will discuss your preferred setting, group size, and available options.",
+      "alt": "Boats sailing on the Nile"
+    },
+    "celebration": {
+      "location": "Egypt",
+      "title": "A celebration made just for you",
+      "subtitle": "One occasion, thoughtfully arranged.",
+      "text": "An anniversary, a birthday, or a private gathering can become part of your journey. Tell us the atmosphere you want and our team will explore suitable venues and arrangements for your group.",
+      "alt": "Historic architecture in Cairo"
+    }
+  }
+},
   calendar: {
   "open": "Open calendar",
   "close": "Close calendar",

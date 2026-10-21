@@ -1,3 +1,4 @@
+@use './app/pages/features/tailor-made-itineraries/planner-theme';
 @use './app/shared/eyebrow';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Montez&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap');
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
@@ -10,7 +11,7 @@ body.side-nav-open { overflow: hidden; }
   --brand-gold: #D4AF37;
   --brand-plum: #5C3A58;
   --brand-plum-dark: #3f263c;
-  --brand-muted: #746572;
+  --brand-muted: #685461;
   --brand-surface: #faf7f2;
   --brand-surface-soft: #fdfbf8;
   // Preserve existing palette names used by the gateway and aviation pages.
@@ -44,3 +45,12 @@ app-signature-tours-section .owl-item { display: flex; flex-shrink: 0; float: no
   --mat-snack-bar-button-color: var(--brand-gold);
 }
 .booking-success-toast .mdc-snackbar__label { font-family: inherit; line-height: 1.6; }
+
+.tailor-planner-dialog .mat-mdc-dialog-surface { border-radius:0; padding:0; overflow:hidden; }
+.tailor-planner-dialog .mat-mdc-dialog-container { padding:0; }
+
+// Keep supporting copy and Material hints readable across the website.
+:root { --mat-form-field-subscript-text-size:14px; --mat-checkbox-label-text-size:16px; --mat-radio-label-text-size:16px; }
+
+// Comfortable reading size for section descriptions in both languages.
+body main p { font-size:clamp(16px,1.25vw,18px); line-height:1.9; }

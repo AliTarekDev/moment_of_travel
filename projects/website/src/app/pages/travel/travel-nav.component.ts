@@ -60,7 +60,7 @@ export class TravelNavComponent implements OnDestroy {
 
   @HostListener('window:resize')
   onResize(): void {
-    if ((this.document.defaultView?.innerWidth ?? 0) > 1000) this.closeMobileMenu();
+    if ((this.document.defaultView?.innerWidth ?? 0) > 1100) this.closeMobileMenu();
   }
 
   toggleMobileMenu(): void {

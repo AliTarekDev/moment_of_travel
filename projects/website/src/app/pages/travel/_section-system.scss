@@ -16,7 +16,7 @@
 
   .eyebrow {
     max-width: 100%;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.6;
     letter-spacing: .14em;
   }
@@ -37,6 +37,6 @@
   }
 
   @media (max-width: 560px) {
-    .eyebrow { letter-spacing: .1em; font-size: 11px; }
+    .eyebrow { letter-spacing: .1em; font-size: 14px; }
   }
 }

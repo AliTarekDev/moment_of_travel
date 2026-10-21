@@ -11,7 +11,7 @@
   display: block;
   background: #fff;
   color: var(--travel-ink);
-  font: 400 15px/1.7 'Inter', sans-serif;
+  font: 400 16px/1.8 'Inter', sans-serif;
 }
 
 .section {
@@ -89,7 +89,7 @@
 .hero p {
   max-width: 54ch;
   color: var(--brand-plum-dark);
-  font-size: clamp(15px, 1.2vw, 17px);
+  font-size: clamp(17px, 1.3vw, 19px);
   line-height: 1.85;
   margin: 0;
   text-wrap: pretty;
@@ -156,13 +156,13 @@
 .trip-search__intro span,
 .trip-search label>span {
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .trip-search__intro small {
   color: var(--travel-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .trip-search label {
@@ -177,7 +177,7 @@
   border: 0;
   background: transparent;
   color: var(--travel-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .destinations {
@@ -244,7 +244,7 @@
 
 .destination-card>div>span {
   color: #e2f2f4;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .destination-card__arrow {
@@ -323,7 +323,7 @@
 
 .booking-form__heading small {
   color: var(--travel-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .booking-fields {
@@ -336,7 +336,7 @@
 .booking-options>span {
   display: block;
   margin-bottom: 7px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -365,7 +365,7 @@
 .booking-fields label>small,
 .booking-error {
   color: #b22e40;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .booking-options>div {
@@ -379,7 +379,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .booking-fields input[type='checkbox'] {
@@ -405,7 +405,7 @@
 }
 
 .booking-privacy {
-  font-size: 11px;
+  font-size: 14px;
   margin: 15px 0 0;
 }
 
@@ -466,7 +466,7 @@
 
 .contact-methods small {
   color: var(--travel-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .contact-methods strong {
@@ -571,7 +571,7 @@
   }
 
   .destination-card>div>span {
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .booking-form-wrap {

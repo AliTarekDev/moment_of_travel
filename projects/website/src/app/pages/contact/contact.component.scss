@@ -10,7 +10,7 @@
   display: block;
   background: var(--brand-surface);
   color: var(--travel-ink);
-  font: 400 15px/1.7 'Inter', sans-serif;
+  font: 400 16px/1.8 'Inter', sans-serif;
 }
 .contact-heading { padding-block: clamp(40px, 6vw, 72px) 36px; text-align: center; }
 h1 { max-width: 20ch; margin: 12px auto 0; font-size: clamp(34px, 4.5vw, 54px); line-height: 1.2; }
@@ -25,7 +25,7 @@ h1 { max-width: 20ch; margin: 12px auto 0; font-size: clamp(34px, 4.5vw, 54px); 
 .contact-method { display: flex; align-items: center; gap: 16px; min-width: 0; padding-block: 20px; border-top: 1px solid rgb(255 255 255 / 14%); }
 .contact-method > div { min-width: 0; }
 .contact-icon { display: grid; place-items: center; flex-shrink: 0; width: 46px; height: 46px; background: rgb(255 255 255 / 8%); border: 1px solid rgb(212 175 55 / 35%); border-radius: 14px; color: var(--brand-gold); font-size: 18px; }
-.contact-method h3 { margin: 0 0 4px; color: #e5cc79; font-size: 12px; font-weight: 600; }
+.contact-method h3 { margin: 0 0 4px; color: #e5cc79; font-size: 14px; font-weight: 600; }
 .contact-method p { margin: 0; color: white; font-size: 14px; }
 .contact-method a { display: inline-block; color: white; font-size: 14px; text-decoration: none; overflow-wrap: anywhere; }
 .contact-method a:hover { color: #e5cc79; text-decoration: underline; text-underline-offset: 4px; }
@@ -35,13 +35,13 @@ h1 { max-width: 20ch; margin: 12px auto 0; font-size: clamp(34px, 4.5vw, 54px); 
 fieldset { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 18px; margin: 0; padding: 0; border: 0; min-width: 0; }
 .form-field { display: grid; align-content: start; gap: 8px; min-width: 0; }
 .form-field:first-child, .form-field:last-child { grid-column: 1 / -1; }
-label { font-weight: 600; font-size: 13px; }
+label { font-weight: 600; font-size: 14px; }
 input, textarea { width: 100%; min-width: 0; padding: 13px 15px; border: 1px solid #e2d9df; border-radius: 10px; background: #fdfbf9; color: var(--brand-plum-dark); font: inherit; transition: border-color .2s, box-shadow .2s; }
 input { min-height: 50px; }
 textarea { resize: vertical; min-height: 150px; }
 input:focus, textarea:focus { outline: 2px solid var(--brand-plum); outline-offset: 2px; border-color: var(--brand-plum); background: white; }
 [aria-invalid='true'] { border-color: #ad3434; }
-.field-error { margin: 0; color: #ad3434; font-size: 13px; }
+.field-error { margin: 0; color: #ad3434; font-size: 14px; }
 form > .field-error { margin-top: 16px; }
 .send-button { width: 100%; justify-content: space-between; margin-top: 26px; border-radius: 10px; background: var(--brand-gold); border-color: var(--brand-gold); color: var(--brand-plum-dark); font: 600 14px/1.5 'Inter', sans-serif; cursor: pointer; }
 .send-button:hover { color: white; }

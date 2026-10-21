@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -32,6 +33,19 @@ export class ContactComponent {
     phone: ['', [Validators.required, Validators.pattern(/^[+\d][\d\s().-]{6,39}$/)]],
     message: ['', [Validators.required, Validators.pattern(/\S/), Validators.maxLength(2000)]],
   });
+
+  constructor() {
+    inject(ActivatedRoute).queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(params => {
+      const hotel = params.get('hotel');
+      if (hotel && ['menaHouse', 'nilePlaza'].includes(hotel)) {
+        this.form.controls.message.setValue(this.languages.translate('fiveStarHotels.requestMessage') + ' ' + this.languages.translate('fiveStarHotels.hotels.' + hotel + '.name'));
+      }
+      const experience = params.get('experience');
+      if (experience && ['giza', 'luxor', 'nile', 'celebration'].includes(experience)) {
+        this.form.controls.message.setValue(this.languages.translate('exclusiveVisits.requestMessage') + ' ' + this.languages.translate('exclusiveVisits.cards.' + experience + '.title'));
+      }
+    });
+  }
 
   invalid(field: keyof typeof this.form.controls): boolean {
     const control = this.form.controls[field];

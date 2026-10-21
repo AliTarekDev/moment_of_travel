@@ -5,7 +5,7 @@ import { Booking, BookingStatus, PaymentStatus, StaffUser } from '../../core/api
 
 @Component({
   selector:'app-booking-drawer', standalone:true, imports:[CommonModule,FormsModule],
-  template:`<div class="drawer-scrim" (click)="closed.emit()"></div><aside class="booking-drawer"><header><div><span class="eyebrow">طلب حجز</span><h2>{{ booking.reference }}</h2></div><button type="button" (click)="closed.emit()" aria-label="إغلاق التفاصيل">×</button></header><div class="drawer-body"><section class="customer-card"><span>{{ initials(booking.customerName) }}</span><div><h3>{{ booking.customerName }}</h3><p>{{ booking.customerEmail }} · {{ booking.customerPhone }}</p></div></section>
+  template:`<div class="drawer-scrim" (click)="closed.emit()"></div><aside class="booking-drawer"><header><div><span class="eyebrow">طلب حجز</span><h2>{{ booking.reference }}</h2></div><button type="button" (click)="closed.emit()" aria-label="إغلاق التفاصيل">×</button></header><div class="drawer-body"><section class="customer-card"><span>{{ initials(booking.customerName) }}</span><div><h3>{{ booking.customerName }}</h3><p>{{ booking.customerEmail }}@if (booking.customerPhone) { · {{ booking.customerPhone }} }</p></div></section>
   <div class="detail-grid">@if (booking.departureCity) {
     <div><span>مدينة المغادرة</span><strong>{{ booking.departureCity }}</strong></div>
     }<div><span>الوجهة</span><strong>{{ booking.destination }}</strong></div><div><span>الخدمة</span><strong>{{ label(booking.serviceType) }}</strong></div>@if (booking.tripType) {

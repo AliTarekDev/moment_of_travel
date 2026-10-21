@@ -12,7 +12,7 @@
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary:hover { background: var(--brand-surface); }
 .faq-item summary:focus-visible { outline: 3px solid var(--brand-gold); outline-offset: 3px; }
-.faq-chevron { display: inline-block; flex-shrink: 0; color: var(--brand-plum); font-size: 12px; transition: transform .2s; }
+.faq-chevron { display: inline-block; flex-shrink: 0; color: var(--brand-plum); font-size: 14px; transition: transform .2s; }
 .faq-item[open] { border-color: #d8c28e; background: white; }
 .faq-item[open] .faq-chevron { transform: rotate(180deg); }
 .faq-answer { padding: 0 22px 22px; }

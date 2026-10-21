@@ -1,4 +1,4 @@
-<div class="topbar"><div class="container topbar__inner"><span>{{ ('siteCopy.everyGreatJourneyBeginsWithAMoment' | t) }}</span><div><a href="tel:+966549440048" dir="ltr">+966 54 944 0048</a><span class="topbar__divider">|</span><a href="mailto:info@ancientpaths.com">info&#64;ancientpaths.com</a></div></div></div>
+<div class="topbar"><div class="container topbar__inner"><span>{{ ('siteCopy.everyGreatJourneyBeginsWithAMoment' | t) }}</span><div><a href="tel:+966549440048" dir="ltr">+966 54 944 0048</a><span class="topbar__divider">|</span><a href="mailto:info@ancientpathseg.com">info&#64;ancientpathseg.com</a></div></div></div>
 <nav class="nav" [class.nav--scrolled]="isScrolled">
   <div class="container nav__inner">
     <a class="brand brand--logo" [routerLink]="['/', languages.language()]" [attr.aria-label]="('siteCopy.ancientPathsHome' | t)">
@@ -44,9 +44,9 @@
       <details #featuresDropdown class="nav__features" (focusout)="onFeaturesFocusOut($event)">
         <summary>{{ 'travel.navServices' | t }}<fa-icon class="nav__features-arrow" [icon]="icons.chevronDown" aria-hidden="true" /></summary>
         <div class="nav__features-menu">
-          <a [routerLink]="['/', languages.language()]" fragment="exclusive-visits" (click)="closeMobileMenu()">{{ 'travel.navExclusiveVisits' | t }}</a>
-          <a [routerLink]="['/', languages.language()]" fragment="five-star-hotels" (click)="closeMobileMenu()">{{ 'travel.navFiveStarHotels' | t }}</a>
-          <a [routerLink]="['/', languages.language()]" fragment="tailor-made-itineraries" (click)="closeMobileMenu()">{{ 'travel.navTailorMadeItineraries' | t }}</a>
+          <a [routerLink]="['/', languages.language(), 'features', 'exclusive-visits']" routerLinkActive="active" (click)="closeMobileMenu()">{{ 'travel.navExclusiveVisits' | t }}</a>
+          <a [routerLink]="['/', languages.language(), 'features', 'five-star-hotels']" routerLinkActive="active" (click)="closeMobileMenu()">{{ 'travel.navFiveStarHotels' | t }}</a>
+          <a [routerLink]="['/', languages.language(), 'features', 'tailor-made-itineraries']" routerLinkActive="active" (click)="closeMobileMenu()">{{ 'travel.navTailorMadeItineraries' | t }}</a>
         </div>
       </details>
       <a [routerLink]="['/', languages.language(), 'contact']" routerLinkActive="active" (click)="closeMobileMenu()">{{
