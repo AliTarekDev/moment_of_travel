@@ -1,0 +1,20 @@
+<app-travel-nav />
+<main [attr.dir]="languages.language() === 'ar' ? 'rtl' : 'ltr'">
+  <header class="hotels-hero"><div class="container">
+    <nav class="breadcrumbs" [attr.aria-label]="'tourUi.breadcrumb' | t"><a [routerLink]="['/', languages.language()]">{{ 'tourUi.home' | t }}</a><span aria-hidden="true">/</span><span>{{ 'travel.navServices' | t }}</span></nav>
+    <span class="eyebrow">{{ 'fiveStarHotels.eyebrow' | t }}</span><h1>{{ 'fiveStarHotels.title' | t }}</h1><p>{{ 'fiveStarHotels.heroText' | t }}</p>
+  </div></header>
+  <section class="container hotels-intro" aria-labelledby="hotels-intro-title"><div><span class="eyebrow">{{ 'fiveStarHotels.introEyebrow' | t }}</span><h2 id="hotels-intro-title">{{ 'fiveStarHotels.introTitle' | t }}</h2></div><div><p>{{ 'fiveStarHotels.introText' | t }}</p><p class="availability">{{ 'fiveStarHotels.availability' | t }}</p></div></section>
+  <section class="container hotels-list" [attr.aria-label]="'fiveStarHotels.examples' | t">
+    @for (hotel of hotels; track hotel.id; let index = $index) {
+      <article class="hotel-card" [class.hotel-card--reverse]="index % 2 === 1">
+        <div class="hotel-image">
+          @if (!failedImages().has(hotel.id)) { <img [src]="hotel.image" [alt]="('fiveStarHotels.hotels.' + hotel.id + '.alt') | t" loading="lazy" (error)="imageUnavailable(hotel.id)" /> } @else { <div class="image-fallback"><span aria-hidden="true">AP</span><p>{{ ('fiveStarHotels.hotels.' + hotel.id + '.name') | t }}</p></div> }
+          <span class="hotel-stars" [attr.aria-label]="'fiveStarHotels.fiveStars' | t"><span aria-hidden="true">★★★★★</span></span>
+        </div>
+        <div class="hotel-copy"><span class="hotel-location">{{ ('fiveStarHotels.hotels.' + hotel.id + '.location') | t }}</span><h2>{{ ('fiveStarHotels.hotels.' + hotel.id + '.name') | t }}</h2><p class="hotel-tagline">{{ ('fiveStarHotels.hotels.' + hotel.id + '.tagline') | t }}</p><p>{{ ('fiveStarHotels.hotels.' + hotel.id + '.description') | t }}</p><ul>@for (detail of ['setting', 'comfort', 'explore']; track detail) { <li>{{ ('fiveStarHotels.hotels.' + hotel.id + '.' + detail) | t }}</li> }</ul><div class="hotel-actions"><a class="section-button" [routerLink]="['/', languages.language(), 'contact']" [queryParams]="{ hotel: hotel.id }">{{ 'fiveStarHotels.enquire' | t }}</a><a class="hotel-website" [href]="hotel.website" target="_blank" rel="noopener noreferrer">{{ 'fiveStarHotels.officialWebsite' | t }}<span aria-hidden="true">↗</span></a></div></div>
+      </article>
+    }
+  </section>
+  <section class="hotels-cta"><div class="container"><span class="eyebrow">{{ 'fiveStarHotels.ctaEyebrow' | t }}</span><h2>{{ 'fiveStarHotels.ctaTitle' | t }}</h2><p>{{ 'fiveStarHotels.ctaText' | t }}</p><a class="section-button" [routerLink]="['/', languages.language(), 'contact']">{{ 'fiveStarHotels.ctaButton' | t }}</a></div></section>
+</main>

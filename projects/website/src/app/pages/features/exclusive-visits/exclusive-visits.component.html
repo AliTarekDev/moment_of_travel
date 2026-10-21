@@ -1,0 +1,24 @@
+<app-travel-nav />
+<main [attr.dir]="languages.language() === 'ar' ? 'rtl' : 'ltr'">
+  <header class="visits-hero">
+    <div class="container">
+      <nav class="breadcrumbs" [attr.aria-label]="'tourUi.breadcrumb' | t"><a [routerLink]="['/', languages.language()]">{{ 'tourUi.home' | t }}</a><span aria-hidden="true">/</span><span>{{ 'travel.navServices' | t }}</span></nav>
+      <span class="eyebrow">{{ 'exclusiveVisits.eyebrow' | t }}</span>
+      <h1>{{ 'exclusiveVisits.title' | t }}</h1>
+      <p>{{ 'exclusiveVisits.heroText' | t }}</p>
+    </div>
+  </header>
+  <section class="container visits-intro" aria-labelledby="visits-intro-title">
+    <div><span class="eyebrow">{{ 'exclusiveVisits.introEyebrow' | t }}</span><h2 id="visits-intro-title">{{ 'exclusiveVisits.introTitle' | t }}</h2></div>
+    <div><p>{{ 'exclusiveVisits.introText' | t }}</p><p class="visits-note">{{ 'exclusiveVisits.availability' | t }}</p></div>
+  </section>
+  <section class="container visits-grid" [attr.aria-label]="'exclusiveVisits.experiences' | t">
+    @for (visit of visits; track visit.id; let index = $index) {
+      <article class="visit-card">
+        <div class="visit-image"><img [src]="visit.image" [alt]="('exclusiveVisits.cards.' + visit.id + '.alt') | t" loading="lazy" /><span class="visit-index" aria-hidden="true">0{{ index + 1 }}</span></div>
+        <div class="visit-copy"><span class="visit-location">{{ ('exclusiveVisits.cards.' + visit.id + '.location') | t }}</span><h3>{{ ('exclusiveVisits.cards.' + visit.id + '.title') | t }}</h3><p class="visit-subtitle">{{ ('exclusiveVisits.cards.' + visit.id + '.subtitle') | t }}</p><p>{{ ('exclusiveVisits.cards.' + visit.id + '.text') | t }}</p><a class="visit-link" [routerLink]="['/', languages.language(), 'contact']" [queryParams]="{ experience: visit.id }">{{ 'exclusiveVisits.requestVisit' | t }}<span aria-hidden="true">↗</span></a></div>
+      </article>
+    }
+  </section>
+  <section class="visits-cta"><div class="container"><span class="eyebrow">{{ 'exclusiveVisits.ctaEyebrow' | t }}</span><h2>{{ 'exclusiveVisits.ctaTitle' | t }}</h2><p>{{ 'exclusiveVisits.ctaText' | t }}</p><a class="section-button" [routerLink]="['/', languages.language(), 'contact']">{{ 'exclusiveVisits.ctaButton' | t }}</a></div></section>
+</main>
