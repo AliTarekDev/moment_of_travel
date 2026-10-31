@@ -7,20 +7,22 @@
   --travel-ink: var(--brand-plum);
   --travel-muted: var(--brand-muted);
   --travel-gutter: clamp(20px, 4.5vw, 70px);
-  --travel-section-space: clamp(64px, 7vw, 110px);
+  --travel-section-space: var(--website-section-space);
   display: block;
   background: #fff;
   color: var(--travel-ink);
-  font: 400 16px/1.8 'Inter', sans-serif;
+  font: 400 18px/1.8 'Inter', sans-serif;
 }
 
 .section {
+  margin-block: 0;
+  display: flow-root;
   padding-block: var(--travel-section-space);
 }
 
 .section-heading {
   text-align: center;
-  margin: 0 auto 44px;
+  margin: 0 auto 24px;
   max-width: 850px;
 }
 
@@ -32,11 +34,11 @@
   min-height: 54px;
   padding: 15px 28px;
   border: 0;
-  border-radius: 99px;
+  border-radius: 2px;
   background: var(--travel-accent);
   color: var(--brand-plum-dark);
   text-decoration: none;
-  font: 500 14px/1.5 'Inter', sans-serif;
+  font: 500 18px/1.5 'Inter', sans-serif;
   cursor: pointer;
   transition: background .2s, transform .2s;
 }
@@ -48,51 +50,42 @@
 }
 
 .direction-arrow {
-  font-size: 21px;
+  font-size: 23px;
 }
 
 .hero {
   position: relative;
   display: flex;
-  align-items: flex-start;
-  min-height: clamp(570px, 70vw, 720px);
-  background: var(--brand-plum-dark) url('../../../../public/cover.jpg') center 54% / cover;
+  align-items: flex-end;
+  min-height: clamp(420px, 42vw, 560px);
+  background-color: var(--brand-plum-dark);
+  background-image: url('/cover.jpg');
+  background-position: center 54%;
+  background-size: cover;
+  background-repeat: no-repeat;
   color: var(--brand-plum-dark);
 }
 
 .hero__wash {
   position: absolute;
   inset: 0;
-  background: none;
+  // background: rgb(20 16 24 / 35%);
 }
 
 .hero__content {
   position: relative;
-  padding-block: clamp(56px, 6vw, 88px) 130px;
-}
-
-.hero .eyebrow {
-  color: var(--brand-plum-dark);
-  margin-bottom: 14px;
+  padding-block: 64px 88px;
+  text-align: center;
 }
 
 .hero h1 {
-  max-width: 680px;
-  color: var(--brand-plum-dark);
-  font-size: clamp(44px, 5.2vw, 74px);
+  max-width: 900px;
+  color: #fff;
+  font-size: clamp(40px, 4.16vw, 62px);
   line-height: 1.12;
-  margin: 0 0 24px;
+  margin: 0 auto;
   letter-spacing: -.035em;
   overflow-wrap: anywhere;
-}
-
-.hero p {
-  max-width: 54ch;
-  color: var(--brand-plum-dark);
-  font-size: clamp(17px, 1.3vw, 19px);
-  line-height: 1.85;
-  margin: 0;
-  text-wrap: pretty;
 }
 
 .hero__actions {
@@ -100,32 +93,8 @@
   flex-wrap: wrap;
   gap: 18px 28px;
   align-items: center;
+  justify-content: center;
   margin-top: 30px;
-}
-
-.hero__secondary {
-  color: var(--brand-plum-dark);
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.hero__secondary span {
-  margin-inline-start: 10px;
-}
-
-.hero__scroll {
-  position: absolute;
-  inset-inline-end: 5%;
-  bottom: 95px;
-  display: grid;
-  place-items: center;
-  width: 46px;
-  height: 66px;
-  border: 1px solid var(--brand-plum);
-  border-radius: 99px;
-  color: var(--brand-plum-dark);
-  text-decoration: none;
-  font-size: 24px;
 }
 
 .trip-search {
@@ -134,12 +103,15 @@
   grid-template-columns: 1.2fr 1.4fr 1fr .65fr auto;
   align-items: center;
   gap: 24px;
-  margin-top: -48px;
-  padding: 28px 34px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 24px var(--website-gutter);
   background: white;
-  border: 1px solid #e7eff0;
-  border-radius: 20px;
-  box-shadow: 0 16px 55px #5c3a5812;
+  border: 0;
+  border-bottom: 1px solid #e7eff0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .trip-search__intro {
@@ -150,19 +122,19 @@
 
 .trip-search__intro fa-icon {
   color: var(--travel-accent);
-  font-size: 26px;
+  font-size: 30px;
 }
 
 .trip-search__intro span,
 .trip-search label>span {
   display: block;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
 }
 
 .trip-search__intro small {
   color: var(--travel-muted);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .trip-search label {
@@ -177,11 +149,11 @@
   border: 0;
   background: transparent;
   color: var(--travel-muted);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .destinations {
-  background: linear-gradient(180deg, var(--brand-surface), #fff);
+  @include theme.surface-shapes;
 }
 
 .destination-grid {
@@ -238,13 +210,13 @@
 
 .destination-card h3 {
   color: white;
-  font-size: 25px;
+  font-size: 29px;
   margin: 4px 0;
 }
 
 .destination-card>div>span {
   color: #e2f2f4;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .destination-card__arrow {
@@ -262,7 +234,7 @@
 
 .booking-section {
   padding-block: var(--travel-section-space);
-  background: var(--brand-surface);
+  @include theme.surface-shapes;
 }
 
 .booking-grid {
@@ -323,7 +295,7 @@
 
 .booking-form__heading small {
   color: var(--travel-muted);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .booking-fields {
@@ -336,7 +308,7 @@
 .booking-options>span {
   display: block;
   margin-bottom: 7px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -351,7 +323,7 @@
   background: var(--brand-surface-soft);
   color: var(--travel-ink);
   font: inherit;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .booking-fields textarea {
@@ -365,7 +337,7 @@
 .booking-fields label>small,
 .booking-error {
   color: #b22e40;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .booking-options>div {
@@ -379,7 +351,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .booking-fields input[type='checkbox'] {
@@ -405,7 +377,7 @@
 }
 
 .booking-privacy {
-  font-size: 14px;
+  font-size: 16px;
   margin: 15px 0 0;
 }
 
@@ -466,11 +438,11 @@
 
 .contact-methods small {
   color: var(--travel-muted);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .contact-methods strong {
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 600;
 }
 
@@ -500,24 +472,19 @@
 
 @media (max-width: 760px) {
   .hero {
-    min-height: 600px;
+    min-height: 400px;
   }
 
   .hero__content {
-    padding-block: 44px 100px;
+    padding-block: 64px 80px;
   }
 
   .hero h1 {
-    font-size: clamp(38px, 8vw, 58px);
-    margin-bottom: 18px;
-  }
-
-  .hero__scroll {
-    display: none;
+    font-size: clamp(38px, 6.4vw, 50px);
   }
 
   .trip-search {
-    padding: 24px;
+    padding: 24px var(--website-gutter);
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -531,7 +498,7 @@
   }
 
   .trip-search input {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .destination-grid {
@@ -545,7 +512,7 @@
   }
 
   .destination-card h3 {
-    font-size: 23px;
+    font-size: 25px;
   }
 
   .destination-card>div {
@@ -571,7 +538,7 @@
   }
 
   .destination-card>div>span {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .booking-form-wrap {

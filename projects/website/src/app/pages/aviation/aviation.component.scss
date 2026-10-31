@@ -1,3 +1,4 @@
+@use '../travel/template-theme' as theme;
 :host {
     display: block;
     overflow: hidden;
@@ -162,7 +163,7 @@
 
 .hero h1 {
     margin: 20px 0;
-    font: 700 clamp(58px, 7vw, 92px)/.98 'Plus Jakarta Sans';
+    font: 700 clamp(40px, 5.6vw, 64px)/.98 'Plus Jakarta Sans';
     letter-spacing: -5px
 }
 
@@ -265,7 +266,7 @@
 .contact h2 {
     margin: 15px 0;
     color: #0d334b;
-    font: 700 clamp(36px, 4vw, 50px)/1.16 'Plus Jakarta Sans';
+    font: 700 clamp(32px, 3.2vw, 40px)/1.16 'Plus Jakarta Sans';
     letter-spacing: -2.5px
 }
 
@@ -373,7 +374,7 @@
 
 .representation { padding: 92px 0; background: #fff; }
 .representation__grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(50px, 8vw, 110px); align-items: center; }
-.representation h2 { margin: 15px 0; color: var(--brand-brown-dark); font: 600 clamp(34px, 4vw, 49px)/1.12 Georgia, serif; }
+.representation h2 { margin: 15px 0; color: var(--brand-brown-dark); font: 600 clamp(30px, 3.2vw, 40px)/1.12 Georgia, serif; }
 .representation p { color: #77817f; line-height: 1.8; }
 .representation__list { border-block: 1px solid #e4e0d8; }
 .representation__list article { min-height: 75px; display: grid; grid-template-columns: 45px 1fr; align-items: center; gap: 15px; border-bottom: 1px solid #e4e0d8; }
@@ -383,7 +384,7 @@
 
 .fleet {
     padding: 110px 0;
-    background: var(--brand-surface)
+    @include theme.surface-shapes;
 }
 
 .fleet__grid {
@@ -1017,7 +1018,7 @@ footer {
     border-color: var(--brand-beige);
 }
 
-.aviation-catalog { padding: 100px 0; background: var(--brand-surface); color: var(--brand-plum); }
+.aviation-catalog { padding: 100px 0; @include theme.surface-shapes; color: var(--brand-plum); }
 .aviation-catalog .section-head h2 { color: var(--brand-plum); }
 .aviation-catalog__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 42px; }
 .aviation-catalog__grid article { overflow: hidden; border: 1px solid #ddd7cc; border-radius: 3px; background: #fff; }

@@ -18,7 +18,7 @@ import { LanguageService } from '../../i18n/language.service';
 import { BookingApiService } from '../../services/booking-api.service';
 import { TravelNavComponent } from '../travel/travel-nav.component';
 import { CatalogApiService, PublicCatalogItem } from '../../services/catalog-api.service';
-import { localizedTourField, tourContent, tourDayCount } from './tour-content';
+import { localizedTourField, tourContent, tourDayCount, TourDay } from './tour-content';
 
 function localToday(): string {
   const date = new Date();
@@ -62,7 +62,21 @@ export class TourDetailsComponent {
   private readonly snackBar = inject(MatSnackBar);
   readonly tour = computed(() => this.state().tour);
   readonly content = computed(() => this.tour() ? tourContent(this.tour()!, this.languages.language()) : { introduction: '', days: [] });
-  readonly itinerary = computed(() => this.content().days);
+  readonly itinerary = computed(() => this.content().days.map(day => ({
+    ...day, paragraphs: day.text.split(/\n\s*\n/).map(text => text.trim()).filter(Boolean),
+  })));
+  readonly highlights = computed(() => this.itinerary()
+    .map(day => day.title)
+    .filter(title => !/^(arrival|departure|arrive|depart|الوصول|المغادرة)(\b|$|[\s:–-])/i.test(title.trim())));
+
+  dayImage(day: TourDay): string {
+    if (day.imageUrl) return day.imageUrl;
+    const subject = day.title.toLowerCase();
+    if (/giza|pyramid|saqqara|dahshur|sphinx|جيزة|أهرام|اهرام|سقارة|دهشور|الهول/.test(subject)) return '/pyramid.JPG';
+    if (/nile|sail|cruise|aswan|philae|نيل|إبحار|ابحار|أسوان|اسوان|فيلة/.test(subject)) return 'https://images.unsplash.com/photo-1623674567450-b600b67864a6?auto=format&fit=crop&w=2000&q=85';
+    if (/temple|luxor|karnak|edfu|kom ombo|valley|معبد|معابد|أقصر|الأقصر|كرنك|إدفو|ادفو|أمبو|وادي/.test(subject)) return '/cover.jpg';
+    return this.tour()?.imageUrl || '/cover.jpg';
+  }
   local(tour: PublicCatalogItem, field: 'title' | 'summary' | 'description' | 'location'): string { return localizedTourField(tour, field, this.languages.language()); }
   days(tour: PublicCatalogItem): number | null { return tourDayCount(tour); }
   readonly pending = signal(false);

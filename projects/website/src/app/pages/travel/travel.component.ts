@@ -40,6 +40,7 @@ import { LuxuryGallerySectionComponent } from './sections/luxury-gallery-section
 import { LuxuryIntroSectionComponent } from './sections/luxury-intro-section.component';
 import { PlanTourCtaSectionComponent } from './sections/plan-tour-cta-section.component';
 import { SignatureToursSectionComponent } from './sections/signature-tours-section.component';
+import { BrandIntroductionSectionComponent } from './sections/brand-introduction-section.component';
 import { TourCategoriesSectionComponent } from './sections/tour-categories-section.component';
 import { TravelNavComponent } from './travel-nav.component';
 import { WhyChooseUsSectionComponent } from './sections/why-choose-us-section.component';
@@ -78,7 +79,8 @@ interface Listing {
     PlanTourCtaSectionComponent,
     LuxuryGallerySectionComponent,
     TravelNavComponent,
-    TourCategoriesSectionComponent
+    TourCategoriesSectionComponent,
+    BrandIntroductionSectionComponent
 ],
   templateUrl: './travel.component.html',
   styleUrl: './travel.component.scss'

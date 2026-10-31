@@ -1,4 +1,51 @@
 export const EN = {
+  whyAncientPaths: {
+  "title": "Why Ancient Paths?",
+  "introduction": "A more thoughtful way to experience Egypt, where meaningful discovery is supported by comfort, personal care, and considered planning.",
+  "imageAlt": "A felucca sailing on the Nile beside the desert hills",
+  "signature": "Our signature difference",
+  "discovery": {
+    "title": "Privileged Discovery",
+    "text": "Discover more than the familiar view. Thoughtful timing, carefully arranged visits, and personal encounters create space to engage with Egypt beyond the surface. We shape each journey around your interests, helping you appreciate the places, people, and stories that make it distinctive."
+  },
+  "comfort": {
+    "title": "Refined Comfort",
+    "text": "Carefully chosen stays, comfortable transport, and a balanced pace give you space to relax and enjoy each part of your journey."
+  },
+  "hospitality": {
+    "title": "Personalized Hospitality",
+    "text": "Your preferences guide the details. From the way you like to explore to the small touches that make you feel welcome, the experience is shaped around you."
+  },
+  "culture": {
+    "title": "Cultural Depth",
+    "text": "Explore the stories behind the sites and connect with Egypt’s living culture through local knowledge, meaningful conversations, and a sense of place."
+  },
+  "confidence": {
+    "title": "Confidence",
+    "text": "Travel with clarity and reassurance, supported by thoughtful preparation, clear communication, and coordinated arrangements throughout your journey."
+  }
+},
+  brandIntroduction: {
+  "eyebrow": "Who we are",
+  "title": "Ancient Paths. A deeper connection to Egypt.",
+  "description": "Ancient Paths is a luxury travel brand creating personal journeys through Egypt. We bring together cultural discovery, carefully chosen experiences, and warm hospitality, shaping each visit around the people taking it. Our approach is thoughtful and unhurried, with room for the stories, encounters, and small details that make a place memorable.",
+  "vision": {
+    "title": "Our vision",
+    "text": "To make every journey a meaningful connection with Egypt, bringing its ancient heritage and living traditions into a personal travel experience."
+  },
+  "culture": {
+    "title": "Culture at the heart",
+    "text": "We look beyond the monuments to the stories, art, food, and everyday traditions that reveal the character of Egypt and its people."
+  },
+  "luxury": {
+    "title": "Considered luxury",
+    "text": "For us, luxury is time, comfort, and thoughtful choices: beautiful places to stay, a well-paced itinerary, and attention to the details that matter to you."
+  },
+  "hospitality": {
+    "title": "Hospitality, made personal",
+    "text": "We listen to your interests, preferences, and rhythm of travel, then shape the journey with a warm welcome and attentive care throughout your stay."
+  }
+},
   tailorMade: {
   backToReview: "Back to review",
   "page": {
@@ -318,6 +365,8 @@ export const EN = {
   "letSPlanYourEgyptLuxuryTour": "Let’s Plan Your Egypt Luxury Tour",
   "yourJourneyBeginsWithAConversationWhetherYou": "Your journey begins with a conversation. Whether you’re drawn to one of our curated Egypt Luxury Tours or dreaming of something entirely custom, we’re here to make it effortless, exclusive, and unforgettable. Let us craft a private experience that’s as unique as you are.",
   "requestATour": "Request A tour",
+  "pyramidDescription": "Step into the world of the pharaohs and discover Egypt at your own pace. From the pyramids of Giza and the Great Sphinx to the temples of Luxor and the timeless beauty of the Nile, we shape each journey around your interests. Enjoy expert local guides, carefully chosen stays, and thoughtful details that give you time to take in every place and its story.",
+  "pyramidImageAlt": "The pyramids of Giza and the Great Sphinx",
   "wonderfulExperiencesForYou": "Wonderful experiences for you",
   "findYourKindOfAdventure": "Find your kind of adventure",
   "exploreTours": "Explore tours",
@@ -445,6 +494,9 @@ export const EN = {
     "placeholderGroupNumber": "Number of travelers",
     "placeholderNotes": "Tell us about your preferences or special requests",
     departureDates: 'Travel dates',
+    aboutThisTour: "About this tour",
+    tourHighlights: "Tour highlights",
+    viewTour: "View tour",
     loadingTours: "Loading tours…",
     loadToursError: "We could not load the tours. Please try again.",
     retry: "Try again",

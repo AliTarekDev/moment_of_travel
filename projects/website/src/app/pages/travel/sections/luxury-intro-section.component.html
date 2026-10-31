@@ -1,21 +1,23 @@
-<section class="luxury-intro" id="about">
-  <div class="container luxury-intro__grid">
-    <div class="intro-collage" aria-hidden="true">
-      <img class="intro-collage__tall" src="https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&w=850&q=85" alt="" loading="lazy" />
-      <img src="https://images.unsplash.com/photo-1623674567450-b600b67864a6?auto=format&fit=crop&w=600&q=85" alt="" loading="lazy" />
-      <img src="https://images.unsplash.com/photo-1568322445389-f64ac2515020?auto=format&fit=crop&w=600&q=85" alt="" loading="lazy" />
-      <span class="intro-collage__note">{{ ('siteCopy.egyptYourWay' | t) }}</span>
-    </div>
+<section class="luxury-intro" id="about" aria-labelledby="luxury-intro-heading">
+  <div class="container luxury-intro__layout">
     <div class="luxury-intro__copy">
-      <span class="eyebrow">{{ ('siteCopy.letSGoTogether' | t) }}</span>
-      <h2>{{ ('siteCopy.extraordinaryJourneysThoughtfullyMade' | t) }}</h2>
-      <p>{{ ('siteCopy.fromThePyramidsToTheBanksOfThe' | t) }}</p>
-      <div class="intro-feature"><span><fa-icon [icon]="icons.personal" aria-hidden="true" /></span><div><h3>{{ ('siteCopy.aTripThatFeelsLikeYou' | t) }}</h3><p>{{ ('siteCopy.personalItinerariesShapedAroundYourPaceAndPassions' | t) }}</p></div></div>
-      <div class="intro-feature"><span><fa-icon [icon]="icons.compass" aria-hidden="true" /></span><div><h3>{{ ('siteCopy.localKnowledgePersonalCare' | t) }}</h3><p>{{ ('siteCopy.expertGuidesHandpickedStaysAndSeamlessPrivateTransfers' | t) }}</p></div></div>
-      <a class="section-button" [routerLink]="['/', languages.language(), 'tours']">{{ ('siteCopy.discoverOurTours' | t) }} <span class="direction-arrow"><fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></span></a>
-    </div>
-    <div class="luxury-intro__traveler" aria-hidden="true">
-      <img src="/imgs/about-slide-img.png.svg" alt="" width="217" height="546" loading="lazy" />
+      <span class="eyebrow">{{ 'siteCopy.letSGoTogether' | t }}</span>
+      <h2 id="luxury-intro-heading">{{ 'siteCopy.extraordinaryJourneysThoughtfullyMade' | t }}</h2>
+      <p class="luxury-intro__description">{{ 'siteCopy.fromThePyramidsToTheBanksOfThe' | t }}</p>
+      <div class="luxury-intro__features">
+        <div class="intro-feature">
+          <fa-icon class="intro-feature__icon" [icon]="icons.personal" aria-hidden="true" />
+          <div><h3>{{ 'siteCopy.aTripThatFeelsLikeYou' | t }}</h3><p>{{ 'siteCopy.personalItinerariesShapedAroundYourPaceAndPassions' | t }}</p></div>
+        </div>
+        <div class="intro-feature">
+          <fa-icon class="intro-feature__icon" [icon]="icons.compass" aria-hidden="true" />
+          <div><h3>{{ 'siteCopy.localKnowledgePersonalCare' | t }}</h3><p>{{ 'siteCopy.expertGuidesHandpickedStaysAndSeamlessPrivateTransfers' | t }}</p></div>
+        </div>
+      </div>
+      <a class="section-button" [routerLink]="['/', languages.language(), 'tours']">
+        {{ 'siteCopy.discoverOurTours' | t }}
+        <fa-icon class="direction-arrow" [icon]="icons.arrowRight" aria-hidden="true" />
+      </a>
     </div>
   </div>
 </section>

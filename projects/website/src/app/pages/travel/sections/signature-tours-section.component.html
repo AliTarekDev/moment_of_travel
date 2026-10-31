@@ -1,24 +1,45 @@
-<section class="signature-tours" id="catalog">
-  <div class="container">
-    <div class="signature-tours__heading"><span class="eyebrow">{{ ('tourUi.bestRecommendedExperiences' | t) }}</span><h2>{{ ('tourUi.yourNextGreatStoryStartsHere' | t) }}</h2><p>{{ ('tourUi.handpickedPrivateItinerariesToInspireYouEveryDetailCan' | t) }}</p></div>
-    @if (loading()) {
-      <p class="catalog-message" role="status">{{ 'tourUi.loadingTours' | t }}</p>
-    } @else if (loadError()) {
-      <div class="catalog-message" role="alert"><p>{{ 'tourUi.loadToursError' | t }}</p><button class="section-button" type="button" (click)="load()">{{ 'tourUi.retry' | t }}</button></div>
-    } @else if (!tours().length) {
-      <p class="catalog-message">{{ 'tourUi.noPublishedTours' | t }}</p>
-    } @else if (carouselReady()) {
-    <owl-carousel-o class="tours-carousel" [options]="carouselOptions()">
-      @for (tour of tours(); track tour.slug; let index = $index) {
-        <ng-template carouselSlide
-          [id]="tour.id" [dotContent]="dotContent(index)">
-          <article class="tour-card">
-            <div class="tour-card__image"><img [src]="tour.imageUrl || '/imgs/about-slide-img.png.svg'" [alt]="local(tour, 'title')" loading="lazy" /><span>{{ ('tourUi.privateTour' | t) }}</span></div>
-            <div class="tour-card__content"><small>{{ local(tour, 'location') || ('tourUi.tailorMadeItinerary' | t) }}</small><h3>{{ local(tour, 'title') }}</h3><p>{{ local(tour, 'summary') }}</p>@if (tour.price !== null) { <strong class="tour-card__price">{{ tour.price | currency:tour.currency:'symbol':'1.0-2' }}</strong> }<div class="tour-card__footer"><span>@if (days(tour); as count) { <fa-icon [icon]="icons.clock" aria-hidden="true" /> {{ count }} {{ 'tourUi.days' | t }} } @else { {{ 'tourUi.flexibleDuration' | t }} }</span><a [routerLink]="['/', languages.language(), 'tours', tour.slug]">{{ ('tourUi.planThisTour' | t) }} <span class="direction-arrow"><fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></span></a></div></div>
-          </article>
-        </ng-template>
-      }
-    </owl-carousel-o>
-    }
+<section class="signature-tours" id="catalog" aria-labelledby="signature-tours-heading">
+  <div class="container signature-tours__heading">
+    <span class="eyebrow">{{ 'tourUi.bestRecommendedExperiences' | t }}</span>
+    <h2 id="signature-tours-heading">{{ 'tourUi.yourNextGreatStoryStartsHere' | t }}</h2>
+    <p>{{ 'tourUi.handpickedPrivateItinerariesToInspireYouEveryDetailCan' | t }}</p>
   </div>
+  @if (loading()) {
+    <p class="catalog-message" role="status">{{ 'tourUi.loadingTours' | t }}</p>
+  } @else if (loadError()) {
+    <div class="catalog-message" role="alert">
+      <p>{{ 'tourUi.loadToursError' | t }}</p>
+      <button class="section-button" type="button" (click)="load()">{{ 'tourUi.retry' | t }}</button>
+    </div>
+  } @else if (!tours().length) {
+    <p class="catalog-message">{{ 'tourUi.noPublishedTours' | t }}</p>
+  } @else {
+    @for (tour of tours(); track tour.slug) {
+      <article class="tour-panel" [style.background-image]="'url(&quot;' + (tour.imageUrl || '/cover.jpg') + '&quot;)'">
+        <div class="container tour-panel__content">
+          @if (local(tour, 'location'); as location) {
+            <span class="tour-panel__location">{{ location }}</span>
+          }
+          <h3>{{ local(tour, 'title') }}</h3>
+          <p class="tour-panel__description">{{ local(tour, 'summary') }}</p>
+          <div class="tour-panel__details">
+            <span>
+              @if (days(tour); as count) {
+                <fa-icon [icon]="icons.clock" aria-hidden="true" /> {{ count }} {{ 'tourUi.days' | t }}
+              } @else {
+                {{ 'tourUi.flexibleDuration' | t }}
+              }
+            </span>
+            @if (tour.price !== null) {
+              <strong>{{ tour.price | currency:tour.currency:'symbol':'1.0-2' }}</strong>
+            }
+          </div>
+          <a class="section-button tour-panel__button" [routerLink]="['/', languages.language(), 'tours', tour.slug]" [attr.aria-label]="('tourUi.viewTour' | t) + ': ' + local(tour, 'title')">
+            {{ 'tourUi.viewTour' | t }}
+            <fa-icon class="direction-arrow" [icon]="icons.arrowRight" aria-hidden="true" />
+          </a>
+        </div>
+      </article>
+    }
+  }
 </section>

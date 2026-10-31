@@ -1,13 +1,18 @@
 @use './app/pages/features/tailor-made-itineraries/planner-theme';
 @use './app/shared/eyebrow';
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Montez&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Montez&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap');
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--brand-surface); color: var(--brand-plum); font-family: 'Inter', Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { font-size: 17px; margin: 0; background: var(--brand-surface); color: var(--brand-plum); font-family: 'Inter', Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 body.side-nav-open { overflow: hidden; }
 :root {
+  --website-font-body: clamp(17px, 1.1vw, 18px);
+  --website-font-heading: clamp(32px, 2.6vw, 48px);
+  --website-heading-font: Georgia, 'Times New Roman', serif;
+  --website-gutter: clamp(20px, 4vw, 64px);
+  --website-section-space: clamp(28px, 3.5vw, 56px);
   --brand-gold: #D4AF37;
   --brand-plum: #5C3A58;
   --brand-plum-dark: #3f263c;
@@ -20,23 +25,13 @@ body.side-nav-open { overflow: hidden; }
   --brand-brown-dark: var(--brand-plum-dark);
   --brand-cream: var(--brand-surface);
 }
+[dir='rtl'] { --website-heading-font: 'Noto Naskh Arabic', Georgia, serif; }
+body :is(h1, h2, h3, h4) { font-family: var(--website-heading-font); }
 [dir='rtl'] body { font-family: 'Noto Kufi Arabic', 'Inter', Arial, sans-serif; }
-[dir='rtl'] h1, [dir='rtl'] h2, [dir='rtl'] h3, [dir='rtl'] h4, [dir='rtl'] button, [dir='rtl'] input { font-family: 'Noto Kufi Arabic', 'Inter', Arial, sans-serif !important; }
+[dir='rtl'] :is(h1, h2, h3, h4) { font-family: var(--website-heading-font) !important; }
+[dir='rtl'] button, [dir='rtl'] input { font-family: 'Noto Kufi Arabic', 'Inter', Arial, sans-serif !important; }
 button,input { font: inherit; }
 img { display: block; }
-// Owl renders pagination inside its own component; share scoped travel slider styling.
-:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots { display: flex; justify-content: center; gap: 6px; margin-top: 24px; }
-:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot { display: inline-flex; padding: 0; background: transparent; }
-:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot > span,
-:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot.active > span,
-:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot:hover > span { display: block; width: auto; height: auto; margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
-:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot button { display: grid; place-items: center; width: 32px; height: 36px; padding: 0; border: 0; background: transparent; cursor: pointer; }
-:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot button span { width: 10px; height: 10px; margin: 0; border: 1px solid var(--brand-plum); border-radius: 50%; background: transparent; }
-:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot.active button span,
-:is(app-tour-categories-section, app-signature-tours-section) .owl-theme .owl-dots .owl-dot:hover button span { border-color: var(--brand-plum); background: var(--brand-gold); }
-:is(app-tour-categories-section, app-signature-tours-section) .owl-dot button:focus-visible { outline: 3px solid var(--brand-plum); outline-offset: 2px; border-radius: 50%; }
-app-signature-tours-section .owl-stage { display: flex; }
-app-signature-tours-section .owl-item { display: flex; flex-shrink: 0; float: none; }
 ::selection { background: var(--brand-brown); color: white; }
 
 .booking-success-toast {
@@ -53,4 +48,4 @@ app-signature-tours-section .owl-item { display: flex; flex-shrink: 0; float: no
 :root { --mat-form-field-subscript-text-size:14px; --mat-checkbox-label-text-size:16px; --mat-radio-label-text-size:16px; }
 
 // Comfortable reading size for section descriptions in both languages.
-body main p { font-size:clamp(16px,1.25vw,18px); line-height:1.9; }
+body main p { font-size: var(--website-font-body); line-height:1.9; }

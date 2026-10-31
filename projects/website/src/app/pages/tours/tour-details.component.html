@@ -2,15 +2,15 @@
 <main [attr.dir]="languages.language() === 'ar' ? 'rtl' : 'ltr'">
   @if (tour(); as selected) {
     <header class="details-hero">
-      <div class="hero-cover" [style.background-image]="'url(&quot;' + (selected.imageUrl || '/imgs/about-slide-img.png.svg') + '&quot;)'">
+      <div class="hero-cover" [style.background-image]="'url(&quot;' + (selected.imageUrl || '/cover.jpg') + '&quot;)'">
+        <h1 class="hero-title">{{ local(selected, 'title') }}</h1>
         <nav class="breadcrumbs" [attr.aria-label]="'tourUi.breadcrumb' | t"><a [routerLink]="['/', languages.language()]">{{ 'tourUi.home' | t }}</a><span aria-hidden="true">/</span><a [routerLink]="['/', languages.language(), 'tours']">{{ 'tourUi.tours' | t }}</a></nav>
       </div>
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">{{ 'tourUi.yourNextJourney' | t }}</span>
-          <h1>{{ local(selected, 'title') }}</h1>
+          <h2>{{ 'tourUi.aboutThisTour' | t }}</h2>
           @if (local(selected, 'location')) { <p class="hero-location"><span aria-hidden="true"><fa-icon [icon]="icons.location" aria-hidden="true" /></span>{{ local(selected, 'location') }}</p> }
-          <p class="hero-summary">{{ local(selected, 'summary') }}</p>
+          <p class="tour-description">{{ content().introduction || local(selected, 'summary') }}</p>
         </div>
         <div class="hero-booking">
           <div class="hero-facts">
@@ -21,14 +21,39 @@
         </div>
       </div>
     </header>
-    <section class="itinerary container">
-      @if (itinerary().length) { <span class="eyebrow">{{ 'tourUi.dayByDay' | t }}</span> }
-      <h2>{{ ('tourUi.yourItinerary' | t) }}</h2>
-      @if (content().introduction) { <p class="tour-description">{{ content().introduction }}</p> }
-      @if (!content().introduction && !itinerary().length) { <p>{{ 'tourUi.itineraryOnRequest' | t }}</p> }
-      <ol class="day-list">
+    @if (highlights().length) {
+      <section class="tour-highlights" aria-labelledby="tour-highlights-heading">
+        <div class="container">
+          <h2 id="tour-highlights-heading">{{ 'tourUi.tourHighlights' | t }}</h2>
+          <ul class="highlights-list">
+            @for (highlight of highlights(); track $index) {
+              <li>{{ highlight }}</li>
+            }
+          </ul>
+        </div>
+      </section>
+    }
+    <section class="itinerary" aria-labelledby="itinerary-heading">
+      <div class="container itinerary-heading">
+        <span class="eyebrow">{{ 'tourUi.dayByDay' | t }}</span>
+        <h2 id="itinerary-heading">{{ 'tourUi.yourItinerary' | t }}</h2>
+        @if (!itinerary().length) { <p>{{ 'tourUi.itineraryOnRequest' | t }}</p> }
+      </div>
+      <ol class="day-list" role="list">
         @for (day of itinerary(); track $index) {
-          <li><span class="day-number">{{ ('tourUi.day' | t) }} {{ $index + 1 }}</span><div><h3>{{ day.title }}</h3><p>{{ day.text }}</p></div></li>
+          <li class="day-panel" [style.background-image]="'url(&quot;' + dayImage(day) + '&quot;)'">
+            <div class="container day-panel__content">
+              <div class="day-panel__copy">
+                <span class="day-number">{{ 'tourUi.day' | t }} {{ $index + 1 }}</span>
+                <h3>{{ day.title }}</h3>
+                <div class="day-panel__description">
+                  @for (paragraph of day.paragraphs; track $index) {
+                    <p>{{ paragraph }}</p>
+                  }
+                </div>
+              </div>
+            </div>
+          </li>
         }
       </ol>
     </section>

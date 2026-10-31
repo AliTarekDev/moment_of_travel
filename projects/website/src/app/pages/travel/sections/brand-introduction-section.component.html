@@ -1,0 +1,19 @@
+<section class="brand-introduction" id="brand-introduction" aria-labelledby="brand-introduction-heading">
+  <div class="container">
+    <div class="brand-introduction__opening">
+      <div>
+        <span class="eyebrow">{{ 'brandIntroduction.eyebrow' | t }}</span>
+        <h2 id="brand-introduction-heading">{{ 'brandIntroduction.title' | t }}</h2>
+      </div>
+      <p class="brand-introduction__description">{{ 'brandIntroduction.description' | t }}</p>
+    </div>
+    <div class="brand-introduction__pillars">
+      @for (pillar of pillars; track pillar) {
+        <article class="brand-introduction__pillar">
+          <h3>{{ ('brandIntroduction.' + pillar + '.title') | t }}</h3>
+          <p>{{ ('brandIntroduction.' + pillar + '.text') | t }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>

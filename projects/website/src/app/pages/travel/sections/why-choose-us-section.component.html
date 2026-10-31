@@ -1,27 +1,30 @@
-<section class="why-luxury" id="services">
+<section class="why-luxury" id="services" aria-labelledby="why-ancient-paths-heading">
   <div class="container">
     <div class="why-luxury__heading">
-      <span class="eyebrow">{{ ('siteCopy.ourDifference' | t) }}</span>
-      <h2>{{ ('siteCopy.whyChooseUs' | t) }}</h2>
-      <strong>{{ ('siteCopy.luxuryTravelPlannedWithPrecisionPrivacyAndDepth' | t) }}</strong>
-      <p>
-        {{
-        ('siteCopy.weOfferMoreThanJustToursWeProvide' | t)
-        }}
-      </p>
+      <span class="eyebrow">{{ 'siteCopy.ourDifference' | t }}</span>
+      <h2 id="why-ancient-paths-heading">{{ 'whyAncientPaths.title' | t }}</h2>
+      <p>{{ 'whyAncientPaths.introduction' | t }}</p>
     </div>
-
+    <article class="privileged-discovery" id="exclusive-visits" aria-labelledby="privileged-discovery-heading">
+      <div>
+        <span class="privileged-discovery__label">{{ 'whyAncientPaths.signature' | t }}</span>
+        <h3 id="privileged-discovery-heading">{{ 'whyAncientPaths.discovery.title' | t }}</h3>
+      </div>
+      <p>{{ 'whyAncientPaths.discovery.text' | t }}</p>
+    </article>
     <div class="feature-grid">
-      @for (card of cards; track card) {
-        <article class="feature-card" [id]="card.id">
-          <img [src]="card.image" [alt]="(card.titleKey | t)" loading="lazy">
-          <div class="feature-card__body">
-            <h3>{{ (card.titleKey | t) }}</h3>
-            <p>{{ (card.textKey | t) }}</p>
-            <a href="#booking">{{ ('siteCopy.seeDetails' | t) }}</a>
-          </div>
-        </article>
-      }
+      <img class="feature-grid__image" src="/2.jpg" [alt]="'whyAncientPaths.imageAlt' | t" width="3672" height="2066" loading="lazy" />
+      <div class="feature-list">
+        @for (strength of strengths; track strength.key) {
+          <article class="feature-card" [id]="strength.id">
+            <span class="feature-card__icon"><fa-icon [icon]="strength.icon" aria-hidden="true" /></span>
+            <div class="feature-card__copy">
+              <h3>{{ ('whyAncientPaths.' + strength.key + '.title') | t }}</h3>
+              <p>{{ ('whyAncientPaths.' + strength.key + '.text') | t }}</p>
+            </div>
+          </article>
+        }
+      </div>
     </div>
   </div>
 </section>

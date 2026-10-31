@@ -10,7 +10,7 @@ export type CatalogType = 'trip' | 'offer' | 'destination' | 'hotel' | 'flight' 
 
 export interface PublicCatalogItem {
   durationDays?: number | null;
-  itinerary?: { titleAr: string; titleEn: string; textAr: string; textEn: string }[];
+  itinerary?: { imageUrl?: string | null; titleAr: string; titleEn: string; textAr: string; textEn: string }[];
   id: string;
   slug: string;
   division: CatalogDivision;

@@ -1,24 +1,13 @@
 <section class="categories" id="categories" aria-labelledby="categories-heading">
-  <div class="container">
-    <div class="section-heading">
-      <span class="eyebrow">{{ ('siteCopy.wonderfulExperiencesForYou' | t) }}</span>
-      <h2 id="categories-heading">{{ ('siteCopy.findYourKindOfAdventure' | t) }}</h2>
+  <div class="container categories__layout">
+    <div class="categories__content">
+      <h2 id="categories-heading">{{ 'siteCopy.findYourKindOfAdventure' | t }}</h2>
+      <p>{{ 'siteCopy.pyramidDescription' | t }}</p>
+      <a class="section-button" href="#catalog">
+        {{ 'siteCopy.exploreTours' | t }}
+        <fa-icon class="direction-arrow" [icon]="icons.arrowRight" aria-hidden="true" />
+      </a>
     </div>
-    @if (carouselReady()) {
-    <owl-carousel-o class="categories-carousel" [options]="carouselOptions()">
-      @for (category of categories; track category.id; let index = $index) {
-        <ng-template carouselSlide
-          [id]="category.id" [dotContent]="dotContent(index)">
-          <a href="#catalog" class="category-card" [class.category-card--alternate]="index % 2 === 1">
-            <div class="category-card__image">
-              <img [src]="category.image" [alt]="(category.titleKey | t)" loading="lazy" draggable="false" />
-            </div>
-            <h3>{{ (category.titleKey | t) }}</h3>
-            <span>{{ ('siteCopy.exploreTours' | t) }} <span class="direction-arrow"><fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></span></span>
-          </a>
-        </ng-template>
-      }
-    </owl-carousel-o>
-    }
+    <img class="categories__image" src="/pyramid.JPG" [alt]="'siteCopy.pyramidImageAlt' | t" width="3936" height="2624" loading="lazy" />
   </div>
 </section>

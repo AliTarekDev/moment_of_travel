@@ -1,30 +1,17 @@
 <app-travel-nav id="top" />
 <main>
   <section class="hero">
-    <div class="hero__wash"></div>
+    <div class="hero__wash" aria-hidden="true"></div>
     <div class="container hero__content">
-      <span class="eyebrow">{{
-        "siteCopy.getUnforgettableMomentsWithUs" | t
-      }}</span>
-      <h1>{{ "travel.heroTitle" | t }}<br />{{ "travel.heroAccent" | t }}</h1>
-      <p>{{ "travel.heroText" | t }}</p>
-      <div class="hero__actions">
+      <!-- <h1>{{ "travel.heroTitle" | t }} {{ "travel.heroAccent" | t }}</h1> -->
+      <!-- <div class="hero__actions">
         <a class="button" href="#catalog"
           >{{ "siteCopy.exploreTours2" | t }}
-          <span class="direction-arrow"><fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></span></a
-        >
-        <a class="hero__secondary" href="#about"
-          >{{ "siteCopy.discoverOurStory" | t }}
-          <span class="direction-arrow"><fa-icon [icon]="icons.arrowUpRight" aria-hidden="true" /></span></a
-        >
-      </div>
+          <span class="direction-arrow"
+            ><fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></span
+        ></a>
+      </div> -->
     </div>
-    <a
-      class="hero__scroll"
-      href="#categories"
-      [attr.aria-label]="'siteCopy.discoverMore' | t"
-      ><fa-icon [icon]="icons.arrowDown" aria-hidden="true" /></a
-    >
   </section>
 
   <section class="trip-search container" aria-labelledby="trip-search-title">
@@ -60,11 +47,17 @@
     /></label>
     <button class="button" type="button" (click)="scrollToBooking()">
       {{ "siteCopy.planMyTrip" | t }}
-      <span class="direction-arrow"><fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></span>
+      <span class="direction-arrow"
+        ><fa-icon [icon]="icons.arrowRight" aria-hidden="true"
+      /></span>
     </button>
   </section>
 
   <app-tour-categories-section />
+  <app-brand-introduction-section />
+  <app-signature-tours-section />
+  <app-why-choose-us-section />
+  <app-luxury-intro-section />
 
   <section class="destinations section">
     <div class="container">
@@ -94,17 +87,16 @@
                 {{ destination.nameKey | t }}
               </h3>
             </div>
-            <span class="destination-card__arrow direction-arrow"><fa-icon [icon]="icons.arrowUpRight" aria-hidden="true" /></span>
+            <span class="destination-card__arrow direction-arrow"
+              ><fa-icon [icon]="icons.arrowUpRight" aria-hidden="true"
+            /></span>
           </button>
         }
       </div>
     </div>
   </section>
 
-  <app-luxury-intro-section />
-  <app-signature-tours-section />
   <app-luxury-gallery-section />
-  <app-why-choose-us-section />
   <app-plan-tour-cta-section />
   <!-- <section class="booking-section" id="booking">
         <div class="container booking-grid">

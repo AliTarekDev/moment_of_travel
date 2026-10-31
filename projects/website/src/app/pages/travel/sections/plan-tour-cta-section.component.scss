@@ -1,8 +1,44 @@
 @use '../template-theme' as theme;
 @include theme.foundation;
-.plan-cta { padding-block: var(--travel-section-space); background: linear-gradient(90deg, #3f263ce6, #5c3a58b3), url('https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&w=1800&q=85') center 55% / cover; }
-.plan-cta__card { max-width: 750px; margin-inline: auto; text-align: center; }
-.plan-cta .eyebrow, .plan-cta h2 { color: white; }
-.plan-cta p { color: #e5f0f2; font-size: 15px; }
-.plan-cta a { display: inline-flex; min-height: 54px; justify-content: center; align-items: center; margin-top: 16px; padding: 14px 30px; background: var(--travel-accent); border-radius: 99px; color: var(--brand-plum-dark); text-decoration: none; }
-.plan-cta a:hover { background: var(--travel-accent-dark); color: white; }
+
+.plan-cta {
+    margin-block: 0;
+    display: flow-root;
+    padding-block: var(--travel-section-space);
+    background: linear-gradient(rgb(18 13 17 /20%), rgb(18 13 17 / 20%)), url('/5.jpg') center 80% / cover no-repeat;
+}
+
+.plan-cta__card {
+    max-width: 750px;
+    margin-inline: auto;
+    padding: clamp(24px, 3vw, 36px);
+    text-align: center;
+}
+
+.plan-cta .eyebrow,
+.plan-cta h2 {
+    color: white;
+}
+
+.plan-cta p {
+    color: #e5f0f2;
+    font-size: 17px;
+}
+
+.plan-cta a {
+    display: inline-flex;
+    min-height: 54px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    padding: 14px 30px;
+    background: var(--travel-accent);
+    border-radius: 99px;
+    color: var(--brand-plum-dark);
+    text-decoration: none;
+}
+
+.plan-cta a:hover {
+    background: var(--travel-accent-dark);
+    color: white;
+}

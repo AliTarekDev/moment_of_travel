@@ -7,12 +7,39 @@
   --travel-ink: var(--brand-plum);
   --travel-muted: var(--brand-muted);
   --travel-gutter: clamp(20px, 4.5vw, 70px);
-  --travel-section-space: clamp(64px, 7vw, 110px);
+  --travel-section-space: var(--website-section-space);
   background: #fff;
   color: var(--travel-ink);
-  font: 400 16px/1.8 'Inter', sans-serif;
+  font: 400 18px/1.8 'Inter', sans-serif;
 }
-.tours-hero { padding-block: clamp(60px, 8vw, 110px); text-align: center; background: var(--brand-surface-soft); }
-h1 { margin: 16px 0; font-size: clamp(42px, 5vw, 68px); }
-.breadcrumb { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
-.breadcrumb a { color: var(--travel-accent-dark); text-decoration: none; }
+
+.tours-hero {
+  padding-block: clamp(60px, 8vw, 110px);
+  text-align: center;
+  background: linear-gradient(rgb(18 13 17 / 12%), rgb(18 13 17 / 12%)), url('/6.jpg') center / cover no-repeat;
+  color: #fff;
+}
+
+.tours-hero .eyebrow,
+.tours-hero h1,
+.tours-hero p,
+.tours-hero .breadcrumb a {
+  color: #fff;
+}
+
+h1 {
+  margin: 16px 0;
+  font-size: clamp(40px, 4vw, 58px);
+}
+
+.breadcrumb {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.breadcrumb a {
+  color: var(--travel-accent-dark);
+  text-decoration: none;
+}

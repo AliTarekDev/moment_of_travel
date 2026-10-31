@@ -1,6 +1,6 @@
 import { PublicCatalogItem } from '../../services/catalog-api.service';
 
-export interface TourDay { title: string; text: string; }
+export interface TourDay { title: string; text: string; imageUrl?: string | null; }
 export interface TourContent { introduction: string; days: TourDay[]; }
 
 // The dashboard writes explicit day headings; plain descriptions stay plain text.
@@ -40,6 +40,7 @@ export function tourContent(item: PublicCatalogItem, language: 'ar' | 'en'): Tou
   const suffix = language === 'ar' ? 'Ar' : 'En';
   const fallback = language === 'ar' ? 'En' : 'Ar';
   return { introduction: legacy.introduction, days: item.itinerary.map(day => ({
+    imageUrl: day.imageUrl,
     title: day[`title${suffix}`] || day[`title${fallback}`],
     text: day[`text${suffix}`] || day[`text${fallback}`],
   })) };
