@@ -1,0 +1,25 @@
+@use '../travel/template-theme' as theme;
+.booking-section { padding-block: var(--travel-section-space); @include theme.surface-shapes; border-block: 1px solid rgb(92 58 88 / 8%); scroll-margin-top: 100px; }
+.booking-card { max-width: 1000px; }
+.booking-card form { margin-top: 32px; padding: clamp(20px, 4vw, 40px); background: white; border-radius: var(--website-radius); border: 1px solid #e8e1e7; border-top: 2px solid var(--brand-gold); box-shadow: var(--website-shadow); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
+ .booking-field { min-width: 0; }
+.booking-field__label { display: block; margin-bottom: 10px; color: var(--brand-plum); font-size: 16px; line-height: 1.7; font-weight: 600; }
+mat-form-field { width: 100%; min-width: 0; --mdc-outlined-text-field-focus-outline-color: var(--brand-plum); --mdc-outlined-text-field-focus-label-text-color: var(--brand-plum); --mdc-outlined-text-field-caret-color: var(--brand-plum); --mdc-outlined-text-field-container-shape: 2px; --mat-form-field-container-text-font: 'Inter', Arial, sans-serif; --mdc-outlined-text-field-label-text-font: 'Inter', Arial, sans-serif; --mdc-outlined-text-field-label-text-size: 16px; --mdc-outlined-text-field-label-text-weight: 500; }
+textarea { resize: vertical; }
+input[matInput]:focus-visible, textarea[matInput]:focus-visible { outline: none; }
+.field-error { color: #a12b40; }
+:host-context([dir='rtl']) mat-form-field { --mat-form-field-container-text-font: 'Noto Kufi Arabic', Tahoma, sans-serif; --mdc-outlined-text-field-label-text-font: 'Noto Kufi Arabic', Tahoma, sans-serif; }
+.full-width { grid-column: 1 / -1; }
+button:disabled { opacity: .65; cursor: wait; }
+.not-found { padding-block: 100px; }
+
+@media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+
+.tour-description, .day-list p { white-space: pre-line; overflow-wrap: anywhere; }
+
+@media (max-width: 560px) {
+  .hero-booking { padding: 20px; }
+  .hero-facts { width: 100%; justify-content: space-between; gap: 20px; }
+  .hero-booking .section-button { width: 100%; min-width: 0; }
+}

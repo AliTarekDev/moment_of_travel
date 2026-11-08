@@ -1,0 +1,18 @@
+.itinerary { background: var(--brand-surface-soft); }
+.itinerary-heading { padding-block: var(--travel-section-space); text-align: center; }
+.itinerary-heading h2 { max-width: 32ch; margin-inline: auto; font-weight: 400; }
+.day-list { list-style: none; padding: 0; margin: 0; }
+.day-panel { position: relative; isolation: isolate; display: flex; align-items: center; min-height: clamp(560px, 75svh, 800px); padding-block: clamp(48px, 6vw, 88px); scroll-margin-top: 120px; background-color: var(--brand-plum-dark); background-size: cover; background-position: center; background-repeat: no-repeat; }
+.day-panel::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(25 15 24 / 14%), rgb(25 15 24 / 32%)); }
+.day-panel--reverse::before { background: linear-gradient(90deg, rgb(25 15 24 / 32%), rgb(25 15 24 / 14%)); }
+.day-panel__copy { width: min(60%, 680px); margin-left: auto; margin-right: 0; padding: clamp(24px, 3vw, 40px); border: 1px solid #ffffff26; border-radius: var(--website-radius); background: rgb(34 22 32 / 92%); color: #fff; font-weight: 400; }
+.day-panel--reverse .day-panel__copy { margin-left: 0; margin-right: auto; }
+.day-number { display: block; margin-bottom: 20px; color: var(--brand-gold); font-family: var(--website-heading-font); font-size: clamp(32px, 3.2vw, 48px); font-weight: 400; line-height: 1.25; }
+.day-number::after { content: ''; display: block; width: 64px; height: 1px; margin-top: 20px; background: var(--brand-gold); }
+.day-panel h3 { margin: 0 0 20px; color: #fff; font-size: clamp(26px, 2.4vw, 38px); font-weight: 400; line-height: 1.4; overflow-wrap: break-word; }
+.day-panel p { margin: 0; color: #fff; font-weight: 400; }
+.day-panel p + p { margin-top: 20px; }
+@media (max-width: 900px) { .benefits-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; } .day-panel__copy { width: min(70%, 680px); } }
+@media (max-width: 700px) { .day-panel__copy { width: 100%; } .day-panel { min-height: 520px; padding-block: 48px; } }
+@media (max-width: 700px) { .day-panel::before { background: rgb(25 15 24 / 26%); } }
+@media (max-width: 560px) { .benefits-grid { grid-template-columns: minmax(0, 1fr); } }
