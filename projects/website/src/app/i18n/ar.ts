@@ -1,4 +1,5 @@
 export const AR = {
+  itineraryPhoto: { view: 'عرض الصورة', close: 'إغلاق الصورة والعودة إلى برنامج الرحلة' },
   carousel: { previous: 'الشريحة السابقة', next: 'الشريحة التالية', chooseSlide: 'اختيار شريحة', slide: 'الشريحة' },
   gallery: { previous: 'الصور السابقة', next: 'الصور التالية', egypt: 'مصر', templeArchitecture: 'عمارة المعابد المصرية القديمة', tombInterior: 'ممر داخل مقبرة مصرية قديمة', nileView: 'إطلالة على نهر النيل', desertJourney: 'رحلة بالجمال في الصحراء المصرية' },
   whyAncientPaths: {

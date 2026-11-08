@@ -43,6 +43,9 @@
         @for (day of itinerary(); track $index) {
           <li class="day-panel" [class.day-panel--reverse]="$odd" [id]="'itinerary-day-' + ($index + 1)" [style.background-image]="'url(&quot;' + dayImage(day) + '&quot;)'">
             <div class="container day-panel__content">
+              <div class="day-panel__photo-action">
+                <button type="button" class="day-panel__photo-button" (click)="viewDayPhoto(day)" [attr.aria-label]="('itineraryPhoto.view' | t) + ': ' + day.title" aria-haspopup="dialog">{{ 'itineraryPhoto.view' | t }} <span aria-hidden="true">⤢</span></button>
+              </div>
               <div class="day-panel__copy">
                 <span class="day-number">{{ 'tourUi.day' | t }} {{ $index + 1 }}</span>
                 <h3 dir="auto">{{ day.title }}</h3>
@@ -55,6 +58,7 @@
         }
       </ol>
     </section>
+    <app-luxury-gallery-section [images]="galleryImages()" [heading]="local(selected, 'title')" />
     <section #bookingSection class="booking-section" id="book-trip">
       <div class="container booking-card">
         <span class="eyebrow">{{ ('tourUi.letUsPlanTheDetails' | t) }}</span>
@@ -76,7 +80,6 @@
         </form>
       </div>
     </section>
-    <app-luxury-gallery-section [images]="galleryImages()" [heading]="local(selected, 'title')" />
   } @else if (loadingTour()) {
     <section class="container not-found" role="status">{{ 'tourUi.loadingTours' | t }}</section>
   } @else if (tourLoadError()) {

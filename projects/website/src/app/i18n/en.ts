@@ -1,4 +1,5 @@
 export const EN = {
+  itineraryPhoto: { view: 'View photo', close: 'Close photo and return to itinerary' },
   carousel: { previous: 'Previous slide', next: 'Next slide', chooseSlide: 'Choose a slide', slide: 'Slide' },
   gallery: { previous: 'Previous photos', next: 'Next photos', egypt: 'Egypt', templeArchitecture: 'Ancient Egyptian temple architecture', tombInterior: 'Ancient Egyptian tomb interior', nileView: 'Views over the Nile', desertJourney: 'Camel journey through the Egyptian desert' },
   whyAncientPaths: {

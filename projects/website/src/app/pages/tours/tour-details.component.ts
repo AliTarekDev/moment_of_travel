@@ -14,6 +14,8 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroupDirective, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { catchError, finalize, map, of, startWith, switchMap } from 'rxjs';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { TourPhotoDialogComponent } from './tour-photo-dialog.component';
 import { LanguageService } from '../../i18n/language.service';
 import { BookingApiService } from '../../services/booking-api.service';
 import { TravelNavComponent } from '../travel/travel-nav.component';
@@ -39,7 +41,7 @@ function emailsMatch(control: AbstractControl): ValidationErrors | null {
 @Component({
   selector: 'app-tour-details', standalone: true,
   providers: [provideNativeDateAdapter(), { provide: MatDatepickerIntl, useClass: WebsiteDatepickerIntl }],
-  imports: [MatDatepickerModule, MatFormFieldModule, MatInputModule, CurrencyPipe, TranslatePipe, RouterLink, ReactiveFormsModule, TravelNavComponent, LuxuryGallerySectionComponent, MatSnackBarModule, FontAwesomeModule],
+  imports: [MatDialogModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, CurrencyPipe, TranslatePipe, RouterLink, ReactiveFormsModule, TravelNavComponent, LuxuryGallerySectionComponent, MatSnackBarModule, FontAwesomeModule],
   templateUrl: './tour-details.component.html', styleUrls: ['./tour-details.component.scss', './tour-itinerary.scss', './tour-booking.scss'],
 })
 export class TourDetailsComponent {
@@ -49,6 +51,17 @@ export class TourDetailsComponent {
     isErrorState: (control, parent) => !!(control && (control.touched || parent?.submitted) && (control.invalid || control.parent?.hasError('emailMismatch'))),
   };
   readonly languages = inject(LanguageService);
+  private readonly photoDialog = inject(MatDialog);
+
+  viewDayPhoto(day: TourDay): void {
+    this.photoDialog.open(TourPhotoDialogComponent, {
+      data: { image: this.dayImage(day), title: day.title },
+      width: '1100px', maxWidth: '96vw', maxHeight: '94dvh',
+      ariaLabelledBy: 'tour-photo-title',
+      direction: this.languages.language() === 'ar' ? 'rtl' : 'ltr',
+      autoFocus: 'first-tabbable', restoreFocus: true,
+    });
+  }
   private readonly catalog = inject(CatalogApiService);
   private readonly state = toSignal(inject(ActivatedRoute).paramMap.pipe(
     switchMap(params => this.catalog.publishedTour(params.get('slug') ?? '').pipe(
