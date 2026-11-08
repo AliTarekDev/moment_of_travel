@@ -14,14 +14,16 @@
   } @else if (!tours().length) {
     <p class="catalog-message">{{ 'tourUi.noPublishedTours' | t }}</p>
   } @else {
-    @for (tour of tours(); track tour.slug) {
-      <article class="tour-panel" [style.background-image]="'url(&quot;' + (tour.imageUrl || '/cover.jpg') + '&quot;)'">
-        <div class="container tour-panel__content">
+    <div class="container">
+    <ng-template #tourCard let-tour>
+      <article class="tour-panel">
+        <img appImageFallback class="tour-panel__image" [src]="tour.imageUrl || '/cover.jpg'" [alt]="local(tour, 'title')" width="800" height="500" loading="lazy" />
+        <div class="tour-panel__content">
           @if (local(tour, 'location'); as location) {
-            <span class="tour-panel__location">{{ location }}</span>
+            <span class="tour-panel__location" dir="auto">{{ location }}</span>
           }
-          <h3>{{ local(tour, 'title') }}</h3>
-          <p class="tour-panel__description">{{ local(tour, 'summary') }}</p>
+          <h3 dir="auto">{{ local(tour, 'title') }}</h3>
+          <p class="tour-panel__description" dir="auto">{{ local(tour, 'summary') }}</p>
           <div class="tour-panel__details">
             <span>
               @if (days(tour); as count) {
@@ -34,12 +36,35 @@
               <strong>{{ tour.price | currency:tour.currency:'symbol':'1.0-2' }}</strong>
             }
           </div>
-          <a class="section-button tour-panel__button" [routerLink]="['/', languages.language(), 'tours', tour.slug]" [attr.aria-label]="('tourUi.viewTour' | t) + ': ' + local(tour, 'title')">
+          <a class="section-button tour-panel__button" [owlRouterLink]="['/', languages.language(), 'tours', tour.slug]" [stopLink]="isDragging" [attr.aria-label]="('tourUi.viewTour' | t) + ': ' + local(tour, 'title')">
             {{ 'tourUi.viewTour' | t }}
             <fa-icon class="direction-arrow" [icon]="icons.arrowRight" aria-hidden="true" />
           </a>
         </div>
       </article>
+    </ng-template>
+    @if (carousel()) {
+      <div class="tour-carousel" role="region" [attr.aria-label]="'tourUi.bestRecommendedExperiences' | t">
+        <owl-carousel-o appAccessibleCarousel #tourCarousel [options]="carouselOptions()" (dragging)="isDragging = $event.dragging">
+          @for (tour of tours(); track tour.slug) {
+            <ng-template carouselSlide [id]="tour.slug"><ng-container [ngTemplateOutlet]="tourCard" [ngTemplateOutletContext]="{ $implicit: tour }" /></ng-template>
+          }
+        </owl-carousel-o>
+        @if (tours().length > 1) {
+          <div class="tour-carousel__footer">
+            <a class="all-tours-link" [routerLink]="['/', languages.language(), 'tours']">{{ 'tourUi.exploreOurTours' | t }} <span aria-hidden="true">↗</span></a>
+            <div class="carousel-controls">
+              <button type="button" (click)="tourCarousel.prev()" [attr.aria-label]="'carousel.previous' | t"><span aria-hidden="true">←</span></button>
+              <button type="button" (click)="tourCarousel.next()" [attr.aria-label]="'carousel.next' | t"><span aria-hidden="true">→</span></button>
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="tour-grid">
+        @for (tour of tours(); track tour.slug) { <ng-container [ngTemplateOutlet]="tourCard" [ngTemplateOutletContext]="{ $implicit: tour }" /> }
+      </div>
     }
+    </div>
   }
 </section>

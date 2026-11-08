@@ -14,8 +14,8 @@ export class FiveStarHotelsComponent {
   readonly languages = inject(LanguageService);
   readonly failedImages = signal<ReadonlySet<string>>(new Set());
   readonly hotels = [
-    { id: 'menaHouse', image: 'https://cache.marriott.com/content/dam/marriott-renditions/CAIMN/caimn-grounds-0019-hor-wide.jpg?output-quality=80&downsize=1200px:*', website: 'https://www.marriott.com/en-us/hotels/caimn-marriott-mena-house-cairo/overview/' },
-    { id: 'nilePlaza', image: 'https://press.fourseasons.com/content/dam/fourseasons/images/web/CAI/CAI_962_original.jpg', website: 'https://www.fourseasons.com/caironp/' },
+    { id: 'menaHouse', image: '/18.jpg', website: 'https://www.marriott.com/en-us/hotels/caimn-marriott-mena-house-cairo/overview/' },
+    { id: 'nilePlaza', image: '/16.jpg', website: 'https://www.fourseasons.com/caironp/' },
   ];
   imageUnavailable(id: string): void { this.failedImages.update(ids => new Set([...ids, id])); }
 }

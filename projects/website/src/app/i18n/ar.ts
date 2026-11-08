@@ -1,4 +1,6 @@
 export const AR = {
+  carousel: { previous: 'الشريحة السابقة', next: 'الشريحة التالية', chooseSlide: 'اختيار شريحة', slide: 'الشريحة' },
+  gallery: { previous: 'الصور السابقة', next: 'الصور التالية', egypt: 'مصر', templeArchitecture: 'عمارة المعابد المصرية القديمة', tombInterior: 'ممر داخل مقبرة مصرية قديمة', nileView: 'إطلالة على نهر النيل', desertJourney: 'رحلة بالجمال في الصحراء المصرية' },
   whyAncientPaths: {
   "title": "لماذا Ancient Paths؟",
   "introduction": "اكتشف مصر بأسلوب أكثر اهتمامًا بالتفاصيل، يجمع بين المعرفة والراحة والرعاية الشخصية والتخطيط المدروس.",
@@ -563,6 +565,7 @@ export const AR = {
     "bookYourTrip": "احجز رحلتك",
     "dayByDay": "يوماً بيوم",
     "yourItinerary": "برنامج رحلتك",
+    "dayDetails": "تفاصيل اليوم",
     "suggestedItineraryOurTeamWillConfirmTheScheduleAvailability": "برنامج مقترح. سيؤكد فريقنا المواعيد والتوافر والخدمات المشمولة معك قبل الرحلة.",
     "day": "اليوم",
     "letUsPlanTheDetails": "دعنا نخطط التفاصيل",

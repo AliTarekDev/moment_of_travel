@@ -18,7 +18,7 @@ import { LanguageService } from '../../i18n/language.service';
   standalone: true,
   imports: [CommonModule, RouterLink, ReactiveFormsModule, LanguageSwitchComponent, TranslatePipe, MatButtonModule, MatInputModule, FontAwesomeModule],
   templateUrl: './aviation.component.html',
-  styleUrl: './aviation.component.scss'
+  styleUrls: ['./aviation.component.scss', './aviation-sections.scss', './aviation-contact.scss']
 })
 export class AviationComponent {
   private readonly forms = inject(FormBuilder);

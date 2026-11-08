@@ -17,6 +17,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { LanguageService } from '../../i18n/language.service';
 import { BookingApiService } from '../../services/booking-api.service';
 import { TravelNavComponent } from '../travel/travel-nav.component';
+import { GalleryImage, LuxuryGallerySectionComponent } from '../travel/sections/luxury-gallery-section.component';
 import { CatalogApiService, PublicCatalogItem } from '../../services/catalog-api.service';
 import { localizedTourField, tourContent, tourDayCount, TourDay } from './tour-content';
 
@@ -38,8 +39,8 @@ function emailsMatch(control: AbstractControl): ValidationErrors | null {
 @Component({
   selector: 'app-tour-details', standalone: true,
   providers: [provideNativeDateAdapter(), { provide: MatDatepickerIntl, useClass: WebsiteDatepickerIntl }],
-  imports: [MatDatepickerModule, MatFormFieldModule, MatInputModule, CurrencyPipe, TranslatePipe, RouterLink, ReactiveFormsModule, TravelNavComponent, MatSnackBarModule, FontAwesomeModule],
-  templateUrl: './tour-details.component.html', styleUrl: './tour-details.component.scss',
+  imports: [MatDatepickerModule, MatFormFieldModule, MatInputModule, CurrencyPipe, TranslatePipe, RouterLink, ReactiveFormsModule, TravelNavComponent, LuxuryGallerySectionComponent, MatSnackBarModule, FontAwesomeModule],
+  templateUrl: './tour-details.component.html', styleUrls: ['./tour-details.component.scss', './tour-itinerary.scss', './tour-booking.scss'],
 })
 export class TourDetailsComponent {
   readonly calendarHeader = WebsiteCalendarHeaderComponent;
@@ -65,16 +66,33 @@ export class TourDetailsComponent {
   readonly itinerary = computed(() => this.content().days.map(day => ({
     ...day, paragraphs: day.text.split(/\n\s*\n/).map(text => text.trim()).filter(Boolean),
   })));
-  readonly highlights = computed(() => this.itinerary()
-    .map(day => day.title)
-    .filter(title => !/^(arrival|departure|arrive|depart|الوصول|المغادرة)(\b|$|[\s:–-])/i.test(title.trim())));
+
+  readonly galleryImages = computed<GalleryImage[]>(() => {
+    const tour = this.tour();
+    const language = this.languages.language();
+    if (tour?.gallery?.length) return tour.gallery.map(photo => ({
+      image: photo.imageUrl,
+      caption: language === 'ar' ? photo.captionAr || photo.captionEn : photo.captionEn || photo.captionAr,
+    }));
+    // Keep future catalog entries specific to their own itinerary too.
+    return [...new Map(this.itinerary().map(day => {
+      const image = this.dayImage(day);
+      return [image, { image, caption: day.title }] as const;
+    })).values()];
+  });
 
   dayImage(day: TourDay): string {
     if (day.imageUrl) return day.imageUrl;
     const subject = day.title.toLowerCase();
+    if (/arrival|arrive|الوصول/.test(subject)) return '/18.jpg';
+    if (/departure|depart|المغادرة/.test(subject)) return '/16.jpg';
+    if (/abu simbel|أبو سمبل|ابو سمبل/.test(subject)) return '/7.jpg';
     if (/giza|pyramid|saqqara|dahshur|sphinx|جيزة|أهرام|اهرام|سقارة|دهشور|الهول/.test(subject)) return '/pyramid.JPG';
-    if (/nile|sail|cruise|aswan|philae|نيل|إبحار|ابحار|أسوان|اسوان|فيلة/.test(subject)) return 'https://images.unsplash.com/photo-1623674567450-b600b67864a6?auto=format&fit=crop&w=2000&q=85';
-    if (/temple|luxor|karnak|edfu|kom ombo|valley|معبد|معابد|أقصر|الأقصر|كرنك|إدفو|ادفو|أمبو|وادي/.test(subject)) return '/cover.jpg';
+    if (/valley|وادي/.test(subject)) return '/17.jpg';
+    if (/hatshepsut|حتشبسوت/.test(subject)) return '/19.jpg';
+    if (/philae|فيلة/.test(subject)) return '/15.jpg';
+    if (/nile|sail|cruise|aswan|philae|نيل|إبحار|ابحار|أسوان|اسوان|فيلة/.test(subject)) return '/8.jpg';
+    if (/temple|luxor|karnak|edfu|kom ombo|معبد|معابد|أقصر|الأقصر|كرنك|إدفو|ادفو|أمبو/.test(subject)) return '/6.jpg';
     return this.tour()?.imageUrl || '/cover.jpg';
   }
   local(tour: PublicCatalogItem, field: 'title' | 'summary' | 'description' | 'location'): string { return localizedTourField(tour, field, this.languages.language()); }

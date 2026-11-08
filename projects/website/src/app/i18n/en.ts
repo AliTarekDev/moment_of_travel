@@ -1,4 +1,6 @@
 export const EN = {
+  carousel: { previous: 'Previous slide', next: 'Next slide', chooseSlide: 'Choose a slide', slide: 'Slide' },
+  gallery: { previous: 'Previous photos', next: 'Next photos', egypt: 'Egypt', templeArchitecture: 'Ancient Egyptian temple architecture', tombInterior: 'Ancient Egyptian tomb interior', nileView: 'Views over the Nile', desertJourney: 'Camel journey through the Egyptian desert' },
   whyAncientPaths: {
   "title": "Why Ancient Paths?",
   "introduction": "A more thoughtful way to experience Egypt, where meaningful discovery is supported by comfort, personal care, and considered planning.",
@@ -563,6 +565,7 @@ export const EN = {
     "bookYourTrip": "Book your trip",
     "dayByDay": "Day by day",
     "yourItinerary": "Your itinerary",
+    "dayDetails": "Day details",
     "suggestedItineraryOurTeamWillConfirmTheScheduleAvailability": "Suggested itinerary. Our team will confirm the schedule, availability, and inclusions with you before your trip.",
     "day": "Day",
     "letUsPlanTheDetails": "Let us plan the details",

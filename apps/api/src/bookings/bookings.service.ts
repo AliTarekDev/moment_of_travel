@@ -5,12 +5,14 @@ import { Repository } from 'typeorm';
 import { UsersService } from '../users/users.service';
 import { Booking, BookingStatus, PaymentStatus } from './booking.entity';
 import { BookingQueryDto, CreateBookingDto, UpdateBookingDto, UpdatePaymentDto } from './bookings.dto';
+import { BookingNotificationsService } from './booking-notifications.service';
 
 @Injectable()
 export class BookingsService {
   constructor(
     @InjectRepository(Booking) private readonly bookings: Repository<Booking>,
     private readonly users: UsersService,
+    private readonly notifications: BookingNotificationsService,
   ) {}
 
   async createPublic(dto: CreateBookingDto): Promise<Booking> {
@@ -30,7 +32,9 @@ export class BookingsService {
       customerNotes: dto.customerNotes?.trim() || null,
       reference: await this.createReference(),
     });
-    return this.bookings.save(booking);
+    const saved = await this.bookings.save(booking);
+    await this.notifications.notifyNewBooking(saved);
+    return saved;
   }
 
   async findAll(query: BookingQueryDto) {

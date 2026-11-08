@@ -5,23 +5,23 @@
     margin-block: 0;
     display: flow-root;
     padding-block: var(--travel-section-space);
-    background: linear-gradient(rgb(18 13 17 /20%), rgb(18 13 17 / 20%)), url('/5.jpg') center 80% / cover no-repeat;
+    background: linear-gradient(100deg, rgb(36 22 34 / 50%), rgb(36 22 34 / 30%)), url('/3.jpg') center / cover no-repeat;
+    border-top: 1px solid #e7e2e5;
 }
 
 .plan-cta__card {
-    max-width: 750px;
+    max-width: 1000px;
     margin-inline: auto;
     padding: clamp(24px, 3vw, 36px);
     text-align: center;
+    text-shadow: 0 1px 4px rgb(0 0 0 / 45%);
 }
 
-.plan-cta .eyebrow,
-.plan-cta h2 {
-    color: white;
-}
+.plan-cta .eyebrow { color: #f0d68b; }
+.plan-cta h2 { color: #fff; max-width: 24ch; margin-inline: auto; }
 
 .plan-cta p {
-    color: #e5f0f2;
+    color: #fff;
     font-size: 17px;
 }
 
@@ -32,10 +32,11 @@
     align-items: center;
     margin-top: 16px;
     padding: 14px 30px;
-    background: var(--travel-accent);
-    border-radius: 99px;
+    background: var(--brand-gold);
+    border-radius: 8px;
     color: var(--brand-plum-dark);
     text-decoration: none;
+    text-shadow: none;
 }
 
 .plan-cta a:hover {

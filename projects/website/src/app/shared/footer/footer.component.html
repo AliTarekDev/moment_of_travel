@@ -1,41 +1,27 @@
-  <footer id="footer" [attr.dir]="languages.language() === 'ar' ? 'rtl' : 'ltr'">
-    <div class="container footer__grid">
-      <div class="footer__brand">
-        <a
-          class="brand brand--logo"
-          [routerLink]="['/', languages.language()]"
-          [attr.aria-label]="('siteCopy.ancientPathsHome' | t)"
-          ><img src="/SLOGAN.png" [alt]="'common.brandName' | t"
-        /></a>
-        <p>{{ "travel.aboutText" | t }}</p>
-      </div>
-      <div>
-        <h4>{{ "travel.navServices" | t }}</h4>
-        <a [routerLink]="['/', languages.language()]" fragment="services">{{ "travel.airlineRepTitle" | t }}</a
-        ><a [routerLink]="['/', languages.language()]" fragment="services">{{ "travel.hajjTitle" | t }}</a
-        ><a [routerLink]="['/', languages.language()]" fragment="services">{{ "travel.ticketsTitle" | t }}</a
-        ><a [routerLink]="['/', languages.language()]" fragment="services">{{ "travel.specialTravelTitle" | t }}</a>
-      </div>
-      <div>
-        <h4>{{ "travel.navAbout" | t }}</h4>
-        <a [routerLink]="['/', languages.language()]" fragment="about">{{ "travel.visionTitle" | t }}</a
-        ><a [routerLink]="['/', languages.language()]" fragment="about">{{ "travel.missionTitle" | t }}</a
-        ><a [routerLink]="['/', languages.language()]" fragment="about">{{ "travel.valuesTitle" | t }}</a>
-      </div>
-      <div>
-        <h4>{{ "travel.navContact" | t }}</h4>
-        <a [routerLink]="['/', languages.language(), 'contact']">{{ "travel.plan" | t }}</a
-        ><a href="mailto:info@ancientpathseg.com">info&#64;ancientpathseg.com</a>
-      </div>
-      <div>
-        <h4>{{ "travel.navContact" | t }}</h4>
-        <p dir="ltr">+966 54 944 0048</p>
-        <p>info&#64;ancientpathseg.com</p>
-        <p>{{ "travel.contactLocation" | t }}</p>
-      </div>
+<footer id="footer" [attr.dir]="languages.language() === 'ar' ? 'rtl' : 'ltr'">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <a class="brand brand--logo" [routerLink]="['/', languages.language()]" [attr.aria-label]="'siteCopy.ancientPathsHome' | t"><img src="/SLOGAN.png" [alt]="'common.brandName' | t" /></a>
+      <p>{{ 'travel.heroText' | t }}</p>
     </div>
-    <div class="container footer__bottom">
-      <span>© {{ year }} Ancient Paths. {{ ('tourUi.allRightsReserved' | t) }}</span
-      ><span>{{ ('tourUi.madeForTheJoyOfGoingSomewhereNew' | t) }}</span>
+    <div>
+      <h4>{{ 'travel.navServices' | t }}</h4>
+      <a [routerLink]="['/', languages.language(), 'features', 'exclusive-visits']">{{ 'travel.navExclusiveVisits' | t }}</a>
+      <a [routerLink]="['/', languages.language(), 'features', 'five-star-hotels']">{{ 'travel.navFiveStarHotels' | t }}</a>
+      <a [routerLink]="['/', languages.language(), 'features', 'tailor-made-itineraries']">{{ 'travel.navTailorMadeItineraries' | t }}</a>
     </div>
-  </footer>
+    <div>
+      <h4>{{ 'travel.navAbout' | t }}</h4>
+      <a [routerLink]="['/', languages.language(), 'tours']">{{ 'travel.navDestinations' | t }}</a>
+      <a [routerLink]="['/', languages.language()]" fragment="about">{{ 'brandIntroduction.eyebrow' | t }}</a>
+      <a [routerLink]="['/', languages.language(), 'contact']">{{ 'travel.plan' | t }}</a>
+    </div>
+    <div>
+      <h4>{{ 'travel.navContact' | t }}</h4>
+      <a href="tel:+966549440048" dir="ltr">+966 54 944 0048</a>
+      <a href="mailto:info@ancientpathseg.com">info&#64;ancientpathseg.com</a>
+      <p>{{ 'travel.contactLocation' | t }}</p>
+    </div>
+  </div>
+  <div class="container footer__bottom"><span>© {{ year }} Ancient Paths. {{ 'tourUi.allRightsReserved' | t }}</span><span>{{ 'tourUi.madeForTheJoyOfGoingSomewhereNew' | t }}</span></div>
+</footer>

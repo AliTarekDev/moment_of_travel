@@ -1,23 +1,15 @@
 @use '../template-theme' as theme;
 @include theme.foundation;
-
-.why-luxury { display: flow-root; margin: 0; padding-block: var(--travel-section-space); @include theme.surface-shapes; }
-.why-luxury__heading { max-width: 850px; margin: 0 auto 32px; text-align: center; }
-.why-luxury__heading h2 { margin-block: 12px 16px; }
-.why-luxury__heading p { margin: 0; }
-.privileged-discovery { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); align-items: center; gap: 24px clamp(32px, 5vw, 80px); padding: clamp(24px, 4vw, 48px); border-top: 2px solid var(--brand-gold); background: var(--brand-plum-dark); color: #fff; scroll-margin-top: 120px; }
-.privileged-discovery__label { color: var(--brand-gold); font-size: 14px; letter-spacing: .08em; text-transform: uppercase; }
-.privileged-discovery h3 { margin: 12px 0 0; color: #fff; font-size: clamp(32px, 2.8vw, 44px); line-height: 1.25; }
-.privileged-discovery p { margin: 0; color: #fff; font-size: var(--website-font-body); }
-.feature-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 5vw, 80px); margin-top: 32px; }
-.feature-grid__image { display: block; width: 100%; height: auto; border-radius: 2px; }
-.feature-list { display: grid; gap: 24px; min-width: 0; }
-.feature-card { display: flex; align-items: flex-start; gap: 20px; min-width: 0; padding-bottom: 24px; border-bottom: 1px solid rgb(92 58 88 / 16%); scroll-margin-top: 120px; }
-.feature-card:last-child { padding-bottom: 0; border-bottom: 0; }
-.feature-card__icon { display: grid; place-items: center; flex-shrink: 0; width: 52px; height: 52px; border: 1px solid rgb(92 58 88 / 20%); background: var(--brand-surface-soft); color: var(--brand-plum); font-size: 23px; }
-.feature-card__copy { min-width: 0; }
-.feature-card h3 { margin: 0 0 8px; font-size: clamp(24px, 1.7vw, 28px); line-height: 1.4; }
-.feature-card p { margin: 0; font-size: var(--website-font-body); }
-@media (max-width: 900px) { .feature-grid { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 760px) { .privileged-discovery { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 480px) { .feature-card { gap: 14px; } .feature-card__icon { width: 44px; height: 44px; font-size: 20px; } }
+.why-luxury { padding-block: var(--travel-section-space); background: #fff; }
+.why-luxury__heading { max-width: 850px; margin-bottom: 48px; text-align: center; }
+.why-luxury__heading p { max-width: 64ch; margin: 0 auto; }
+.experience-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; width: calc(100% - var(--website-gutter) * 2); max-width: var(--website-content-width); margin-inline: auto; }
+.experience { display: flex; flex-direction: column; min-width: 0; overflow: hidden; border: 1px solid var(--website-border); border-radius: var(--website-radius); background: var(--brand-surface-soft); scroll-margin-top: 120px; }
+.experience__image { width: 100%; height: 280px; object-fit: cover; }
+.experience__copy { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: clamp(24px, 3vw, 36px); }
+.experience__number { color: var(--brand-plum); font-size: 13px; letter-spacing: .12em; opacity: .65; }
+.experience h3 { margin: 12px 0 16px; font-size: clamp(28px, 2.5vw, 34px); line-height: 1.25; }
+.experience p { margin: 0 0 26px; }
+.experience .section-button { margin-top: auto; background: transparent; color: var(--brand-plum); justify-content: space-between; min-width: 170px; }
+.experience .section-button:hover { background: var(--brand-plum); color: #fff; }
+@media (max-width: 700px) { .experience-list { grid-template-columns: minmax(0, 1fr); gap: 24px; } .experience__image { height: 240px; } }

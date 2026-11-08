@@ -1,24 +1,30 @@
 @use './app/pages/features/tailor-made-itineraries/planner-theme';
 @use './app/shared/eyebrow';
+@use './app/pages/travel/template-theme' as travel;
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Montez&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap');
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+app-root { @include travel.shared-foundation; }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 body { font-size: 17px; margin: 0; background: var(--brand-surface); color: var(--brand-plum); font-family: 'Inter', Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 body.side-nav-open { overflow: hidden; }
 :root {
-  --website-font-body: clamp(17px, 1.1vw, 18px);
-  --website-font-heading: clamp(32px, 2.6vw, 48px);
+  --website-font-body: clamp(16px, 1vw, 17px);
+  --website-font-heading: clamp(30px, 3.2vw, 48px);
+  --website-content-width: 1240px;
   --website-heading-font: Georgia, 'Times New Roman', serif;
-  --website-gutter: clamp(20px, 4vw, 64px);
-  --website-section-space: clamp(28px, 3.5vw, 56px);
+  --website-gutter: clamp(20px, 4vw, 48px);
+  --website-section-space: clamp(56px, 7vw, 104px);
+  --website-radius: 16px;
+  --website-border: #e5dfe2;
+  --website-shadow: 0 18px 50px rgb(63 38 60 / 7%);
   --brand-gold: #D4AF37;
   --brand-plum: #5C3A58;
   --brand-plum-dark: #3f263c;
-  --brand-muted: #685461;
-  --brand-surface: #faf7f2;
-  --brand-surface-soft: #fdfbf8;
+  --brand-muted: #625e63;
+  --brand-surface: #f7f6f3;
+  --brand-surface-soft: #fbfaf8;
   // Preserve existing palette names used by the gateway and aviation pages.
   --brand-beige: var(--brand-gold);
   --brand-brown: var(--brand-plum);
@@ -30,8 +36,16 @@ body :is(h1, h2, h3, h4) { font-family: var(--website-heading-font); }
 [dir='rtl'] body { font-family: 'Noto Kufi Arabic', 'Inter', Arial, sans-serif; }
 [dir='rtl'] :is(h1, h2, h3, h4) { font-family: var(--website-heading-font) !important; }
 [dir='rtl'] button, [dir='rtl'] input { font-family: 'Noto Kufi Arabic', 'Inter', Arial, sans-serif !important; }
-button,input { font: inherit; }
-img { display: block; }
+button,input,select,textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:where(button, a, input, textarea, select, summary):focus-visible { outline: 3px solid var(--brand-plum); outline-offset: 4px; }
+button:not(:disabled), summary { cursor: pointer; }
+main { min-width: 0; }
+body :is(h1, h2, h3, p) { overflow-wrap: break-word; }
+img { display: block; max-width: 100%; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+}
 ::selection { background: var(--brand-brown); color: white; }
 
 .booking-success-toast {
@@ -48,4 +62,18 @@ img { display: block; }
 :root { --mat-form-field-subscript-text-size:14px; --mat-checkbox-label-text-size:16px; --mat-radio-label-text-size:16px; }
 
 // Comfortable reading size for section descriptions in both languages.
-body main p { font-size: var(--website-font-body); line-height:1.9; }
+body main p { font-size: var(--website-font-body); line-height:1.8; }
+[dir='rtl'] main p { line-height: 1.95; }
+
+// Shared accessible controls for every Owl carousel.
+.carousel-controls { display: flex; align-items: center; gap: 10px; }
+.carousel-controls button { display: grid; place-items: center; width: 48px; height: 48px; padding: 0; border: 1px solid #cbbdc7; border-radius: 50%; background: transparent; color: var(--brand-plum); font-size: 24px; transition: background-color .2s, color .2s; }
+.carousel-controls button:hover { background: var(--brand-plum); color: #fff; }
+.carousel-controls--light button { border-color: #ffffff70; color: #fff; background: #ffffff0d; }
+.carousel-controls--light button:hover { background: #fff; color: var(--brand-plum-dark); }
+.carousel-controls--light button:focus-visible { outline-color: #fff; }
+[dir='rtl'] .carousel-controls button span { transform: scaleX(-1); }
+.hero__slides .owl-stage-outer { height: 100%; }
+.tour-carousel .owl-stage { display: flex; }
+.tour-carousel .owl-item { display: flex; flex: 0 0 auto; }
+.tour-carousel .owl-item > div { display: flex; width: 100%; }

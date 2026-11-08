@@ -7,6 +7,38 @@ export const LOCAL_TOURS: PublicCatalogItem[] = [
   {
     "id": "local-egypt-luxury-7-days",
     "slug": "egypt-luxury-7-days",
+    "gallery": [
+      {
+        "imageUrl": "/pyramid.JPG",
+        "captionAr": "أهرامات الجيزة",
+        "captionEn": "Pyramids of Giza"
+      },
+      {
+        "imageUrl": "/8.jpg",
+        "captionAr": "الإبحار على النيل",
+        "captionEn": "Sailing on the Nile"
+      },
+      {
+        "imageUrl": "/6.jpg",
+        "captionAr": "معابد الأقصر",
+        "captionEn": "Luxor temples"
+      },
+      {
+        "imageUrl": "/17.jpg",
+        "captionAr": "مقابر مصر القديمة",
+        "captionEn": "Ancient Egyptian tombs"
+      },
+      {
+        "imageUrl": "/19.jpg",
+        "captionAr": "معبد حتشبسوت",
+        "captionEn": "Temple of Hatshepsut"
+      },
+      {
+        "imageUrl": "/15.jpg",
+        "captionAr": "أعمدة المعابد المصرية",
+        "captionEn": "Egyptian temple columns"
+      }
+    ],
     "division": "travel",
     "type": "trip",
     "titleAr": "",
@@ -17,7 +49,7 @@ export const LOCAL_TOURS: PublicCatalogItem[] = [
     "descriptionEn": "Tour Description:\n\nEmbark on an exceptional 7-days luxury small group tour of Egypt and discover the treasures of this ancient land in a whole new light. From the iconic Pyramids of Giza to the renowned temples of Luxor and Karnak, this meticulously planned itinerary will lead you on an extraordinary expedition through Egypt's diverse history and heritage. Experience unmatched luxury during your stay at carefully selected 5-star hotels and while cruising along the Nile River on a deluxe cruise ship. With a small group of like-minded travelers, you'll receive personalized attention from expert Egyptologists who will accompany you to the country's famous landmarks and hidden gems, offering profound insights into Egypt's intriguing past. Delve into the magnificent Pyramids of Giza, including the Great Sphinx and the Valley Temple, and be awestruck by their grandeur and enigmas. Uncover the marvels of Luxor's West Bank, such as the Valley of the Kings, the Temple of Hatshepsut, and the Colossi of Memnon. Immerse yourself in the grandeur of Karnak temples, one of the largest temple complexes in the world. Cruise along the Nile River, explore ancient temples and charming villages along the way, and witness the breathtaking landscapes that have enchanted travelers for centuries. Immerse yourself in the lively local culture with visits to bustling markets, traditional villages, and local artisan workshops. Taste authentic Egyptian cuisine, renowned for its bold flavors and unique ingredients, and savor gourmet meals at selected restaurants and on board your luxury cruise ship. Throughout the tour, you'll enjoy VIP treatment, skip-the-line access, and exclusive experiences that will make your journey truly unforgettable. Travel in luxury and style with private transportation, and unwind in lavish accommodations offering top-notch amenities and service. This 7-days luxury small group tour of Egypt is tailored for travelers seeking an immersive and opulent experience, blending the finest elements of history, culture, and luxury. Join us in this extraordinary adventure of a lifetime.",
     "locationAr": "",
     "locationEn": "Cairo, Luxor & Aswan, Egypt",
-    "imageUrl": "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&w=1000&q=84",
+    "imageUrl": "/pyramid.JPG",
     "price": null,
     "currency": "USD",
     "startDate": null,
@@ -72,6 +104,38 @@ export const LOCAL_TOURS: PublicCatalogItem[] = [
   {
     "id": "local-egypt-luxury-10-days",
     "slug": "egypt-luxury-10-days",
+    "gallery": [
+      {
+        "imageUrl": "/pyramid.JPG",
+        "captionAr": "أهرامات الجيزة",
+        "captionEn": "Pyramids of Giza"
+      },
+      {
+        "imageUrl": "/6.jpg",
+        "captionAr": "معابد الأقصر",
+        "captionEn": "Luxor temples"
+      },
+      {
+        "imageUrl": "/19.jpg",
+        "captionAr": "معبد حتشبسوت",
+        "captionEn": "Temple of Hatshepsut"
+      },
+      {
+        "imageUrl": "/7.jpg",
+        "captionAr": "أبو سمبل",
+        "captionEn": "Abu Simbel"
+      },
+      {
+        "imageUrl": "/17.jpg",
+        "captionAr": "مقابر مصر القديمة",
+        "captionEn": "Ancient Egyptian tombs"
+      },
+      {
+        "imageUrl": "/18.jpg",
+        "captionAr": "بانوراما النيل",
+        "captionEn": "Nile panorama"
+      }
+    ],
     "division": "travel",
     "type": "trip",
     "titleAr": "",
@@ -82,7 +146,7 @@ export const LOCAL_TOURS: PublicCatalogItem[] = [
     "descriptionEn": "Embark on an exceptional 10-day luxury small group tour of Egypt and discover the treasures of this ancient land in a whole new light. From the iconic Pyramids of Giza to the renowned temples of Luxor and Karnak, this meticulously planned itinerary will lead you on an extraordinary expedition through Egypt's diverse history and heritage. Experience unmatched luxury during your stay at carefully selected 5-star hotels and while cruising along the Nile River on a deluxe cruise ship. With a small group of like-minded travelers, you'll receive personalized attention from expert Egyptologists who will accompany you to the country's famous landmarks and hidden gems, offering profound insights into Egypt's intriguing past. Delve into the magnificent Pyramids of Giza, including the Great Sphinx and the Valley Temple, and be awestruck by their grandeur and enigmas. Uncover the marvels of Luxor's West Bank, such as the Valley of the Kings, the Temple of Hatshepsut, and the Colossi of Memnon. Immerse yourself in the grandeur of Karnak and Luxor temples, two of the largest temple complexes in the world. Cruise along the Nile River, explore ancient temples and charming villages along the way, and witness the breathtaking landscapes that have enchanted travelers for centuries. Immerse yourself in the lively local culture with visits to bustling markets, traditional villages, and local artisan workshops. Taste authentic Egyptian cuisine, renowned for its bold flavors and unique ingredients, and savor gourmet meals at selected restaurants and on board your luxury cruise ship. Throughout the tour, you'll enjoy VIP treatment, skip-the-line access, and exclusive experiences that will make your journey truly unforgettable. Travel in luxury and style with private transportation and unwind in lavish accommodations offering top-notch amenities and service. This 10-day luxury small group tour of Egypt is tailored for travelers seeking an immersive and opulent experience, blending the finest elements of history, culture, and luxury. Join us on this extraordinary adventure of a lifetime.",
     "locationAr": "",
     "locationEn": "Cairo, Luxor & Aswan, Egypt",
-    "imageUrl": "https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=1000&q=84",
+    "imageUrl": "/9.jpg",
     "price": null,
     "currency": "USD",
     "startDate": null,
@@ -155,6 +219,38 @@ export const LOCAL_TOURS: PublicCatalogItem[] = [
   {
     "id": "local-egypt-dahabiya-12-days",
     "slug": "egypt-dahabiya-12-days",
+    "gallery": [
+      {
+        "imageUrl": "/8.jpg",
+        "captionAr": "الإبحار على النيل",
+        "captionEn": "Sailing on the Nile"
+      },
+      {
+        "imageUrl": "/2.jpg",
+        "captionAr": "فلوكة على النيل",
+        "captionEn": "Felucca on the Nile"
+      },
+      {
+        "imageUrl": "/16.jpg",
+        "captionAr": "مناظر النيل",
+        "captionEn": "Nile landscapes"
+      },
+      {
+        "imageUrl": "/15.jpg",
+        "captionAr": "أعمدة المعابد المصرية",
+        "captionEn": "Egyptian temple columns"
+      },
+      {
+        "imageUrl": "/7.jpg",
+        "captionAr": "أبو سمبل",
+        "captionEn": "Abu Simbel"
+      },
+      {
+        "imageUrl": "/pyramid.JPG",
+        "captionAr": "أهرامات الجيزة",
+        "captionEn": "Pyramids of Giza"
+      }
+    ],
     "division": "travel",
     "type": "trip",
     "titleAr": "",
@@ -165,7 +261,7 @@ export const LOCAL_TOURS: PublicCatalogItem[] = [
     "descriptionEn": "",
     "locationAr": "",
     "locationEn": "Cairo, Luxor & Aswan, Egypt",
-    "imageUrl": "https://images.unsplash.com/photo-1623674567450-b600b67864a6?auto=format&fit=crop&w=1000&q=84",
+    "imageUrl": "/8.jpg",
     "price": null,
     "currency": "USD",
     "startDate": null,
@@ -250,6 +346,48 @@ export const LOCAL_TOURS: PublicCatalogItem[] = [
   {
     "id": "local-egypt-luxury-14-days",
     "slug": "egypt-luxury-14-days",
+    "gallery": [
+      {
+        "imageUrl": "/pyramid.JPG",
+        "captionAr": "أهرامات الجيزة",
+        "captionEn": "Pyramids of Giza"
+      },
+      {
+        "imageUrl": "/10.jpg",
+        "captionAr": "نقوش مصر القديمة",
+        "captionEn": "Ancient Egyptian reliefs"
+      },
+      {
+        "imageUrl": "/6.jpg",
+        "captionAr": "معابد الأقصر",
+        "captionEn": "Luxor temples"
+      },
+      {
+        "imageUrl": "/17.jpg",
+        "captionAr": "مقابر مصر القديمة",
+        "captionEn": "Ancient Egyptian tombs"
+      },
+      {
+        "imageUrl": "/11.jpg",
+        "captionAr": "تفاصيل أبو سمبل",
+        "captionEn": "Abu Simbel details"
+      },
+      {
+        "imageUrl": "/19.jpg",
+        "captionAr": "معبد حتشبسوت",
+        "captionEn": "Temple of Hatshepsut"
+      },
+      {
+        "imageUrl": "/18.jpg",
+        "captionAr": "بانوراما النيل",
+        "captionEn": "Nile panorama"
+      },
+      {
+        "imageUrl": "/8.jpg",
+        "captionAr": "الإبحار على النيل",
+        "captionEn": "Sailing on the Nile"
+      }
+    ],
     "division": "travel",
     "type": "trip",
     "titleAr": "",
@@ -260,7 +398,7 @@ export const LOCAL_TOURS: PublicCatalogItem[] = [
     "descriptionEn": "Embark on a unique journey through the marvels of Egypt with our exclusive 14-day luxury small-group tour. This meticulously planned itinerary promises an exceptional blend of history, culture, and luxury, all while staying in carefully selected 5-star accommodations. Join our team of expert Egyptologists as you uncover the iconic landmarks and hidden treasures of this ancient land. From the grand Pyramids of Giza to the renowned temples of Luxor and Karnak, you will unravel the mysteries of Egypt's past and be mesmerized by its breathtaking riches. Experience unmatched luxury as you sail along the Nile River on a deluxe cruise ship, exploring ancient temples, charming villages, and stunning landscapes. With a small group of like-minded travelers, enjoy personalized attention and exclusive access to top sites, ensuring a truly unique journey. Immerse yourself in the local culture with visits to vibrant markets, traditional villages, and local artisan workshops. Taste authentic Egyptian cuisine, renowned for its bold flavors and unique ingredients, and relish gourmet meals at selected restaurants and on board your luxury cruise. Throughout the tour, enjoy VIP treatment, private transfers, and exceptional service from our expert guides. Unwind in luxurious accommodations offering supreme comfort and amenities, guaranteeing a peaceful night's rest after each day of discovery. This 14-day luxury small-group tour of Egypt is tailored for travelers seeking an immersive and lavish experience. Explore the finest aspects of Egypt's history, culture, and natural wonders in style, and create enduring memories that will stay with you forever. Reserve your spot on this exceptional tour now and set off on an extraordinary journey through the marvels of Egypt!",
     "locationAr": "",
     "locationEn": "Cairo, Luxor & Aswan, Egypt",
-    "imageUrl": "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&w=1000&q=84",
+    "imageUrl": "/7.jpg",
     "price": null,
     "currency": "USD",
     "startDate": null,

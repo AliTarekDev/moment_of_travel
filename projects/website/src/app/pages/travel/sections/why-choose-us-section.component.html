@@ -1,30 +1,20 @@
 <section class="why-luxury" id="services" aria-labelledby="why-ancient-paths-heading">
-  <div class="container">
-    <div class="why-luxury__heading">
-      <span class="eyebrow">{{ 'siteCopy.ourDifference' | t }}</span>
-      <h2 id="why-ancient-paths-heading">{{ 'whyAncientPaths.title' | t }}</h2>
-      <p>{{ 'whyAncientPaths.introduction' | t }}</p>
-    </div>
-    <article class="privileged-discovery" id="exclusive-visits" aria-labelledby="privileged-discovery-heading">
-      <div>
-        <span class="privileged-discovery__label">{{ 'whyAncientPaths.signature' | t }}</span>
-        <h3 id="privileged-discovery-heading">{{ 'whyAncientPaths.discovery.title' | t }}</h3>
-      </div>
-      <p>{{ 'whyAncientPaths.discovery.text' | t }}</p>
-    </article>
-    <div class="feature-grid">
-      <img class="feature-grid__image" src="/2.jpg" [alt]="'whyAncientPaths.imageAlt' | t" width="3672" height="2066" loading="lazy" />
-      <div class="feature-list">
-        @for (strength of strengths; track strength.key) {
-          <article class="feature-card" [id]="strength.id">
-            <span class="feature-card__icon"><fa-icon [icon]="strength.icon" aria-hidden="true" /></span>
-            <div class="feature-card__copy">
-              <h3>{{ ('whyAncientPaths.' + strength.key + '.title') | t }}</h3>
-              <p>{{ ('whyAncientPaths.' + strength.key + '.text') | t }}</p>
-            </div>
-          </article>
-        }
-      </div>
-    </div>
+  <div class="container why-luxury__heading">
+    <span class="eyebrow">{{ 'siteCopy.ourDifference' | t }}</span>
+    <h2 id="why-ancient-paths-heading">{{ 'whyAncientPaths.title' | t }}</h2>
+    <p>{{ 'whyAncientPaths.introduction' | t }}</p>
+  </div>
+  <div class="experience-list">
+    @for (experience of experiences; track experience.id; let reverse = $odd) {
+      <article class="experience" [class.experience--reverse]="reverse" [id]="experience.id">
+        <img class="experience__image" [src]="experience.image" [alt]="experience.alt | t" width="900" height="1000" loading="lazy" />
+        <div class="experience__copy">
+          <span class="experience__number" aria-hidden="true">0{{ $index + 1 }}</span>
+          <h3>{{ experience.title | t }}</h3>
+          <p>{{ experience.text | t }}</p>
+          <a class="section-button" [routerLink]="'/' + languages.language() + '/' + experience.route">{{ 'siteCopy.seeDetails' | t }}<span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+    }
   </div>
 </section>

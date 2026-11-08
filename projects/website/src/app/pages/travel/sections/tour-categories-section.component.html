@@ -1,13 +1,6 @@
-<section class="categories" id="categories" aria-labelledby="categories-heading">
-  <div class="container categories__layout">
-    <div class="categories__content">
-      <h2 id="categories-heading">{{ 'siteCopy.findYourKindOfAdventure' | t }}</h2>
-      <p>{{ 'siteCopy.pyramidDescription' | t }}</p>
-      <a class="section-button" href="#catalog">
-        {{ 'siteCopy.exploreTours' | t }}
-        <fa-icon class="direction-arrow" [icon]="icons.arrowRight" aria-hidden="true" />
-      </a>
-    </div>
-    <img class="categories__image" src="/pyramid.JPG" [alt]="'siteCopy.pyramidImageAlt' | t" width="3936" height="2624" loading="lazy" />
+<section class="categories" id="about" [attr.aria-label]="'brandIntroduction.eyebrow' | t">
+  <div class="container categories__content">
+    <p>{{ 'brandIntroduction.description' | t }}</p>
+    <a class="section-button" href="#catalog">{{ 'siteCopy.exploreTours' | t }}<fa-icon class="direction-arrow" [icon]="icons.arrowRight" aria-hidden="true" /></a>
   </div>
 </section>

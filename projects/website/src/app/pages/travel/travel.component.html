@@ -1,335 +1,39 @@
 <app-travel-nav id="top" />
 <main>
-  <section class="hero">
+  <section class="hero" aria-labelledby="travel-hero-title">
+    <div class="hero__slides">
+      <owl-carousel-o appAccessibleCarousel #heroCarousel [options]="heroOptions()" (initialized)="slideChanged($event)" (changed)="slideChanged($event)">
+        @for (photo of heroImages; track photo.id; let first = $first) {
+          <ng-template carouselSlide [id]="photo.id">
+            <img class="hero__photo" [src]="photo.image" [alt]="photo.alt | t" width="1920" height="1080" [attr.fetchpriority]="first ? 'high' : 'low'" [loading]="first ? 'eager' : 'lazy'" />
+          </ng-template>
+        }
+      </owl-carousel-o>
+    </div>
     <div class="hero__wash" aria-hidden="true"></div>
     <div class="container hero__content">
-      <!-- <h1>{{ "travel.heroTitle" | t }} {{ "travel.heroAccent" | t }}</h1> -->
-      <!-- <div class="hero__actions">
-        <a class="button" href="#catalog"
-          >{{ "siteCopy.exploreTours2" | t }}
-          <span class="direction-arrow"
-            ><fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></span
-        ></a>
-      </div> -->
-    </div>
-  </section>
-
-  <section class="trip-search container" aria-labelledby="trip-search-title">
-    <div class="trip-search__intro">
-      <fa-icon [icon]="icons.location" />
-      <div>
-        <span id="trip-search-title">{{
-          "siteCopy.yourNextAdventure" | t
-        }}</span
-        ><small>{{ "siteCopy.madeJustForYou" | t }}</small>
+      <span class="hero__kicker">{{ 'travel.heroKicker' | t }}</span>
+      <h1 id="travel-hero-title">{{ 'travel.heroTitle' | t }}<br>{{ 'travel.heroAccent' | t }}</h1>
+      <div class="hero__actions">
+        <a class="section-button" href="#catalog">{{ 'siteCopy.exploreTours' | t }} <span aria-hidden="true">↗</span></a>
+        <a class="hero__link" href="#booking">{{ 'siteCopy.planYourTrip' | t }} <span aria-hidden="true">↗</span></a>
       </div>
     </div>
-    <label
-      ><span>{{ "siteCopy.destination" | t }}</span
-      ><input
-        [formControl]="bookingForm.controls.destination"
-        [placeholder]="'siteCopy.whereWouldYouLikeToGo' | t"
-    /></label>
-    <label
-      ><span>{{ "travel.bookingDate" | t }}</span
-      ><input
-        type="date"
-        [min]="minimumDate"
-        [formControl]="bookingForm.controls.departureDate"
-    /></label>
-    <label
-      ><span>{{ "travel.bookingTravelers" | t }}</span
-      ><input
-        type="number"
-        min="1"
-        max="50"
-        [formControl]="bookingForm.controls.travelers"
-    /></label>
-    <button class="button" type="button" (click)="scrollToBooking()">
-      {{ "siteCopy.planMyTrip" | t }}
-      <span class="direction-arrow"
-        ><fa-icon [icon]="icons.arrowRight" aria-hidden="true"
-      /></span>
-    </button>
-  </section>
-
-  <app-tour-categories-section />
-  <app-brand-introduction-section />
-  <app-signature-tours-section />
-  <app-why-choose-us-section />
-  <app-luxury-intro-section />
-
-  <section class="destinations section">
-    <div class="container">
-      <div class="section-heading">
-        <span class="eyebrow">{{
-          "siteCopy.letYourWanderlustLeadTheWay" | t
-        }}</span>
-        <h2>
-          {{ "siteCopy.beautifulPlacesLastingMemories" | t }}
-        </h2>
-      </div>
-      <div class="destination-grid">
-        @for (destination of egyptDestinations; track destination) {
-          <button
-            type="button"
-            class="destination-card"
-            (click)="selectOffer(languages.translate(destination.nameKey), '')"
-          >
-            <img
-              [src]="destination.image"
-              [alt]="destination.nameKey | t"
-              loading="lazy"
-            />
-            <div>
-              <span>{{ destination.captionKey | t }}</span>
-              <h3>
-                {{ destination.nameKey | t }}
-              </h3>
-            </div>
-            <span class="destination-card__arrow direction-arrow"
-              ><fa-icon [icon]="icons.arrowUpRight" aria-hidden="true"
-            /></span>
-          </button>
+    <div class="container hero__bottom">
+      <div class="hero__pagination" [attr.aria-label]="'carousel.chooseSlide' | t">
+        @for (photo of heroImages; track photo.id; let index = $index) {
+          <button type="button" (click)="heroCarousel.to(photo.id)" [class.is-active]="activeSlide() === index" [attr.aria-current]="activeSlide() === index ? 'true' : null" [attr.aria-label]="('carousel.slide' | t) + ' ' + (index + 1)"><span>0{{ index + 1 }}</span></button>
         }
       </div>
+      <div class="carousel-controls carousel-controls--light">
+        <button type="button" (click)="heroCarousel.prev()" [attr.aria-label]="'carousel.previous' | t"><span aria-hidden="true">←</span></button>
+        <button type="button" (click)="heroCarousel.next()" [attr.aria-label]="'carousel.next' | t"><span aria-hidden="true">→</span></button>
+      </div>
     </div>
   </section>
-
-  <app-luxury-gallery-section />
+  <app-tour-categories-section />
+  <app-why-choose-us-section />
+  <app-signature-tours-section />
   <app-plan-tour-cta-section />
-  <!-- <section class="booking-section" id="booking">
-        <div class="container booking-grid">
-          <div class="booking-copy">
-            <span class="eyebrow eyebrow--light">{{
-              "travel.bookingKicker" | t
-            }}</span>
-            <h2>{{ "travel.bookingTitle" | t }}</h2>
-            <p>{{ "travel.bookingText" | t }}</p>
-            <div class="booking-steps">
-              <div><b>01</b><span>{{ ('siteCopy.shareYourIdea' | t) }}</span></div>
-              <div><b>02</b><span>{{ ('siteCopy.weReviewTheOptions' | t) }}</span></div>
-              <div><b>03</b><span>{{ ('siteCopy.youReceiveATailoredPlan' | t) }}</span></div>
-            </div>
-          </div>
-
-          <div class="booking-form-wrap">
-            @if (bookingReference) {
-<div
-              class="booking-success"
-
-              role="status"
-              >
-              <span><fa-icon [icon]="icons.check" /></span>
-              <h3>{{ "travel.bookingSuccess" | t }}</h3>
-              <p>{{ "travel.bookingSuccessText" | t }}</p>
-              <small>{{ "travel.bookingReference" | t }}</small
-                ><strong>{{ bookingReference }}</strong>
-                <button
-                  type="button"
-                  class="text-link"
-                  (click)="bookingReference = ''"
-                  >
-                  {{ ('siteCopy.sendAnotherRequest' | t) }} <fa-icon [icon]="icons.arrowRight" aria-hidden="true" />
-                </button>
-              </div>
-}
-              @else {
-                <form
-                  class="booking-form"
-                  [formGroup]="bookingForm"
-                  (ngSubmit)="submitBooking()"
-                  novalidate
-                  >
-                  <div class="booking-form__heading">
-                    <span>{{ ('siteCopy.tripRequest' | t) }}</span><small>{{ ('siteCopy.noPaymentRequired' | t) }}</small>
-                  </div>
-                  <div class="booking-fields">
-                    <label
-                      ><span>{{ "travel.bookingName" | t }}</span
-                      ><input
-                      matInput
-                      type="text"
-                      formControlName="customerName"
-                      autocomplete="name"
-                      />@if (bookingForm.controls.customerName.touched &&
-                    bookingForm.controls.customerName.invalid) {
-<small
-
-                      >{{ ('siteCopy.required' | t) }}</small
-                      >
-}</label
-                      >
-                      <label
-                        ><span>{{ "travel.bookingEmail" | t }}</span
-                        ><input
-                        matInput
-                        type="email"
-                        formControlName="customerEmail"
-                        autocomplete="email"
-                        />@if (bookingForm.controls.customerEmail.touched &&
-                    bookingForm.controls.customerEmail.invalid) {
-<small
-
-                        >{{ ('siteCopy.enterAValidEmail' | t) }}</small
-                        >
-}</label
-                        >
-                        <label
-                          ><span>{{ "travel.bookingPhone" | t }}</span
-                          ><input
-                          matInput
-                          type="tel"
-                          formControlName="customerPhone"
-                          autocomplete="tel"
-                          />@if (bookingForm.controls.customerPhone.touched &&
-                    bookingForm.controls.customerPhone.invalid) {
-<small
-
-                          >{{ ('siteCopy.required' | t) }}</small
-                          >
-}</label
-                          >
-                          <label
-                            ><span>{{ "travel.bookingService" | t }}</span
-                            ><select formControlName="serviceType">
-                            <option value="flight">{{ ('siteCopy.flight' | t) }}</option>
-                            <option value="hotel">{{ ('siteCopy.hotel' | t) }}</option>
-                            <option value="tour">{{ ('siteCopy.tour' | t) }}</option>
-                            <option value="cruise">{{ ('siteCopy.cruise' | t) }}</option>
-                            <option value="car">{{ ('siteCopy.carRental' | t) }}</option>
-                            <option value="private_aviation">{{ ('siteCopy.privateAviation' | t) }}</option>
-                          </select></label
-                          >
-                          @if (isFlightRequest) {
-<label
-                            ><span>{{ "travel.bookingOrigin" | t }}</span
-                            ><input matInput type="text" formControlName="departureCity"
-                          /></label>
-}
-                          <label class="wide"
-                            ><span>{{ "travel.bookingDestination" | t }}</span
-                            ><input
-                            matInput
-                            type="text"
-                            formControlName="destination"
-                            [placeholder]="('siteCopy.eGCairoLuxorRedSea' | t)"
-                            />@if (bookingForm.controls.destination.touched &&
-                    bookingForm.controls.destination.invalid) {
-<small
-
-                            >{{ ('siteCopy.required' | t) }}</small
-                            >
-}</label
-                            >
-                            @if (isFlightRequest) {
-<label
-                              ><span>{{ "travel.bookingTripType" | t }}</span
-                              ><select formControlName="tripType">
-                              <option value="one_way">
-                                {{ "travel.bookingOneWay" | t }}
-                              </option>
-                              <option value="round_trip">
-                                {{ "travel.bookingRoundTrip" | t }}
-                              </option>
-                            </select></label
-                            >
-}
-                            <label
-                              ><span>{{ "travel.bookingDate" | t }}</span
-                              ><input
-                              matInput
-                              type="date"
-                              formControlName="departureDate"
-                              [min]="minimumDate"
-                            /></label>
-                            @if (isFlightRequest &&
-                  bookingForm.controls.tripType.value === 'round_trip') {
-<label
-
-                              ><span>{{ "travel.bookingReturnDate" | t }}</span
-                              ><input
-                              matInput
-                              type="date"
-                              formControlName="returnDate"
-                  [min]="
-                    bookingForm.controls.departureDate.value || minimumDate
-                  "
-                            /></label>
-}
-                            <label
-                              ><span>{{ "travel.bookingTravelers" | t }}</span
-                              ><input
-                              matInput
-                              type="number"
-                              min="1"
-                              max="50"
-                              formControlName="travelers"
-                            /></label>
-                            <div class="booking-options wide">
-                              <span>{{ "travel.bookingIncludes" | t }}</span>
-                              <div>
-                                <label
-                                  ><input type="checkbox" formControlName="includesTickets" />
-                                  {{ "travel.bookingTickets" | t }}</label
-                                  ><label
-                                  ><input type="checkbox" formControlName="includesHotels" />
-                                  {{ "travel.bookingHotels" | t }}</label
-                                  ><label
-                                  ><input
-                                  type="checkbox"
-                                  formControlName="includesTransport"
-                                  />
-                                {{ "travel.bookingTransport" | t }}</label
-                                >
-                              </div>
-                            </div>
-                            @if (isFlightRequest) {
-<label class="urgent-option wide"
-                              ><input type="checkbox" formControlName="urgent" /><span>{{
-                              "travel.bookingUrgent" | t
-                            }}</span></label
-                            >
-}
-                            <label class="wide"
-                              ><span>{{ "travel.bookingNotes" | t }}</span
-                              ><textarea
-                              matInput
-                              rows="3"
-                              formControlName="customerNotes"
-                              [placeholder]="('siteCopy.hotelStyleFlexibleDatesCelebrationsAccessibility' | t)"
-                            ></textarea>
-                          </label>
-                        </div>
-                        @if (bookingError) {
-<div class="booking-error"  role="alert">
-                          {{ bookingError | t }}
-                        </div>
-}
-                        <button
-                          mat-flat-button
-                          class="button booking-submit"
-                          type="submit"
-                          [disabled]="bookingSubmitting"
-                          >
-                          <span>{{
-                            (bookingSubmitting
-                            ? "travel.bookingSending"
-                            : "travel.bookingSubmit"
-                            ) | t
-                            }}</span
-                            ><b><fa-icon [icon]="icons.arrowRight" /></b>
-                          </button>
-                          <p class="booking-privacy">{{ ('siteCopy.bySendingThisRequestYouAgreeThatOur' | t) }}</p>
-                        </form>
-                      }
-                    </div>
-                  </div>
-                </section>
-                <section class="company-contact section" id="contact">
-                  <div class="container company-contact__inner">
-                    <div><span class="eyebrow">{{ 'travel.contactKicker' | t }}</span><h2>{{ 'travel.contactTitle' | t }}</h2><p>{{ 'travel.contactText' | t }}</p></div>
-                    <div class="contact-methods"><a href="tel:+966549440048"><small>{{ 'travel.bookingPhone' | t }}</small><strong dir="ltr">+966 54 944 0048</strong></a><a href="mailto:info@ancientpathseg.com"><small>{{ 'travel.bookingEmail' | t }}</small><strong>info&#64;ancientpathseg.com</strong></a><div><small>{{ 'travel.location' | t }}</small><strong>{{ 'travel.contactLocation' | t }}</strong></div></div>
-                  </div>
-                </section> -->
+  <app-luxury-gallery-section />
 </main>

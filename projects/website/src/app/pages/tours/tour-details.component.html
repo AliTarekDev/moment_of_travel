@@ -3,14 +3,16 @@
   @if (tour(); as selected) {
     <header class="details-hero">
       <div class="hero-cover" [style.background-image]="'url(&quot;' + (selected.imageUrl || '/cover.jpg') + '&quot;)'">
-        <h1 class="hero-title">{{ local(selected, 'title') }}</h1>
+        <h1 class="hero-title" dir="auto">{{ local(selected, 'title') }}</h1>
+        @if (local(selected, 'location'); as location) { <p class="hero-subtitle" dir="auto">{{ location }}</p> }
         <nav class="breadcrumbs" [attr.aria-label]="'tourUi.breadcrumb' | t"><a [routerLink]="['/', languages.language()]">{{ 'tourUi.home' | t }}</a><span aria-hidden="true">/</span><a [routerLink]="['/', languages.language(), 'tours']">{{ 'tourUi.tours' | t }}</a></nav>
       </div>
+    </header>
+    <section class="tour-introduction" aria-labelledby="tour-introduction-heading">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <h2>{{ 'tourUi.aboutThisTour' | t }}</h2>
-          @if (local(selected, 'location')) { <p class="hero-location"><span aria-hidden="true"><fa-icon [icon]="icons.location" aria-hidden="true" /></span>{{ local(selected, 'location') }}</p> }
-          <p class="tour-description">{{ content().introduction || local(selected, 'summary') }}</p>
+          <h2 id="tour-introduction-heading">{{ 'tourUi.aboutThisTour' | t }}</h2>
+          <p class="tour-description" dir="auto">{{ content().introduction || local(selected, 'summary') }}</p>
         </div>
         <div class="hero-booking">
           <div class="hero-facts">
@@ -20,36 +22,32 @@
           <a class="section-button" href="#book-trip" (click)="scrollToBooking($event, bookingSection)">{{ 'tourUi.bookYourTrip' | t }}<span class="booking-arrow" aria-hidden="true"><fa-icon [icon]="icons.arrowDown" aria-hidden="true" /></span></a>
         </div>
       </div>
-    </header>
-    @if (highlights().length) {
-      <section class="tour-highlights" aria-labelledby="tour-highlights-heading">
-        <div class="container">
-          <h2 id="tour-highlights-heading">{{ 'tourUi.tourHighlights' | t }}</h2>
-          <ul class="highlights-list">
-            @for (highlight of highlights(); track $index) {
-              <li>{{ highlight }}</li>
-            }
-          </ul>
+    </section>
+    <section class="tour-benefits" aria-labelledby="tour-benefits-heading">
+      <div class="container">
+        <h2 id="tour-benefits-heading">{{ 'whyAncientPaths.title' | t }}</h2>
+        <div class="benefits-grid">
+          @for (benefit of ['discovery', 'comfort', 'culture', 'confidence']; track benefit) {
+            <article><h3>{{ ('whyAncientPaths.' + benefit + '.title') | t }}</h3><p>{{ ('whyAncientPaths.' + benefit + '.text') | t }}</p></article>
+          }
         </div>
-      </section>
-    }
-    <section class="itinerary" aria-labelledby="itinerary-heading">
+      </div>
+    </section>
+    <section class="itinerary" id="itinerary" aria-labelledby="itinerary-heading">
       <div class="container itinerary-heading">
         <span class="eyebrow">{{ 'tourUi.dayByDay' | t }}</span>
-        <h2 id="itinerary-heading">{{ 'tourUi.yourItinerary' | t }}</h2>
+        <h2 id="itinerary-heading" dir="auto">{{ local(selected, 'title') }}</h2>
         @if (!itinerary().length) { <p>{{ 'tourUi.itineraryOnRequest' | t }}</p> }
       </div>
       <ol class="day-list" role="list">
         @for (day of itinerary(); track $index) {
-          <li class="day-panel" [style.background-image]="'url(&quot;' + dayImage(day) + '&quot;)'">
+          <li class="day-panel" [class.day-panel--reverse]="$odd" [id]="'itinerary-day-' + ($index + 1)" [style.background-image]="'url(&quot;' + dayImage(day) + '&quot;)'">
             <div class="container day-panel__content">
               <div class="day-panel__copy">
                 <span class="day-number">{{ 'tourUi.day' | t }} {{ $index + 1 }}</span>
-                <h3>{{ day.title }}</h3>
+                <h3 dir="auto">{{ day.title }}</h3>
                 <div class="day-panel__description">
-                  @for (paragraph of day.paragraphs; track $index) {
-                    <p>{{ paragraph }}</p>
-                  }
+                  @for (paragraph of day.paragraphs; track $index) { <p dir="auto">{{ paragraph }}</p> }
                 </div>
               </div>
             </div>
@@ -78,6 +76,7 @@
         </form>
       </div>
     </section>
+    <app-luxury-gallery-section [images]="galleryImages()" [heading]="local(selected, 'title')" />
   } @else if (loadingTour()) {
     <section class="container not-found" role="status">{{ 'tourUi.loadingTours' | t }}</section>
   } @else if (tourLoadError()) {

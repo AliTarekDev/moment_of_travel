@@ -1,20 +1,20 @@
 @use '../../travel/template-theme' as theme;
 @include theme.foundation;
-:host { display:block; --travel-ink:var(--brand-plum); --travel-muted:var(--brand-muted); --travel-gutter:clamp(20px,4.5vw,70px); color:var(--brand-plum); background:#fff; font:400 17px/1.8 'Inter',sans-serif; }
+:host { display:block; --travel-ink:var(--brand-plum); --travel-muted:var(--brand-muted); --travel-gutter:clamp(20px,4.5vw,70px); color:var(--brand-plum); background:#fff; font-size: var(--website-font-body); line-height: 1.8; font-family: inherit; }
 .visits-hero { padding-block:clamp(40px,6vw,80px); text-align:center; @include theme.surface-shapes; border-bottom:1px solid #e8e1d8; }
 .breadcrumbs { display:flex; justify-content:center; flex-wrap:wrap; gap:14px; margin-bottom:28px; font-size:16px; color:var(--brand-muted); }
 .breadcrumbs a { color:var(--brand-plum); text-underline-offset:4px; }
-h1 { font-size:clamp(38px, 4vw, 58px); line-height:1.2; margin:18px 0; overflow-wrap:anywhere; }
+h1 { font-size:clamp(32px, 3.5vw, 46px); line-height:1.2; margin:18px 0; overflow-wrap:anywhere; }
 .visits-hero p { max-width:62ch; margin:0 auto; font-size:clamp(17px, 1.11vw, 20px); }
 .visits-intro { display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,5vw,80px); align-items:start; padding-block:clamp(48px,6vw,88px); }
 .visits-intro h2 { max-width:20ch; font-size:clamp(28px, 2.4vw, 36px); }
 .visits-intro p { margin-top:0; }
 .visits-note { font-size:16px; padding-inline-start:18px; border-inline-start:2px solid var(--brand-gold); }
 .visits-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:40px 32px; padding-bottom:clamp(48px,6vw,88px); }
-.visit-card { min-width:0; border:1px solid #e8e1e7; border-radius:22px; overflow:hidden; background:#fff; }
+.visit-card { min-width:0; border:1px solid #e8e1e7; border-radius:12px; overflow:hidden; background:#fff; }
 .visit-image { position:relative; overflow:hidden; aspect-ratio:16/10; background:var(--brand-surface); }
-.visit-image img { width:100%; height:100%; object-fit:cover; transition:transform .5s; }
-@media(hover:hover) { .visit-card:hover .visit-image img { transform:scale(1.035); } }
+.visit-image img { width:100%; height:100%; object-fit:cover;  }
+
 .visit-index { position:absolute; inset-block-start:20px; inset-inline-start:20px; width:42px; height:42px; display:grid; place-items:center; border-radius:50%; background:#fff; color:var(--brand-plum); font-weight:600; }
 .visit-copy { padding:clamp(22px,3vw,36px); }
 .visit-location { font-size:16px; font-weight:600; color:var(--brand-muted); }

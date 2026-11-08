@@ -1,6 +1,8 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, ViewportScroller } from '@angular/common';
 import { Component, ElementRef, HostListener, OnDestroy, ViewChild, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter } from 'rxjs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowRight, faBars, faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { LanguageSwitchComponent } from '../../i18n/language-switch.component';
@@ -12,18 +14,32 @@ import { TranslatePipe } from '../../i18n/translate.pipe';
   standalone: true,
   imports: [LanguageSwitchComponent, TranslatePipe, FontAwesomeModule, RouterLink, RouterLinkActive],
   templateUrl: './travel-nav.component.html',
-  styleUrl: './travel-nav.component.scss',
+  styleUrls: ['./travel-nav.component.scss', './travel-nav-responsive.scss'],
 })
 export class TravelNavComponent implements OnDestroy {
   private readonly document = inject(DOCUMENT);
+  private readonly viewportScroller = inject(ViewportScroller);
+  private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
   readonly languages = inject(LanguageService);
   mobileMenuOpen = false;
   isScrolled = false;
   readonly icons = { bars: faBars, chevronDown: faChevronDown, close: faXmark, arrowRight: faArrowRight };
   @ViewChild('featuresDropdown') private featuresDropdown?: ElementRef<HTMLDetailsElement>;
 
+  constructor() {
+    inject(Router).events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      takeUntilDestroyed(),
+    ).subscribe(() => this.closeMobileMenu());
+    this.viewportScroller.setOffset(() => {
+      const logoHeight = this.element.nativeElement.querySelector('.brand--logo')?.getBoundingClientRect().height ?? 0;
+      return [0, Math.max(112, logoHeight + 16)];
+    });
+  }
+
   ngOnDestroy(): void {
     this.closeMobileMenu();
+    this.viewportScroller.setOffset([0, 0]);
   }
 
   @HostListener('window:scroll')
@@ -60,7 +76,7 @@ export class TravelNavComponent implements OnDestroy {
 
   @HostListener('window:resize')
   onResize(): void {
-    if ((this.document.defaultView?.innerWidth ?? 0) > 1100) this.closeMobileMenu();
+    if (this.document.defaultView?.matchMedia('(min-width: 1101px)').matches) this.closeMobileMenu();
   }
 
   toggleMobileMenu(): void {

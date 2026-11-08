@@ -1,4 +1,4 @@
-<section class="plan-cta" id="tailor-made-itineraries">
+<section class="plan-cta" id="booking">
   <div class="container">
     <div class="plan-cta__card">
       <span class="eyebrow">{{ ('siteCopy.startPlanning' | t) }}</span>
@@ -8,7 +8,7 @@
           ('siteCopy.yourJourneyBeginsWithAConversationWhetherYou' | t)
         }}
       </p>
-      <a href="#booking">{{ ('siteCopy.requestATour' | t) }}</a>
+      <a [routerLink]="['/', languages.language(), 'contact']">{{ ('siteCopy.requestATour' | t) }}</a>
     </div>
   </div>
 </section>

@@ -9,6 +9,7 @@ export type CatalogDivision = 'travel' | 'aviation';
 export type CatalogType = 'trip' | 'offer' | 'destination' | 'hotel' | 'flight' | 'service';
 
 export interface PublicCatalogItem {
+  gallery?: { imageUrl: string; captionAr: string; captionEn: string }[];
   durationDays?: number | null;
   itinerary?: { imageUrl?: string | null; titleAr: string; titleEn: string; textAr: string; textEn: string }[];
   id: string;

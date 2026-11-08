@@ -6,7 +6,7 @@ Ancient Paths is a three-process TypeScript application:
 - `dashboard` — Angular staff operations dashboard.
 - `api` — NestJS REST API backed by PostgreSQL.
 
-The current workflow is a **staff-reviewed booking request**. It does not claim live flight/hotel inventory, instant confirmation, payment processing, or email delivery.
+The current workflow is a **staff-reviewed booking request**. Optional server-side email notifications alert staff after a request is saved. It does not claim live flight/hotel inventory, instant confirmation, or payment processing.
 
 ## Prerequisites
 
@@ -64,6 +64,24 @@ npm.cmd run start:dashboard
 - API health: `http://localhost:3000/api/health`
 
 Both Angular development servers proxy `/api` to port `3000` through `proxy.conf.json`.
+
+## Request email notifications
+
+Standard bookings and tailor-made enquiries send a plain-text staff notification after the database save. The email includes the booking reference, contact and travel details, and full customer notes/questionnaire answers. Replies go to the customer's email address. Email errors do not undo the booking or return a submission error that could cause duplicate requests. Failed messages are logged by reference; there is no automatic retry queue, so staff must follow up from the dashboard.
+
+Add the mail settings from `apps/api/.env.example` to the existing `apps/api/.env` (do not overwrite your database or authentication settings). Defaults are `smtp.gmail.com`, port `587`, mandatory STARTTLS, sender `tali6184@gmail.com`, and recipient `info@ancientpathseg.com`. Credentials belong only in the API environment, never in Angular environment files or source control.
+
+For Gmail, sign into the sender account and enable [2-Step Verification](https://myaccount.google.com/security), then create an [App Password](https://myaccount.google.com/apppasswords) named `Ancient Paths Website`. Put that App Password in `SMTP_PASSWORD` with `SMTP_AUTH=password`. Use the generated App Password, not the normal Google account password. App Password availability depends on the account's security settings; see [Google's instructions](https://support.google.com/accounts/answer/185833).
+
+Microsoft 365 OAuth remains available as an alternative: set `SMTP_HOST=smtp.office365.com`, `SMTP_USER` to the Microsoft mailbox, `SMTP_AUTH=oauth2`, and the three `SMTP_OAUTH_*` values. The administrator must complete [Microsoft's SMTP OAuth setup](https://learn.microsoft.com/en-us/exchange/client-developer/legacy-protocols/how-to-authenticate-an-imap-pop-smtp-application-by-using-oauth#use-client-credentials-grant-flow-to-authenticate-smtp-imap-and-pop-connections).
+
+After configuring authentication, set `MAIL_ENABLED=true` and restart the API. Submit one standard request and one tailor-made enquiry, confirm both appear in the dashboard and the inbox (including junk), and check the API logs for SMTP acceptance or failure. SMTP acceptance does not guarantee inbox delivery. No live message can be tested until credentials are configured.
+
+Run the isolated mail/persistence checks without sending real messages:
+
+```powershell
+node --test apps/api/test/booking-notifications.test.cjs
+```
 
 ## Staff access
 
@@ -138,7 +156,7 @@ npm.cmd run check:website
 
 - Angular 18 currently reports published security advisories. Upgrade Angular as a dedicated task with full regression testing before production deployment.
 - Payment gateways are not implemented. Never store card numbers or CVV in this application.
-- Microsoft 365/email delivery is not implemented. Add a provider module with verified SPF, DKIM, and DMARC before promising automatic email.
+- Request email notifications require server-side SMTP authentication and `MAIL_ENABLED=true`; verify delivery to the configured recipient before launch.
 - Flight, hotel, and tour inventory is presentation content, not live provider data.
 - Catalog images currently use persistent HTTPS URLs. Connect Cloudinary or S3 before adding direct image uploads; Render's service filesystem is ephemeral.
 - Client identity attachments are private authenticated resources stored in PostgreSQL with a 5 MB per-image limit. For higher volume, migrate these blobs to encrypted private object storage and add audit logging before broadening staff access.

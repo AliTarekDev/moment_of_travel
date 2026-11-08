@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router';
-import { AviationComponent } from './pages/aviation/aviation.component';
-import { TravelComponent } from './pages/travel/travel.component';
 import { languageGuard } from './i18n/language.guard';
 
 export const routes: Routes = [
@@ -11,7 +9,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: TravelComponent,
+        loadComponent: () => import('./pages/travel/travel.component').then(module => module.TravelComponent),
         title: 'Ancient Paths — Discover the world your way',
       },
       {
@@ -46,7 +44,7 @@ export const routes: Routes = [
       },
       {
         path: 'aviation',
-        component: AviationComponent,
+        loadComponent: () => import('./pages/aviation/aviation.component').then(module => module.AviationComponent),
         title: 'Ancient Paths — Beyond every horizon',
       },
       {

@@ -1,14 +1,5 @@
 @use '../template-theme' as theme;
 @include theme.foundation;
-
-.categories { margin-block: 0; display: flow-root; background: #fff; padding-block: var(--travel-section-space); }
-.categories__layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: center; gap: clamp(32px, 5vw, 88px); }
-.categories__image { display: block; width: 100%; height: auto; border-radius: 2px; }
-.categories__content { min-width: 0; max-width: 720px; padding-block: 0; }
-.categories__content h2 { margin-top: 0; }
-.categories__content p { margin: 0 0 28px; font-size: clamp(18px, 1.27vw, 20px); }
-
-@media (max-width: 760px) {
-  .categories__layout { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-  .categories__content { max-width: none; padding-block: 0; }
-}
+.categories { padding-block: clamp(40px, 5vw, 64px); background: var(--brand-surface-soft); border-bottom: 1px solid #e9e3e7; }
+.categories__content { max-width: 1000px; text-align: center; }
+.categories__content p { margin: 0 auto 28px; max-width: 84ch; }
