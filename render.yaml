@@ -1,0 +1,41 @@
+# Temporary client testing. Free Postgres expires after 30 days.
+services:
+  - type: web
+    name: ancientpaths-api-test
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm ci --include=dev && npm run build:api
+    startCommand: npm run start:api:production
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: '22'
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ancientpaths-db-test
+          property: connectionString
+      - key: DB_SYNCHRONIZE
+        value: 'false'
+      - key: DB_SSL
+        value: 'true'
+      - key: API_ORIGINS
+        value: https://ancientpaths.tali6184.workers.dev
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_NAME
+        value: Test Administrator
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: MAIL_ENABLED
+        value: 'false'
+databases:
+  - name: ancientpaths-db-test
+    plan: free
+    region: frankfurt
+    databaseName: ancientpaths_test
+    user: ancientpaths_app

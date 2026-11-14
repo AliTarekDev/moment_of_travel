@@ -22,8 +22,8 @@ async function bootstrap(): Promise<void> {
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true }),
   );
 
-  const port = config.get<number>('API_PORT', 3000);
-  await app.listen(port);
+  const port = Number(config.get('PORT') ?? config.get('API_PORT', 3000));
+  await app.listen(port, '0.0.0.0');
   console.log(`Ancient Paths API listening on http://localhost:${port}/api`);
 }
 
