@@ -2,6 +2,16 @@
 
 ## Railway trial alternative
 
+Current test API: https://ancientpaths-api-test-production.up.railway.app
+
+The initial deployment used the Railway CLI rather than GitHub. Run
+`npm run prepare:backend-test`, then upload `dist/backend-test-source` with
+`railway up dist/backend-test-source --path-as-root --no-gitignore --service ancientpaths-api-test`.
+The upload helper replaces only the staging package's default build/start scripts
+so Railpack builds the API rather than Angular. It excludes the local .env,
+uploaded images and database contents. Test admin credentials are held locally
+in ignored `dist/client-test-admin.txt`, not in Git.
+
 Use the repository's `railway.json` for the API service. Create a separate
 PostgreSQL service and set DATABASE_URL to its private connection reference.
 Use DB_SSL=false for Railway's private Postgres connection, NODE_ENV=production,

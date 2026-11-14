@@ -8,6 +8,7 @@
     "start:dashboard": "ng serve dashboard --port 4201",
     "start:api": "ts-node --project apps/api/tsconfig.json apps/api/src/main.ts",
     "build:api": "tsc --project apps/api/tsconfig.json",
+    "prepare:backend-test": "node apps/api/scripts/prepare-test-upload.cjs",
     "migrate:api": "node apps/api/scripts/migrate.cjs",
     "start:api:production": "node apps/api/scripts/migrate.cjs && node dist/api/main.js",
     "check:api": "tsc --project apps/api/tsconfig.json --noEmit",
