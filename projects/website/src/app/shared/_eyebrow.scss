@@ -29,3 +29,5 @@ html[dir='rtl'] body .eyebrow {
   letter-spacing: 0;
   text-transform: none;
 }
+body .eyebrow { font-size:10px; font-weight:900; letter-spacing:.24em; color:var(--brand-plum); }
+body .eyebrow::before { display:none; }

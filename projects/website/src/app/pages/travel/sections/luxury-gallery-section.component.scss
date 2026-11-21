@@ -12,3 +12,6 @@
 :host-context([dir='rtl']) .gallery-controls span { transform: scaleX(-1); }
 
 .gallery-controls button:focus-visible { outline: 2px solid var(--brand-plum); outline-offset: 4px; }
+.luxury-gallery__heading { text-align:start; margin-bottom:42px; max-width:760px; }
+.gallery-card { border-radius:0; }
+.gallery-card figcaption { font-family:Inter,Arial,sans-serif; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.18em; }

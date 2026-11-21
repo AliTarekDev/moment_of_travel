@@ -34,7 +34,7 @@ export class SignatureToursSectionComponent implements OnInit {
     rtl: this.languages.language() === 'ar', loop: false, rewind: true,
     autoplay: false, dots: false, nav: false, mouseDrag: true, touchDrag: true,
     pullDrag: false, margin: 28, smartSpeed: 450,
-    responsive: { 0: { items: 1, margin: 16 }, 760: { items: 2, margin: 28 } },
+    responsive: { 0: { items: 1, margin: 18 }, 760: { items: 2, margin: 18 }, 1041: { items: 3, margin: 18 } },
   }));
 
   ngOnInit(): void { this.load(); }

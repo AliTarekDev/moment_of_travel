@@ -20,3 +20,19 @@
 .all-tours-link { display: inline-flex; gap: 24px; align-items: center; color: var(--brand-plum); text-underline-offset: 6px; font-size: 15px; }
 .catalog-message { padding: 32px var(--website-gutter); text-align: center; }
 @media (max-width: 759px) { .tour-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; } .tour-panel__image { height: 230px; } .tour-carousel__footer { flex-wrap: wrap; } }
+.signature-tours { background:#fff; }
+.signature-tours__heading { text-align:start; margin-bottom:50px; }
+.signature-tours__heading h2 { max-width:760px; margin-inline:0; }
+.signature-tours__heading p { max-width:760px; margin:0; }
+.tour-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+.tour-panel { background:var(--brand-surface); border-radius:0; }
+.tour-panel__image { height:auto; aspect-ratio:1/.74; }
+.tour-panel__content { padding:28px; }
+.tour-panel__location { font:900 10px/1.7 Inter,Arial,sans-serif; color:var(--brand-plum); letter-spacing:.18em; text-transform:uppercase; }
+.tour-panel h3 { font-size:clamp(30px,3.2vw,45px); line-height:1.1; letter-spacing:-.05em; font-weight:600; margin:13px 0; }
+.tour-panel__details { font-family:Inter,Arial,sans-serif; font-size:11px; border-color:var(--brand-gold); }
+.tour-panel__details strong { font-size:12px; }
+.tour-panel__button { width:auto; min-height:44px; padding:8px 0; border:0; border-bottom:1px solid var(--brand-gold); color:var(--brand-plum); background:transparent; }
+.tour-panel__button:hover { background:transparent; color:var(--brand-plum-dark); border-color:var(--brand-plum); }
+@media(max-width:1040px) { .tour-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:760px) { .tour-grid { grid-template-columns:1fr; } .tour-panel__content { padding:22px; } .tour-panel__image { height:auto; aspect-ratio:1/.86; } }

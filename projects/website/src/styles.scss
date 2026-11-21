@@ -4,19 +4,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Montez&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap');
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:wght@400;500;600&display=swap');
 app-root { @include travel.shared-foundation; }
 * { box-sizing: border-box; }
 html { scroll-behavior: auto; }
-body { font-size: 17px; margin: 0; background: var(--brand-surface); color: var(--brand-plum); font-family: 'Inter', Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { font-size: 17px; margin: 0; background: var(--brand-surface); color: var(--brand-plum); font-family: 'Source Serif 4', Georgia, serif; -webkit-font-smoothing: antialiased; }
 body.side-nav-open { overflow: hidden; }
 :root {
-  --website-font-body: clamp(16px, 1vw, 17px);
-  --website-font-heading: clamp(30px, 3.2vw, 48px);
-  --website-content-width: 1240px;
-  --website-heading-font: Georgia, 'Times New Roman', serif;
-  --website-gutter: clamp(20px, 4vw, 48px);
-  --website-section-space: clamp(56px, 7vw, 104px);
-  --website-radius: 16px;
+  --website-font-body: 18px;
+  --website-font-heading: clamp(44px, 6vw, 65px);
+  --website-content-width: 1381px;
+  --website-heading-font: 'Playfair Display', Georgia, serif;
+  --website-gutter: 21px;
+  --website-section-space: clamp(80px, 10vw, 102px);
+  --website-radius: 0px;
   --website-border: #e5dfe2;
   --website-shadow: 0 18px 50px rgb(63 38 60 / 7%);
   --brand-gold: #D4AF37;
@@ -37,6 +38,7 @@ body :is(h1, h2, h3, h4) { font-family: var(--website-heading-font); }
 [dir='rtl'] :is(h1, h2, h3, h4) { font-family: var(--website-heading-font) !important; }
 [dir='rtl'] button, [dir='rtl'] input { font-family: 'Noto Kufi Arabic', 'Inter', Arial, sans-serif !important; }
 button,input,select,textarea { font: inherit; }
+button,input,select,textarea { font-family: 'Inter', Arial, sans-serif; }
 button, a { -webkit-tap-highlight-color: transparent; }
 :where(button, a, input, textarea, select, summary):focus-visible { outline: 3px solid var(--brand-plum); outline-offset: 4px; }
 button:not(:disabled), summary { cursor: pointer; }
@@ -77,3 +79,6 @@ body main p { font-size: var(--website-font-body); line-height:1.8; }
 .tour-carousel .owl-stage { display: flex; }
 .tour-carousel .owl-item { display: flex; flex: 0 0 auto; }
 .tour-carousel .owl-item > div { display: flex; width: 100%; }
+@media (max-width: 760px) {
+  :root { --website-gutter: 14px; --website-section-space: 64px; --website-font-heading: 45px; --website-font-body: 16px; }
+}

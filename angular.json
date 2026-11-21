@@ -59,6 +59,12 @@
               ],
               "outputHashing": "all"
             },
+            "cloudflare": {
+              "outputPath": "dist/cloudflare",
+              "ssr": false,
+              "prerender": false,
+              "sourceMap": false
+            },
             "preview": {
               "outputPath": "dist/website-preview",
               "ssr": false,

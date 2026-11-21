@@ -43,3 +43,9 @@
     background: var(--travel-accent-dark);
     color: white;
 }
+.plan-cta { background:var(--brand-plum); border:0; padding-block:clamp(90px,12vw,102px); }
+.plan-cta__card { max-width:850px; padding:0; text-shadow:none; }
+.plan-cta h2 { font-size:clamp(48px,7vw,90px); line-height:1.1; letter-spacing:-.055em; margin:24px auto 18px; }
+.plan-cta p { max-width:540px; margin:0 auto 32px; color:#ffffffb8; }
+.plan-cta a { min-height:48px; border-radius:0; padding:14px 24px; font:900 10px Inter,Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
+@media(max-width:760px) { .plan-cta h2 { font-size:45px; } }
