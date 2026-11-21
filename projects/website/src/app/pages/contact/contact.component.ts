@@ -1,3 +1,4 @@
+import { AnimateOnScrollDirective } from '../../shared/animate-on-scroll.directive';
 import { ActivatedRoute } from '@angular/router';
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -15,7 +16,7 @@ import { FaqSectionComponent } from './faq-section.component';
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, FontAwesomeModule, TranslatePipe, TravelNavComponent, MatSnackBarModule, FaqSectionComponent],
+  imports: [AnimateOnScrollDirective, ReactiveFormsModule, FontAwesomeModule, TranslatePipe, TravelNavComponent, MatSnackBarModule, FaqSectionComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })

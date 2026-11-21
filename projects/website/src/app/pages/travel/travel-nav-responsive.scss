@@ -1,8 +1,4 @@
 @media(min-width: 1400px) {
-  .nav__inner { min-height: 96px; padding-inline-start: 220px; }
-  .brand--logo { width: 190px; height: 96px; padding: 8px 12px; }
-  .brand--logo img { height: 100%; }
-  .nav-spacer { height: 96px; }
   .nav__links a, .nav__features summary { font-size: 13px; }
 }
 @media(min-width: 1800px) {
@@ -11,51 +7,46 @@
 @media(max-width: 1399px) {
   .topbar__inner > span { display: none; }
   .topbar__inner { justify-content: center; }
-  .nav__inner { min-height: 88px; padding-inline-start: 204px; gap: 16px; }
-  .nav-spacer { height: 88px; }
-  .brand--logo { width: 180px; height: 88px; padding: 8px 10px; }
-  .brand--logo img { max-height: 72px; object-fit: contain; }
+  .nav__inner { gap: 16px; }
   .nav__links { gap: 12px; }
   .nav__links a, .nav__features summary { font-size: 14px; }
   .nav__links .nav__cta { gap: 12px; padding: 12px 16px; }
 }
 @media(max-width: 1100px) {
-  .nav__inner { padding-inline-start: 0; }
-  .brand--logo { width: min(172px, 45vw); height: 88px; }
-  .brand--logo img { height: 100%; max-height: 72px; }
   .menu-button { display: block; }
   .nav__links { position: fixed; inset-block: 0; inset-inline-start: 0; width: min(88vw, 340px); height: 100dvh; z-index: 1100; overflow-y: auto; flex-direction: column; align-items: stretch; gap: 0; padding: 24px; background: white; box-shadow: 0 20px 65px #5c3a5830; opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(-110%); transition: transform .25s, opacity .25s, visibility .25s; }
   .nav__links--rtl { transform: translateX(110%); }
-  .nav__links.is-open { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(0); }
-  .nav__links > a { padding: 16px 0; border-bottom: 1px solid #e4ecef; white-space: normal; }
+  .nav__links.is-open { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(0); transition-property: transform, opacity; }
+  .nav__links > a { padding: 14px 10px; border-bottom: 1px solid var(--website-border); white-space: normal; }
+  .nav__links > a[aria-current='page'] { background: var(--brand-surface); }
   .nav__links a, .nav__features summary { font-size: 16px; }
-  .nav__features { border-bottom: 1px solid #e4ecef; }
-  .nav__features summary { justify-content: space-between; padding: 16px 0; }
+  .nav__features { border-bottom: 1px solid var(--website-border); }
+  .nav__features summary { justify-content: space-between; padding: 14px 10px; }
   .nav__features-menu { position: static; min-width: 0; margin-bottom: 12px; border: 0; box-shadow: none; background: var(--brand-surface); }
   .nav__features-menu a { white-space: normal; }
   .nav__language-switch { margin-top: 24px; }
   .nav__links .nav__cta { margin-top: 20px; justify-content: center; }
   .side-nav-overlay { display: block; position: fixed; inset: 0; z-index: 1090; border: 0; background: #3f263c70; opacity: 0; pointer-events: none; transition: opacity .25s; }
   .side-nav-overlay.is-open { opacity: 1; pointer-events: auto; }
-  .side-nav__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-  .side-nav__head img { width: 195px; max-width: calc(100% - 56px); }
-  .side-nav__head button { width: 38px; height: 38px; border: 0; border-radius: 50%; background: var(--brand-surface); color: var(--travel-ink); font-size: 32px; cursor: pointer; }
+  .side-nav__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 16px; border-bottom: 1px solid var(--website-border); }
+  .side-nav__head img { width: auto; height: 72px; max-width: calc(100% - 56px); object-fit: contain; }
+  .side-nav__head button { width: 44px; height: 44px; border: 1px solid var(--website-border); border-radius: 8px; background: var(--brand-surface); color: var(--travel-ink); font-size: 20px; cursor: pointer; }
 }
 @media(max-width: 480px) { .topbar { font-size: 12px; } .topbar__inner > div { gap: 8px; } .topbar__divider { display: none; } }
 // Reference typography, with Ancient Paths brand colors.
 @media(min-width:1101px) {
-  .nav__inner { min-height:78px; padding-inline-start:246px; }
-  .brand--logo { width:220px; height:78px; background:transparent; }
-  .brand--logo img { max-height:72px; }
-  .nav-spacer { height:78px; }
-  .nav__links { gap:30px; }
-  .nav__links a, .nav__features summary { font-family:Inter,Arial,sans-serif; font-size:10px; font-weight:900; letter-spacing:.16em; }
+  .nav__inner { min-height:112px; padding-inline-start:156px; }
+  .brand--logo { height:112px; }
+  .nav-spacer { height:112px; }
+  .nav__links { gap:clamp(16px, 2vw, 30px); }
+  .nav__links a, .nav__features summary { font-family:Inter,Arial,sans-serif; font-size:12px; font-weight:750; letter-spacing:.075em; }
   .nav__links .nav__cta { padding:12px 16px; border:1px solid var(--brand-plum); border-radius:0; background:transparent; color:var(--brand-plum); }
+  .nav__features-menu { margin-block-start: 4px; }
 }
 .nav, .nav--scrolled { background:var(--brand-surface-soft); }
-.nav__features-menu { border-radius:0; }
+.nav__features-menu .active { background: var(--brand-surface); }
+.nav__links--rtl a, .nav__links--rtl summary { letter-spacing: normal; }
 @media(max-width:760px) {
-  .nav__inner, .brand--logo { min-height:68px; height:68px; }
-  .nav-spacer { height:68px; }
-  .brand--logo img { max-height:60px; }
+  .nav__inner, .brand--logo { min-height:88px; height:88px; }
+  .nav-spacer { height:88px; }
 }

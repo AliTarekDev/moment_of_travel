@@ -67,6 +67,53 @@ img { display: block; max-width: 100%; }
 body main p { font-size: var(--website-font-body); line-height:1.8; }
 [dir='rtl'] main p { line-height: 1.95; }
 
+.section-shapes {
+  --section-arc: rgb(92 58 88 / 13%);
+  --section-accent-arc: rgb(212 175 55 / 24%);
+  --section-arc-end: 100%;
+  --section-arc-start: 0%;
+  position: relative;
+  isolation: isolate;
+}
+
+.section-shapes--light {
+  --section-arc: rgb(255 255 255 / 15%);
+  --section-accent-arc: rgb(212 175 55 / 30%);
+}
+
+.section-shapes:dir(rtl) {
+  --section-arc-end: 0%;
+  --section-arc-start: 100%;
+}
+
+.section-shapes::before,
+.section-shapes::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  aspect-ratio: 1;
+}
+
+.section-shapes::before {
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  inline-size: clamp(108px, 22vw, 302px);
+  background: radial-gradient(circle at var(--section-arc-end) 0,
+    transparent 24%, var(--section-arc) 24% 24.5%,
+    transparent 24.5% 42%, var(--section-accent-arc) 42% 42.5%,
+    transparent 42.5% 60%, var(--section-arc) 60% 60.5%, transparent 60.5%);
+}
+
+.section-shapes::after {
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  inline-size: clamp(68px, 13vw, 180px);
+  background: radial-gradient(circle at var(--section-arc-start) 100%,
+    transparent 32%, var(--section-accent-arc) 32% 33%,
+    transparent 33% 58%, var(--section-arc) 58% 59%, transparent 59%);
+}
+
 // Shared accessible controls for every Owl carousel.
 .carousel-controls { display: flex; align-items: center; gap: 10px; }
 .carousel-controls button { display: grid; place-items: center; width: 48px; height: 48px; padding: 0; border: 1px solid #cbbdc7; border-radius: 50%; background: transparent; color: var(--brand-plum); font-size: 24px; transition: background-color .2s, color .2s; }
@@ -79,6 +126,40 @@ body main p { font-size: var(--website-font-body); line-height:1.8; }
 .tour-carousel .owl-stage { display: flex; }
 .tour-carousel .owl-item { display: flex; flex: 0 0 auto; }
 .tour-carousel .owl-item > div { display: flex; width: 100%; }
+
+@media screen {
+  .scroll-reveal-pending:not(:focus-within) {
+    opacity: 0;
+  }
+
+  [appAnimateOnScroll].animate__fadeIn {
+    animation-delay: var(--scroll-reveal-delay, 100ms);
+    animation-fill-mode: backwards;
+  }
+
+  .experience__copy,
+  .tour-grid > .tour-panel:nth-child(3n + 2),
+  .owl-item:nth-child(3n + 2) :is(.tour-panel, .gallery-card) {
+    --scroll-reveal-delay: 190ms;
+  }
+
+  .tour-grid > .tour-panel:nth-child(3n),
+  .owl-item:nth-child(3n) :is(.tour-panel, .gallery-card) {
+    --scroll-reveal-delay: 280ms;
+  }
+
+  [appAnimateOnScroll].animate__animated:focus-within {
+    animation: none;
+  }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  // Keep the opacity-only reveal available without enabling movement.
+  [appAnimateOnScroll].animate__fadeIn:not(:focus-within) {
+    animation: fadeIn 650ms ease backwards !important;
+  }
+}
+
 @media (max-width: 760px) {
   :root { --website-gutter: 14px; --website-section-space: 64px; --website-font-heading: 45px; --website-font-body: 16px; }
 }

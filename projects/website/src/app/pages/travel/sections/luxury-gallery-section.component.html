@@ -1,7 +1,7 @@
 @if (images().length) {
   <section class="luxury-gallery">
-    <div class="container">
-      <div class="luxury-gallery__heading">
+    <div class="gallery-shell">
+      <div class="luxury-gallery__heading" appAnimateOnScroll>
         <span class="eyebrow">{{ 'siteCopy.makeYourJourneyMoreBeautiful' | t }}</span>
         <h2>{{ heading() || ('siteCopy.aLittleInspirationForTheRoad' | t) }}</h2>
       </div>
@@ -18,8 +18,8 @@
         </owl-carousel-o>
         @if (images().length > 1) {
           <div class="gallery-controls carousel-controls">
-            <button type="button" (click)="gallery.prev()" [attr.aria-label]="'gallery.previous' | t"><span aria-hidden="true">←</span></button>
-            <button type="button" (click)="gallery.next()" [attr.aria-label]="'gallery.next' | t"><span aria-hidden="true">→</span></button>
+            <button type="button" (click)="gallery.prev()" [attr.aria-label]="'gallery.previous' | t"><span aria-hidden="true">‹</span></button>
+            <button type="button" (click)="gallery.next()" [attr.aria-label]="'gallery.next' | t"><span aria-hidden="true">›</span></button>
           </div>
         }
       </div>

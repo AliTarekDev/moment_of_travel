@@ -259,7 +259,6 @@ export const AR = {
   "examples": "أمثلة لفنادق خمس نجوم",
   "fiveStars": "فندق خمس نجوم",
   "enquire": "استفسر عن الإقامة هنا",
-  "officialWebsite": "الموقع الرسمي للفندق",
   "requestMessage": "أرغب في الاستفسار عن الإقامة في",
   "ctaEyebrow": "إقامتك حسب تفضيلاتك",
   "ctaTitle": "نساعدك تختار الإقامة المناسبة.",
@@ -669,6 +668,8 @@ export const AR = {
     requestSending: 'جارٍ إرسال الطلب…', requestSuccess: 'تم استلام الطلب. رقمك المرجعي هو', requestError: 'تعذر إرسال الطلب. حاول مرة أخرى.'
   },
   travel: {
+    videoLabel: 'فيديو الرحلة',
+    videoFullscreen: 'عرض فيديو الرحلة بملء الشاشة',
     navHome: 'الرئيسية', navServices: 'المميزات', navDestinations: 'الجولات', navHotels: 'الفنادق', navOffers: 'العروض', navAbout: 'من نحن', navStories: 'تجارب المسافرين', navContact: 'تواصل معنا', plan: 'خطط لرحلتك',
     navExclusiveVisits: 'زيارات حصرية', navFiveStarHotels: 'فنادق 5 نجوم', navTailorMadeItineraries: 'برامج رحلات حسب الطلب',
     location: 'المدينة المنورة · المملكة العربية السعودية', currency: 'ر.س',

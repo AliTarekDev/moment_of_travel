@@ -1,3 +1,4 @@
+import { AnimateOnScrollDirective } from '../../../shared/animate-on-scroll.directive';
 import { Component, ElementRef, ViewChild, computed, inject, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -17,7 +18,7 @@ import { TRIP_STEPS, TailorMadeDraft, localCalendarDate } from './tailor-made.mo
 
 @Component({
   selector: 'app-trip-planner', standalone: true,
-  imports: [ReactiveFormsModule, TranslatePipe, MatFormFieldModule, MatInputModule, MatRadioModule, MatCheckboxModule, MatDatepickerModule],
+  imports: [AnimateOnScrollDirective, ReactiveFormsModule, TranslatePipe, MatFormFieldModule, MatInputModule, MatRadioModule, MatCheckboxModule, MatDatepickerModule],
   providers: [provideNativeDateAdapter(), { provide: MatDatepickerIntl, useClass: WebsiteDatepickerIntl }],
   templateUrl: './trip-planner.component.html', styleUrl: './trip-planner.component.scss',
 })

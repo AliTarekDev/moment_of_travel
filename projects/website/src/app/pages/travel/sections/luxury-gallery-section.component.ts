@@ -1,3 +1,4 @@
+import { AnimateOnScrollDirective } from '../../../shared/animate-on-scroll.directive';
 import { Component, computed, inject, input } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { TranslatePipe } from '../../../i18n/translate.pipe';
@@ -15,7 +16,7 @@ export interface GalleryImage {
 @Component({
   selector: 'app-luxury-gallery-section',
   standalone: true,
-  imports: [AccessibleCarouselDirective, ImageFallbackDirective, TranslatePipe, CarouselModule],
+  imports: [AnimateOnScrollDirective, AccessibleCarouselDirective, ImageFallbackDirective, TranslatePipe, CarouselModule],
   templateUrl: './luxury-gallery-section.component.html',
   styleUrl: './luxury-gallery-section.component.scss',
 })
@@ -40,8 +41,8 @@ export class LuxuryGallerySectionComponent {
     pullDrag: false,
     dots: false,
     nav: false,
-    margin: 24,
+    margin: 0,
     smartSpeed: 450,
-    responsive: { 0: { items: 1, margin: 16 }, 560: { items: 2 }, 1000: { items: 3 } },
+    responsive: { 0: { items: 1 }, 640: { items: 2 }, 1024: { items: 3 } },
   }));
 }

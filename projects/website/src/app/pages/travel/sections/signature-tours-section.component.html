@@ -1,5 +1,5 @@
-<section class="signature-tours" id="catalog" aria-labelledby="signature-tours-heading">
-  <div class="container signature-tours__heading">
+<section class="signature-tours section-shapes" id="catalog" aria-labelledby="signature-tours-heading">
+  <div class="container signature-tours__heading" appAnimateOnScroll>
     <span class="eyebrow">{{ 'tourUi.bestRecommendedExperiences' | t }}</span>
     <h2 id="signature-tours-heading">{{ 'tourUi.yourNextGreatStoryStartsHere' | t }}</h2>
     <p>{{ 'tourUi.handpickedPrivateItinerariesToInspireYouEveryDetailCan' | t }}</p>
@@ -16,7 +16,7 @@
   } @else {
     <div class="container">
     <ng-template #tourCard let-tour>
-      <article class="tour-panel">
+      <article class="tour-panel" appAnimateOnScroll>
         <img appImageFallback class="tour-panel__image" [src]="tour.imageUrl || '/cover.jpg'" [alt]="local(tour, 'title')" width="800" height="500" loading="lazy" />
         <div class="tour-panel__content">
           @if (local(tour, 'location'); as location) {
@@ -51,7 +51,7 @@
           }
         </owl-carousel-o>
         @if (tours().length > 1) {
-          <div class="tour-carousel__footer">
+          <div class="tour-carousel__footer" appAnimateOnScroll>
             <a class="all-tours-link" [routerLink]="['/', languages.language(), 'tours']">{{ 'tourUi.exploreOurTours' | t }} <span aria-hidden="true">↗</span></a>
             <div class="carousel-controls">
               <button type="button" (click)="tourCarousel.prev()" [attr.aria-label]="'carousel.previous' | t"><span aria-hidden="true">←</span></button>

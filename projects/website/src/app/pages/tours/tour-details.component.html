@@ -3,18 +3,18 @@
   @if (tour(); as selected) {
     <header class="details-hero">
       <div class="hero-cover" [style.background-image]="'url(&quot;' + (selected.imageUrl || '/cover.jpg') + '&quot;)'">
-        <h1 class="hero-title" dir="auto">{{ local(selected, 'title') }}</h1>
-        @if (local(selected, 'location'); as location) { <p class="hero-subtitle" dir="auto">{{ location }}</p> }
+        <h1 appAnimateOnScroll class="hero-title" dir="auto">{{ local(selected, 'title') }}</h1>
+        @if (local(selected, 'location'); as location) { <p class="hero-subtitle" appAnimateOnScroll dir="auto">{{ location }}</p> }
         <nav class="breadcrumbs" [attr.aria-label]="'tourUi.breadcrumb' | t"><a [routerLink]="['/', languages.language()]">{{ 'tourUi.home' | t }}</a><span aria-hidden="true">/</span><a [routerLink]="['/', languages.language(), 'tours']">{{ 'tourUi.tours' | t }}</a></nav>
       </div>
     </header>
-    <section class="tour-introduction" aria-labelledby="tour-introduction-heading">
+    <section class="tour-introduction section-shapes" aria-labelledby="tour-introduction-heading">
       <div class="container hero-grid">
-        <div class="hero-copy">
+        <div class="hero-copy" appAnimateOnScroll>
           <h2 id="tour-introduction-heading">{{ 'tourUi.aboutThisTour' | t }}</h2>
           <p class="tour-description" dir="auto">{{ content().introduction || local(selected, 'summary') }}</p>
         </div>
-        <div class="hero-booking">
+        <div class="hero-booking" appAnimateOnScroll>
           <div class="hero-facts">
             @if (selected.price !== null) { <div><span class="hero-fact-label">{{ 'tourUi.tourPrice' | t }}</span><strong class="tour-price">{{ selected.price | currency:selected.currency:'symbol':'1.0-2' }}</strong></div> }
             <div><span class="hero-fact-label">{{ 'tourUi.tripDuration' | t }}</span><strong class="duration">@if (days(selected); as count) { {{ count }} {{ 'tourUi.days' | t }} } @else { {{ 'tourUi.flexibleDuration' | t }} }</strong></div>
@@ -23,18 +23,18 @@
         </div>
       </div>
     </section>
-    <section class="tour-benefits" aria-labelledby="tour-benefits-heading">
+    <section class="tour-benefits section-shapes" aria-labelledby="tour-benefits-heading">
       <div class="container">
-        <h2 id="tour-benefits-heading">{{ 'whyAncientPaths.title' | t }}</h2>
+        <h2 appAnimateOnScroll id="tour-benefits-heading">{{ 'whyAncientPaths.title' | t }}</h2>
         <div class="benefits-grid">
           @for (benefit of ['discovery', 'comfort', 'culture', 'confidence']; track benefit) {
-            <article><h3>{{ ('whyAncientPaths.' + benefit + '.title') | t }}</h3><p>{{ ('whyAncientPaths.' + benefit + '.text') | t }}</p></article>
+            <article appAnimateOnScroll><h3>{{ ('whyAncientPaths.' + benefit + '.title') | t }}</h3><p>{{ ('whyAncientPaths.' + benefit + '.text') | t }}</p></article>
           }
         </div>
       </div>
     </section>
-    <section class="itinerary" id="itinerary" aria-labelledby="itinerary-heading">
-      <div class="container itinerary-heading">
+    <section class="itinerary section-shapes" id="itinerary" aria-labelledby="itinerary-heading">
+      <div class="container itinerary-heading" appAnimateOnScroll>
         <span class="eyebrow">{{ 'tourUi.dayByDay' | t }}</span>
         <h2 id="itinerary-heading" dir="auto">{{ local(selected, 'title') }}</h2>
         @if (!itinerary().length) { <p>{{ 'tourUi.itineraryOnRequest' | t }}</p> }
@@ -42,7 +42,7 @@
       <ol class="day-list" role="list">
         @for (day of itinerary(); track $index) {
           <li class="day-panel" [class.day-panel--reverse]="$odd" [id]="'itinerary-day-' + ($index + 1)" [style.background-image]="'url(&quot;' + dayImage(day) + '&quot;)'">
-            <div class="container day-panel__content">
+            <div class="container day-panel__content" appAnimateOnScroll>
               <div class="day-panel__photo-action">
                 <button type="button" class="day-panel__photo-button" (click)="viewDayPhoto(day)" [attr.aria-label]="('itineraryPhoto.view' | t) + ': ' + day.title" aria-haspopup="dialog">{{ 'itineraryPhoto.view' | t }} <span aria-hidden="true">⤢</span></button>
               </div>
@@ -59,8 +59,8 @@
       </ol>
     </section>
     <app-luxury-gallery-section [images]="galleryImages()" [heading]="local(selected, 'title')" />
-    <section #bookingSection class="booking-section" id="book-trip">
-      <div class="container booking-card">
+    <section #bookingSection class="booking-section section-shapes" id="book-trip">
+      <div class="container booking-card" appAnimateOnScroll>
         <span class="eyebrow">{{ ('tourUi.letUsPlanTheDetails' | t) }}</span>
         <h2>{{ ('tourUi.bookYourTrip' | t) }}</h2>
         <p>{{ ('tourUi.sendYourPreferredDateAndGroupSizeOurTeam' | t) }}</p>

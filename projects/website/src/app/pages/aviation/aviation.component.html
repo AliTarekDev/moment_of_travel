@@ -1,6 +1,6 @@
 <header class="header">
   <div class="shell header__inner">
-    <a class="brand brand--logo" routerLink="../" [attr.aria-label]="('siteCopy.ancientPathsHome' | t)"><img src="/SLOGAN.png" [alt]="'common.brandName' | t"></a>
+    <a class="brand brand--logo" routerLink="../" [attr.aria-label]="('siteCopy.ancientPathsHome' | t)"><img src="/LOGO%202.png" [alt]="'common.brandName' | t"></a>
     <div class="mobile-tools"><app-language-switch /><button mat-icon-button class="menu" type="button" (click)="menuOpen = !menuOpen" [attr.aria-expanded]="menuOpen" aria-controls="aviation-navigation" [attr.aria-label]="('siteCopy.toggleNavigation' | t)"><fa-icon [icon]="icons.bars" /></button></div>
     <nav id="aviation-navigation" [class.open]="menuOpen" (click)="menuOpen = false"><a href="#services">{{ 'aviation.navServices' | t }}</a><a href="#fleet">{{ 'aviation.navFleet' | t }}</a><a href="#about">{{ 'aviation.navAbout' | t }}</a><a href="#safety">{{ 'aviation.navSafety' | t }}</a><a href="#contact">{{ 'aviation.navContact' | t }}</a></nav>
     <div class="header__actions"><app-language-switch /><a class="division" routerLink="../travel">{{ 'aviation.switch' | t }} <fa-icon [icon]="icons.external" /></a><a mat-flat-button class="button button--small" href="#contact">{{ 'aviation.request' | t }}</a></div>
@@ -10,24 +10,24 @@
 <main>
   <section class="hero">
     <div class="hero__image"></div><div class="hero__overlay"></div>
-    <div class="shell hero__content">
+    <div class="shell hero__content" appAnimateOnScroll>
       <span class="eyebrow">{{ 'aviation.heroKicker' | t }}</span>
       <h1>{{ 'aviation.heroTitle' | t }}<br><em>{{ 'aviation.heroAccent' | t }}</em></h1>
       <p>{{ 'aviation.heroText' | t }}</p>
       <div class="hero__actions"><a mat-flat-button class="button" href="#contact">{{ 'aviation.request' | t }} <span><fa-icon [icon]="icons.arrowRight" /></span></a><a mat-button class="watch" href="#about"><i><fa-icon [icon]="icons.play" /></i> {{ 'aviation.story' | t }}</a></div>
     </div>
-    <div class="shell hero__foot"><span><b>24/7</b> {{ ('siteCopy.globalOperations' | t) }}</span><span><b>120+</b> {{ ('siteCopy.destinations' | t) }}</span><span><b>{{ ('siteCopy.15Yrs' | t) }}</b> {{ ('siteCopy.aviationExpertise' | t) }}</span><a href="#services">{{ ('siteCopy.scrollToExplore' | t) }} <fa-icon [icon]="icons.arrowDown" aria-hidden="true" /></a></div>
+    <div class="shell hero__foot" appAnimateOnScroll><span><b>24/7</b> {{ ('siteCopy.globalOperations' | t) }}</span><span><b>120+</b> {{ ('siteCopy.destinations' | t) }}</span><span><b>{{ ('siteCopy.15Yrs' | t) }}</b> {{ ('siteCopy.aviationExpertise' | t) }}</span><a href="#services">{{ ('siteCopy.scrollToExplore' | t) }} <fa-icon [icon]="icons.arrowDown" aria-hidden="true" /></a></div>
   </section>
 
   <section class="intro" id="about">
-    <div class="shell intro__grid"><div><span class="eyebrow eyebrow--dark">{{ 'aviation.introKicker' | t }}</span><h2>{{ 'aviation.introTitle' | t }}</h2></div><div><p>{{ 'aviation.introText' | t }}</p><a href="#services">{{ 'common.explore' | t }} <span><fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></span></a></div></div>
+    <div class="shell intro__grid" appAnimateOnScroll><div><span class="eyebrow eyebrow--dark">{{ 'aviation.introKicker' | t }}</span><h2>{{ 'aviation.introTitle' | t }}</h2></div><div><p>{{ 'aviation.introText' | t }}</p><a href="#services">{{ 'common.explore' | t }} <span><fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></span></a></div></div>
   </section>
 
   @if (catalogItems.length) {
     <section class="aviation-catalog" id="aviation-catalog">
-      <div class="shell"><div class="section-head"><div><span class="eyebrow eyebrow--dark">{{ ('siteCopy.availableNow' | t) }}</span><h2>{{ ('siteCopy.aviationServicesAndJourneys' | t) }}</h2></div><p>{{ ('siteCopy.optionsPublishedByOurOperationsTeamAndReady' | t) }}</p></div>
+      <div class="shell"><div class="section-head" appAnimateOnScroll><div><span class="eyebrow eyebrow--dark">{{ ('siteCopy.availableNow' | t) }}</span><h2>{{ ('siteCopy.aviationServicesAndJourneys' | t) }}</h2></div><p>{{ ('siteCopy.optionsPublishedByOurOperationsTeamAndReady' | t) }}</p></div>
       <div class="aviation-catalog__grid">@for (item of catalogItems; track item) {
-        <article><div class="aviation-catalog__image">@if (item.imageUrl) {
+        <article appAnimateOnScroll><div class="aviation-catalog__image">@if (item.imageUrl) {
           <img [src]="item.imageUrl" [alt]="local(item, 'title')" loading="lazy">
           }@if (!item.imageUrl) {
           <span>{{ 'common.brandName' | t }}</span>
@@ -37,44 +37,44 @@
     </section>
   }
 
-  <section class="services" id="services">
-    <div class="shell"><div class="section-head"><div><span class="eyebrow">{{ 'aviation.servicesKicker' | t }}</span><h2>{{ 'aviation.servicesTitle' | t }}</h2></div><p>{{ 'aviation.servicesText' | t }}</p></div>
+  <section class="services section-shapes section-shapes--light" id="services">
+    <div class="shell"><div class="section-head" appAnimateOnScroll><div><span class="eyebrow">{{ 'aviation.servicesKicker' | t }}</span><h2>{{ 'aviation.servicesTitle' | t }}</h2></div><p>{{ 'aviation.servicesText' | t }}</p></div>
     <div class="service-grid">
-      <article><span class="service__number">01</span><i><fa-icon [icon]="icons.charter" /></i><h3>{{ 'aviation.charter' | t }}</h3><p>{{ 'aviation.charterText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
-      <article><span class="service__number">02</span><i><fa-icon [icon]="icons.management" /></i><h3>{{ 'aviation.management' | t }}</h3><p>{{ 'aviation.managementText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
-      <article><span class="service__number">03</span><i><fa-icon [icon]="icons.group" /></i><h3>{{ 'aviation.group' | t }}</h3><p>{{ 'aviation.groupText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
-      <article><span class="service__number">04</span><i><fa-icon [icon]="icons.missions" /></i><h3>{{ 'aviation.missions' | t }}</h3><p>{{ 'aviation.missionsText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
+      <article appAnimateOnScroll><span class="service__number">01</span><i><fa-icon [icon]="icons.charter" /></i><h3>{{ 'aviation.charter' | t }}</h3><p>{{ 'aviation.charterText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
+      <article appAnimateOnScroll><span class="service__number">02</span><i><fa-icon [icon]="icons.management" /></i><h3>{{ 'aviation.management' | t }}</h3><p>{{ 'aviation.managementText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
+      <article appAnimateOnScroll><span class="service__number">03</span><i><fa-icon [icon]="icons.group" /></i><h3>{{ 'aviation.group' | t }}</h3><p>{{ 'aviation.groupText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
+      <article appAnimateOnScroll><span class="service__number">04</span><i><fa-icon [icon]="icons.missions" /></i><h3>{{ 'aviation.missions' | t }}</h3><p>{{ 'aviation.missionsText' | t }}</p><a href="#contact">{{ 'common.explore' | t }} <fa-icon [icon]="icons.arrowRight" /></a></article>
     </div>
   </div>
 </section>
 
 <section class="representation">
   <div class="shell representation__grid">
-    <div><span class="eyebrow eyebrow--dark">{{ 'aviation.representationKicker' | t }}</span><h2>{{ 'aviation.representationTitle' | t }}</h2><p>{{ 'aviation.representationText' | t }}</p></div>
-    <div class="representation__list"><article><b>01</b><span>{{ 'aviation.representationMarketing' | t }}</span></article><article><b>02</b><span>{{ 'aviation.representationOperations' | t }}</span></article><article><b>03</b><span>{{ 'aviation.representationLiaison' | t }}</span></article></div>
+    <div appAnimateOnScroll><span class="eyebrow eyebrow--dark">{{ 'aviation.representationKicker' | t }}</span><h2>{{ 'aviation.representationTitle' | t }}</h2><p>{{ 'aviation.representationText' | t }}</p></div>
+    <div class="representation__list"><article appAnimateOnScroll><b>01</b><span>{{ 'aviation.representationMarketing' | t }}</span></article><article appAnimateOnScroll><b>02</b><span>{{ 'aviation.representationOperations' | t }}</span></article><article appAnimateOnScroll><b>03</b><span>{{ 'aviation.representationLiaison' | t }}</span></article></div>
   </div>
 </section>
 
-<section class="fleet" id="fleet">
+<section class="fleet section-shapes" id="fleet">
   <div class="shell fleet__grid">
-    <div class="fleet__visual"><img src="/8.jpg" [alt]="('whyAncientPaths.imageAlt' | t)" loading="lazy"><span>{{ 'common.brandName' | t }}</span></div>
-    <div class="fleet__copy"><span class="eyebrow eyebrow--dark">{{ 'aviation.fleetKicker' | t }}</span><h2>{{ 'aviation.fleetTitle' | t }}</h2><p>{{ ('siteCopy.ourGlobalNetworkSpansLightJetsToUltra' | t) }}</p>
+    <div class="fleet__visual" appAnimateOnScroll><img src="/8.jpg" [alt]="('whyAncientPaths.imageAlt' | t)" loading="lazy"><span>{{ 'common.brandName' | t }}</span></div>
+    <div class="fleet__copy" appAnimateOnScroll><span class="eyebrow eyebrow--dark">{{ 'aviation.fleetKicker' | t }}</span><h2>{{ 'aviation.fleetTitle' | t }}</h2><p>{{ ('siteCopy.ourGlobalNetworkSpansLightJetsToUltra' | t) }}</p>
     <div class="specs"><div><small>{{ ('siteCopy.range' | t) }}</small><b>{{ ('siteCopy.7700Nm' | t) }}</b></div><div><small>{{ ('siteCopy.passengers' | t) }}</small><b>{{ ('siteCopy.upTo19' | t) }}</b></div><div><small>{{ ('siteCopy.cruise2' | t) }}</small><b>Mach 0.90</b></div></div>
     <div class="fleet__nav"><a href="#contact">{{ ('siteCopy.exploreOurFleet' | t) }} <fa-icon [icon]="icons.arrowRight" /></a></div>
   </div>
 </div>
 </section>
 
-<section class="safety" id="safety">
-  <div class="shell safety__inner"><div><span class="eyebrow">{{ ('siteCopy.safetyWithoutException' | t) }}</span><h2>{{ ('siteCopy.standardsThatNever' | t) }}<br>{{ ('siteCopy.leaveTheGround' | t) }}</h2><p>{{ ('siteCopy.everyOperatorAircraftAndCrewIsIndependentlyEvaluated' | t) }}</p><a class="button button--outline" href="#contact">{{ ('siteCopy.discussYourFlightRequirements' | t) }} <fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></a></div><div class="safety__marks"><div><b>ARGUS</b><small>{{ ('siteCopy.ratedOperators' | t) }}</small></div><div><b>WYVERN</b><small>{{ ('siteCopy.verifiedNetwork' | t) }}</small></div><div><b>IS-BAO</b><small>{{ ('siteCopy.alignedStandards' | t) }}</small></div><div><b>24/7</b><small>{{ ('siteCopy.flightMonitoring' | t) }}</small></div></div></div>
+<section class="safety section-shapes section-shapes--light" id="safety">
+  <div class="shell safety__inner" appAnimateOnScroll><div><span class="eyebrow">{{ ('siteCopy.safetyWithoutException' | t) }}</span><h2>{{ ('siteCopy.standardsThatNever' | t) }}<br>{{ ('siteCopy.leaveTheGround' | t) }}</h2><p>{{ ('siteCopy.everyOperatorAircraftAndCrewIsIndependentlyEvaluated' | t) }}</p><a class="button button--outline" href="#contact">{{ ('siteCopy.discussYourFlightRequirements' | t) }} <fa-icon [icon]="icons.arrowRight" aria-hidden="true" /></a></div><div class="safety__marks"><div><b>ARGUS</b><small>{{ ('siteCopy.ratedOperators' | t) }}</small></div><div><b>WYVERN</b><small>{{ ('siteCopy.verifiedNetwork' | t) }}</small></div><div><b>IS-BAO</b><small>{{ ('siteCopy.alignedStandards' | t) }}</small></div><div><b>24/7</b><small>{{ ('siteCopy.flightMonitoring' | t) }}</small></div></div></div>
 </section>
 
 <section class="world">
-  <div class="shell world__inner"><span class="eyebrow eyebrow--dark">{{ 'aviation.worldKicker' | t }}</span><h2>{{ 'aviation.worldTitle' | t }}</h2><p>{{ ('siteCopy.oneTeamCoordinatingEveryDetailAcrossContinentsTime' | t) }}</p><div class="locations"><span>{{ ('siteCopy.madinah' | t) }} <small>MED</small></span><span>{{ ('siteCopy.saudiArabia' | t) }} <small>KSA</small></span><span>{{ ('siteCopy.middleEast' | t) }} <small>MEA</small></span><span>{{ ('siteCopy.worldwide' | t) }} <small>24/7</small></span></div></div>
+  <div class="shell world__inner" appAnimateOnScroll><span class="eyebrow eyebrow--dark">{{ 'aviation.worldKicker' | t }}</span><h2>{{ 'aviation.worldTitle' | t }}</h2><p>{{ ('siteCopy.oneTeamCoordinatingEveryDetailAcrossContinentsTime' | t) }}</p><div class="locations"><span>{{ ('siteCopy.madinah' | t) }} <small>MED</small></span><span>{{ ('siteCopy.saudiArabia' | t) }} <small>KSA</small></span><span>{{ ('siteCopy.middleEast' | t) }} <small>MEA</small></span><span>{{ ('siteCopy.worldwide' | t) }} <small>24/7</small></span></div></div>
 </section>
 
-<section class="contact" id="contact">
-  <div class="contact__image"></div><div class="contact__overlay"></div><div class="shell contact__inner"><span class="eyebrow">{{ 'aviation.contactKicker' | t }}</span><h2>{{ 'aviation.contactTitle' | t }}</h2><p>{{ 'aviation.contactText' | t }}</p>
+<section class="contact section-shapes section-shapes--light" id="contact">
+  <div class="contact__image"></div><div class="contact__overlay"></div><div class="shell contact__inner" appAnimateOnScroll><span class="eyebrow">{{ 'aviation.contactKicker' | t }}</span><h2>{{ 'aviation.contactTitle' | t }}</h2><p>{{ 'aviation.contactText' | t }}</p>
   <form [formGroup]="requestForm" (ngSubmit)="submitRequest()" novalidate>
     <label><span>{{ ('siteCopy.name' | t) }}</span><input matInput formControlName="customerName" autocomplete="name" [placeholder]="('siteCopy.fullName' | t)"></label>
     <label><span>{{ ('siteCopy.email' | t) }}</span><input matInput type="email" formControlName="customerEmail" autocomplete="email" [placeholder]="('siteCopy.emailAddress' | t)"></label>

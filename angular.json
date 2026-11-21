@@ -34,6 +34,7 @@
             ],
             "styles": [
               "node_modules/@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/animate.css/animate.css",
               "projects/website/src/styles.scss"
             ],
             "scripts": [],
@@ -123,6 +124,7 @@
             ],
             "styles": [
               "node_modules/@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/animate.css/animate.css",
               "projects/website/src/styles.scss"
             ],
             "scripts": []

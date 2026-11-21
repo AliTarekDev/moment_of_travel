@@ -1,13 +1,13 @@
-<section class="faq-section" aria-labelledby="faq-title">
+<section class="faq-section section-shapes" aria-labelledby="faq-title">
   <div class="container faq-layout">
-    <div class="faq-heading">
+    <div class="faq-heading" appAnimateOnScroll>
       <span class="eyebrow">{{ 'faq.kicker' | t }}</span>
       <h2 id="faq-title">{{ 'faq.title' | t }}</h2>
       <p>{{ 'faq.introduction' | t }}</p>
     </div>
     <div class="faq-list">
       @for (question of questions; track question.id) {
-        <details class="faq-item">
+        <details class="faq-item" appAnimateOnScroll>
           <summary>
             <span>{{ ('faq.' + question.id + 'Question') | t }}</span>
             <fa-icon class="faq-chevron" [icon]="chevron" aria-hidden="true" />

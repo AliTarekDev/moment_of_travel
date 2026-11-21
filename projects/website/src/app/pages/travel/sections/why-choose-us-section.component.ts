@@ -1,3 +1,4 @@
+import { AnimateOnScrollDirective } from '../../../shared/animate-on-scroll.directive';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../../i18n/language.service';
@@ -6,7 +7,7 @@ import { TranslatePipe } from '../../../i18n/translate.pipe';
 @Component({
   selector: 'app-why-choose-us-section',
   standalone: true,
-  imports: [TranslatePipe, RouterLink],
+  imports: [AnimateOnScrollDirective, TranslatePipe, RouterLink],
   templateUrl: './why-choose-us-section.component.html',
   styleUrl: './why-choose-us-section.component.scss',
 })

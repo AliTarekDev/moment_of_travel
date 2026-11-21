@@ -1,3 +1,4 @@
+import { AnimateOnScrollDirective } from '../../../shared/animate-on-scroll.directive';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '../../../i18n/translate.pipe';
@@ -6,7 +7,7 @@ import { TravelNavComponent } from '../../travel/travel-nav.component';
 
 @Component({
   selector: 'app-exclusive-visits', standalone: true,
-  imports: [RouterLink, TranslatePipe, TravelNavComponent],
+  imports: [AnimateOnScrollDirective, RouterLink, TranslatePipe, TravelNavComponent],
   templateUrl: './exclusive-visits.component.html',
   styleUrl: './exclusive-visits.component.scss',
 })

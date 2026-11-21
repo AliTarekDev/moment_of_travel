@@ -1,3 +1,4 @@
+import { AnimateOnScrollDirective } from '../../shared/animate-on-scroll.directive';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LanguageSwitchComponent } from '../../i18n/language-switch.component';
@@ -8,7 +9,7 @@ import { faArrowRight, faLocationDot, faPlane } from '@fortawesome/free-solid-sv
 @Component({
   selector: 'app-gateway',
   standalone: true,
-  imports: [RouterLink, LanguageSwitchComponent, TranslatePipe, FontAwesomeModule],
+  imports: [AnimateOnScrollDirective, RouterLink, LanguageSwitchComponent, TranslatePipe, FontAwesomeModule],
   templateUrl: './gateway.component.html',
   styleUrl: './gateway.component.scss'
 })

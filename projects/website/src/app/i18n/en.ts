@@ -259,7 +259,6 @@ export const EN = {
   "examples": "Examples of five-star hotels",
   "fiveStars": "Five-star hotel",
   "enquire": "Enquire about this hotel",
-  "officialWebsite": "Official hotel website",
   "requestMessage": "I would like to enquire about staying at",
   "ctaEyebrow": "Your stay, your preferences",
   "ctaTitle": "Let us find the right stay for you.",
@@ -669,6 +668,8 @@ export const EN = {
     requestSending: 'Sending request…', requestSuccess: 'Request received. Your reference is', requestError: 'We could not send your request. Please try again.'
   },
   travel: {
+    videoLabel: 'Travel video',
+    videoFullscreen: 'Open the travel video in fullscreen',
     navHome: 'Home', navServices: 'Features', navDestinations: 'Tours', navHotels: 'Hotels', navOffers: 'Offers', navAbout: 'About', navStories: 'Stories', navContact: 'Contact', plan: 'Plan your trip',
     navExclusiveVisits: 'Exclusive Visits', navFiveStarHotels: '5 Star Hotels', navTailorMadeItineraries: 'Tailor-made Itineraries',
     location: 'Madinah · Saudi Arabia', currency: 'SAR',

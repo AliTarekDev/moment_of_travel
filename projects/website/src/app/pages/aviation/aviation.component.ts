@@ -1,3 +1,4 @@
+import { AnimateOnScrollDirective } from '../../shared/animate-on-scroll.directive';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -16,7 +17,7 @@ import { LanguageService } from '../../i18n/language.service';
 @Component({
   selector: 'app-aviation',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule, LanguageSwitchComponent, TranslatePipe, MatButtonModule, MatInputModule, FontAwesomeModule],
+  imports: [AnimateOnScrollDirective, CommonModule, RouterLink, ReactiveFormsModule, LanguageSwitchComponent, TranslatePipe, MatButtonModule, MatInputModule, FontAwesomeModule],
   templateUrl: './aviation.component.html',
   styleUrls: ['./aviation.component.scss', './aviation-sections.scss', './aviation-contact.scss']
 })

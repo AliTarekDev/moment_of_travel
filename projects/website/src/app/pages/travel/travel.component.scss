@@ -5,6 +5,11 @@
 .hero__slides { position:absolute; inset:0; z-index:-2; overflow:hidden; }
 .hero__photo { width:100%; height:760px; object-fit:cover; object-position:center 54%; filter:saturate(.85) contrast(1.05); }
 .hero__wash { position:absolute; inset:0; z-index:-1; pointer-events:none; background:linear-gradient(90deg,#21131ec2,#21131e5c 42%,#21131e0d),linear-gradient(0deg,#21131e59,transparent 45%); }
+.hero--video .hero__wash {
+  background: linear-gradient(90deg, rgb(33 19 30 / 42%), rgb(33 19 30 / 16%) 47%, transparent 80%),
+    linear-gradient(0deg, rgb(33 19 30 / 22%), transparent 38%);
+}
+video.hero__photo { filter: none; }
 .hero__content { padding-block:50px 95px; pointer-events:none; }
 .hero__kicker { font-family:Inter,Arial,sans-serif; color:#ffffffd1; font-size:10px; font-weight:900; letter-spacing:.24em; text-transform:uppercase; }
 .hero h1 { max-width:760px; margin:20px 0 24px; color:#fff; font-size:clamp(64px,9vw,100px); font-weight:600; line-height:1.1; letter-spacing:-.075em; }
@@ -21,6 +26,17 @@
 .hero__pagination button.is-active { border-color:var(--brand-gold); }
 :host-context([dir='rtl']) .hero__wash { transform:scaleX(-1); }
 :host-context([dir='rtl']) .hero__kicker { letter-spacing:0; }
+.travel-video-section { position: relative; }
+.travel-video {
+  display: block;
+  width: 100%;
+  height: clamp(180px, 32vw, 440px);
+  object-fit: cover;
+  background: var(--brand-plum-dark);
+}
+.travel-video:fullscreen { object-fit: contain; background: #000; }
+.travel-video-fullscreen { position: absolute; inset: 0; width: 100%; border: 0; background: transparent; cursor: zoom-in; }
+.travel-video-fullscreen:focus-visible { outline: 3px solid #fff; outline-offset: -6px; }
 :host-context([dir='rtl']) .hero h1 { letter-spacing:0; }
 @media(max-width:760px) { .hero { min-height:720px; justify-content:flex-start; } .hero__photo { height:720px; } .hero__content { padding-block:90px 110px; } .hero h1 { font-size:58px; max-width:360px; } .hero .hero__description { font-size:16px; } .hero__actions { align-items:stretch; flex-direction:column; max-width:440px; } }
 @media(max-width:430px) { .hero h1 { font-size:50px; } }

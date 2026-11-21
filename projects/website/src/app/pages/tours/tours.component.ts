@@ -1,3 +1,4 @@
+import { AnimateOnScrollDirective } from '../../shared/animate-on-scroll.directive';
 import { TranslatePipe } from '../../i18n/translate.pipe';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -9,7 +10,7 @@ import { TravelNavComponent } from '../travel/travel-nav.component';
 @Component({
   selector: 'app-tours',
   standalone: true,
-  imports: [TranslatePipe, RouterLink, TravelNavComponent, SignatureToursSectionComponent, PlanTourCtaSectionComponent],
+  imports: [AnimateOnScrollDirective, TranslatePipe, RouterLink, TravelNavComponent, SignatureToursSectionComponent, PlanTourCtaSectionComponent],
   templateUrl: './tours.component.html',
   styleUrl: './tours.component.scss',
 })

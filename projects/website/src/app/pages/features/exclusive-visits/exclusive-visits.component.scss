@@ -1,9 +1,24 @@
 @use '../../travel/template-theme' as theme;
 @include theme.foundation;
 :host { display:block; --travel-ink:var(--brand-plum); --travel-muted:var(--brand-muted); --travel-gutter:clamp(20px,4.5vw,70px); color:var(--brand-plum); background:#fff; font-size: var(--website-font-body); line-height: 1.8; font-family: inherit; }
-.visits-hero { padding-block:clamp(40px,6vw,80px); text-align:center; @include theme.surface-shapes; border-bottom:1px solid #e8e1d8; }
+.visits-hero {
+  display: grid;
+  align-items: center;
+  min-height: clamp(320px, 36vw, 540px);
+  padding-block: clamp(48px, 7vw, 96px);
+  text-align: center;
+  color: #fff;
+  background-color: var(--brand-plum-dark);
+  background-image: linear-gradient(rgb(35 21 33 / 22%), rgb(35 21 33 / 38%)), url('/imgs/DSC02354.JPG');
+  background-position: center, center 48%;
+  background-size: cover;
+  text-shadow: 0 1px 4px rgb(25 15 23 / 80%);
+}
 .breadcrumbs { display:flex; justify-content:center; flex-wrap:wrap; gap:14px; margin-bottom:28px; font-size:16px; color:var(--brand-muted); }
 .breadcrumbs a { color:var(--brand-plum); text-underline-offset:4px; }
+.visits-hero .breadcrumbs, .visits-hero .breadcrumbs a, .visits-hero h1, .visits-hero p { color: #fff; }
+.visits-hero .eyebrow { color: #f6dfa1; }
+.visits-hero a:focus-visible { outline-color: #f6dfa1; }
 h1 { font-size:clamp(32px, 3.5vw, 46px); line-height:1.2; margin:18px 0; overflow-wrap:anywhere; }
 .visits-hero p { max-width:62ch; margin:0 auto; font-size:clamp(17px, 1.11vw, 20px); }
 .visits-intro { display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,5vw,80px); align-items:start; padding-block:clamp(48px,6vw,88px); }

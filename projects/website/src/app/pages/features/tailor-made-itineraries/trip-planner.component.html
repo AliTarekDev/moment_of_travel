@@ -4,13 +4,13 @@
   <main #scrollArea class="planner-content">
     <div class="question-content">
       @if (reference()) {
-        <span class="eyebrow">{{ 'tailorMade.successEyebrow' | t }}</span><h1 #questionTitle id="question-title" tabindex="-1">{{ 'tailorMade.successTitle' | t }}</h1><p>{{ 'tailorMade.successText' | t }}</p><p class="reference">{{ 'tailorMade.reference' | t }} <strong>{{ reference() }}</strong></p><button type="button" class="primary-button" (click)="close()">{{ 'tailorMade.returnToPage' | t }}</button>
+        <span class="eyebrow">{{ 'tailorMade.successEyebrow' | t }}</span><h1 #questionTitle id="question-title" tabindex="-1">{{ 'tailorMade.successTitle' | t }}</h1><p>{{ 'tailorMade.successText' | t }}</p><p class="reference" appAnimateOnScroll>{{ 'tailorMade.reference' | t }} <strong>{{ reference() }}</strong></p><button type="button" class="primary-button" (click)="close()">{{ 'tailorMade.returnToPage' | t }}</button>
       } @else {
         <p class="question-counter">{{ 'tailorMade.step' | t }} {{ draft.index() + 1 }} / {{ steps.length }}</p>
         <h1 #questionTitle id="question-title" tabindex="-1">@if (step().id === 'greeting') { {{ 'tailorMade.hi' | t }} {{ name }}! } @else if (step().id === 'ready') { {{ 'tailorMade.readyPrefix' | t }} {{ name }}. } @else { {{ ('tailorMade.questions.' + step().id + '.title') | t }} } @if (step().required) { <span class="required" aria-hidden="true">*</span> }</h1>
         @if (step().kind === 'intro') { <p class="question-description">{{ ('tailorMade.questions.' + step().id + '.body') | t }}</p> }
         @if (step().help) { <p class="question-help">{{ ('tailorMade.questions.' + step().id + '.help') | t }}</p> }
-        <form [formGroup]="draft.form" (ngSubmit)="step().kind === 'review' ? submit() : next()" novalidate>
+        <form appAnimateOnScroll [formGroup]="draft.form" (ngSubmit)="step().kind === 'review' ? submit() : next()" novalidate>
           @switch (step().kind) {
             @case ('text') { <mat-form-field appearance="outline" subscriptSizing="dynamic"><input matInput [formControl]="control()" aria-labelledby="question-title" [attr.aria-required]="step().required" [attr.maxlength]="step().id === 'firstName' ? 120 : step().id === 'origin' ? 140 : 120" [autocomplete]="step().id === 'firstName' ? 'given-name' : 'off'" [placeholder]="'tailorMade.typeAnswer' | t" /></mat-form-field> }
             @case ('email') { <mat-form-field appearance="outline" subscriptSizing="dynamic"><input matInput type="email" autocomplete="email" maxlength="180" [formControl]="control()" aria-labelledby="question-title" aria-required="true" [placeholder]="'tourUi.placeholderEmail' | t" /></mat-form-field> }

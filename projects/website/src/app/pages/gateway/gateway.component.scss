@@ -269,15 +269,12 @@ footer a {
 }
 
 .brand--logo {
-    width: 240px;
     height: 88px;
-    overflow: hidden;
 }
 
 .brand--logo img {
-    width: 220px;
-    max-width: none;
-    // transform: scale(1.9);
+    width: auto;
+    height: 100%;
 }
 
 .kicker {
@@ -297,4 +294,4 @@ footer a {
     color: var(--brand-brown);
 }
 
-@media(max-width:560px) { .brand--logo { width:195px; height:78px; } .brand--logo img { width:180px; } }
+@media(max-width:560px) { .brand--logo { height:78px; } }

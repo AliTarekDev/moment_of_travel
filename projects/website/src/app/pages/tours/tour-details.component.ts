@@ -1,3 +1,4 @@
+import { AnimateOnScrollDirective } from '../../shared/animate-on-scroll.directive';
 import { WebsiteDatepickerIntl } from '../../i18n/website-datepicker-intl';
 import { WebsiteCalendarHeaderComponent } from '../../i18n/website-calendar-header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -41,7 +42,7 @@ function emailsMatch(control: AbstractControl): ValidationErrors | null {
 @Component({
   selector: 'app-tour-details', standalone: true,
   providers: [provideNativeDateAdapter(), { provide: MatDatepickerIntl, useClass: WebsiteDatepickerIntl }],
-  imports: [MatDialogModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, CurrencyPipe, TranslatePipe, RouterLink, ReactiveFormsModule, TravelNavComponent, LuxuryGallerySectionComponent, MatSnackBarModule, FontAwesomeModule],
+  imports: [AnimateOnScrollDirective, MatDialogModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, CurrencyPipe, TranslatePipe, RouterLink, ReactiveFormsModule, TravelNavComponent, LuxuryGallerySectionComponent, MatSnackBarModule, FontAwesomeModule],
   templateUrl: './tour-details.component.html', styleUrls: ['./tour-details.component.scss', './tour-itinerary.scss', './tour-booking.scss'],
 })
 export class TourDetailsComponent {

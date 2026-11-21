@@ -1,9 +1,11 @@
+import { AnimateOnScrollDirective } from '../../shared/animate-on-scroll.directive';
 import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, computed, inject, signal } from '@angular/core';
 import { CarouselModule, OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
 import { LanguageService } from '../../i18n/language.service';
 import { AccessibleCarouselDirective } from '../../shared/accessible-carousel.directive';
 import { TranslatePipe } from '../../i18n/translate.pipe';
+import { FaqSectionComponent } from '../contact/faq-section.component';
 import { LuxuryGallerySectionComponent } from './sections/luxury-gallery-section.component';
 import { PlanTourCtaSectionComponent } from './sections/plan-tour-cta-section.component';
 import { SignatureToursSectionComponent } from './sections/signature-tours-section.component';
@@ -14,7 +16,7 @@ import { WhyChooseUsSectionComponent } from './sections/why-choose-us-section.co
 @Component({
   selector: 'app-travel',
   standalone: true,
-  imports: [AccessibleCarouselDirective, CarouselModule, TranslatePipe, LuxuryGallerySectionComponent, WhyChooseUsSectionComponent, SignatureToursSectionComponent, PlanTourCtaSectionComponent, TravelNavComponent, TourCategoriesSectionComponent],
+  imports: [AnimateOnScrollDirective, AccessibleCarouselDirective, CarouselModule, TranslatePipe, LuxuryGallerySectionComponent, WhyChooseUsSectionComponent, SignatureToursSectionComponent, PlanTourCtaSectionComponent, TravelNavComponent, TourCategoriesSectionComponent, FaqSectionComponent],
   templateUrl: './travel.component.html',
   styleUrl: './travel.component.scss'
 })
@@ -23,18 +25,28 @@ export class TravelComponent {
   readonly languages = inject(LanguageService);
   readonly activeSlide = signal(0);
   readonly heroImages = [
+    { id: 'travel-video', video: '/vedio/ved2.mp4', image: '/cover.jpg', alt: 'travel.videoLabel' },
     { id: 'temple', image: '/cover.jpg', alt: 'gallery.templeArchitecture' },
-    { id: 'pyramids', image: '/pyramid.JPG', alt: 'siteCopy.pyramidImageAlt' },
     { id: 'nile', image: '/8.jpg', alt: 'whyAncientPaths.imageAlt' },
   ];
   readonly heroOptions = computed<OwlOptions>(() => ({
     items: 1, rtl: this.languages.language() === 'ar', loop: false, rewind: true,
-    autoplay: false, dots: false, nav: false, mouseDrag: true, touchDrag: true,
+    autoplay: true, autoplayTimeout: 5000,
+    dots: false, nav: false, mouseDrag: true, touchDrag: true,
     pullDrag: false, smartSpeed: 500,
     // Owl only installs its window resize watcher when responsive has a breakpoint.
     responsive: { 0: { items: 1 } },
   }));
+
   slideChanged(event: SlidesOutputData): void { this.activeSlide.set(event.startPosition ?? 0); }
+
+  openVideoFullscreen(video: HTMLVideoElement & { webkitEnterFullscreen?: () => void }): void {
+    if (video.requestFullscreen && this.document.fullscreenEnabled) {
+      void video.requestFullscreen().catch(() => {});
+      return;
+    }
+    video.webkitEnterFullscreen?.();
+  }
 
   // Keep in-page links on the current language route despite the root base URL.
   @HostListener('click', ['$event'])

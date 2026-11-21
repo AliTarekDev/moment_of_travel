@@ -1,3 +1,4 @@
+import { AnimateOnScrollDirective } from '../../../shared/animate-on-scroll.directive';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -8,7 +9,7 @@ import { TravelNavComponent } from '../../travel/travel-nav.component';
 import { TripPlannerComponent } from './trip-planner.component';
 @Component({
   selector: 'app-tailor-made-itineraries', standalone: true,
-  imports: [RouterLink, TranslatePipe, TravelNavComponent, MatDialogModule, MatSnackBarModule],
+  imports: [AnimateOnScrollDirective, RouterLink, TranslatePipe, TravelNavComponent, MatDialogModule, MatSnackBarModule],
   templateUrl: './tailor-made-itineraries.component.html', styleUrl: './tailor-made-itineraries.component.scss',
 })
 export class TailorMadeItinerariesComponent {

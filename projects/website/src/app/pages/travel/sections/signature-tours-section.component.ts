@@ -1,3 +1,4 @@
+import { AnimateOnScrollDirective } from '../../../shared/animate-on-scroll.directive';
 import { TranslatePipe } from '../../../i18n/translate.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowRight, faClock } from '@fortawesome/free-solid-svg-icons';
@@ -17,7 +18,7 @@ import { AccessibleCarouselDirective } from '../../../shared/accessible-carousel
 @Component({
   selector: 'app-signature-tours-section',
   standalone: true,
-  imports: [AccessibleCarouselDirective, ImageFallbackDirective, NgTemplateOutlet, CarouselModule, CurrencyPipe, TranslatePipe, RouterLink, FontAwesomeModule],
+  imports: [AnimateOnScrollDirective, AccessibleCarouselDirective, ImageFallbackDirective, NgTemplateOutlet, CarouselModule, CurrencyPipe, TranslatePipe, RouterLink, FontAwesomeModule],
   templateUrl: './signature-tours-section.component.html',
   styleUrl: './signature-tours-section.component.scss',
 })

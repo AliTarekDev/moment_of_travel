@@ -15,10 +15,11 @@
       [routerLink]="['/', languages.language()]"
       [attr.aria-label]="'siteCopy.ancientPathsHome' | t"
     >
-      <img src="/LOGO 2.png" [alt]="'common.brandName' | t" />
+      <img src="/LOGO%202.png" [alt]="'common.brandName' | t" />
     </a>
 
     <button
+      #mobileMenuButton
       class="menu-button"
       type="button"
       (click)="toggleMobileMenu()"
@@ -26,29 +27,32 @@
       [attr.aria-expanded]="mobileMenuOpen"
       aria-controls="travel-navigation-links"
     >
-      <fa-icon [icon]="icons.bars" />
+      <fa-icon [icon]="icons.bars" aria-hidden="true" />
     </button>
 
     <button
       class="side-nav-overlay"
       type="button"
       [class.is-open]="mobileMenuOpen"
-      (click)="closeMobileMenu()"
+      (click)="dismissMobileMenu()"
       [attr.aria-label]="'siteCopy.closeMenu' | t"
+      tabindex="-1"
     ></button>
 
     <div
       class="nav__links"
       id="travel-navigation-links"
+      [cdkTrapFocus]="mobileMenuOpen"
       [class.is-open]="mobileMenuOpen"
       [class.nav__links--rtl]="languages.language() === 'ar'"
       [class.nav__links--ltr]="languages.language() !== 'ar'"
     >
       <div class="side-nav__head">
-        <img src="/LOGO 2.png" [alt]="'common.brandName' | t" />
+        <img src="/LOGO%202.png" [alt]="'common.brandName' | t" />
         <button
+          #mobileCloseButton
           type="button"
-          (click)="closeMobileMenu()"
+          (click)="dismissMobileMenu()"
           [attr.aria-label]="'siteCopy.closeMenu' | t"
         >
           <fa-icon [icon]="icons.close" aria-hidden="true" />
@@ -57,6 +61,7 @@
       <a
         [routerLink]="['/', languages.language()]"
         routerLinkActive="active"
+        ariaCurrentWhenActive="page"
         [routerLinkActiveOptions]="{ exact: true }"
         (click)="closeMobileMenu()"
         >{{ "travel.navHome" | t }}</a
@@ -64,6 +69,7 @@
       <a
         [routerLink]="['/', languages.language(), 'tours']"
         routerLinkActive="active"
+        ariaCurrentWhenActive="page"
         (click)="closeMobileMenu()"
         >{{ "travel.navDestinations" | t }}</a
       >
@@ -89,6 +95,7 @@
               'exclusive-visits',
             ]"
             routerLinkActive="active"
+            ariaCurrentWhenActive="page"
             (click)="closeMobileMenu()"
             >{{ "travel.navExclusiveVisits" | t }}</a
           >
@@ -100,6 +107,7 @@
               'five-star-hotels',
             ]"
             routerLinkActive="active"
+            ariaCurrentWhenActive="page"
             (click)="closeMobileMenu()"
             >{{ "travel.navFiveStarHotels" | t }}</a
           >
@@ -111,6 +119,7 @@
               'tailor-made-itineraries',
             ]"
             routerLinkActive="active"
+            ariaCurrentWhenActive="page"
             (click)="closeMobileMenu()"
             >{{ "travel.navTailorMadeItineraries" | t }}</a
           >
@@ -119,6 +128,7 @@
       <a
         [routerLink]="['/', languages.language(), 'contact']"
         routerLinkActive="active"
+        ariaCurrentWhenActive="page"
         (click)="closeMobileMenu()"
         >{{ "travel.navContact" | t }}</a
       >

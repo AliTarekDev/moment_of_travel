@@ -1,3 +1,4 @@
+import { AnimateOnScrollDirective } from '../../../shared/animate-on-scroll.directive';
 import { TranslatePipe } from '../../../i18n/translate.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowRight, faCompass, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +10,7 @@ import { LanguageService } from '../../../i18n/language.service';
 @Component({
   selector: 'app-luxury-intro-section',
   standalone: true,
-  imports: [TranslatePipe, RouterLink, FontAwesomeModule],
+  imports: [AnimateOnScrollDirective, TranslatePipe, RouterLink, FontAwesomeModule],
   templateUrl: './luxury-intro-section.component.html',
   styleUrl: './luxury-intro-section.component.scss',
 })

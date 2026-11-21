@@ -1,12 +1,12 @@
 <app-travel-nav />
 <main [attr.dir]="languages.language() === 'ar' ? 'rtl' : 'ltr'">
-  <header class="contact-heading container">
+  <header class="contact-heading container" appAnimateOnScroll>
     <span class="eyebrow">{{ 'contactPage.kicker' | t }}</span>
     <h1>{{ 'contactPage.title' | t }}</h1>
   </header>
   <section class="contact-section container" aria-labelledby="contact-info-title">
     <div class="contact-grid">
-      <div class="contact-info">
+      <div class="contact-info" appAnimateOnScroll>
         <h2 id="contact-info-title">{{ 'contactPage.infoTitle' | t }}</h2>
         <p class="contact-introduction">{{ 'contactPage.introduction' | t }}</p>
         <address class="contact-methods">
@@ -24,7 +24,7 @@
           </div>
         </address>
       </div>
-      <div class="contact-form-card">
+      <div class="contact-form-card" appAnimateOnScroll>
         <h2>{{ 'contactPage.formTitle' | t }}</h2>
         <form [formGroup]="form" (ngSubmit)="send()" novalidate [attr.aria-busy]="pending()">
           <fieldset [disabled]="pending()">

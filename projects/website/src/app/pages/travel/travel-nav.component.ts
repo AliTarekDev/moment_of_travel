@@ -1,18 +1,18 @@
 import { DOCUMENT, ViewportScroller } from '@angular/common';
-import { Component, ElementRef, HostListener, OnDestroy, ViewChild, inject } from '@angular/core';
+import { CdkTrapFocus } from '@angular/cdk/a11y';
+import { Component, ElementRef, HostListener, Injector, OnDestroy, ViewChild, afterNextRender, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowRight, faBars, faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { LanguageSwitchComponent } from '../../i18n/language-switch.component';
 import { LanguageService } from '../../i18n/language.service';
 import { TranslatePipe } from '../../i18n/translate.pipe';
 
 @Component({
   selector: 'app-travel-nav',
   standalone: true,
-  imports: [LanguageSwitchComponent, TranslatePipe, FontAwesomeModule, RouterLink, RouterLinkActive],
+  imports: [CdkTrapFocus, TranslatePipe, FontAwesomeModule, RouterLink, RouterLinkActive],
   templateUrl: './travel-nav.component.html',
   styleUrls: ['./travel-nav.component.scss', './travel-nav-responsive.scss'],
 })
@@ -20,11 +20,14 @@ export class TravelNavComponent implements OnDestroy {
   private readonly document = inject(DOCUMENT);
   private readonly viewportScroller = inject(ViewportScroller);
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly injector = inject(Injector);
   readonly languages = inject(LanguageService);
   mobileMenuOpen = false;
   isScrolled = false;
   readonly icons = { bars: faBars, chevronDown: faChevronDown, close: faXmark, arrowRight: faArrowRight };
   @ViewChild('featuresDropdown') private featuresDropdown?: ElementRef<HTMLDetailsElement>;
+  @ViewChild('mobileMenuButton') private mobileMenuButton?: ElementRef<HTMLButtonElement>;
+  @ViewChild('mobileCloseButton') private mobileCloseButton?: ElementRef<HTMLButtonElement>;
 
   constructor() {
     inject(Router).events.pipe(
@@ -53,11 +56,20 @@ export class TravelNavComponent implements OnDestroy {
     this.document.body.classList.remove('side-nav-open');
   }
 
+  dismissMobileMenu(): void {
+    this.closeMobileMenu();
+    this.mobileMenuButton?.nativeElement.focus();
+  }
+
   @HostListener('window:keydown.escape')
   onEscape(): void {
+    if (this.mobileMenuOpen) {
+      this.dismissMobileMenu();
+      return;
+    }
     const dropdown = this.featuresDropdown?.nativeElement;
-    if (dropdown?.open && !this.mobileMenuOpen) dropdown.querySelector('summary')?.focus();
-    this.closeMobileMenu();
+    if (dropdown?.open) dropdown.querySelector('summary')?.focus();
+    this.closeFeatures();
   }
 
   closeFeatures(): void {
@@ -80,8 +92,15 @@ export class TravelNavComponent implements OnDestroy {
   }
 
   toggleMobileMenu(): void {
+    if (this.mobileMenuOpen) {
+      this.dismissMobileMenu();
+      return;
+    }
     this.closeFeatures();
-    this.mobileMenuOpen = !this.mobileMenuOpen;
-    this.document.body.classList.toggle('side-nav-open', this.mobileMenuOpen);
+    this.mobileMenuOpen = true;
+    this.document.body.classList.add('side-nav-open');
+    afterNextRender(() => {
+      if (this.mobileMenuOpen) this.mobileCloseButton?.nativeElement.focus();
+    }, { injector: this.injector });
   }
 }

@@ -1,5 +1,5 @@
-<section class="why-luxury" id="services" aria-labelledby="why-ancient-paths-heading">
-  <div class="container why-luxury__heading">
+<section class="why-luxury section-shapes section-shapes--light" id="services" aria-labelledby="why-ancient-paths-heading">
+  <div class="container why-luxury__heading" appAnimateOnScroll>
     <span class="eyebrow">{{ 'siteCopy.ourDifference' | t }}</span>
     <h2 id="why-ancient-paths-heading">{{ 'whyAncientPaths.title' | t }}</h2>
     <p>{{ 'whyAncientPaths.introduction' | t }}</p>
@@ -7,8 +7,8 @@
   <div class="experience-list">
     @for (experience of experiences; track experience.id; let reverse = $odd) {
       <article class="experience" [class.experience--reverse]="reverse" [id]="experience.id">
-        <img class="experience__image" [src]="experience.image" [alt]="experience.alt | t" width="900" height="1000" loading="lazy" />
-        <div class="experience__copy">
+        <img class="experience__image" appAnimateOnScroll [src]="experience.image" [alt]="experience.alt | t" width="900" height="1000" loading="lazy" />
+        <div class="experience__copy" appAnimateOnScroll>
           <span class="experience__number" aria-hidden="true">0{{ $index + 1 }}</span>
           <h3>{{ experience.title | t }}</h3>
           <p>{{ experience.text | t }}</p>

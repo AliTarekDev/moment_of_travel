@@ -1,9 +1,25 @@
 @use '../../travel/template-theme' as theme;
 @include theme.foundation;
 :host { display:block; --travel-ink:var(--brand-plum); --travel-muted:var(--brand-muted); --travel-gutter:clamp(20px,4.5vw,70px); color:var(--brand-plum); background:#fff; font-size: var(--website-font-body); line-height: 1.8; font-family: inherit; }
-.hotels-hero { padding-block:clamp(40px,6vw,80px); text-align:center; @include theme.surface-shapes; border-bottom:1px solid #e8e1d8; }
+.hotels-hero {
+  display: grid;
+  align-items: center;
+  min-height: clamp(320px, 36vw, 540px);
+  padding-block: clamp(48px, 7vw, 96px);
+  text-align: center;
+  color: #fff;
+  background-color: var(--brand-plum-dark);
+  // Hilton Luxor Resort & Spa, photographed by 2H Media (Unsplash).
+  background-image: linear-gradient(rgb(35 21 33 / 40%), rgb(35 21 33 / 56%)), url('/five-star-hotels-luxor.webp');
+  background-position: center;
+  background-size: cover;
+  text-shadow: 0 1px 4px rgb(25 15 23 / 80%);
+}
 .breadcrumbs { display:flex; justify-content:center; flex-wrap:wrap; gap:14px; margin-bottom:28px; color:var(--brand-muted); font-size:16px; }
 .breadcrumbs a { color:var(--brand-plum); text-underline-offset:4px; }
+.hotels-hero .breadcrumbs, .hotels-hero .breadcrumbs a, .hotels-hero h1, .hotels-hero p { color: #fff; }
+.hotels-hero .eyebrow { color: #f6dfa1; }
+.hotels-hero a:focus-visible { outline-color: #f6dfa1; }
 h1 { font-size:clamp(32px, 3.5vw, 46px); line-height:1.2; margin:18px 0; overflow-wrap:anywhere; }
 .hotels-hero p { max-width:64ch; margin:0 auto; font-size:clamp(17px, 1.11vw, 20px); }
 .hotels-intro { display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,5vw,80px); padding-block:clamp(48px,6vw,88px); }
@@ -24,7 +40,6 @@ h1 { font-size:clamp(32px, 3.5vw, 46px); line-height:1.2; margin:18px 0; overflo
 .hotel-copy li { padding-inline-start:4px; margin-bottom:8px; }
 .hotel-copy li::marker { color:var(--brand-gold); }
 .hotel-actions { display:flex; gap:18px; align-items:center; flex-wrap:wrap; margin-top:28px; }
-.hotel-website { display:inline-flex; gap:10px; color:var(--brand-plum); text-underline-offset:5px; }
 .image-fallback { min-height:440px; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px; text-align:center; }
 .image-fallback > span { color:var(--brand-gold); font:600 64px Georgia,serif; }
 .hotels-cta { padding-block:clamp(48px,6vw,80px); text-align:center; @include theme.surface-shapes; }

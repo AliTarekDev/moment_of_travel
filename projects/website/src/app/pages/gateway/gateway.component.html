@@ -1,17 +1,17 @@
 <main class="gateway">
   <div class="gateway__top">
-    <a class="brand brand--logo" routerLink="." [attr.aria-label]="('siteCopy.ancientPathsHome' | t)"><img src="/SLOGAN.png" [alt]="'common.brandName' | t"></a>
+    <a class="brand brand--logo" routerLink="." [attr.aria-label]="('siteCopy.ancientPathsHome' | t)"><img src="/LOGO%202.png" [alt]="'common.brandName' | t"></a>
     <div class="gateway__actions"><p>{{ 'gateway.tagline' | t }}</p><app-language-switch /></div>
   </div>
 
-  <section class="intro">
+  <section class="intro" appAnimateOnScroll>
     <span class="kicker">{{ 'gateway.kicker' | t }}</span>
     <h1>{{ 'gateway.title' | t }}</h1>
     <p>{{ 'gateway.subtitle' | t }}</p>
   </section>
 
   <section class="choices" [attr.aria-label]="('siteCopy.chooseABusinessDivision' | t)">
-    <a class="choice choice--aviation" routerLink="aviation">
+    <a class="choice choice--aviation" appAnimateOnScroll routerLink="aviation">
       <img src="/18.jpg" [alt]="('gallery.nileView' | t)">
       <span class="choice__wash"></span>
       <span class="choice__number">01</span>
@@ -24,7 +24,7 @@
       </span>
     </a>
 
-    <a class="choice choice--travel" routerLink="travel">
+    <a class="choice choice--travel" appAnimateOnScroll routerLink="travel">
       <img src="/18.jpg" [alt]="('gallery.nileView' | t)">
       <span class="choice__wash"></span>
       <span class="choice__number">02</span>

@@ -1,6 +1,6 @@
 @use '../template-theme' as theme;
 @include theme.foundation;
-.why-luxury { padding-block:var(--travel-section-space); background:var(--brand-plum-dark); color:#fff; }
+.why-luxury { padding-block:var(--travel-section-space); background:var(--brand-plum); color:#fff; }
 .why-luxury__heading { max-width:var(--website-content-width); margin-bottom:60px; text-align:start; }
 .why-luxury__heading h2 { color:#fff; }
 .why-luxury__heading .eyebrow { color:var(--brand-gold); }

@@ -1,10 +1,11 @@
+import { AnimateOnScrollDirective } from '../../../shared/animate-on-scroll.directive';
 import { Component } from '@angular/core';
 import { TranslatePipe } from '../../../i18n/translate.pipe';
 
 @Component({
   selector: 'app-brand-introduction-section',
   standalone: true,
-  imports: [TranslatePipe],
+  imports: [AnimateOnScrollDirective, TranslatePipe],
   templateUrl: './brand-introduction-section.component.html',
   styleUrl: './brand-introduction-section.component.scss',
 })
