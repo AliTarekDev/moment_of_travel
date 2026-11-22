@@ -1,6 +1,7 @@
 import { AnimateOnScrollDirective } from '../../shared/animate-on-scroll.directive';
 import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, computed, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
 import { LanguageService } from '../../i18n/language.service';
 import { AccessibleCarouselDirective } from '../../shared/accessible-carousel.directive';
@@ -16,7 +17,7 @@ import { WhyChooseUsSectionComponent } from './sections/why-choose-us-section.co
 @Component({
   selector: 'app-travel',
   standalone: true,
-  imports: [AnimateOnScrollDirective, AccessibleCarouselDirective, CarouselModule, TranslatePipe, LuxuryGallerySectionComponent, WhyChooseUsSectionComponent, SignatureToursSectionComponent, PlanTourCtaSectionComponent, TravelNavComponent, TourCategoriesSectionComponent, FaqSectionComponent],
+  imports: [AnimateOnScrollDirective, AccessibleCarouselDirective, CarouselModule, RouterLink, TranslatePipe, LuxuryGallerySectionComponent, WhyChooseUsSectionComponent, SignatureToursSectionComponent, PlanTourCtaSectionComponent, TravelNavComponent, TourCategoriesSectionComponent, FaqSectionComponent],
   templateUrl: './travel.component.html',
   styleUrl: './travel.component.scss'
 })

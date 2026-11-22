@@ -1,0 +1,81 @@
+@use '../travel/template-theme' as theme;
+
+@include theme.foundation;
+
+:host {
+  --travel-ink: var(--brand-plum);
+  --travel-muted: var(--brand-muted);
+  background: var(--brand-surface);
+}
+
+.excursions-hero {
+  padding-block: clamp(56px, 8vw, 108px) clamp(84px, 11vw, 148px);
+  text-align: center;
+  background: linear-gradient(rgb(33 19 30 / 68%), rgb(33 19 30 / 88%)), url('/4.jpg') center / cover;
+}
+
+.excursions-hero h1 {
+  margin: 0 0 16px;
+  color: white;
+  font-size: clamp(2.75rem, 6vw, 5rem);
+  line-height: 1.08;
+}
+
+.excursions-hero p {
+  max-width: 55ch;
+  margin: 0 auto;
+  color: white;
+}
+
+.excursions-content {
+  position: relative;
+  margin-block-start: -28px;
+  padding-block-end: var(--travel-section-space);
+}
+
+mat-tab-group {
+  --mdc-tab-indicator-active-indicator-color: var(--brand-gold);
+  --mdc-tab-indicator-active-indicator-height: 3px;
+  --mat-tab-header-active-label-text-color: var(--brand-plum);
+  --mat-tab-header-inactive-label-text-color: var(--brand-muted);
+  --mat-tab-header-active-hover-label-text-color: var(--brand-plum);
+  --mat-tab-header-active-focus-label-text-color: var(--brand-plum);
+  --mat-tab-header-container-height: 56px;
+  background: white;
+  border: 1px solid var(--website-border);
+  box-shadow: 0 14px 40px rgb(33 19 30 / 8%);
+}
+
+.excursion-detail {
+  padding: clamp(22px, 5vw, 64px);
+}
+
+.excursion-detail h2 {
+  margin-block: 0 24px;
+  font-size: clamp(2rem, 4.5vw, 3.75rem);
+}
+
+.excursion-detail p {
+  margin-block: 0 1.25em;
+}
+
+.excursion-detail__options {
+  padding-inline-start: 1.5em;
+  margin-block: 0 1.25em;
+  color: var(--travel-muted);
+  line-height: 1.85;
+}
+
+.excursion-detail__actions {
+  margin-block-start: 28px;
+  padding-block-start: 24px;
+  border-block-start: 1px solid var(--website-border);
+}
+
+.excursion-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-block-end: clamp(24px, 4vw, 44px);
+}
+

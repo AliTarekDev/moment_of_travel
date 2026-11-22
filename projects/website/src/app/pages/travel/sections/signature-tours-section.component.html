@@ -62,7 +62,19 @@
       </div>
     } @else {
       <div class="tour-grid">
-        @for (tour of tours(); track tour.slug) { <ng-container [ngTemplateOutlet]="tourCard" [ngTemplateOutletContext]="{ $implicit: tour }" /> }
+        @for (tour of tours(); track tour.slug; let index = $index, last = $last) {
+          <ng-container [ngTemplateOutlet]="tourCard" [ngTemplateOutletContext]="{ $implicit: tour }" />
+          @if (index === 3 || (last && index < 3)) {
+            <article class="excursions-card" [class.excursions-card--wide]="index === 3" appAnimateOnScroll>
+              <h3>{{ 'optionalExcursions.title' | t }}</h3>
+              <p>{{ 'optionalExcursions.description' | t }}</p>
+              <a class="section-button" [routerLink]="['/', languages.language(), 'optional-excursions']">
+                {{ 'optionalExcursions.explore' | t }}
+                <fa-icon class="direction-arrow" [icon]="icons.arrowRight" aria-hidden="true" />
+              </a>
+            </article>
+          }
+        }
       </div>
     }
     </div>

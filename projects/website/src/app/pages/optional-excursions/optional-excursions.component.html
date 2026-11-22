@@ -1,0 +1,57 @@
+<app-travel-nav />
+<main>
+  <header class="excursions-hero">
+    <div class="container">
+      <h1>{{ 'optionalExcursions.title' | t }}</h1>
+      <p>{{ 'optionalExcursions.description' | t }}</p>
+    </div>
+  </header>
+
+  <div class="container excursions-content" [dir]="languages.language() === 'ar' ? 'rtl' : 'ltr'">
+    <mat-tab-group [aria-label]="'optionalExcursions.title' | t">
+      @for (excursion of excursions; track excursion) {
+        <mat-tab [label]="('optionalExcursions.options.' + excursion + '.title') | t">
+          <ng-template matTabContent>
+            <article class="excursion-detail">
+              @let optionKey = 'optionalExcursions.options.' + excursion;
+              @let title = (optionKey + (excursion === 'abdeen' ? '.heading' : '.title')) | t;
+              <header class="excursion-detail__heading">
+                <h2>{{ title }}</h2>
+              </header>
+              @if (photos[excursion]; as photo) {
+                <img class="excursion-photo" [src]="photo.src" [alt]="(optionKey + '.imageAlt') | t"
+                  [width]="photo.width" [height]="photo.height" loading="lazy" decoding="async" />
+              }
+              <div class="excursion-detail__body">
+                @for (paragraph of ((optionKey + '.description') | t).split('\n\n'); track $index) {
+                  <p>{{ paragraph }}</p>
+                }
+                @for (section of detailSections[excursion]; track section) {
+                  @let sectionKey = optionKey + '.sections.' + section;
+                  <h3>{{ (sectionKey + '.heading') | t }}</h3>
+                  @for (paragraph of ((sectionKey + '.description') | t).split('\n\n'); track $index) {
+                    <p>{{ paragraph }}</p>
+                  }
+                }
+                @if (excursion === 'museum') {
+                  <h3>{{ (optionKey + '.listHeading') | t }}</h3>
+                  <ol class="excursion-detail__options">
+                    @for (museum of ((optionKey + '.list') | t).split('\n'); track museum) {
+                      <li>{{ museum }}</li>
+                    }
+                  </ol>
+                  <p>{{ (optionKey + '.closing') | t }}</p>
+                }
+                <div class="excursion-detail__actions">
+                  <button type="button" class="section-button" (click)="inquire(title)">
+                    {{ 'optionalExcursions.inquire' | t }}
+                  </button>
+                </div>
+              </div>
+            </article>
+          </ng-template>
+        </mat-tab>
+      }
+    </mat-tab-group>
+  </div>
+</main>

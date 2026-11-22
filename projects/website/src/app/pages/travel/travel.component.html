@@ -1,14 +1,42 @@
 <app-travel-nav id="top" />
 <main>
-  <section class="hero" [class.hero--video]="activeSlide() === 0" aria-labelledby="travel-hero-title">
+  <section
+    class="hero"
+    [class.hero--video]="activeSlide() === 0"
+    aria-labelledby="travel-hero-title"
+  >
     <div class="hero__slides">
-      <owl-carousel-o appAccessibleCarousel #heroCarousel [options]="heroOptions()" (initialized)="slideChanged($event)" (changed)="slideChanged($event)">
+      <owl-carousel-o
+        appAccessibleCarousel
+        #heroCarousel
+        [options]="heroOptions()"
+        (initialized)="slideChanged($event)"
+        (changed)="slideChanged($event)"
+      >
         @for (photo of heroImages; track photo.id) {
           <ng-template carouselSlide [id]="photo.id">
             @if (photo.video) {
-              <video class="hero__photo" [src]="photo.video" [poster]="photo.image" [attr.aria-label]="photo.alt | t" width="1920" height="1080" autoplay [muted]="true" loop playsinline></video>
+              <video
+                class="hero__photo"
+                [src]="photo.video"
+                [poster]="photo.image"
+                [attr.aria-label]="photo.alt | t"
+                width="1920"
+                height="1080"
+                autoplay
+                [muted]="true"
+                loop
+                playsinline
+              ></video>
             } @else {
-              <img class="hero__photo" [src]="photo.image" [alt]="photo.alt | t" width="1920" height="1080" loading="lazy" />
+              <img
+                class="hero__photo"
+                [src]="photo.image"
+                [alt]="photo.alt | t"
+                width="1920"
+                height="1080"
+                loading="lazy"
+              />
             }
           </ng-template>
         }
@@ -16,33 +44,98 @@
     </div>
     <div class="hero__wash" aria-hidden="true"></div>
     <div class="container hero__content" appAnimateOnScroll>
-      <span class="hero__kicker">{{ 'travel.heroKicker' | t }}</span>
-      <h1 id="travel-hero-title">{{ 'travel.heroTitle' | t }}<br>{{ 'travel.heroAccent' | t }}</h1>
-      <p class="hero__description">{{ 'travel.heroText' | t }}</p>
+      <span class="hero__kicker">{{ "travel.heroKicker" | t }}</span>
+      <h1 id="travel-hero-title">
+        {{ "travel.heroTitle" | t }}<br />{{ "travel.heroAccent" | t }}
+      </h1>
+      <p class="hero__description">{{ "travel.heroText" | t }}</p>
       <div class="hero__actions">
-        <a class="section-button" href="#catalog">{{ 'siteCopy.exploreTours' | t }} <span aria-hidden="true">↗</span></a>
-        <a class="hero__link" href="#booking">{{ 'siteCopy.planYourTrip' | t }} <span aria-hidden="true">↗</span></a>
+        <a class="section-button" href="#catalog"
+          >{{ "siteCopy.exploreTours" | t }}
+          <span aria-hidden="true">↗</span></a
+        >
+        <a class="hero__link" href="#booking"
+          >{{ "siteCopy.planYourTrip" | t }}
+          <span aria-hidden="true">↗</span></a
+        >
       </div>
     </div>
     <div class="container hero__bottom" appAnimateOnScroll>
-      <div class="hero__pagination" [attr.aria-label]="'carousel.chooseSlide' | t">
+      <div
+        class="hero__pagination"
+        [attr.aria-label]="'carousel.chooseSlide' | t"
+      >
         @for (photo of heroImages; track photo.id; let index = $index) {
-          <button type="button" (click)="heroCarousel.to(photo.id)" [class.is-active]="activeSlide() === index" [attr.aria-current]="activeSlide() === index ? 'true' : null" [attr.aria-label]="('carousel.slide' | t) + ' ' + (index + 1)"><span>0{{ index + 1 }}</span></button>
+          <button
+            type="button"
+            (click)="heroCarousel.to(photo.id)"
+            [class.is-active]="activeSlide() === index"
+            [attr.aria-current]="activeSlide() === index ? 'true' : null"
+            [attr.aria-label]="('carousel.slide' | t) + ' ' + (index + 1)"
+          >
+            <span>0{{ index + 1 }}</span>
+          </button>
         }
       </div>
       <div class="carousel-controls carousel-controls--light">
-        <button type="button" (click)="heroCarousel.prev()" [attr.aria-label]="'carousel.previous' | t"><span aria-hidden="true">←</span></button>
-        <button type="button" (click)="heroCarousel.next()" [attr.aria-label]="'carousel.next' | t"><span aria-hidden="true">→</span></button>
+        <button
+          type="button"
+          (click)="heroCarousel.prev()"
+          [attr.aria-label]="'carousel.previous' | t"
+        >
+          <span aria-hidden="true">←</span>
+        </button>
+        <button
+          type="button"
+          (click)="heroCarousel.next()"
+          [attr.aria-label]="'carousel.next' | t"
+        >
+          <span aria-hidden="true">→</span>
+        </button>
       </div>
     </div>
   </section>
   <app-tour-categories-section />
-  <app-signature-tours-section />
+  <app-signature-tours-section [carousel]="false" />
+  <!-- <section class="optional-excursions" id="optional-excursions" aria-labelledby="optional-excursions-title">
+    <div class="container">
+      <div class="optional-excursions__feature" appAnimateOnScroll>
+        <img src="/4.jpg" alt="" width="800" height="500" loading="lazy" decoding="async" />
+        <div class="optional-excursions__content">
+          <h2 id="optional-excursions-title">{{ 'optionalExcursions.title' | t }}</h2>
+          <p>{{ 'optionalExcursions.description' | t }}</p>
+          <a class="section-button" [routerLink]="['/', languages.language(), 'optional-excursions']">
+            {{ 'optionalExcursions.inquire' | t }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section> -->
   <app-why-choose-us-section />
   <app-luxury-gallery-section />
-  <section class="travel-video-section" [attr.aria-label]="'travel.videoLabel' | t" (contextmenu)="$event.preventDefault()">
-    <video #travelVideo class="travel-video" src="/vedio/ved1.mp4" width="1920" height="1080" autoplay muted loop playsinline controlslist="nodownload"></video>
-    <button type="button" class="travel-video-fullscreen" (click)="openVideoFullscreen(travelVideo)" [attr.aria-label]="'travel.videoFullscreen' | t"></button>
+  <section
+    class="travel-video-section"
+    [attr.aria-label]="'travel.videoLabel' | t"
+    (contextmenu)="$event.preventDefault()"
+  >
+    <video
+      #travelVideo
+      class="travel-video"
+      src="/vedio/ved1.mp4"
+      width="1920"
+      height="1080"
+      autoplay
+      muted
+      loop
+      playsinline
+      controlslist="nodownload"
+    ></video>
+    <button
+      type="button"
+      class="travel-video-fullscreen"
+      (click)="openVideoFullscreen(travelVideo)"
+      [attr.aria-label]="'travel.videoFullscreen' | t"
+    ></button>
   </section>
   <app-plan-tour-cta-section />
   <app-faq-section />

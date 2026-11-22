@@ -36,3 +36,51 @@
 .tour-panel__button:hover { background:transparent; color:var(--brand-plum-dark); border-color:var(--brand-plum); }
 @media(max-width:1040px) { .tour-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:760px) { .tour-grid { grid-template-columns:1fr; } .tour-panel__content { padding:22px; } .tour-panel__image { height:auto; aspect-ratio:1/.86; } }
+
+.excursions-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  min-height: 340px;
+  padding: clamp(24px, 4vw, 48px);
+  background: linear-gradient(0deg, rgb(33 19 30 / 94%), rgb(33 19 30 / 26%)),
+    var(--brand-plum-dark) url('/4.jpg') center / cover;
+  color: white;
+}
+
+.excursions-card--wide {
+  grid-column: span 2;
+}
+
+.excursions-card h3 {
+  margin: 0 0 12px;
+  color: inherit;
+  font-size: clamp(30px, 4vw, 54px);
+  line-height: 1.1;
+}
+
+.excursions-card p {
+  max-width: 44ch;
+  margin: 0 0 24px;
+  color: inherit;
+}
+
+.excursions-card .section-button {
+  background: var(--brand-gold);
+  border-color: var(--brand-gold);
+  color: var(--brand-plum-dark);
+}
+
+.excursions-card .section-button:hover,
+.excursions-card .section-button:focus-visible {
+  background: white;
+  border-color: white;
+  outline-color: white;
+}
+
+@media (max-width: 760px) {
+  .excursions-card--wide {
+    grid-column: auto;
+  }
+}

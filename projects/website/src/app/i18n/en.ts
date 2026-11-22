@@ -1,4 +1,231 @@
 export const EN = {
+  optionalExcursions: {
+    title: 'Optional Excursions',
+    description: 'Make your Egypt itinerary your own. Ask us about adding a desert outing, a museum visit, or more time at a site you’ve always wanted to see.',
+    inquire: 'Ask about excursions',
+    explore: 'Explore excursions',
+    closeEnquiry: 'Close',
+    enquiryTitle: 'Excursion enquiry',
+    optionalField: '(optional)',
+    options: {
+      abdeen: {
+        title: 'Abdeen Palace',
+        heading: 'Abdeen Palace Tour',
+        imageAlt: 'Exterior of Abdeen Palace in Cairo',
+        description: `Indulge in a truly regal experience with our optional excursion to Abdeen Palace. Explore the opulent palace that served as the official residence of Egypt’s kings and queens, and enjoy a behind-the-scenes tour of its lavish interiors. Marvel at the exquisite architecture, intricate details, and rich history that surrounds you as you step into the world of royalty.
+
+Accompanied by a knowledgeable guide, you’ll go beyond the regular tourist routes and gain exclusive access to hidden chambers, private suites, and breathtaking halls that are normally off-limits to the public. Learn about the fascinating stories, anecdotes, and anecdotes of the palace’s illustrious past, and discover the treasures and artifacts that adorn its grandiose rooms.
+
+As you immerse yourself in the splendor of Abdeen Palace, you’ll be transported to a bygone era of opulence and extravagance. Admire the sumptuous decorations, luxurious furnishings, and intricate craftsmanship that reflect the palace’s rich heritage and historical significance. Hear tales of royal ceremonies, events, and important moments that took place within its walls, and gain insights into Egypt’s royal legacy.
+
+After the palace tour, indulge in a multi-course meal fit for royalty. Savor a delectable feast of authentic Egyptian cuisine, prepared by expert chefs using the finest local ingredients. From flavorful appetizers to succulent main courses and delectable desserts, your taste buds will be treated to a culinary journey through Egypt’s rich gastronomic traditions.
+
+This optional excursion to Abdeen Palace promises an unforgettable experience that combines history, culture, and gastronomy in a truly royal setting. Don’t miss the opportunity to go behind the scenes of this majestic palace and indulge in a multi-course meal fit for kings and queens. Book your excursion now and create cherished memories of a lifetime.`,
+      },
+      senenmut: {
+        title: 'Senenmut’s Tomb',
+        imageAlt: 'Rock-cut tombs of Senenmut and Nespekashuty at Deir el-Bahri',
+        description: `Discover the story of Senenmut, a senior official in Queen Hatshepsut’s court. His rock-cut tomb (TT353) lies at Deir el-Bahri on Luxor’s West Bank, close to Hatshepsut’s mortuary temple.
+
+The tomb’s most distinctive feature is its astronomical ceiling. Its painted figures and diagrams map the night sky and mark cycles of time, offering a glimpse into how ancient Egyptians understood the heavens.
+
+Ask about adding Senenmut’s Tomb to your Luxor itinerary. Our team can check access for your travel dates.`,
+      },
+      wahtye: {
+        title: 'Tour the Tomb of Wahtye',
+        imageAlt: 'The Step Pyramid of Djoser at the Saqqara archaeological site',
+        description: `Embark on a once-in-a-lifetime journey to uncover the enigmatic Tomb of Wahtye, as seen on Netflix’s captivating special “Secrets of the Saqqara Tomb”. This exclusive private visit offers a unique opportunity to explore the awe-inspiring tomb that has captured the world’s imagination.
+
+Step back in time as you venture into the burial site of Wahtye, a high-ranking priest from ancient Egypt’s Old Kingdom period. Marvel at the intricate and well-preserved wall paintings that adorn the tomb, depicting scenes of daily life, religious rituals, and the afterlife. Be mesmerized by the vivid colors, delicate details, and expert craftsmanship that have stood the test of time.
+
+With this private visit, you’ll have the chance to immerse yourself in the mysteries of the tomb with a knowledgeable Egyptologist guide. Learn about the historical significance of the tomb, the life of Wahtye, and the cultural context of the Old Kingdom period. Discover the secrets and symbolism hidden within the tomb’s intricate design, hieroglyphics, and artwork, and gain a deeper understanding of the beliefs and practices of ancient Egyptians.
+
+As you explore the Tomb of Wahtye, you’ll experience a sense of wonder and awe, knowing that you are standing in the footsteps of ancient history. This exclusive private visit provides a truly unique and intimate encounter with one of the most remarkable archaeological discoveries of our time, as featured in the acclaimed Netflix special “Secrets of the Saqqara Tomb”.
+
+Don’t miss this extraordinary opportunity to unlock the mysteries of the Tomb of Wahtye and immerse yourself in the wonders of ancient Egypt. Book your private visit now and embark on a captivating journey into the past, where the secrets of the Saqqara Tomb await your discovery.`,
+      },
+      abuSimbel: {
+        title: 'Inside Tour of Abu Simbel Dome',
+        imageAlt: 'Inside the concrete dome over the Great Temple of Abu Simbel',
+        description: 'Embark on a once-in-a-lifetime experience with a private tour inside the man-made dome at Abu Simbel, Egypt. Discover the awe-inspiring engineering marvel that protected the world-famous Abu Simbel Temples from submersion during the construction of the Aswan High Dam. Marvel at the massive dome, designed to replicate the original cliff face where the temples were originally carved into, and explore the interior chambers that house intricate hieroglyphs, vibrant wall paintings, and stunning architectural details. Learn about the history, significance, and preservation efforts of these ancient temples from your knowledgeable guide. Book now for an exclusive and intimate encounter with one of Egypt’s most iconic archaeological sites.',
+      },
+      museum: {
+        title: 'Additional Museum Visit',
+        imageAlt: 'The façade of the Egyptian Museum in Tahrir Square, Cairo',
+        description: 'Enhance your journey through ancient Egypt with an optional excursion that grants you access to an additional museum, offering a deeper understanding of the rich cultural heritage of this remarkable civilization. Immerse yourself in the captivating world of Egyptian art, history, and artifacts as you embark on this enlightening adventure.',
+        sections: {
+          treasures: {
+            heading: 'Discover a Wealth of Artistic Treasures:',
+            description: 'During this optional museum visit, you’ll have the opportunity to explore an esteemed collection of art and artifacts that shed light on the fascinating tapestry of ancient Egypt. Delve into the captivating stories behind each piece and witness the exquisite craftsmanship that has endured through the ages.',
+          },
+          choice: {
+            heading: 'Tailor Your Museum Experience:',
+            description: 'At the heart of this excursion lies the freedom to choose the museum that intrigues you the most. If the Grand Egyptian Museum, the grand showcase of Egypt’s ancient wonders, is open, the Egyptian Museum with its diverse array of artifacts and historical treasures that have enthralled visitors for decades will be the first option. Rest assured, regardless of the chosen destination, your museum visit promises to be an unforgettable voyage of discovery.',
+          },
+          guidance: {
+            heading: 'Unravel the Mysteries with Expert Guidance:',
+            description: 'Accompanied by knowledgeable guides, you’ll embark on a curated tour that illuminates the stories, legends, and significance behind the artifacts you encounter. Gain insights into the ancient civilization’s customs, beliefs, and achievements as you navigate the museum’s halls and galleries. With expert narration and engaging anecdotes, your museum experience will come alive, providing a deeper appreciation of Egypt’s enduring legacy.\n\nPlease note that the availability of museum options may vary depending on the circumstances. We will provide options for you while you are on tour.',
+          },
+        },
+        listHeading: 'Options may include but are not limited to the following:',
+        list: `Egyptian Museum (also known as the Museum of Egyptian Antiquities)
+Coptic Museum
+Islamic Art Museum
+Museum of Islamic Ceramics
+Museum of Islamic Art at Bab El-Khalq
+Gayer-Anderson Museum (also known as the House of the Cretan Woman)
+Museum of Modern Egyptian Art
+Manial Palace and Museum`,
+        closing: 'Enrich your journey through time and immerse yourself in the wonders of ancient Egypt with this optional museum visit. Unveil the secrets of the past, marvel at the artistry of ancient civilizations, and embark on an adventure that will leave you with a profound appreciation for Egypt’s extraordinary cultural heritage.',
+      },
+      stepPyramid: {
+        title: 'Inside Step Pyramid',
+        imageAlt: 'Interior stonework beneath Djoser’s Step Pyramid at Saqqara',
+        description: `Unlock the secrets of ancient Egypt with our exclusive private tour inside the Step Pyramid of Djoser, a once-in-a-lifetime opportunity not available to the general public. Explore the world’s oldest pyramid, dating back over 4,600 years, and step back in time to a bygone era of Pharaohs and pyramids.
+
+Led by an expert guide, you’ll delve deep into the heart of the Step Pyramid, venturing into hidden chambers and corridors that are off-limits to regular tourists. Discover the intricate architecture, stunning hieroglyphs, and fascinating symbolism that adorn the pyramid’s interior, gaining unique insights into its construction, purpose, and historical significance.
+
+As you immerse yourself in the mysteries of the Step Pyramid, you’ll learn about the pharaoh Djoser, the mastermind behind this groundbreaking architectural marvel, and his place in ancient Egyptian history. Gain a deeper understanding of the pyramid’s significance as a burial site and its role in ancient Egyptian beliefs about the afterlife.
+
+With a limited number of visitors allowed, you’ll have the rare opportunity to explore the Step Pyramid at your own pace, without the crowds, and truly appreciate its historical significance and architectural marvels. Capture stunning photos and create cherished memories as you step back in time and uncover the secrets of this iconic pyramid.
+
+This exclusive private tour inside the Step Pyramid of Djoser is a once-in-a-lifetime opportunity to experience the wonders of ancient Egypt like never before. Don’t miss the chance to explore this extraordinary pyramid up close and personal, and gain a unique perspective on its history and significance. Book your private tour now and embark on an unforgettable journey to the heart of Egypt’s ancient civilization.`,
+      },
+      dendera: {
+        title: 'Dendera Temple Tour',
+        imageAlt: 'Hypostyle hall in the Temple of Hathor at Dendera',
+        description: 'Indulge your curiosity and delve deeper into the captivating wonders of Egypt with an optional visit to the legendary Temple of Dendera. Prepare to be awe-struck as you embark on this must-see expedition, immersing yourself in the rich tapestry of ancient Egyptian history and architectural marvels.',
+        sections: {
+          treasures: {
+            heading: 'Witness the Unparalleled Treasures:',
+            description: 'The Temple of Dendera stands as the exclusive gateway to breathtaking sights found nowhere else in Egypt. Marvel at the enchanting Zodiac Signs, catch a glimpse of the revered Cleopatra VII, behold the majestic crowns of Egypt, and encounter a replica of the original Zodiac that has captivated scholars for centuries. Each step within this sacred temple uncovers extraordinary treasures that bring the past to life.',
+          },
+          journey: {
+            heading: 'A Scenic Journey North:',
+            description: 'Embark on a picturesque drive in the comfort of a private vehicle, departing from Luxor. As you journey north, immerse yourself in the idyllic countryside, where everyday Egyptian life unfolds before your eyes. Enjoy a gourmet lunch during the drive, replenishing your energy before arriving at the extraordinary destination of Dendera.',
+          },
+          guidedTour: {
+            heading: 'Private Tour with an Egyptologist:',
+            description: 'Upon arrival, an experienced Egyptologist will be your personal guide, leading you through the wonders of Dendera Temple. Gain exclusive access to captivating scenes and architectural marvels that remain unseen in other parts of Egypt. Take your time to explore the temple, capturing memorable photos and absorbing the profound atmosphere of this ancient sanctuary.',
+          },
+          expedition: {
+            heading: 'A Must-See Expedition:',
+            description: 'This optional journey to Dendera Temple is an absolute must for avid explorers of ancient Egypt. Immerse yourself in the captivating history, intricate artwork, and profound symbolism that grace this sacred site. Uncover the secrets of a bygone era and witness the enduring legacy of a civilization that has fascinated the world for millennia.',
+          },
+        },
+      },
+      balloon: {
+        title: 'Hot Air Balloon Ride',
+        imageAlt: 'Hot air balloon over Luxor’s West Bank in the early morning',
+        description: `Embark on an extraordinary adventure with our optional hot air balloon ride over the West Bank in Luxor, Egypt. Prepare to be awe-struck as you soar high above the breathtaking landscapes of this ancient region and witness stunning panoramic views that will leave you mesmerized.
+
+As you ascend into the skies aboard a colorful hot air balloon, you’ll be treated to a once-in-a-lifetime experience that offers a unique perspective of the West Bank of Luxor. Marvel at the majestic temples, historic ruins, and fertile fields below as they are bathed in the golden light of dawn or dusk, creating a truly magical atmosphere.
+
+Glide peacefully through the air, guided by experienced pilots who will share their knowledge about the region’s rich history and cultural significance. Capture stunning photos of the iconic landmarks such as the Temple of Karnak, the Temple of Luxor, the Colossi of Memnon, and the Valley of the Queens from a bird’s-eye view, creating memories that will last a lifetime.
+
+As you gently descend back to the ground, celebrate your adventure with a traditional champagne toast, a time-honored tradition of hot air ballooning. Reflect on the awe-inspiring sights you’ve witnessed and the unique perspective you’ve gained of Luxor’s West Bank, an experience that very few have the opportunity to enjoy.
+
+This optional hot air balloon ride over the West Bank in Luxor is a must-try adventure for travelers seeking an unparalleled experience that combines exhilaration, tranquility, and panoramic vistas. Don’t miss the chance to create unforgettable memories and see Luxor’s wonders from a whole new perspective. Book your hot air balloon ride now and embark on a truly unforgettable journey in the skies of Egypt.`,
+      },
+      amenhotep: {
+        title: 'Amenhotep II’s Tomb',
+        description: 'Learn about Amenhotep II’s burial in the Valley of the Kings and ask about current access.',
+      },
+      queens: {
+        title: 'The Valley of The Queens',
+        imageAlt: 'Rocky slopes and tomb entrances in the Valley of the Queens near Luxor',
+        description: 'Step into the world of ancient royalty and immerse yourself in the captivating allure of The Valley of the Queens. Located on the opposite side of the mountain from the renowned Valley of the Kings, this hidden gem is an extraordinary burial site dedicated to the Queens of ancient Egypt. Brace yourself for an optional expedition that will transport you back in time and unveil the secrets of this majestic realm.',
+        sections: {
+          legacy: {
+            heading: 'Unearth the Legacy of Royal Women:',
+            description: 'As the name suggests, The Valley of the Queens is a sacred resting place for the Queens of Egypt’s storied past. It offers a unique glimpse into the lives and legacies of these remarkable women who played a significant role in shaping history. Marvel at the intricate tombs that honor their memory, and be awestruck by the artistry and vivid colors that adorn the walls.',
+          },
+          nefertari: {
+            heading: 'Nefertari’s Tomb: A Crown Jewel:',
+            description: 'Among the illustrious tombs that await your exploration, none shines brighter than the legendary Nefertari’s tomb. Prepare to be spellbound as you enter the final resting place of one of ancient Egypt’s most beloved queens. Admire the breathtaking murals, perfectly preserved for centuries, and soak in the vibrant hues that still radiate with their original glory.',
+          },
+          expedition: {
+            heading: 'An Optional Expedition of Wonder:',
+            description: 'During this optional excursion, you’ll have the opportunity to select three tombs of your choice to visit. Indulge your curiosity as you wander through the labyrinthine passageways, accompanied by expert guides who will illuminate the rich history and significance of each site. As you traverse the tombs, untouched by restoration, you’ll witness firsthand the vividness of the colors that have endured the test of time.\n\nAdd this optional excursion to your tour.',
+          },
+        },
+      },
+      camel: {
+        title: 'Camel Ride',
+        imageAlt: 'Camels in the Nubian Desert near Aswan',
+        description: `Embark on an unforgettable camel ride adventure through the stunning landscapes of Aswan, Egypt. Our guided camel ride offers a unique and authentic experience that allows you to traverse the desert like the ancient nomads, riding on the back of these majestic animals.
+
+You’ll be paired with a friendly and well-trained camel, who will serve as your trusty companion as you explore the breathtaking vistas of the Aswan region. Feel the rhythm of the camel’s gait as you traverse the golden sand dunes, passing by ancient ruins, palm groves, and traditional Nubian villages along the way.
+
+Our experienced guides will share their knowledge about the local culture, history, and environment, providing insights into the fascinating world of desert life. Learn about the Bedouin culture, their traditional way of life, and the natural wonders of the desert as you journey through this enchanting landscape.
+
+Capture stunning photos of the picturesque scenery, and immerse yourself in the serenity of the desert as you disconnect from the hustle and bustle of modern life. Marvel at the natural beauty of the desert, with its shifting sands, dramatic rock formations, and boundless horizon.
+
+Whether you’re a seasoned rider or a first-time camel rider, this adventure is suitable for all ages and skill levels. Our well-cared-for camels are gentle and friendly, making your ride safe and enjoyable.
+
+Experience the magic of the desert on a camel ride in Aswan, an unforgettable experience that will leave you with lasting memories. Don’t miss the opportunity to explore the desert landscapes in an authentic way. Book your camel ride adventure now and embark on an extraordinary journey through the sands of Egypt.`,
+      },
+      horemheb: {
+        title: 'Horemheb’s Tomb',
+        imageAlt: 'The court of Osiris depicted on a wall inside Horemheb’s tomb',
+        description: `Discover the royal tomb of Horemheb (KV57) in Luxor’s Valley of the Kings. Horemheb was the last pharaoh of the Eighteenth Dynasty, and the decoration of his tomb offers a glimpse into how ancient Egyptians imagined the journey after death.
+
+In the burial chamber, scenes from the Book of Gates trace the sun god’s passage through the underworld. Unfinished sections preserve artists’ outlines beside painted reliefs, revealing how the tomb’s walls were decorated.
+
+Ask about adding Horemheb’s Tomb to your Luxor itinerary. Our team can confirm access for your travel dates.`,
+      },
+      coptic: {
+        title: 'Coptic Cairo',
+        imageAlt: 'The Hanging Church in Old Cairo',
+        description: `Take a step back in time. In an era between the ancient Egyptian period and modern times. On this tour of Coptic Cairo, you will experience many aspects of the city from when the city was first developed.
+
+On this guided excursion you will explore a variety of religious facilities from The Hanging Church, St. Sergius and St Bacchus Church, and the Synagogue of Ben Ezra.
+
+You will then walk down several streets that are only available to pedestrians. Your guide will explain the area’s history as you continue to the oldest street market in Cairo- The Khan el-Khalili Bazaar. Here you will be able to sharpen your bartering skills as there are many items worth buying for yourself and others.
+
+In the bazaar ( Khan El-Khalili) you can taste the flavors of old Cairo and feel the authenticity of the everyday life of Its people who still keep their ancestors legacy alive. A lot of the crafts have been practiced since the 14th century AD.
+
+The Khan el-Khalili today is occupied by local merchants and traders and is considered one of the most popular souqs in the region. Shops typically sell souvenirs, antiques, and jewelry, but the adjoining goldsmiths’ souq, for example, is still important for locals, many craftsmen’s workshops continue to operate within the bazaar (usually in the courtyards or upper floors of buildings) or in the surrounding districts, manufacturing some of the products sold here or exported elsewhere.
+
+You will have an excellent opportunity to interact with locals while having a drink at one of the famous coffee shops overlooking Al Hussien Square, named after prophet Mohamed’s Grandson.
+
+Depending on the time of day, lunch or dinner will be served in a nearby restaurant.`,
+      },
+      pyramids: {
+        title: 'Meidum & Lahun Pyramids',
+        imageAlt: 'The stone core of the Meidum Pyramid rising above the surrounding rubble',
+        description: `Embark on a captivating journey through Egypt’s ancient history with our day excursion to the Meidum and Lahun pyramids. This unique tour takes you off the beaten path to explore lesser-known yet equally fascinating pyramids in Egypt’s rich heritage.
+
+Accompanied by an expert Egyptologist guide, you’ll start your adventure with a visit to the Meidum Pyramid, built under Pharaoh Sneferu during the Old Kingdom. Marvel at its massive size and distinctive design as you learn how it was transformed from a step pyramid into a smooth-sided pyramid.
+
+Next, you’ll explore the Lahun Pyramid, built for Pharaoh Senusret II during the Middle Kingdom. Learn about its distinctive construction and its significance as you explore the site with your guide.
+
+Throughout the tour, your knowledgeable guide will share fascinating stories, legends, and insights into the ancient civilization of Egypt, providing you with a deeper understanding of the pyramids and their cultural significance. Capture stunning photos, immerse yourself in the ancient world, and create memories that will last a lifetime.
+
+This day excursion to the Meidum and Lahun pyramids offers a rare opportunity to explore lesser-known yet equally remarkable pyramids in Egypt. Immerse yourself in the history, culture, and mysteries of ancient Egypt with our expert guide, and discover hidden gems off the beaten path. Book your adventure now and embark on a journey through Egypt’s ancient past.`,
+      },
+      alexandria: {
+        title: 'Alexandria City Tour',
+        imageAlt: 'Qaitbay Citadel on the Mediterranean coast in Alexandria',
+        description: `Enhance your Egyptian adventure with an all-day city tour of Alexandria, the pearl of the Mediterranean, with our convenient add-on option! Departing from and returning to your hotel in Cairo, Egypt, this tour offers a fascinating exploration of Alexandria’s rich history and culture.
+
+Visit the legendary Catacombs of Kom el Shoqafa, a complex of Roman tombs adorned with intricate carvings and sculptures. Marvel at the impressive Qaitbay Citadel, a medieval fortress standing proudly on the shores of the Mediterranean Sea. Explore the Roman Amphitheater, an ancient theater that once hosted dramatic performances and musical concerts.
+
+Immerse yourself in the fascinating world of ancient knowledge at the famous Library of Alexandria, a modern architectural masterpiece that houses millions of books and manuscripts. Stroll through the lush gardens surrounding Montaza Palace, a sprawling royal residence.
+
+Please note that the order of events may change to optimize your experience. Our knowledgeable guides will provide you with insights and stories about Alexandria’s rich past, making this tour an enriching and unforgettable experience.
+
+Don’t miss the chance to discover the wonders of Alexandria with our all-day city tour add-on option. Book now and expand your Egyptian adventure with this exciting excursion!`,
+      },
+      hotel: {
+        title: 'Additional Hotel Night',
+        imageAlt: 'Hotel pool and palm trees overlooking the Nile',
+        description: `Embark on an unforgettable journey through Egypt with Ancient Paths’ small-group luxury tour and extend your stay with an additional hotel night! Immerse yourself in the wonders of this ancient civilization and create lasting memories.
+
+With our optional extra hotel night, you’ll have more time to explore Egypt’s timeless treasures at your own pace. Whether you choose to book it before your tour or after, this additional night will allow you to fully immerse yourself in the rich history and culture of Egypt.`,
+      },
+    },
+  },
   itineraryPhoto: { view: 'View photo', close: 'Close photo and return to itinerary' },
   carousel: { previous: 'Previous slide', next: 'Next slide', chooseSlide: 'Choose a slide', slide: 'Slide' },
   gallery: { previous: 'Previous photos', next: 'Next photos', egypt: 'Egypt', templeArchitecture: 'Ancient Egyptian temple architecture', tombInterior: 'Ancient Egyptian tomb interior', nileView: 'Views over the Nile', desertJourney: 'Camel journey through the Egyptian desert' },

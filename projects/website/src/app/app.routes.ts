@@ -28,6 +28,11 @@ export const routes: Routes = [
         title: 'Ancient Paths — Tailor-made itineraries',
       },
       {
+        path: 'optional-excursions',
+        loadComponent: () => import('./pages/optional-excursions/optional-excursions.component').then(module => module.OptionalExcursionsComponent),
+        title: 'Ancient Paths — Optional Excursions',
+      },
+      {
         path: 'contact',
         loadComponent: () => import('./pages/contact/contact.component').then(module => module.ContactComponent),
         title: 'Ancient Paths — Contact us',

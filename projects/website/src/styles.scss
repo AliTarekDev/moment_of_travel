@@ -59,6 +59,9 @@ img { display: block; max-width: 100%; }
 
 .tailor-planner-dialog .mat-mdc-dialog-surface { border-radius:0; padding:0; overflow:hidden; }
 .tailor-planner-dialog .mat-mdc-dialog-container { padding:0; }
+.excursion-enquiry-dialog {
+  --mdc-dialog-container-shape: 16px;
+}
 
 // Keep supporting copy and Material hints readable across the website.
 :root { --mat-form-field-subscript-text-size:14px; --mat-checkbox-label-text-size:16px; --mat-radio-label-text-size:16px; }
